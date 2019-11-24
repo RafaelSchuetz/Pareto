@@ -8,14 +8,22 @@ library(dplyr)
 
 # read in data
 
-data2020 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2020_Unbereinigte Daten")
+## read in headers
+
+headers <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2020_Unbereinigte Daten", n_max = 0) %>% 
+    names()
+
+## read in rest of data
+
+dataWithOldHeaders <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2020_Unbereinigte Daten", skip = 2, col_names = headers)
 
 # rename columns
 
-data2020 %>% 
+data2020 <- dataWithOldHeaders %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
     eatersPerMeal = 'Anzahl Ki pro Mahlzeit 2020',
+    statistics = 'Statistische Auswertung',
     regularEaters = 'Anzahl der KiJu, die regelmäßig in PE gegessen haben',
     outOfWhich = 'Von diesen Kindern und Jugendlichen…',
     daySchoolers = 'besuchen Ganztagsschule...6',
@@ -62,4 +70,22 @@ data2020 %>%
     relationshipEst = 'Beziehung zu den KiJu gestärkt',
     participationEst = 'KiJu öfter und umfassender beteiligt',
     tryoutNo = 'Neues ausprobiert',
-    notSureQuestionsEst= 'Wir waren uns nicht sicher, was mit den Fragen gemeint ist')
+    notSureQuestionsEst = 'Wir waren uns nicht sicher, was mit den Fragen gemeint ist',
+    agreementQuestions = 'Wir sind und bei allen Fragen einig gewesen',
+    trips = 'Entdeckerfonds',
+    suggestions = 'Vorschläge gemacht',
+    decisions = 'mitentschieden',
+    organization = 'organisiert',
+    budget = 'Budget verwaltet',
+    review = 'nachbereitet',
+    publicTransport = 'öffentl. Nahverkehr',
+    mobility = 'Mobilität',
+    newPlaces = 'Neue Orte',
+    newCommunities = 'Neue Lebenswelten',
+    newIdeas = 'Neue Ideen',
+    ongoingParticipation = 'TN weitere Aktivitäten PE',
+    specificSkills = 'Konkrete Kompetenzen',
+    daytodaySkills = 'Kompetenzen im Alltag', # before dayToDaySkills
+    selfWorth = 'Selbstwertgefühl...66', # before selfworth
+    socialSkills = 'soziale Kompetenzen',
+    networkSuggestions = 'CHILDREN Netzwerk Anregungen')
