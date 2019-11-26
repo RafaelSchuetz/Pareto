@@ -89,3 +89,5 @@ data2020 <- dataWithOldHeaders %>%
     tripsSelfworth = 'Selbstwertgefühl...66', 
     tripsSocialSkills = 'soziale Kompetenzen',
     tripsNetworkSuggestions = 'CHILDREN Netzwerk Anregungen')
+
+data2020 <- data2020 %>% add_column(year=2019)
