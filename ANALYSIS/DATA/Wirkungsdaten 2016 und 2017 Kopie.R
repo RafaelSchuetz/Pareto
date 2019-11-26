@@ -2,12 +2,11 @@
 
 # 1. Herunterladen der Daten ----------------------------------------------
 
-install.packages("readxl")
 library(readxl)
 
 ### Daten 2017
 
-Wirkungsdaten_2017 <- read_excel("Daten CHILDREN/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
+Wirkungsdaten_2017 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
                  sheet = "2017")
 View(Wirkungsdaten_2017)
 
