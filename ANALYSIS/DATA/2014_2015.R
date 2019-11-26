@@ -1,10 +1,11 @@
 library(readxl)
 library(dplyr)
+library(tidyverse)
 
 data2014 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2014")
 data2015 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2015")
 
-#umbennenm
+#umbennen
 
 data2014 <- data2014 %>% 
     dplyr::rename(id = 'Einrichtungsnummer', 
@@ -34,7 +35,8 @@ data2014 <- data2014 %>%
                       tripsSubsidy = 'Fördersumme EF 2014', 
                       tripsDecisions = 'entschieden', 
                       tripsOrganization = 'organisiert', 
-                      tripsReview = 'nachbereitet', 
+                      tripsReview = 'nachbereitet',
+                      tripsReached = 'erreicht',
                       tripsMobility = 'Mobilität', 
                       tripsKnowledge = 'veränderte Kenntnisse', 
                       tripsBehavior = 'Verhalten verändert')
@@ -63,7 +65,9 @@ data2015 <- data2015 %>%
                 moreConcentrated = 'sind konzentrierter', 
                 moreBalanced = 'sind ausgeglichener', 
                 lessIll = 'seltener krank', 
-                dayToDaySkills = 'erweiterte Alltagskompetenzen', 
+                dayToDaySkills = 'erweiterte Alltagskompetenzen',
+                moreIndependent = 'sind selbstständiger',
+                selfworth = 'Selbstwertgefühl gestärkt',
                 moreOpen = 'sind offener', 
                 moreConfidence = 'stärkeres Selbstvertrauen', 
                 addressProblems = 'sprechen Probleme an', 
@@ -97,5 +101,7 @@ data2015 <- data2015 %>%
   data2015 <- data2015 %>% mutate_if(is.character, as.numeric)
   
   
+  data2014 <- data2014 %>% add_column(year = 2014)
+  data2015 <- data2015 %>% add_column(year = 2015)
   
   
