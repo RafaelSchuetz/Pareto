@@ -30,25 +30,71 @@ View(data2017)
 data2017 <- data2017 %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
-    overallchildrenperinstitution = 'Anzahl KiJu insgesamt in der Einrichtung',
+    overallChildrenPerInstitution = 'Anzahl KiJu insgesamt in der Einrichtung',
     age = 'Alter der KiJu',
-    overallbudget = 'Gesamtbudget der Einrichtung',
-    chilrdenpermeal = 'Anzahl Ki pro Mahlzeit 2017',
-    newchildren = 'neue Ki beim MT 2017',
-    number_catering = 'Anzahl Catering 2017',
-    number_mealwithininstitution = 'Anzahl idEg 2017',
-    number_breakfast = 'Anzahl Frü 2017',
-    number_MT = 'Anzahl MT 2017',
-    number_afternoon = 'Anzahl Nachmi 2017',
-    number_dinner = 'Anzahl AbBr 2017',
+    overallBudget = 'Gesamtbudget der Einrichtung',
+    chilrdenPerMeal = 'Anzahl Ki pro Mahlzeit 2017',
+    newChildren = 'neue Ki beim MT 2017',
+    numberCatering = 'Anzahl Catering 2017',
+    numberMealWithinInstitution = 'Anzahl idEg 2017',
+    numberBreakfast = 'Anzahl Frü 2017',
+    numberMT = 'Anzahl MT 2017',
+    numberAfternoon = 'Anzahl Nachmi 2017',
+    numberDinner = 'Anzahl AbBr 2017',
     frequency = 'Häufigkeit 2017(pro Woche x Wochen pro Jahr)',
     DGE = 'Anzahl DGE-Kriterien',
-    finalcosts = 'MT_Gesamtkosten 2017',
-    MT_granted = 'Bewilligt MT 2017',
+    finalCosts = 'MT_Gesamtkosten 2017',
+    subsidy = 'Bewilligt MT 2017',
+    participateMore = 'häufiger wegen MT',
+    tasksLunch = 'Aufgaben rund um MT',
+    monthlyCooks = 'Kochen 1x Monat',
+    weeklyCooks = 'Kochen 1 Woche',
+    shoppers = 'einkaufen',
+    ownIdeas = 'eigene Ideen& Vorschläge',
+    longerPeriodVisitors = 'längeren Zeitraum Besucher',
+    easyDish = 'einfache Gerichte zubereiten',
+    dietaryKnowledge = 'Wissen erweitert',
+    appreciateHealthy = 'schätzen gesunde Ernährung',
+    foodCulture = 'schätzen gem. Esskultur',
+    influenceHome = 'beeinflussen Esskultur Familien',
+    cookAtHome = 'kochen MT-Gerichte zu Hause nach',
+    askRecipe = 'fragen Rezepte nach',
+    moreConcentrated = 'sind konzentrierter',
+    moreBalanced = 'sind ausgeglichener',
+    lessIll = 'seltener krank',
+    dayToDaySkills = 'erweiterte Alltagskompetenzen',
+    moreIndependent = 'sind selbstständiger',
+    selfworth = 'Selbstwertgefühl gestärkt',
+    moreOpen = 'sind offener',
+    moreConfidence = 'stärkeres Selbstvertrauen',
+    adressProblems = 'sprechen Probleme an',
+    proud = 'sind stolz',
+    enoughFood = 'genug Essen',
+    enoughStaffLunch = 'genug Personal MT',
+    enoughStaffActivities = 'genug Personal / weitere Aktivitäten',
+    qualitySatisfies = 'mit Qualität zufrieden',
+    regional = 'regional',
+    culture = 'Kultur',
+    unsweetenedDrinks = 'ungesüßte Getränke',
+    suggestionMTforChildren = 'Anregungen MT über CH',
+    DGEbinary = 'DGE-Kriterien',
+    recordRecipesBinary = 'Rezepte aufschreiben',
+    tripsNo = 'Anzahl EF-Aktivitäten 2017',
+    tripsKidsNo = 'Anzahl Kinder 2017',
+    tripsSubsidy = 'Bewilligt EF 2017',
+    tripsSuggestions = 'Vorschläge gemacht',
+    tripsDecisions = 'entschieden',
+    trips
+    
+    
+    
+    
     )
 
 
+# Hinzufügen des Jahres 
 
+data2017 <- data2017 %>% add_column(year = 2019)
 
 
 
