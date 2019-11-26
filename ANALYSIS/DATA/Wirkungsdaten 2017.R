@@ -2,6 +2,8 @@
 
 # 1. Herunterladen der Daten ----------------------------------------------
 
+rm(list = ls())
+
 library(readxl)
 library(dplyr)
 library(tidyverse)
@@ -71,7 +73,7 @@ data2017 <- data2017 %>%
     proud = 'sind stolz',
     enoughFood = 'genug Essen',
     enoughStaffLunch = 'genug Personal MT',
-    enoughStaffActivities = 'genug Personal / weitere Aktivitäten',
+    enoughStaffActivities = 'genug Personal / weitere Akt.',
     qualitySatisfies = 'mit Qualität zufrieden',
     regional = 'regional',
     culture = 'Kultur',
@@ -84,17 +86,25 @@ data2017 <- data2017 %>%
     tripsSubsidy = 'Bewilligt EF 2017',
     tripsSuggestions = 'Vorschläge gemacht',
     tripsDecisions = 'entschieden',
-    trips
-    
-    
-    
-    
-    )
+    tripsOrganization = 'organisiert',
+    tripsBudget = 'Budget verwaltet',
+    tripsReview = 'nachbereitet',
+    tripsPublicTransport = 'öffentl. Nahverkehr',
+    tripsMobility = 'Mobilität',
+    tripsNewPlaces = 'Neue Orte',
+    tripsNewCommunities = 'Neue Lebenswelten',
+    tripsNewIdeas = 'Neue Ideen',
+    tripsSpecificSkills = 'Konkrete Kompetenzen',
+    tripsDayToDaySkills = 'Kompetenzen im Alltag',
+    tripsSelfworth = 'Selbstwertgefühl',
+    tripsSocialSkills = 'soziale Kompetenzen',
+    tripsNetworkSuggestions = 'CHILDREN Netzwerk Anregungen')
 
 
-# Hinzufügen des Jahres 
+# Hinzufügen des Jahres: Allen Datenpunkten aus dem einzelnen Sheet muss die Variable "Jahr" 
+# hinzugefügt werden, die für jede Beobachtung aus dem Sheet "2017" den Wert 2017 annimmt.
 
-data2017 <- data2017 %>% add_column(year = 2019)
+data2017 <- data2017 %>% add_column(year = 2017)
 
 
 
