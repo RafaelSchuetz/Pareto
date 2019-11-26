@@ -17,7 +17,7 @@ Wirkungsdaten_2017$Entdeckerfonds <- NULL
 
 
 ### Daten 2016
-Wirkungsdaten_2016 <- read_excel("Daten CHILDREN/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
+Wirkungsdaten_2016 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
                                  sheet = "2016")
 View(Wirkungsdaten_2016)
 
