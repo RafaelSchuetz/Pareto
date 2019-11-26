@@ -26,7 +26,19 @@ data2017 <- Wirkungsdaten_2017unbereinigt %>%
     id = 'Einrichtungsnummer',
     overallchildrenperinstitution = 'Anzahl KiJu insgesamt in der Einrichtung',
     age = 'Alter der KiJu',
-    overallbudget = 'Gesamtbudget der Einrichtung')
+    overallbudget = 'Gesamtbudget der Einrichtung',
+    eaterspermeal = 'Anzahl Ki pro Mahlzeit 2017',
+    newchildren = 'neue Ki beim MT 2017',
+    number_catering = 'Anzahl Catering 2017',
+    number_mealwithininstitution = 'Anzahl idEg 2017',
+    number_breakfast = 'Anzahl Frü 2017',
+    number_MT = 'Anzahl MT 2017',
+    number_afternoon = 'Anzahl Nachmi 2017',
+    number_dinner = 'Anzahl AbBr 2017',
+    frequency = 'Häufigkeit 2017(pro Woche x Wochen pro Jahr)',
+    DGE = 'Anzahl DGE-Kriterien',
+    MT_overallcosts = 'MT_Gesamtkosten 2017',
+    MT_granted = 'Bewilligt MT 2017')
 
 
 # Änderung des Datentyps
