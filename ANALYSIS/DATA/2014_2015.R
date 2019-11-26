@@ -92,3 +92,8 @@ names(data2015)[1] <- "id"
   names(data2015)[51] <- "tripsMobility"
   names(data2015)[52] <- "tripsChangedKnowledge"
   names(data2015)[53] <- "tripsChangedBehavior"
+  
+  data2014 <- data2014 %>% mutate_if(is.character, as.numeric)
+  data2015 <- data2015 %>% mutate_if(is.character, as.numeric)
+  
+  
