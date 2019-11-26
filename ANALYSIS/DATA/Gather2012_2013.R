@@ -89,3 +89,10 @@ data2013 <- data2013_unbereinigt %>%
     tripsMobility = 'Mobilität', 
     tripsKnowledge = 'veränderte Kenntnisse', 
     tripsBehavior = 'Verhalten verändetr')
+
+
+# final data as numeric ---------------------------------------------------
+
+data2012 <- data2012 %>% mutate_if(is.character, as.numeric)
+data2013 <- data2013 %>% mutate_if(is.character, as.numeric)
+
