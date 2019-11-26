@@ -1,71 +1,91 @@
-#Datens‰tze 2012 und 2013 in R importieren und bearbeiten
+#Datens?tze 2012 und 2013 in R importieren und bearbeiten
 
 
 # Packages Laden ----------------------------------------------------------
 
 library(readxl)
 library(tidyverse)
+library(dplyr)
 
 
-# Datens‰tze aus Excel in R ziehen ----------------------------------------
+# Datensaetze aus Excel in R ziehen ----------------------------------------
 
+headers2012 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 11, n_max = 0) %>% 
+  names()
 
-daten2012 <- read_excel("Studium/5. Semester/Pareto/Daten/wirkungsdaten.xlsx", sheet = 11) 
+data2012_unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 11) 
 
-daten2013 <- read_excel("Studium/5. Semester/Pareto/Daten/wirkungsdaten.xlsx", sheet = 10)
+headers2013 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 10, n_max = 0) %>% 
+  names()
 
-
-# Daten¸berblick ----------------------------------------------------------
-
-#means anschauen
-
-mean(daten2012$Kinder, na.rm = TRUE)
-mean(daten2012$`Kochen 1x Monat`,na.rm = TRUE)
-
-#Histogramme
-
-hist(daten2013$`Kochen 1 Woche`)
-hist(daten2012$`Kochen 1 Woche`)
-
-#Plots rumprobieren
-
-ggplot(data = daten2012, 
-       aes(daten2012$`Wissen erweitert`, daten2012$`seltener krank`))
-
-head(daten2012$Kinder)
-
-plot(daten2013$`sch‰tzen gesunde Ern‰hrung`, daten2013$`Wissen erweitert`)
-
-ggplot(data = daten2012, 
-       aes(x= daten2012$`Selbstwertgef¸hl gest‰rkt`, y= daten2012$Mittagsmahlzeiten))
-
-?ggplot
-
-plot(daten2012$Mittagsmahlzeiten, daten2012$`Selbstwertgef¸hl gest‰rkt`)
-
-plot(daten2012$Mittagsmahlzeiten, daten2012$Kinder)
-
-plot(daten2012$`Wissen erweitert`, daten2012$`seltener krank`)
-
-boxplot(daten2012$Kinder, daten2012$Mittagsmahlzeiten, outline = FALSE)
-
-barplot(data=daten2012$`Wissen erweitert`, height = 1, horiz = TRUE, main = "Wissen erweitert")
-
-plot(density(daten2012$`Wissen erweitert`))
-
-model <- lm(daten2012$`Wissen erweitert` ~ daten2012$einkaufen, data = daten2012)
-summary(model)
-
-ggplot(data = daten2013, aes(x = daten2013$`Aktivit‰ten 2013`, y = daten2013$`Kinder 2013`)) +
-  geom_col() +
-  labs(title = "Aktivit‰ten und Kinder 2013",
-       x = "Aktivit‰ten", y = "Kinder")
-
-boxplot(daten2013$MT_Kinder, horizontal = TRUE,
-        outline = FALSE)
+data2013_unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 10)
 
 
 
+# rename columns 2012 ----------------------------------------------------------
 
+data2012 <- data2012_unbereinigt %>% 
+  dplyr::rename(
+    id = 'Einrichtungsnummer',
+    numberOfKids = 'Kinder',
+    numberOfMeals = 'Mittagsmahlzeiten',
+    conveyorSum = 'MT 2012_F√∂rdersumme final',
+    finalCosts = 'Gesamtkosten MT 2012',
+    monthlyCooks = 'Kochen 1x Monat',
+    weeklyCooks = 'Kochen 1 Woche',
+    shoppers = 'einkaufen',
+    cooks = 'zubereiten',
+    dietaryKnowledge = 'Wissen erweitert',
+    appreciateHealthyDietary = 'sch√§tzen gesunde Ern√§hrung',
+    appreciateFoodCulture = 'sch√§tzen gem. Esskultur',
+    influenceHomeFoodCulture = 'beeinflussen Esskultur Familien',
+    lessIll = 'seltener krank',
+    dayToDaySkillsNo = 'erweiterte Alltagskompetenzen',
+    selfworthNo = 'Selbstwertgef√ºhl gest√§rkt',
+    participateMoreOften = 'kommen h√§ufiger',
+    claimBTP = 'Anspruch BTP',
+    benefitBTP = 'nutzen BTP',
+    schoolWithoutMT = 'Schule ohne MT',
+    schoolExpensiveMT = 'MT Schule zu teuer',
+    enoughFood = 'genug Essen',
+    qualitySatisfies = 'Qualit√§t zufrieden',
+    enoughStaff = 'genug Personal MT', 
+    enoughStaffMore = 'genug Personal / weitere Akt.')
+    
 
+# rename columns 2013 -----------------------------------------------------
 
+data2013 <- data2013_unbereinigt %>% 
+  dplyr::rename(
+    id = 'Einrichtungsnummer',
+    numberOfKids = 'MT_Kinder',
+    numberOfMeals = 'MT_Mahlzeiten',
+    finalCosts = 'MT_Gesamtkosten',
+    MTGranted = 'Bewilligt MT 2013',
+    monthlyCooks = 'Kochen 1x Monat',
+    weeklyCooks = 'Kochen 1 Woche',
+    shoppers = 'einkaufen',
+    cooks = 'zubereiten',
+    dietaryKnowledge = 'Wissen erweitert',
+    appreciateHealthyDietary = 'sch√§tzen gesunde Ern√§hrung',
+    appreciateFoodCulture = 'sch√§tzen gem. Esskultur',
+    influenceHomeFoodCulture = 'beeinflussen Esskultur Familien',
+    lessIll = 'seltener krank',
+    dayToDaySkillsNo = 'erweiterte Alltagskompetenzen',
+    selfworthNo = 'Selbstwertgef√ºhl gest√§rkt',
+    participateMoreOften = 'kommen h√§ufiger',
+    enoughFood = 'genug Essen',
+    qualitySatisfies = 'Qualit√§t zufrieden',
+    enoughStaff = 'genug Personal MT', 
+    enoughStaffMore = 'genug Personal / weitere Akt.',
+    trips = "Entdeckerfonds", 
+    tripsNo = 'Aktivit√§ten 2013', 
+    tripsKidsNo = 'Kinder 2013', 
+    tripsGranted = 'Bewilligt EF 2013', 
+    tripsDecisions = 'entschieden', 
+    tripsOrganization = 'organisiert', 
+    tripsReview = 'nachbereitet', 
+    tripsReached = 'erreicht',
+    tripsMobility = 'Mobilit√§t', 
+    tripsKnowledge = 'ver√§nderte Kenntnisse', 
+    tripsBehavior = 'Verhalten ver√§ndetr')
