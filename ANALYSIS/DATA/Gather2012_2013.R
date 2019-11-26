@@ -8,7 +8,7 @@ library(tidyverse)
 library(dplyr)
 
 
-# Datens?tze aus Excel in R ziehen ----------------------------------------
+# Datensaetze aus Excel in R ziehen ----------------------------------------
 
 headers2012 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 11, n_max = 0) %>% 
   names()
@@ -22,13 +22,70 @@ data2013_unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTR
 
 
 
-# rename columns ----------------------------------------------------------
+# rename columns 2012 ----------------------------------------------------------
 
 data2012 <- data2012_unbereinigt %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
-    children = 'Kinder'
-    totalmeal = 'Mittagsmahlzeiten'
-    moneyfinal = 'MT 2012_Fördersumme final'
+    numberOfKids = 'Kinder',
+    numberOfMeals = 'Mittagsmahlzeiten',
+    conveyorSum = 'MT 2012_Fördersumme final',
+    finalCosts = 'Gesamtkosten MT 2012',
+    monthlyCooks = 'Kochen 1x Monat',
+    weeklyCooks = 'Kochen 1 Woche',
+    shoppers = 'einkaufen',
+    cooks = 'zubereiten',
+    dietaryKnowledge = 'Wissen erweitert',
+    appreciateHealthyDietary = 'schätzen gesunde Ernährung',
+    appreciateFoodCulture = 'schätzen gem. Esskultur',
+    influenceHomeFoodCulture = 'beeinflussen Esskultur Familien',
+    lessIll = 'seltener krank',
+    dayToDaySkillsNo = 'erweiterte Alltagskompetenzen',
+    selfworthNo = 'Selbstwertgefühl gestärkt',
+    participateMoreOften = 'kommen häufiger',
+    claimBTP = 'Anspruch BTP',
+    benefitBTP = 'nutzen BTP',
+    schoolWithoutMT = 'Schule ohne MT',
+    schoolExpensiveMT = 'MT Schule zu teuer',
+    enoughFood = 'genug Essen',
+    qualitySatisfies = 'Qualität zufrieden',
+    enoughStaff = 'genug Personal MT', 
+    enoughStaffMore = 'genug Personal / weitere Akt.')
     
 
+# rename columns 2013 -----------------------------------------------------
+
+data2013 <- data2013_unbereinigt %>% 
+  dplyr::rename(
+    id = 'Einrichtungsnummer',
+    numberOfKids = 'MT_Kinder',
+    numberOfMeals = 'MT_Mahlzeiten',
+    finalCosts = 'MT_Gesamtkosten',
+    MTGranted = 'Bewilligt MT 2013',
+    monthlyCooks = 'Kochen 1x Monat',
+    weeklyCooks = 'Kochen 1 Woche',
+    shoppers = 'einkaufen',
+    cooks = 'zubereiten',
+    dietaryKnowledge = 'Wissen erweitert',
+    appreciateHealthyDietary = 'schätzen gesunde Ernährung',
+    appreciateFoodCulture = 'schätzen gem. Esskultur',
+    influenceHomeFoodCulture = 'beeinflussen Esskultur Familien',
+    lessIll = 'seltener krank',
+    dayToDaySkillsNo = 'erweiterte Alltagskompetenzen',
+    selfworthNo = 'Selbstwertgefühl gestärkt',
+    participateMoreOften = 'kommen häufiger',
+    enoughFood = 'genug Essen',
+    qualitySatisfies = 'Qualität zufrieden',
+    enoughStaff = 'genug Personal MT', 
+    enoughStaffMore = 'genug Personal / weitere Akt.',
+    trips = "Entdeckerfonds", 
+    tripsNo = 'Aktivitäten 2013', 
+    tripsKidsNo = 'Kinder 2013', 
+    tripsGranted = 'Bewilligt EF 2013', 
+    tripsDecisions = 'entschieden', 
+    tripsOrganization = 'organisiert', 
+    tripsReview = 'nachbereitet', 
+    tripsReached = 'erreicht',
+    tripsMobility = 'Mobilität', 
+    tripsKnowledge = 'veränderte Kenntnisse', 
+    tripsBehavior = 'Verhalten verändetr')
