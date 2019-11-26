@@ -3,43 +3,64 @@ library(dplyr)
 
 data2014 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2014")
 data2015 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2015")
-View(data2014)
-#umbennen
+
+#umbennenm
 
 data2014 <- data2014 %>% 
     dplyr::rename(id = 'Einrichtungsnummer', 
                       numberOfMeals = 'MT_Mahlzeiten 2014',
-                      numberOfKids = 'MT_Kinder 2014',
+                      regularEaters = 'MT_Kinder 2014',
                       finalCosts = 'MT_Gesamtkosten 2014',
-                      conveyorSum = 'Fördersumme final MT 2014',
+                      subsidy = 'Fördersumme final MT 2014',
                       monthlyCooks = 'Kochen 1x Monat',
                       weeklyCooks = 'Kochen 1 Woche',
                       shoppers = 'einkaufen',
-                      cooks = 'zubereiten', 
+                      snackers = 'zubereiten', 
                       dietaryKnowledge = 'Wissen erweitert',
-                      appreciateHealthyDietary = 'schätzen gesunde Ernährung',
-                      appreciateFoodCulture = 'schätzen gem. Esskultur',
-                      influenceHomeFoodCulture = 'beeinflussen Esskultur Familien', 
+                      appreciateHealthy = 'schätzen gesunde Ernährung',
+                      foodCulture = 'schätzen gem. Esskultur',
+                      influenceHome = 'beeinflussen Esskultur Familien', 
                       lessIll = 'seltener krank', 
-                      dayToDaySkillsNo = 'erweiterte Alltagskompetenzen', 
-                      selfworthNo = 'Selbstwertgefühl gestärkt', 
-                      participateMoreOften = 'kommen häufiger', 
+                      dayToDaySkills = 'erweiterte Alltagskompetenzen', 
+                      selfworth = 'Selbstwertgefühl gestärkt', 
+                      participateMore = 'kommen häufiger', 
                       enoughFood = 'genug Essen', 
                       qualitySatisfies = 'Qualität zufrieden', 
-                      enoughStaff = 'genug Personal MT', 
-                      enoughStaffMore = 'genug Personal / weitere Akt.', 
+                      enoughStaffLunch = 'genug Personal MT', 
+                      enoughStaffActivities = 'genug Personal / weitere Akt.', 
                       trips = "Entdeckerfonds", 
-                      numberOfActivities = 'Aktivitäten 2014', 
+                      tripsNo = 'Aktivitäten 2014', 
                       tripsKidsNo = 'Kinder 2014', 
-                      tripsConeyorSum = 'Fördersumme EF 2014', 
+                      tripsSubsidy = 'Fördersumme EF 2014', 
                       tripsDecisions = 'entschieden', 
                       tripsOrganization = 'organisiert', 
-                      tripFollowUp = 'nachbereitet', 
-                      tripMobility = 'Mobilität', 
-                      tripChangedKnowledge = 'veränderte Kenntnisse', 
-                      tripChangedBehavior = 'Verhalten verändert')
+                      tripsReview = 'nachbereitet', 
+                      tripsMobility = 'Mobilität', 
+                      tripsKnowledge = 'veränderte Kenntnisse', 
+                      tripsBehavior = 'Verhalten verändert')
 
-
+data2015 <- data2015 %>% 
+  dplyr::rename(id = 'Einrichtungsnummer',
+                kidsPerMeal = 'Anzahl Kinder pro Mahlzeit',
+                numberOfMeals = 'MT_Mahlzeiten 2015', 
+                frequency = 'Häufigkeit 2015(pro Woche x Wochen pro Jahr)', 
+                totalCosts = 'MT_Gesamtkosten 2015', 
+                subsidy = 'MT 2015', 
+                DGE = 'DGE Kritierien', 
+                participateMore = 'häufiger wegen MT', 
+                tasksLunch = 'Aufgaben rund um MT', 
+                monthlyCooks = 'Kochen 1x Monat',
+                weeklyCooks = 'Kochen 1 Woche', 
+                shoppers = 'einkaufen', 
+                ownIdeas = 'eigene Ideen& Vorschläge', 
+                easyDish = 'einfache Gerichte zubereiten', 
+                dietaryKnowledge = 'Wissen erweitert',
+                appreciateHealthy = 'schätzen gesunde Ernährung', 
+                foodCulture = 'schätzen gem. Esskultur', 
+                influenceHome = 'beeinflussen Esskultur Familien', 
+                cookAtHome = 'kochen MT-Gerichte zu Hause nach', 
+                askRecipe = 'fragen Rezepte nach'
+                
 
 
 
