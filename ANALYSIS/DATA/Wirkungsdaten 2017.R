@@ -35,7 +35,7 @@ data2017 <- data2017 %>%
     overallChildrenPerInstitution = 'Anzahl KiJu insgesamt in der Einrichtung',
     age = 'Alter der KiJu',
     overallBudget = 'Gesamtbudget der Einrichtung',
-    chilrdenPerMeal = 'Anzahl Ki pro Mahlzeit 2017',
+    kidsPerMeal = 'Anzahl Ki pro Mahlzeit 2017',
     newChildren = 'neue Ki beim MT 2017',
     numberCatering = 'Anzahl Catering 2017',
     numberMealWithinInstitution = 'Anzahl idEg 2017',
@@ -45,7 +45,7 @@ data2017 <- data2017 %>%
     numberDinner = 'Anzahl AbBr 2017',
     frequency = 'Häufigkeit 2017(pro Woche x Wochen pro Jahr)',
     DGE = 'Anzahl DGE-Kriterien',
-    finalCosts = 'MT_Gesamtkosten 2017',
+    totalCosts = 'MT_Gesamtkosten 2017',
     subsidy = 'Bewilligt MT 2017',
     participateMore = 'häufiger wegen MT',
     tasksLunch = 'Aufgaben rund um MT',
@@ -105,8 +105,6 @@ data2017 <- data2017 %>%
 # hinzugefügt werden, die für jede Beobachtung aus dem Sheet "2017" den Wert 2017 annimmt.
 
 data2017 <- data2017 %>% add_column(year = 2017)
-
-
 
 
 # 3. Analyse der Daten ----------------------------------------------------
