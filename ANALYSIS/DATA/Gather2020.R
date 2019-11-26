@@ -90,4 +90,6 @@ data2020 <- dataWithOldHeaders %>%
     tripsSocialSkills = 'soziale Kompetenzen',
     tripsNetworkSuggestions = 'CHILDREN Netzwerk Anregungen')
 
+data2020 <- data2020 %>% mutate_if(is.character, as.numeric)
+
 data2020 <- data2020 %>% add_column(year=2019)
