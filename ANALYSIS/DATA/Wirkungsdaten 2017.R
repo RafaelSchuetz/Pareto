@@ -19,15 +19,21 @@ Wirkungsdaten_2017unbereinigt$Entdeckerfonds <- NULL
 
 # 2. Bearbeitung der Daten ------------------------------------------------
 
+# Änderung des Datentyps
+
+data2017 <- Wirkungsdaten_2017unbereinigt %>% mutate_if(is.character, as.numeric)
+
+View(data2017)
+
 # Umbennen der Spalten bzw. Variablen
 
-data2017 <- Wirkungsdaten_2017unbereinigt %>% 
+data2017 <- data2017 %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
     overallchildrenperinstitution = 'Anzahl KiJu insgesamt in der Einrichtung',
     age = 'Alter der KiJu',
     overallbudget = 'Gesamtbudget der Einrichtung',
-    eaterspermeal = 'Anzahl Ki pro Mahlzeit 2017',
+    chilrdenpermeal = 'Anzahl Ki pro Mahlzeit 2017',
     newchildren = 'neue Ki beim MT 2017',
     number_catering = 'Anzahl Catering 2017',
     number_mealwithininstitution = 'Anzahl idEg 2017',
@@ -37,12 +43,13 @@ data2017 <- Wirkungsdaten_2017unbereinigt %>%
     number_dinner = 'Anzahl AbBr 2017',
     frequency = 'Häufigkeit 2017(pro Woche x Wochen pro Jahr)',
     DGE = 'Anzahl DGE-Kriterien',
-    MT_overallcosts = 'MT_Gesamtkosten 2017',
-    MT_granted = 'Bewilligt MT 2017')
+    finalcosts = 'MT_Gesamtkosten 2017',
+    MT_granted = 'Bewilligt MT 2017',
+    )
 
 
-# Änderung des Datentyps
-as.numeric(Wirkungsdaten_2017$`Anzahl KiJu insgesamt in der Einrichtung`)
+
+
 
 
 

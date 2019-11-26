@@ -16,7 +16,13 @@ View(Wirkungsdaten_2016)
 
 Wirkungsdaten_2016$Entdeckerfonds <- NULL
 
-# 2. Analyse der Daten ----------------------------------------------------
+
+# 2. Bearbeitung der Daten ------------------------------------------------
+
+
+
+
+# 3. Analyse der Daten ----------------------------------------------------
 
 library(ggplot2)
 
