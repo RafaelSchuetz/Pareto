@@ -1,43 +1,47 @@
 library(readxl)
-daten2014 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2014")
-daten2015 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2015")
+library(dplyr)
+
 data2014 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2014")
 data2015 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2015")
-
+View(data2014)
 #umbennen
 
-names(data2014)[1] <- "id"
-names(data2014)[2] <- "numberOfMeals"
-names(data2014)[3] <- "numberOfKids"
-names(data2014)[4] <- "totalCosts"
-names(data2014)[5] <- "conveyorSum"
-names(data2014)[6] <- "monthlyCooks"
-names(data2014)[7] <- "weeklyCooks"
-names(data2014)[8] <- "shoppers"
-names(data2014)[9] <- "cooks"
-names(data2014)[10] <- "dietaryKnowledge"
-names(data2014)[11] <- "appreciateHealthyDietary"
-names(data2014)[12] <- "appreciateFoodCulture"
-names(data2014)[13] <- "influenceHomeFoodCulture"
-names(data2014)[14] <- "lessIll"
-names(data2014)[15] <- "dayToDaySkillsNo"
-names(data2014)[16] <- "selfworthNo"
-names(data2014)[17] <- "participateMore"
-names(data2014)[18] <- "enoughFood"
-names(data2014)[19] <- "qualitySatisfies"
-names(data2014)[20] <- "enoughStaff"
-names(data2014)[21] <- "enoughStaffMore"
-names(data2014)[22] <- "trips"
-names(data2014)[23] <- "numberOfActivities"
-names(data2014)[24] <- "tripsKidsNo"
-names(data2014)[25] <- "tripsConveyorSum"
-names(data2014)[26] <- "tripsDecisions"
-names(data2014)[27] <- "tripsOrganized"
-names(data2014)[28] <- "tripsFollowUp"
-names(data2014)[29] <- "tripsReached"
-names(data2014)[30] <- "tripsMobility"
-names(data2014)[31] <- "tripsChangedKnowledge"
-names(data2014)[32] <- "tripChangedBehavior"
+data2014 <- data2014 %>% 
+    dplyr::rename(id = 'Einrichtungsnummer', 
+                      numberOfMeals = 'MT_Mahlzeiten 2014',
+                      numberOfKids = 'MT_Kinder 2014',
+                      finalCosts = 'MT_Gesamtkosten 2014',
+                      conveyorSum = 'Fördersumme final MT 2014',
+                      monthlyCooks = 'Kochen 1x Monat',
+                      weeklyCooks = 'Kochen 1 Woche',
+                      shoppers = 'einkaufen',
+                      cooks = 'zubereiten', 
+                      dietaryKnowledge = 'Wissen erweitert',
+                      appreciateHealthyDietary = 'schätzen gesunde Ernährung',
+                      appreciateFoodCulture = 'schätzen gem. Esskultur',
+                      influenceHomeFoodCulture = 'beeinflussen Esskultur Familien', 
+                      lessIll = 'seltener krank', 
+                      dayToDaySkillsNo = 'erweiterte Alltagskompetenzen', 
+                      selfworthNo = 'Selbstwertgefühl gestärkt', 
+                      participateMoreOften = 'kommen häufiger', 
+                      enoughFood = 'genug Essen', 
+                      qualitySatisfies = 'Qualität zufrieden', 
+                      enoughStaff = 'genug Personal MT', 
+                      enoughStaffMore = 'genug Personal / weitere Akt.', 
+                      trips = "Entdeckerfonds", 
+                      numberOfActivities = 'Aktivitäten 2014', 
+                      tripsKidsNo = 'Kinder 2014', 
+                      tripsConeyorSum = 'Fördersumme EF 2014', 
+                      tripsDecisions = 'entschieden', 
+                      tripsOrganization = 'organisiert', 
+                      tripFollowUp = 'nachbereitet', 
+                      tripMobility = 'Mobilität', 
+                      tripChangedKnowledge = 'veränderte Kenntnisse', 
+                      tripChangedBehavior = 'Verhalten verändert')
+
+
+
+
 
 names(data2015)[1] <- "id" 
   names(data2015)[2] <- "kidsPerMeal"
@@ -92,3 +96,10 @@ names(data2015)[1] <- "id"
   names(data2015)[51] <- "tripsMobility"
   names(data2015)[52] <- "tripsChangedKnowledge"
   names(data2015)[53] <- "tripsChangedBehavior"
+  
+  data2014 <- data2014 %>% mutate_if(is.character, as.numeric)
+  data2015 <- data2015 %>% mutate_if(is.character, as.numeric)
+  
+  
+  
+  
