@@ -99,5 +99,9 @@ data2013 <- data2013 %>% mutate_if(is.character, as.numeric)
 
 # Add years ---------------------------------------------------------------
 
-data2012 <- data2012 %>% add_column(year=2012)
-data2013 <- data2013 %>% add_column(year=2013)
+data2012 <- data2012 %>% add_column(year=2011)
+data2013 <- data2013 %>% add_column(year=2012)
+
+
+
+
