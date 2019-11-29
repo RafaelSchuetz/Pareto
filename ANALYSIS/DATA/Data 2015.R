@@ -12,7 +12,6 @@ library(tidyverse)
 
 Wirkungsdaten_2015unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
                                  sheet = "2016")
-View(Wirkungsdaten_2015unbereinigt)
 
 # Löschen von Spalten ohne Inhalt
 
@@ -24,7 +23,6 @@ Wirkungsdaten_2015unbereinigt$Entdeckerfonds <- NULL
 # Änderung des Datentyps
 
 data2015 <- Wirkungsdaten_2015unbereinigt %>% mutate_if(is.character, as.numeric)
-View(data2015)
 
 # Umbennen der Spalten bzw. Variablen
 
