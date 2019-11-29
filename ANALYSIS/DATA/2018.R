@@ -145,12 +145,6 @@ df_2018 <- df_2018 %>%
  #   tripsKidsNo = 'Anzahl Kinder 2019 gesamt',
   #  tripsEstimatedCosts = 'geschätzte Gesamtkosten 2019')
 
-df_2018 <- df_2018 %>% 
-  dplyr::rename(
-    tripsNo = 'Anzahl Aktivitäten 2019',
-    tripsKidsNo = 'Anzahl Kinder 2019 gesamt',
-    tripsEstimatedCosts = 'geschätzte Gesamtkosten 2019')
-
 names(df_2018) [89] <- "tripsNo"
 names(df_2018) [90] <- "tripsKidsNo"
 names(df_2018) [91] <- "tripsEstimatedCosts"
@@ -161,7 +155,6 @@ names(df_2018) [91] <- "tripsEstimatedCosts"
 df_2018 <- df_2018 %>% add_column(year = 2018)
 
 library(ggplot2)
-install.packages('cowplot')
 library(cowplot)
 
 
