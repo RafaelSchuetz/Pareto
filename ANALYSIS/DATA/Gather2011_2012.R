@@ -10,21 +10,21 @@ library(dplyr)
 
 # Datensaetze aus Excel in R ziehen ----------------------------------------
 
-headers2012 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 11, n_max = 0) %>% 
+headers2011 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 11, n_max = 0) %>% 
   names()
 
-data2012_unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 11) 
+data2011_unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 11) 
 
-headers2013 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 10, n_max = 0) %>% 
+headers2012 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 10, n_max = 0) %>% 
   names()
 
-data2013_unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 10)
+data2012_unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 10)
 
 
 
 # rename columns 2012 ----------------------------------------------------------
 
-data2012 <- data2012_unbereinigt %>% 
+data2011 <- data2011_unbereinigt %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
     numberOfKids = 'Kinder',
@@ -55,7 +55,7 @@ data2012 <- data2012_unbereinigt %>%
 
 # rename columns 2013 -----------------------------------------------------
 
-data2013 <- data2013_unbereinigt %>% 
+data2012 <- data2012_unbereinigt %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
     numberOfKids = 'MT_Kinder',
@@ -93,14 +93,15 @@ data2013 <- data2013_unbereinigt %>%
 
 # final data as numeric ---------------------------------------------------
 
-data2012 <- data2012 %>% mutate_if(is.character, as.numeric)
-data2013 <- data2013 %>% mutate_if(is.character, as.numeric)
+data2011 <- data2012 %>% mutate_if(is.character, as.numeric)
+data2012 <- data2013 %>% mutate_if(is.character, as.numeric)
 
 
 # Add years ---------------------------------------------------------------
 
-data2012 <- data2012 %>% add_column(year=2011)
-data2013 <- data2013 %>% add_column(year=2012)
+data2011 <- data2011 %>% add_column(year=2011)
+data2012 <- data2012 %>% add_column(year=2012)
+
 
 
 

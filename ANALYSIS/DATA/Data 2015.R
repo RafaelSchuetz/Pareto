@@ -10,25 +10,25 @@ library(tidyverse)
 
 ### Daten 2016
 
-Wirkungsdaten_2016unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
+Wirkungsdaten_2015unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
                                  sheet = "2016")
-View(Wirkungsdaten_2016unbereinigt)
+View(Wirkungsdaten_2015unbereinigt)
 
 # Löschen von Spalten ohne Inhalt
 
-Wirkungsdaten_2016unbereinigt$Entdeckerfonds <- NULL
+Wirkungsdaten_2015unbereinigt$Entdeckerfonds <- NULL
 
 
 # 2. Bearbeitung der Daten ------------------------------------------------
 
 # Änderung des Datentyps
 
-data2016 <- Wirkungsdaten_2016unbereinigt %>% mutate_if(is.character, as.numeric)
-View(data2016)
+data2015 <- Wirkungsdaten_2015unbereinigt %>% mutate_if(is.character, as.numeric)
+View(data2015)
 
 # Umbennen der Spalten bzw. Variablen
 
-data2016 <- data2016 %>% 
+data2015 <- data2015 %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
     kidsPerMeal = 'Anzahl Kinder pro Mahlzeit 2016',
@@ -90,4 +90,4 @@ data2016 <- data2016 %>%
 # Hinzufügen des Jahres: Allen Datenpunkten aus dem einzelnen Sheet muss die Variable "Jahr" 
 # hinzugefügt werden, die für jede Beobachtung aus dem Sheet "2016" den Wert 2016 annimmt.
 
-data2016 <- data2016 %>% add_column(year = 2016)
+data2015 <- data2015 %>% add_column(year = 2015)
