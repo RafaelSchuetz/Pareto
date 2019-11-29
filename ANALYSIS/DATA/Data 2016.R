@@ -10,26 +10,26 @@ library(tidyverse)
 
 ### Daten 2017
 
-Wirkungsdaten_2017unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
+Wirkungsdaten_2016unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",
                  sheet = "2017")
-View(Wirkungsdaten_2017unbereinigt)
+View(Wirkungsdaten_2016unbereinigt)
 
 # Löschen von Spalten ohne Inhalt
 
-Wirkungsdaten_2017unbereinigt$...17 <- NULL
-Wirkungsdaten_2017unbereinigt$Entdeckerfonds <- NULL
+Wirkungsdaten_2016unbereinigt$...17 <- NULL
+Wirkungsdaten_2016unbereinigt$Entdeckerfonds <- NULL
 
 # 2. Bearbeitung der Daten ------------------------------------------------
 
 # Änderung des Datentyps
 
-data2017 <- Wirkungsdaten_2017unbereinigt %>% mutate_if(is.character, as.numeric)
+data2016 <- Wirkungsdaten_2016unbereinigt %>% mutate_if(is.character, as.numeric)
 
-View(data2017)
+View(data2016)
 
 # Umbennen der Spalten bzw. Variablen
 
-data2017 <- data2017 %>% 
+data2016 <- data2016 %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
     overallChildrenPerInstitution = 'Anzahl KiJu insgesamt in der Einrichtung',
@@ -102,24 +102,8 @@ data2017 <- data2017 %>%
 
 
 # Hinzufügen des Jahres: Allen Datenpunkten aus dem einzelnen Sheet muss die Variable "Jahr" 
-# hinzugefügt werden, die für jede Beobachtung aus dem Sheet "2017" den Wert 2017 annimmt.
+# hinzugefügt werden, die für jede Beobachtung aus dem Sheet "2016" den Wert 2016 annimmt.
 
-data2017 <- data2017 %>% add_column(year = 2017)
+data2016 <- data2016 %>% add_column(year = 2016)
 
 
-# 3. Analyse der Daten ----------------------------------------------------
-
-library(ggplot2)
-
-# Histogramm
-
-hist(Wirkungsdaten_2017$`Anzahl KiJu insgesamt in der Einrichtung`)
-
-# Scatterplot
-
-plot(x = Wirkungsdaten_2017$`Gesamtbudget der Einrichtung`, 
-     y = Wirkungsdaten_2017$`Anzahl Ki pro Mahlzeit 2017`)
-
-# Statistische Zusammenfassung
-
-summary(Wirkungsdaten_2017$`Gesamtbudget der Einrichtung`)
