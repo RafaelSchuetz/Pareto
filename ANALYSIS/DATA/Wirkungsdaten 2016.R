@@ -91,11 +91,3 @@ data2016 <- data2016 %>%
 # hinzugefügt werden, die für jede Beobachtung aus dem Sheet "2016" den Wert 2016 annimmt.
 
 data2016 <- data2016 %>% add_column(year = 2016)
-
-# 3. Analyse der Daten ----------------------------------------------------
-
-library(ggplot2)
-
-# Histogramm
-
-hist(Wirkungsdaten_2016$`Anzahl Kinder pro Mahlzeit 2016`)

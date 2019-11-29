@@ -105,21 +105,3 @@ data2017 <- data2017 %>%
 # hinzugefügt werden, die für jede Beobachtung aus dem Sheet "2017" den Wert 2017 annimmt.
 
 data2017 <- data2017 %>% add_column(year = 2017)
-
-
-# 3. Analyse der Daten ----------------------------------------------------
-
-library(ggplot2)
-
-# Histogramm
-
-hist(Wirkungsdaten_2017$`Anzahl KiJu insgesamt in der Einrichtung`)
-
-# Scatterplot
-
-plot(x = Wirkungsdaten_2017$`Gesamtbudget der Einrichtung`, 
-     y = Wirkungsdaten_2017$`Anzahl Ki pro Mahlzeit 2017`)
-
-# Statistische Zusammenfassung
-
-summary(Wirkungsdaten_2017$`Gesamtbudget der Einrichtung`)
