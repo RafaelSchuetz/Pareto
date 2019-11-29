@@ -93,8 +93,8 @@ data2012 <- data2012_unbereinigt %>%
 
 # final data as numeric ---------------------------------------------------
 
-data2011 <- data2012 %>% mutate_if(is.character, as.numeric)
-data2012 <- data2013 %>% mutate_if(is.character, as.numeric)
+data2011 <- data2011 %>% mutate_if(is.character, as.numeric)
+data2012 <- data2012 %>% mutate_if(is.character, as.numeric)
 
 
 # Add years ---------------------------------------------------------------
