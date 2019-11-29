@@ -19,7 +19,7 @@ dataWithOldHeaders <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAU
 
 # rename columns
 
-data2020 <- dataWithOldHeaders %>% 
+data2019 <- dataWithOldHeaders %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
     eatersPerMeal = 'Anzahl Ki pro Mahlzeit 2020',
@@ -90,6 +90,6 @@ data2020 <- dataWithOldHeaders %>%
     tripsSocialSkills = 'soziale Kompetenzen',
     tripsNetworkSuggestions = 'CHILDREN Netzwerk Anregungen')
 
-data2020 <- data2020 %>% mutate_if(is.character, as.numeric)
+data2019 <- data2019 %>% mutate_if(is.character, as.numeric)
 
-data2020 <- data2020 %>% add_column(year=2019)
+data2019 <- data2019 %>% add_column(year=2019)
