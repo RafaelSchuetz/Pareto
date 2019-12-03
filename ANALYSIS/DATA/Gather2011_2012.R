@@ -88,7 +88,7 @@ data2012 <- data2012_unbereinigt %>%
     tripsReached = 'erreicht',
     tripsMobility = 'Mobilität', 
     tripsKnowledge = 'veränderte Kenntnisse', 
-    tripsBehavior = 'Verhalten verändert')
+    tripsBehavior = 'Verhalten verändetr')
 
 
 # final data as numeric ---------------------------------------------------
