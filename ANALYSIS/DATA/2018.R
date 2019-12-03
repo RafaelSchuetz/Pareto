@@ -101,7 +101,7 @@ df_2018 <- df_2018 %>%
     proud = 'sind stolz',
     success = 'Erfolgserlebnisse...59',
     abitur = 'Abitur/FHR',
-    mittlererSA = 'Mittlerer SA',
+    mittlereReife = 'Mittlerer SA',
     hauptschule = 'Hauptschule',
     none = 'Ohne',
     began = 'begonnen',
