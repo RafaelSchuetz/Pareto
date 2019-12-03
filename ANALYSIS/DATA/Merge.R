@@ -1,7 +1,7 @@
 # Load packages
 library(dplyr)
 
-# Join data from 2011 to 2019
+# Join data from 2011 to 2018
 
 data201118 <- df_2018 %>% #data2019 %>%
   #full_join(df_2018) %>% 
@@ -13,6 +13,6 @@ data201118 <- df_2018 %>% #data2019 %>%
   full_join(data2012) %>%
   full_join(data2011)
 
-data201119 <- data201119 %>%
+data201118 <- data201118 %>%
   select(year, everything())
   
