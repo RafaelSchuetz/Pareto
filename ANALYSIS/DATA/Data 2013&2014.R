@@ -16,8 +16,8 @@ data2014 <- data2014 %>%
 
 data2013 <- data2013 %>% 
     dplyr::rename(id = 'Einrichtungsnummer', 
-                      numberOfMeals = 'MT_Mahlzeiten 2014',
-                      regularEaters = 'MT_Kinder 2014',
+                      mealNo = 'MT_Mahlzeiten 2014',
+                      regularEatersNo = 'MT_Kinder 2014',
                       finalCosts = 'MT_Gesamtkosten 2014',
                       subsidy = 'Fördersumme final MT 2014',
                       monthlyCooks = 'Kochen 1x Monat',
@@ -50,12 +50,12 @@ data2013 <- data2013 %>%
 
 data2014 <- data2014 %>% 
   dplyr::rename(id = 'Einrichtungsnummer',
-                kidsPerMeal = 'Anzahl Kinder pro Mahlzeit 2015',
-                numberOfMeals = 'MT_Mahlzeiten 2015', 
+                kidsPerMealNo = 'Anzahl Kinder pro Mahlzeit 2015',
+                mealNo = 'MT_Mahlzeiten 2015', 
                 frequency = 'Häufigkeit 2015(pro Woche x Wochen pro Jahr)', 
                 totalCosts = 'MT_Gesamtkosten 2015', 
                 subsidy = 'MT 2015', 
-                DGE = 'DGE Kritierien', 
+                DGENo = 'DGE Kritierien', 
                 participateMore = 'häufiger wegen MT', 
                 tasksLunch = 'Aufgaben rund um MT', 
                 monthlyCooks = 'Kochen 1x Monat',
