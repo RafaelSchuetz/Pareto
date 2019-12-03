@@ -50,22 +50,22 @@ df_2018 <- df_2018 %>%
   dplyr::rename(
     id = 'Einrichtungsnummer',
     age = 'Alter',
-    kidsPerMeal = 'Anzahl Ki pro Mahlzeit 2019',
-    newkids = 'neue Ki 2019',
-    numberOfCatering = 'Anzahl Catering 2019',
-    numberOfidEg = 'Anzahl idEg 2019',
-    numberOfMeals = 'Summe der MZ für 2019',
-    numberOfBreakfasts = 'Anzahl Frü 2019',
-    numberOfLunch = 'Anzahl MT 2019',
-    numberOfSnack = 'Anzahl Nachmi 2019',
-    numberOfDinner = 'Anzahl AbBr 2019',
+    kidsPerMealNo = 'Anzahl Ki pro Mahlzeit 2019',
+    newkidsNo = 'neue Ki 2019',
+    CateringNo = 'Anzahl Catering 2019',
+    mealInInstitutionNo = 'Anzahl idEg 2019',
+    mealNo = 'Summe der MZ für 2019',
+    breakfastNo = 'Anzahl Frü 2019',
+    lunchNo = 'Anzahl MT 2019',
+    snackNo = 'Anzahl Nachmi 2019',
+    dinnerNo = 'Anzahl AbBr 2019',
     frequency = 'x-mal pro Woche 2019',
-    weeksOffered = 'Wochen im Jahr 2019',
-    daysOffered = 'Angebotstage',
-    amountDGECriteria = 'Anzahl DGE-Kriterien (NORA)',
-    totalCosts = 'MT_Gesamtkosten pro Jahr 2019',
-    subsidyAsked = 'beantragte Summe bei CH MT 2019',
-    subsidyReceived = 'Förderentscheidung 2019...21',
+    weeksOfferedNo = 'Wochen im Jahr 2019',
+    daysOfferedNo = 'Angebotstage',
+    DGENo = 'Anzahl DGE-Kriterien (NORA)',
+    totalCostsNo = 'MT_Gesamtkosten pro Jahr 2019',
+    subsidyAskedNo = 'beantragte Summe bei CH MT 2019',
+    subsidyReceivedNo = 'Förderentscheidung 2019...21',
     migrationBackground = 'Migrationshintergrund %',
     refugee = 'Geflüchtete %',
     unemployment = 'Arbeitslosigkeit / prekäre Beschäftigung %',
@@ -100,12 +100,12 @@ df_2018 <- df_2018 %>%
     adressProblems = 'sprechen Probleme an',
     proud = 'sind stolz',
     success = 'Erfolgserlebnisse...59',
-    abitur = 'Abitur/FHR',
-    mittlereReife = 'Mittlerer SA',
-    hauptschule = 'Hauptschule',
-    none = 'Ohne',
-    began = 'begonnen',
-    finished = 'abgeschlossen',
+    abiturNo = 'Abitur/FHR',
+    mittlereReifeNo = 'Mittlerer SA',
+    hauptschuleNo = 'Hauptschule',
+    schoolNoneNo = 'Ohne',
+    careerStarted = 'begonnen',
+    careerFinished = 'abgeschlossen',
     enoughFood = 'ausreichend Essen',
     enoughStaffLunch = 'ausreichend Personal MT',
     enoughStaffActivities = 'ausreichend Personal / weitere Akt.',
@@ -135,8 +135,8 @@ df_2018 <- df_2018 %>%
     tripsAnger = 'Frusttoleranz',
     tripsNetworkSuggestions = 'CHILDREN Netzwerk Anregungen',
     tripsKidsVariousNo = 'Anzahl verschiedene Kinder gesamt',
-    tripsSubsidyAsked = 'beantragte Gesamtsumme 2019',
-    tripsSubsidy = 'Förderentscheidung 2019...108')
+    tripsSubsidyAskedNo = 'beantragte Gesamtsumme 2019',
+    tripsSubsidyNo = 'Förderentscheidung 2019...108')
 
 ###von denen Wird eine Fehlermeldung gezeigt
 #    tripsNo = 'Anzahl Aktivitäten 2019',
@@ -147,7 +147,7 @@ df_2018 <- df_2018 %>%
 
 names(df_2018) [89] <- "tripsNo"
 names(df_2018) [90] <- "tripsKidsNo"
-names(df_2018) [91] <- "tripsEstimatedCosts"
+names(df_2018) [91] <- "tripsEstimatedCostsNo"
 
 
 # Jahr noch hinzufügen
