@@ -1,0 +1,6 @@
+Einrichtungen in jährlichen Daten, die nicht in Meta-Daten auftauchen
+
+fehlende Information zum Bundesland und Beginn der Förderung bei Einrichtungen, die nicht mehr gefördert werden
+
+Es gibt Einrichtungsnummern im Sheet 2020 die mehrfach vergeben wurden --> Hintergrund? Auskunft darüber, ob die Organisationen neu hinzugekommen sind / bzw gibt es noch garkeine
+Einrichtungsnummern dafür?
