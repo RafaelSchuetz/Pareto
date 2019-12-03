@@ -1,6 +1,25 @@
-library(pdftools)
-report2016 <- pdf_text("ANALYSIS/DATA/CHILDREN_Jahresbericht_2016.pdf")
-report2017 <- pdf_text("ANALYSIS/DATA/Children_Jahresbericht_2017.pdf")
+library(dplyr)
+library(tidyverse)
 
-view(report2016)
-view(report2017)
+subsidy2016 <- read.csv("~/LMU VWL/Pareto3 GITHUB/Pareto/ANALYSIS/DATA/MittagstischSub2016.txt", header=FALSE)
+
+subsidy2017 <- read.csv("~/LMU VWL/Pareto3 GITHUB/Pareto/ANALYSIS/DATA/MittagstischSub2017.txt", header=FALSE, dec=",")
+
+#rename
+
+subsidy2016 <- subsidy2016 %>% 
+  dplyr::rename(city = 'V1',
+                organisation = 'V2',
+                subsidy = 'V3')
+
+subsidy2017 <- subsidy2017 %>% 
+  dplyr::rename(city = 'V1',
+                organisation = 'V2',
+                subsidy = 'V3')
+
+subsidy2016 <- subsidy2016 %>% add_column(year = 2016)
+subsidy2017 <- subsidy2017 %>% add_column(year = 2017)
+
+
+
+
