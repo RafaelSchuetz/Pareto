@@ -27,8 +27,8 @@ data2012_unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTR
 data2011 <- data2011_unbereinigt %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
-    numberOfKids = 'Kinder',
-    numberOfMeals = 'Mittagsmahlzeiten',
+    kidsNo = 'Kinder',
+    mealNo = 'Mittagsmahlzeiten',
     conveyorSum = 'MT 2012_Fördersumme final',
     finalCosts = 'Gesamtkosten MT 2012',
     monthlyCooks = 'Kochen 1x Monat',
@@ -58,8 +58,8 @@ data2011 <- data2011_unbereinigt %>%
 data2012 <- data2012_unbereinigt %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
-    numberOfKids = 'MT_Kinder',
-    numberOfMeals = 'MT_Mahlzeiten',
+    kidsNo = 'MT_Kinder',
+    mealNo = 'MT_Mahlzeiten',
     finalCosts = 'MT_Gesamtkosten',
     MTGranted = 'Bewilligt MT 2013',
     monthlyCooks = 'Kochen 1x Monat',

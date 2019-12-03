@@ -29,8 +29,8 @@ data2015 <- Wirkungsdaten_2015unbereinigt %>% mutate_if(is.character, as.numeric
 data2015 <- data2015 %>% 
   dplyr::rename(
     id = 'Einrichtungsnummer',
-    kidsPerMeal = 'Anzahl Kinder pro Mahlzeit 2016',
-    numberOfMeals = 'MT_Mahlzeiten 2016',
+    kidsPerMealNo = 'Anzahl Kinder pro Mahlzeit 2016',
+    mealNo = 'MT_Mahlzeiten 2016',
     frequency = 'Häufigkeit 2016(pro Woche x Wochen pro Jahr)',
     totalCosts = 'MT_Gesamtkosten 2016',
     subsidy = 'Bewilligt MT 2016',
