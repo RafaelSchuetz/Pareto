@@ -12,4 +12,7 @@ data201119 <- data2019 %>%
   full_join(data2013) %>%
   full_join(data2012) %>%
   full_join(data2011)
+
+data201119 <- data201119 %>%
+  select(year, everything())
   
