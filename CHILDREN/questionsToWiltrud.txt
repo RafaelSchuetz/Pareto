@@ -1,1 +1,3 @@
 Einrichtungen in jährlichen Daten, die nicht in Meta-Daten auftauchen
+
+fehlende Information zum Bundesland und Beginn der Förderung bei Einrichtungen, die nicht mehr gefördert werden
