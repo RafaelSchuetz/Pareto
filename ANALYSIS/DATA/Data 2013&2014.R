@@ -5,6 +5,13 @@ library(tidyverse)
 data2013 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2014")
 data2014 <- read_excel("ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2015")
 
+data2013 <- data2013 %>% 
+  filter(data2013$Einrichtungsnummer != is.na(data2013$Einrichtungsnummer))
+
+data2014 <- data2014 %>% 
+  filter(data2014$Einrichtungsnummer != is.na(data2014$Einrichtungsnummer))
+
+
 #umbennen
 
 data2013 <- data2013 %>% 
