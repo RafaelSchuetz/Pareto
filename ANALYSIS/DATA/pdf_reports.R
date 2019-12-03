@@ -1,9 +1,9 @@
 library(dplyr)
 library(tidyverse)
 
-subsidy2016 <- read.csv("~/LMU VWL/Pareto3 GITHUB/Pareto/ANALYSIS/DATA/MittagstischSub2016.txt", header=FALSE)
+subsidy2016 <- read.csv("ANALYSIS/DATA/MittagstischSub2016.txt", header=FALSE)
 
-subsidy2017 <- read.csv("~/LMU VWL/Pareto3 GITHUB/Pareto/ANALYSIS/DATA/MittagstischSub2017.txt", header=FALSE, dec=",")
+subsidy2017 <- read.csv("ANALYSIS/DATA/MittagstischSub2017.txt", header=FALSE, dec=",")
 
 #rename
 
