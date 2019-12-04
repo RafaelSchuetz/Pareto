@@ -3,7 +3,7 @@
 
 ### 1. Time series
 
-# Mean of a variable for every year
+# a) Mean of a variable for every year
 
 # Create a new data set only including the two variables "subsidyReceivedNo" and "year"
 df <- data.frame(data201118$subsidy, data201118$year)
@@ -11,16 +11,18 @@ View(df)
 
 library(tidyverse)
 library(dplyr)
+library(ggplot2)
 
-# 1. Möglichkeit: aggregate ()
+
+# 1. Possibility: aggregate ()
 # Aggregate column 1 of data set df, grouping by df$data201118.year and applying the mean-function
 # na.rm = TRUE indicates that NA values are stripped before taking the mean
 
 aggregate(df[,1], list(df$data201118.year), mean, na.rm = TRUE)
 
-# 2. Möglichkeit
 
-# Defining variables "Year" and "Subsidy" as Vektoren by command c()
+# 2. Possibility
+# Defining variables "Year" and "Subsidy" as vectors by command c()
 Year <- c(df$data201118.year)
 Subsidy <- c(df$data201118.subsidy)
 
@@ -35,39 +37,74 @@ mean_by_year <- df %>%
   group_by(df$Year) %>% 
   summarise(averagedSubsidy = mean(Subsidy, na.rm = TRUE))
 
-summarise()
-mean_by_year <- df %>%
-  group_by(df$data201118.year) %>%
-  summarise (averaged_subsidy = mean(df$data201118.subsidy, na.rm = TRUE))
 
-mean_by_year <- df %>%
-  group_by(df$data201118.year) %>%
-  summarise(average = mean(df$data201118.subsidy, na.rm = TRUE))
+# b) Graphic illustration of the time series
 
-Mean_by_year <- df %>%
-  group_by(df$data201118.year) %>% 
-  summarise_at(vars(subsidyReceived_year$data201118.year),average = mean(df$data201118.subsidyReceivedNo, na.rm = TRUE))
+library(ggplot2)
 
+# 1. Possibility
+# Saving the data set "mean_by_year" in the variable time_series
+time_series = mean_by_year
 
-subsidyReceived_year %>%
-  group_by(subsidyReceived_year$data201118.year) %>%
-  summary(subsidyReceived_year$data201118.subsidyReceivedNo)
-
-subsidyReceived_year %>%
-  group_by(subsidyReceived_year$data201118.year) %>%
-  summarise(average = mean(subsidyReceived_year$data201118.subsidyReceivedNo, na.rm = TRUE))
-
-mean()
-
-mean(dataWithState$subsidyReceivedNo, na.rm = TRUE)
+# Using the command plot.ts the average subsidy is plotted on the year 
+plot.ts(x = time_series$`df$Year`, y = time_series$averagedSubsidy, plot.type = c("single"))
 
 
-mean
+# 2. Possibility
+# Defining a time series object for the average subsidy, starting with the observation of year 2011
+# and ending in year 2018, using a frequency of 1 because the data are collected anually
+ts_averageSubsidy = ts(mean_by_year$averagedSubsidy, start = 2011, end = 2018, frequency = 1)
+View(ts_averageSubsidy)
+
+# Some checks: str() shows the internal structure of the time series, class() shows the class of 
+# the object "ts_average subsidy" and ts_averageSubsidy represent the definition and content of 
+# the objects / time series, summary() shows the summary statistics of the time series 
+str(ts_averageSubsidy)
+class(ts_averageSubsidy)
+ts_averageSubsidy
+summary(ts_averageSubsidy)       
+
+# The command plot() creates a time series graph only mention the time series (R knows that
+# the object is a time series), time on the x-axis and the average subsidy on the y-axis
+# The parament lwd controls the line width of the time series curve, the parameter cex.main
+# defines the size of the head line
+plot(ts_averageSubsidy, main = "Trend of the average subsidy", xlab = "Time", 
+     ylab = "Average subsidy", col = "blue", lwd = 2, cex.main = 1.25)
+text(2016.25, 11500, "Average subsidy", adj = 0.3, cex = 0.9)
+box(which = "figure")
 
 
-ts.plot(dataWithState$subsidy)
+# c) Linear trend component: 
+library(estimatr)
 
-ts_subsidyReceived <- ts(dataWithState$subsidyReceivedNo, start = 2011, end = 2019)
-view(ts_subsidyReceived)
+# Defining the length of the time series "ts_averageSubsidy" with the function length()
+# Defining the vector of the time indices t with the function seq() from t = 1 (2011) 
+# to t = n (2018)
+n <- length(ts_averageSubsidy)
+t <- seq(from = 1, to = n)
 
-ts.plot(ts_subsidyReceived)
+# Simple OLS regression: 
+# The command lm_robust regress the time series "ts_averageSubsidy" (y-variable / outcome) 
+# on the time indices (x-variable) using a linear regression model and robust standard errors
+# Saving the OLS regression under "linear trend"
+linearTrend <- lm_robust(ts_averageSubsidy ~ t)
+summary(linearTrend)
+
+# The intercept of 11886.0 is the trend value of the year before the observation periode (2010),
+# The slope of -199.0 represent the general time trend of the average subsidy, the coefficient
+# means that in the treend the average subsidy is reduced by 199.0 units per year.
+
+# Saving the fitted values of the linear regression for every year under "linearTrend_fit"
+linearTrend_fit <- linearTrend$fitted.values
+
+# Transforming the vector in a time series
+linearTrend_fit <- ts(linearTrend_fit, start = 2011, end = 2018, frequency = 1)
+
+# Drawing the trend line in the time series graphic with the command lines() which includes
+# the time series "linearTrend_fit" as data
+plot(ts_averageSubsidy, main = "Trend of the average subsidy", xlab = "Time", 
+     ylab = "Average subsidy", col = "blue", lwd = 2, cex.main = 1.25)
+lines(linearTrend_fit, col = "red", lwd = 2)
+text(2016.25, 11500, "Average subsidy", adj = 0.3, cex = 0.9)
+box(which = "figure")
+
