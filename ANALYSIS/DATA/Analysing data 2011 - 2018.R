@@ -155,12 +155,13 @@ totsub_2016 <- sum(data2016$subsidy, na.rm = TRUE)
 totsub_2017 <- sum(df_2017$subsidy, na.rm = TRUE)
 totsub_2018 <- sum(df_2018$subsidy, na.rm = TRUE)
 
-# Defining the variables "Total subsidy" and "yearTotSub" (= year) as vectors by command c()
+# Defining the variables "TotSub" (= total subsidy MT) and "yearTotSub" (= year) as vectors 
+# by command c()
 yearTotSub <- c(2011,2012,2013,2014,2015,2016,2017,2018)
 TotSub <- c(totsub_2011, totsub_2012, totsub_2013, totsub_2014, totsub_2015, totsub_2016,
             totsub_2017, totsub_2018)
 
-# Creating a new data frame with the variables "Year" and "Subsidy"
+# Creating a new data frame
 df_totsub <- data.frame(yearTotSub, TotSub)
 
 ## b) Graphic illustration of the time series
@@ -207,7 +208,7 @@ lt_totSub_fit <- linearTrend_totsub$fitted.values
 lt_totSub_fit <- ts(lt_totSub_fit, start = 2011, end = 2018, frequency = 1)
 
 # Drawing the trend line in the time series graphic with the command lines() which includes
-# the time series "linearTrend_fit" as data
+# the time series "linearTrend_totSub" as data
 plot(ts_totalSubsidy, main = "Trend of total subsidy MT", xlab = "Time", 
      ylab = "Total subsidy MT", col = "blue", lwd = 2, ylim = c(550000,710000),cex.main = 1.25)
 lines(lt_totSub_fit, col = "red", lwd = 1.5)
@@ -220,7 +221,7 @@ box(which = "figure")
 detach("package:dplyr")
 
 # The command filter() can be used for calculating simple moving average for the time series
-# "ts_averageSubsidy. We choose the time frame (t-1, t+1) resulting in 3 time periods which are
+# "ts_totatSubsidy. We choose the time frame (t-1, t+1) resulting in 3 time periods which are
 # so weighted with 1/3 (the command rep() replicates the values in x). With sides = 2 we use 
 # a centered moving average (= standard setting). 
 ts_totalSubsidy_ma3 <- filter(ts_totalSubsidy, filter = rep(1/3,3), sides = 2)
@@ -236,10 +237,6 @@ lines(lt_totSub_fit, col = "red", lwd = 1.5)
 lines(ts_totalSubsidy_ma3, col = "green", lwd = 1.5)
 text(2016.25, 580000, "Total subsidy", adj = 0.3, cex = 0.9)
 box(which = "figure")
-
-
-
-
 
 
 
