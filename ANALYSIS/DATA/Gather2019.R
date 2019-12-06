@@ -83,12 +83,12 @@ data2019 <- dataWithOldHeaders %>%
     tripsNewPlaces = 'Neue Orte',
     tripsNewCommunities = 'Neue Lebenswelten',
     tripsNewIdeas = 'Neue Ideen',
-    tripsOngoingParticipation = 'TN weitere Aktivitäten PE',
+    tripsAdditionalActivities = 'TN weitere Aktivitäten PE',
     tripsSpecificSkills = 'Konkrete Kompetenzen',
     tripsDayToDaySkills = 'Kompetenzen im Alltag', 
     tripsSelfworth = 'Selbstwertgefühl...66', 
     tripsSocialSkills = 'soziale Kompetenzen',
-    tripsNetworkSuggestions = 'CHILDREN Netzwerk Anregungen')
+    tripsCHILDRENSuggestions = 'CHILDREN Netzwerk Anregungen')
 
 data2019 <- data2019 %>% mutate_if(is.character, as.numeric)
 
