@@ -25,7 +25,7 @@ dataBundeslaender <- dataBundeslaender_unbereinigt %>%
 
 # Join the data with Bundesland
 
-dataWithState <- merge(dataBundeslaender, data201119, all.x = TRUE, all.y = TRUE)
+dataWithState <- merge(dataBundeslaender, data201118, all.x = TRUE, all.y = TRUE)
 
 # Einrichtungsnummern, die keinem Bundesland und "Förderung seit" zugeordnet werden können:
 # 113 (2011-13), 137 (2011), 190 (2011, 2012), 219 (2011-2016), 226 (2011-13)
