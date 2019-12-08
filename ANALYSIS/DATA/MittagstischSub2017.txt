@@ -1,58 +1,58 @@
-Aachen, Kindertagesstätte RoKoKo, 18.000
-AnnabergBuchholz, Kindertreff „Stadtmitte“ Annaberg, 8.600
-Augsburg, Café Schülertreff, 8.000
-Bergheim, Städt.  Kinder­ und Jugendzentrum Bergheim, 4.000
-Berlin, Karuna, 31.500
-Berlin, Kreuzberger Musikalische  Aktion, 6.000
-Berlin, Quinoa gUG, 10.000
-Berlin, Stadtvilla Global, 9.000
-Bielefeld, Kita Orionstraße, 3.000
-Bonn, Kita Die Regenbogenkinder, 6.000
-Braunschweig, Jugendzentrum Drachenflug, 8.500
-Bremen, Jugend­haus Tenever, 9.500
-Darmstadt, Jugendzentrum Go­In, 2.000
-Dortmund, Kinder­ und Jugendtreff Kezz, 9.000
-Dortmund, Kinder­ und Jugendtreff Stollenpark, 6.000
-Dresden, Kinder­ und Jugendhaus Emmers, 13.000
-Dresden, Kinder­ und Jugendhaus Mareicke, 19.000
-Duisburg, Blaues Haus Hochfeld, 1.600
-Düsseldorf, Flingern mobil Jugendfreizeiteinrichtung St. Elisabeth, 3.100
-Düsseldorf, OT Wittenberger Weg, 7.000
-Eberswalde, Dietrich­ Bonhoeffer­Haus, 7.500
-Erfurt, Jugendhaus Maxi, 9.900
-Essen, Kinder­ und Familienzentrum Blauer Elefant Stadtmitte, 5.500
-Essen, Kinder­ und Familienzentrum Blauer Elefant Zollverein, 7.000
-Frankfurt, Kinder­ und Familienzentrum SG Bornheim, 5.850
-Frankfurt, Mehrgenerationenhaus Kinder im Zentrum Gallus e.V., 11.000
-Frankfurt, Nachbarschaftshilfe Bornheim, 10.000
-Halle, S.C.H.I.R.M. Projekt, 12.000
-Hamburg, Kinderhaus Alter Teichweg, 6.000
-Hamburg, Spielgelände Gleiwitzer Bogen e.V., 7.500
-Hannover, Hilfe für unsere Kinder, 71.000
-Ingolstadt, Piustreff, 1.000
-Karlsruhe, Kinder­ und Jugendtreff Rintheim, 4.000
-Kassel, Hafen 17 ­ Treff für Kinder, 8.500
-Kiel, AWO Bürgerzentrum Räucherei, 7.000
-Köln, AWO Jugend­ und Nachbarschaftshaus Bodestraße, 32.000
-Köln, Interkulturelles Zentrum am Kölnberg, 8.500
-Köln, Kinder­ und Familienhilfen Michaelshoven gGmbH, 25.000
-Landshut, Stadtteilarbeit Porschestraße, 4.500
-Leipzig, Kinder­ und Jugendtreff Kojule, 17.000
-Lübeck, Roter Hahn, 5.500
-Mannheim, Begegnungsstätte Westliche Unterstadt, 6.550
-Mannheim, Jugendhaus Herzogenried, 3.500
-Meißen, MeiLe, 2.900
-München, Kinderhaus Harthof, 6.000
-München, Licht­ blick Hasenbergl, 60.000
-München, Spielhaus am Westkreuz, 1.650
-Nürnberg, Aktivspielplatz Gostenhof, 6.400
-Nürnberg, Bauspielplatz Langwasser, 3.000
-Osnabrück, Kindermahlzeit MGH Haste, 5.000
-Rosenheim, Aktivspielplatz Hüttenstadt, 6.000
-Rostock, "T'winkelhus" SBZ Toitenwinkel, 3.200
-Saarbrücken, Alt­Saarbrücker Kinder­ und Jugendhaus, 8.500
-Saarbrücken, Stadtteilbüro Alt­Saarbrücken, 4.500
-Stuttgart, Abenteuerspielplatz Mauga Nescht, 4.600
-Stuttgart, Schlupfwinkel, 5.000
-Suhl, Freizeittreff  "Auszeit", 18.000
-Würzburg, Kinderzentrum Spieli,  Zellerau 9.500
+Aachen, Kindertagesstätte RoKoKo, 18000
+AnnabergBuchholz, Kindertreff „Stadtmitte“ Annaberg, 8600
+Augsburg, Café Schülertreff, 8000
+Bergheim, Städt.  Kinder­ und Jugendzentrum Bergheim, 4000
+Berlin, Karuna, 31500
+Berlin, Kreuzberger Musikalische  Aktion, 6000
+Berlin, Quinoa gUG, 10000
+Berlin, Stadtvilla Global, 9000
+Bielefeld, Kita Orionstraße, 3000
+Bonn, Kita Die Regenbogenkinder, 6000
+Braunschweig, Jugendzentrum Drachenflug, 8500
+Bremen, Jugend­haus Tenever, 9500
+Darmstadt, Jugendzentrum Go­In, 2000
+Dortmund, Kinder­ und Jugendtreff Kezz, 9000
+Dortmund, Kinder­ und Jugendtreff Stollenpark, 6000
+Dresden, Kinder­ und Jugendhaus Emmers, 13000
+Dresden, Kinder­ und Jugendhaus Mareicke, 19000
+Duisburg, Blaues Haus Hochfeld, 1600
+Düsseldorf, Flingern mobil Jugendfreizeiteinrichtung St. Elisabeth, 3100
+Düsseldorf, OT Wittenberger Weg, 7000
+Eberswalde, Dietrich­ Bonhoeffer­Haus, 7500
+Erfurt, Jugendhaus Maxi, 9900
+Essen, Kinder­ und Familienzentrum Blauer Elefant Stadtmitte, 5500
+Essen, Kinder­ und Familienzentrum Blauer Elefant Zollverein, 7000
+Frankfurt, Kinder­ und Familienzentrum SG Bornheim, 5850
+Frankfurt, Mehrgenerationenhaus Kinder im Zentrum Gallus e.V., 11000
+Frankfurt, Nachbarschaftshilfe Bornheim, 10000
+Halle, S.C.H.I.R.M. Projekt, 12000
+Hamburg, Kinderhaus Alter Teichweg, 6000
+Hamburg, Spielgelände Gleiwitzer Bogen e.V., 7500
+Hannover, Hilfe für unsere Kinder, 71000
+Ingolstadt, Piustreff, 1000
+Karlsruhe, Kinder­ und Jugendtreff Rintheim, 4000
+Kassel, Hafen 17 ­ Treff für Kinder, 8500
+Kiel, AWO Bürgerzentrum Räucherei, 7000
+Köln, AWO Jugend­ und Nachbarschaftshaus Bodestraße, 32000
+Köln, Interkulturelles Zentrum am Kölnberg, 8500
+Köln, Kinder­ und Familienhilfen Michaelshoven gGmbH, 25000
+Landshut, Stadtteilarbeit Porschestraße, 4500
+Leipzig, Kinder­ und Jugendtreff Kojule, 17000
+Lübeck, Roter Hahn, 5500
+Mannheim, Begegnungsstätte Westliche Unterstadt, 6550
+Mannheim, Jugendhaus Herzogenried, 3500
+Meißen, MeiLe, 2900
+München, Kinderhaus Harthof, 6000
+München, Licht­ blick Hasenbergl, 60000
+München, Spielhaus am Westkreuz, 1650
+Nürnberg, Aktivspielplatz Gostenhof, 6400
+Nürnberg, Bauspielplatz Langwasser, 3000
+Osnabrück, Kindermahlzeit MGH Haste, 5000
+Rosenheim, Aktivspielplatz Hüttenstadt, 6000
+Rostock, "T'winkelhus" SBZ Toitenwinkel, 3200
+Saarbrücken, Alt­Saarbrücker Kinder­ und Jugendhaus, 8500
+Saarbrücken, Stadtteilbüro Alt­Saarbrücken, 4500
+Stuttgart, Abenteuerspielplatz Mauga Nescht, 4600
+Stuttgart, Schlupfwinkel, 5000
+Suhl, Freizeittreff  "Auszeit", 18000
+Würzburg, Kinderzentrum Spieli,  Zellerau 9500
