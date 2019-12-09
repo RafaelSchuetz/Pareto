@@ -17,8 +17,8 @@ subsidy2017 <- subsidy2017 %>%
                 organisation = 'V2',
                 subsidy = 'V3')
 
-subsidy2016 <- subsidy2016 %>% add_column(year = 2016)
-subsidy2017 <- subsidy2017 %>% add_column(year = 2017)
+subsidy2016 <- subsidy2016 %>% add_column(year = 2015)
+subsidy2017 <- subsidy2017 %>% add_column(year = 2016)
 
 subsidy2017$subsidy <- as.numeric(subsidy2017$subsidy)
 
@@ -48,7 +48,7 @@ subsidy2016[7,5]<- "Berlin"
 subsidy2016[8,5]<- "Berlin" 
 subsidy2016[9,5]<- "NRW" 
 subsidy2016[10,5]<- "NRW" 
-subsidy2016[11,5]<- "Niedersachen"
+subsidy2016[11,5]<- "Niedersachsen"
 subsidy2016[12,5]<- "Bremen"
 subsidy2016[13,5]<- "NRW"
 subsidy2016[14,5]<- "NRW"
