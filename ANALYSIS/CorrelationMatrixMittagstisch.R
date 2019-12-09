@@ -1,3 +1,4 @@
+#Aim: Correlation Matrix of Mittagstisch Outcomes
 #data of interest: data201118 to include only numeric variables
 #show cor between complete observations to include missing values
 
