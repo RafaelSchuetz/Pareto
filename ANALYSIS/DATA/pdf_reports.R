@@ -17,8 +17,8 @@ subsidy2017 <- subsidy2017 %>%
                 organisation = 'V2',
                 subsidy = 'V3')
 
-subsidy2016 <- subsidy2016 %>% add_column(year = 2016)
-subsidy2017 <- subsidy2017 %>% add_column(year = 2017)
+subsidy2016 <- subsidy2016 %>% add_column(year = 2015)
+subsidy2017 <- subsidy2017 %>% add_column(year = 2016)
 
 subsidy2017$subsidy <- as.numeric(subsidy2017$subsidy)
 
