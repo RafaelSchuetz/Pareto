@@ -1,4 +1,4 @@
-df <- dataWithState
+df <- dataWithStatesAndSubsidy
 df <- as_tibble(df)
 
 #alle Variablen die 99 sind: Kategorische Daten und 99 bedeutet: keine Angabe
