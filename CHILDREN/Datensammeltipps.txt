@@ -1,0 +1,24 @@
+Variablen jedes Jahr gleich benennen in den Excel Tabellen
+
+Wenn Variablen nicht verfügbar immer das gleiche eingeben (nicht: NA, not available und keine Angabe)
+
+Alter: zwei Variablen mit einmal Mindestalter und einmal Maximalalter
+
+Immer nur Jahre angeben keine Monate
+
+Variablen in Excel als Zahlen kodieren (wenn es Zahlen sind) und nicht als Text (kann dann keine Analyse in R machen)
+
+Fragebogen online und nicht auf Papier
+
+Kinder selber befragen
+
+
+
+
+
+Mögliche Tipps zum Datensammeln in der Zukunft:
+
+Idee: jeden Tag in eine Tabelle eingeben wieviele Kinder am Mittagstisch teilgenommen haben (wieviele haben gegessen, wieviele haben mitgeholfen)
+& was gab es zum Essen (in Kategorien)
+--> hat dann mehr Beobachtungen und statistische Power ist höher
+könnte da eine Exceltabelle auf eine Dropbox laden und die einzelnen Organisationen füllen das aus (nicht viel Aufwand)
