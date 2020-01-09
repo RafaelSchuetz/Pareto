@@ -6,7 +6,7 @@
 ## a) Mean of a variable for every year
 
 # Create a new data set only including the two variables "subsidyReceivedNo" and "year"
-df <- data.frame(data201118$subsidy, data201118$year)
+df <- data.frame(mergedData$subsidy, mergedData$year)
 View(df)
 
 library(tidyverse)
@@ -14,16 +14,16 @@ library(dplyr)
 library(ggplot2)
 
 # 1. Possibility: aggregate ()
-# Aggregate column 1 of data set df, grouping by df$data201118.year and applying the mean-function
+# Aggregate column 1 of data set df, grouping by df$mergedData.year and applying the mean-function
 # na.rm = TRUE indicates that NA values are stripped before taking the mean
 
-aggregate(df[,1], list(df$data201118.year), mean, na.rm = TRUE)
+aggregate(df[,1], list(df$mergedData.year), mean, na.rm = TRUE)
 
 
 # 2. Possibility
 # Defining variables "Year" and "Subsidy" as vectors by command c()
-Year <- c(df$data201118.year)
-Subsidy <- c(df$data201118.subsidy)
+Year <- c(df$mergedData.year)
+Subsidy <- c(df$mergedData.subsidy)
 
 # Creating a new data frame with the variables "Year" and "Subsidy"
 df <- data.frame(Year, Subsidy)

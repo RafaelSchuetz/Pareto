@@ -1,3 +1,11 @@
+# Theoretical background
+# Measures of association for ordinal variables
+# http://rcompanion.org/handbook/H_11.html
+
+# load packages
+
+library(DescTools)
+
 #Aim: Correlation matrix for Entdecker Outcomes
 
 
@@ -5,7 +13,7 @@
 
 #Create subset including the outcomes of interest:
 
-corTrips <- subset(data201118, select = c("tripsSuggestions", "tripsDecisions", "tripsOrganization",
+corTrips <- subset(mergedData, select = c("tripsSuggestions", "tripsDecisions", "tripsOrganization",
                                        "tripsCostCalculation", "tripsBudget", "tripsMoney", "tripsReview",
                                        "tripsPublicTransport", "tripsMobility", "tripsNewPlaces",
                                        "tripsNewCommunities", "tripsNewIdeas", "tripsAdditionalActivities",
@@ -17,8 +25,11 @@ corTrips <- subset(data201118, select = c("tripsSuggestions", "tripsDecisions", 
 
 #create a simple correlation matrix with missing values included
 
+GoodmanKruskalGamma(mergedData$dietaryKnowledge, mergedData$appreciateHealthy, conf.level = 0.95)
 
-cor(corTrips, method = "pearson", use = "complete.obs")
+corSpearman <- cor(corTrips, corTrips, method = "spearman", use = "complete.obs")
+
+corSpearman <- cor.test(corTrips, )
 
 #method: indicates the correlation coefficient to be computed. 
 #The default is pearson correlation coefficient which measures the linear dependence between two variables.
