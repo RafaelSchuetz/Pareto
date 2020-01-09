@@ -27,14 +27,16 @@ dataWithStates <- merge(dataBundeslaender, data201118, all.x = TRUE, all.y = TRU
 
 # break anonymization
 
-withSub2015 <- data2015 %>% 
-  full_join(subsidy2016) 
+# withSub2015 <- data2015 %>% 
+#   full_join(subsidy2016) 
 
-withSub2016 <- data2016 %>%
-  full_join(subsidy2017) 
+# withSub2016 <- data2016 %>%
+#   full_join(subsidy2017) 
 
 #joinwithstatedata
 
-dataWithStatesAndSubsidy <- dataWithStates %>%
-  full_join(subsidy2016) %>%
-  full_join(subsidy2017)
+# dataWithStatesAndSubsidy <- dataWithStates %>%
+#   full_join(subsidy2016) %>%
+#   full_join(subsidy2017)
+
+mergedData <- dataWithStates
