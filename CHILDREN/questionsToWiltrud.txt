@@ -4,3 +4,5 @@ fehlende Information zum Bundesland und Beginn der Förderung bei Einrichtungen,
 
 Es gibt Einrichtungsnummern im Sheet 2020 die mehrfach vergeben wurden --> Hintergrund? Auskunft darüber, ob die Organisationen neu hinzugekommen sind / bzw gibt es noch garkeine
 Einrichtungsnummern dafür?
+
+Interpretation DGE Kriterium (10 Richtlinien?)
