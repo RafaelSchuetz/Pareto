@@ -6,3 +6,10 @@ Es gibt Einrichtungsnummern im Sheet 2020 die mehrfach vergeben wurden --> Hinte
 Einrichtungsnummern dafür?
 
 Interpretation DGE Kriterium (10 Richtlinien?)
+
+Der Datensatz zeigt, dass manche Einrichtungen in bestimmten Jahren keine Angaben zum Entdeckerfonds gemacht haben.
+Können wir aufgrund dessen davon ausgehen, dass diese Einrichtungen in dem jeweiligen Jahr nicht an dem Programm Entdeckerfonds teilgenommen haben?
+
+Bei manchen Einrichtungen ist keine Fördersumme für den Entdeckerfonds angegeben, 
+obwohl entweder die Fragen zum Entdeckerfonds beantwortet wurden oder die Anzahl der Entdeckerfonds-Aktivitäten angegeben ist. 
+Liegen wir mit der Annahme richtig, dass diese Einrichtungen im jeweiligen Jahr trotzdem keine Förderung erhalten haben?
