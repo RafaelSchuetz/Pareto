@@ -5,6 +5,7 @@
 # load packages
 
 library(DescTools)
+library(lavaan)
 
 #Aim: Correlation matrix for Entdecker Outcomes
 
@@ -25,7 +26,11 @@ corTrips <- subset(mergedData, select = c("tripsSuggestions", "tripsDecisions", 
 
 #create a simple correlation matrix with missing values included
 
+map2(corTrips, corTrips, compare_tbls)
+
 GoodmanKruskalGamma(mergedData$dietaryKnowledge, mergedData$appreciateHealthy, conf.level = 0.95)
+
+cor_auto(corTrips)
 
 corSpearman <- cor(corTrips, corTrips, method = "spearman", use = "complete.obs")
 
@@ -64,7 +69,7 @@ corTripsSign$P
 symnum(corTrips, cutpoints = c(0.3, 0.6, 0.8, 0.9, 0.95),
        symbols = c(" ", ".", ",", "+", "*", "B"),
        abbr.colnames = TRUE)
-?symnum
+
 
 #error: "benoetige 2 symbols fuer boolesches 'x' argument
 
@@ -75,7 +80,7 @@ symnum(corTrips, cutpoints = c(0.3, 0.6, 0.8, 0.9, 0.95),
 library(corrplot)
 corrplot(corTrips, type = "upper", order = "hclust", 
          tl.col = "black", tl.srt = 45)
-?corrplot
+
 #Error in matrix(if (is.null(value)) logical() else value, nrow = nr, dimnames = list(rn,  : 
 #length of 'dimnames' [2] not equal to array extent
 
