@@ -6,6 +6,11 @@ library(ggplot2)
 library(estimatr)
 library(stats)
 
+# Problem: Die kategorialen Variablen sind im Datentyp "Factor", welche zur weiteren 
+# Bearbeitung in den Datentyp "numeric" geändert werden
+
+dfc <- dfc %>% mutate_if(is.factor, as.numeric)
+
 ### Deskriptive Analyse
 
 ## 1. Schritt: Mittelwert einer Variable (z.B. "Selbstwertgefühl") für Treatment- und Kontroll-
@@ -47,16 +52,41 @@ dfc_2018_control <- subset(dfc_2018, dfc_2018$treat_2018 == "0")
 # für den Mittagstisch vorliegen. Diese Beobachtungen müssen aus den Kontrollgruppen entfernt
 # werden. 
 
+# 2012 in Ordnung
 
-  
-# Erstellung 
+# 2013: Beobachtungen mit der ID-Nummer 404, 418, 437 (die sich in den Zeilen 8, 9 und 10
+# befinden) müssen entfernt werden
+drops <- c(8, 9, 10)
+dfc_2013_control <- dfc_2013_control[-drops,]
 
-  
-dfc_                      
-         
+# 2014: Beobachtungen mit der ID-Nummer 482, 483 müssen entfernt werden
+drops <- c(7, 8)
+dfc_2014_control <- dfc_2014_control[-drops,]
 
-mean_by_year <- dfc %>%
-  group_by(df$year) %>% 
-  group_by(df$treat) %>%
-  summarise(averagedSelfworth = mean(df$selfworth), na.rm = TRUE))             
+# 2015: in Ordnung
+
+# 2016: Beobachtungen mit der ID-Nummer 599, 600, 602 müssen entfernt werden
+drops <- c(7, 8, 10)
+dfc_2016_control <- dfc_2016_control[-drops,]
+
+# 2017: Beobachtungen mit der ID-Nummer 600, 623, 663 - 667 müssen entfernt werden
+drops <- c(8, 11, 12, 13, 14, 15, 16)
+dfc_2017_control <- dfc_2017_control[-drops,]
+
+# 2018: Beobachtungen mit der ID-Nummer 663 - 667 müssen entfernt werden
+drops <- c(10, 11, 12, 13, 14)
+dfc_2018_control <- dfc_2018_control[-drops,]
+
+
+## Mittelwert einer bestimmte Variable bilden für Treatment- und Kontrollgruppe in jedem Jahr
+
+mean_2012_control <- mean(dfc_2012_control$selfworth, na.rm = TRUE)
+mean_2012_treat <- mean(dfc_2012_treat$selfworth, na.rm = TRUE)
+
+mean_
+
+mean(dfc_2012_control$selfworth, na.rm = TRUE)
+
+class(dfc_2012_control$subsidy)         
+
                       
