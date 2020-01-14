@@ -6,7 +6,6 @@ library(ggplot2)
 library(estimatr)
 library(stats)
 
-<<<<<<< HEAD
 ### Deskriptive Analyse
 
 ## 1. Schritt: Mittelwert einer Variable (z.B. "Selbstwertgefühl") für Treatment- und Kontroll-
@@ -15,7 +14,6 @@ library(stats)
 # Erstellung von Datensätzen, in denen jeweils nur die Beobachtungen aus der Kontroll- oder
 # Treatmentgruppe eines bestimmten Jahres aufgeführt werden, für jedes Jahr von 2012 bis 2018
 
-=======
 # Problem: Die kategorialen Variablen sind im Datentyp "Factor", welche zur weiteren 
 # Bearbeitung in den Datentyp "numeric" geändert werden
 
@@ -29,7 +27,6 @@ dfc <- dfc %>% mutate_if(is.factor, as.numeric)
 # Erstellung von Datensätzen, in denen jeweils nur die Beobachtungen aus der Kontroll- oder
 # Treatmentgruppe eines bestimmten Jahres aufgeführt werden, für jedes Jahr von 2012 bis 2018
 
->>>>>>> a6219b51965f321d7a65bd310fd02b3b46546d5a
 dfc_2012 <- subset(dfc, dfc$dummy_2012 == "1")
 dfc_2012_treat <- subset(dfc_2012, dfc_2012$treat_2012 == "1")
 dfc_2012_control <- subset(dfc_2012, dfc_2012$treat_2012 == "0")
@@ -62,20 +59,6 @@ dfc_2018_control <- subset(dfc_2018, dfc_2018$treat_2018 == "0")
 # für den Mittagstisch vorliegen. Diese Beobachtungen müssen aus den Kontrollgruppen entfernt
 # werden. 
 
-<<<<<<< HEAD
-
-  
-# Erstellung 
-
-  
-dfc_                      
-         
-
-mean_by_year <- dfc %>%
-  group_by(df$year) %>% 
-  group_by(df$treat) %>%
-  summarise(averagedSelfworth = mean(df$selfworth), na.rm = TRUE))             
-=======
 # 2012 in Ordnung
 
 # 2013: Beobachtungen mit der ID-Nummer 404, 418, 437 (die sich in den Zeilen 8, 9 und 10
@@ -102,7 +85,9 @@ drops <- c(10, 11, 12, 13, 14)
 dfc_2018_control <- dfc_2018_control[-drops,]
 
 
-## Mittelwert einer bestimmte Variable bilden für Treatment- und Kontrollgruppe in jedem Jahr
+### Grafische Analyse anhand der Variable „selfworth" -----------------------
+
+## Mittelwert für "selfworth" bilden für Treatment- und Kontrollgruppe in jedem Jahr
 
 mean_2012_control <- mean(dfc_2012_control$selfworth, na.rm = TRUE)
 mean_2012_treat <- mean(dfc_2012_treat$selfworth, na.rm = TRUE)
@@ -125,8 +110,8 @@ mean_2017_treat <- mean(dfc_2017_treat$selfworth, na.rm = TRUE)
 mean_2018_control <- mean(dfc_2018_control$selfworth, na.rm = TRUE)
 mean_2018_treat <- mean(dfc_2018_treat$selfworth, na.rm = TRUE)
 
-# Nun erstellen wir einen Datensatz (timeseries) mit den Mittelwerten und Jahren, 
-# um es anschließend grafisch darstellen zu können
+# Erstellen einer Zeitreihe mit den Mittelwerten und Jahren, um anschließend die Zeitreihe
+# grafisch darstellen zu können
 
 year <- c(2012, 2013, 2014, 2015, 2016, 2017, 2018)
 meanTreat <- c(mean_2012_treat, mean_2013_treat, mean_2014_treat, mean_2015_treat, mean_2016_treat, mean_2017_treat, 
@@ -139,7 +124,8 @@ timeseries <- data.frame(year, meanTreat, meanControl)
 ts_selfworth_control = ts(timeseries$meanControl, start = 2012, end = 2018, frequency = 1)
 ts_selfworth_treat = ts(timeseries$meanTreat, start = 2012, end = 2018, frequency = 1)
 
-# Nun erstellen wir einen Graphen
+# Graphische Darstellung der zeitlichen Entwicklung der Variable "selfworth" in der 
+# Treatment- und Kontrollgruppe
 
 plot(ts_selfworth_control, main = "Trend of selfworth: Treatment vs control", xlab = "Time", 
      ylab = "average selfworth", col = "blue", lwd = 2, ylim = c(2.5,3.5),cex.main = 1.25)
