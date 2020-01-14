@@ -6,6 +6,16 @@ library(ggplot2)
 library(estimatr)
 library(stats)
 
+<<<<<<< HEAD
+### Deskriptive Analyse
+
+## 1. Schritt: Mittelwert einer Variable (z.B. "Selbstwertgefühl") für Treatment- und Kontroll-
+# gruppe für jedes Jahr erstellen
+
+# Erstellung von Datensätzen, in denen jeweils nur die Beobachtungen aus der Kontroll- oder
+# Treatmentgruppe eines bestimmten Jahres aufgeführt werden, für jedes Jahr von 2012 bis 2018
+
+=======
 # Problem: Die kategorialen Variablen sind im Datentyp "Factor", welche zur weiteren 
 # Bearbeitung in den Datentyp "numeric" geändert werden
 
@@ -19,6 +29,7 @@ dfc <- dfc %>% mutate_if(is.factor, as.numeric)
 # Erstellung von Datensätzen, in denen jeweils nur die Beobachtungen aus der Kontroll- oder
 # Treatmentgruppe eines bestimmten Jahres aufgeführt werden, für jedes Jahr von 2012 bis 2018
 
+>>>>>>> a6219b51965f321d7a65bd310fd02b3b46546d5a
 dfc_2012 <- subset(dfc, dfc$dummy_2012 == "1")
 dfc_2012_treat <- subset(dfc_2012, dfc_2012$treat_2012 == "1")
 dfc_2012_control <- subset(dfc_2012, dfc_2012$treat_2012 == "0")
@@ -51,6 +62,20 @@ dfc_2018_control <- subset(dfc_2018, dfc_2018$treat_2018 == "0")
 # für den Mittagstisch vorliegen. Diese Beobachtungen müssen aus den Kontrollgruppen entfernt
 # werden. 
 
+<<<<<<< HEAD
+
+  
+# Erstellung 
+
+  
+dfc_                      
+         
+
+mean_by_year <- dfc %>%
+  group_by(df$year) %>% 
+  group_by(df$treat) %>%
+  summarise(averagedSelfworth = mean(df$selfworth), na.rm = TRUE))             
+=======
 # 2012 in Ordnung
 
 # 2013: Beobachtungen mit der ID-Nummer 404, 418, 437 (die sich in den Zeilen 8, 9 und 10
@@ -102,4 +127,5 @@ mean_2018_treat <- mean(dfc_2018_treat$selfworth, na.rm = TRUE)
 
         
 
+>>>>>>> a6219b51965f321d7a65bd310fd02b3b46546d5a
                       
