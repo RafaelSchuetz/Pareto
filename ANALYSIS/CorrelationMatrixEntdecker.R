@@ -84,3 +84,4 @@ corrplot(corTrips, type = "upper", order = "hclust",
 #Error in matrix(if (is.null(value)) logical() else value, nrow = nr, dimnames = list(rn,  : 
 #length of 'dimnames' [2] not equal to array extent
 
+plot(data201118$tripsBudget, data201118$tripsNewPlaces)
