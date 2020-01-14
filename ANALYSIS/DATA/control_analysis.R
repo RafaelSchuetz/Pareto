@@ -125,7 +125,24 @@ mean_2017_treat <- mean(dfc_2017_treat$selfworth, na.rm = TRUE)
 mean_2018_control <- mean(dfc_2018_control$selfworth, na.rm = TRUE)
 mean_2018_treat <- mean(dfc_2018_treat$selfworth, na.rm = TRUE)
 
-        
+#Nun erstellen wir einen Datensatz (timeseries) mit den Mittelwerten und Jahren, um es anschließend grafisch darstellen zu können
 
->>>>>>> a6219b51965f321d7a65bd310fd02b3b46546d5a
-                      
+year <- c(2012, 2013, 2014, 2015, 2016, 2017, 2018)
+meanTreat <- c(mean_2012_treat, mean_2013_treat, mean_2014_treat, mean_2015_treat, mean_2016_treat, mean_2017_treat, 
+               mean_2018_treat)
+meanControl <- c(mean_2012_control, mean_2013_control, mean_2014_control, mean_2015_control, 
+                 mean_2016_control, mean_2017_control, mean_2018_control)
+
+timeseries <- data.frame(year, meanTreat, meanControl)
+
+ts_selfworth_control = ts(timeseries$meanControl, start = 2012, end = 2018, frequency = 1)
+ts_selfworth_treat = ts(timeseries$meanTreat, start = 2012, end = 2018, frequency = 1)
+
+#nun erstellen wir einen Graphen
+
+plot(ts_selfworth_control, main = "Trend of selfworth: Treatment vs control", xlab = "Time", 
+     ylab = "average selfworth", col = "blue", lwd = 2, ylim = c(2.5,3.5),cex.main = 1.25)
+lines(ts_selfworth_treat, col = "red", lwd = 2)
+text(2016, 2.6, "Control group",col = "blue", adj = 0.3, cex = 0.9)
+text(2016, 3.25, "Treatment group", col = "red", adj = 0.3, cex = 0.9)
+
