@@ -8,12 +8,6 @@ library(stats)
 
 ### Deskriptive Analyse
 
-## 1. Schritt: Mittelwert einer Variable (z.B. "Selbstwertgefühl") für Treatment- und Kontroll-
-# gruppe für jedes Jahr erstellen
-
-# Erstellung von Datensätzen, in denen jeweils nur die Beobachtungen aus der Kontroll- oder
-# Treatmentgruppe eines bestimmten Jahres aufgeführt werden, für jedes Jahr von 2012 bis 2018
-
 # Problem: Die kategorialen Variablen sind im Datentyp "Factor", welche zur weiteren 
 # Bearbeitung in den Datentyp "numeric" geändert werden
 
