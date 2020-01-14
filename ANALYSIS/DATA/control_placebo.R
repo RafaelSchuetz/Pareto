@@ -57,7 +57,7 @@ t <- seq(from = 1, to = n)
 # Simple OLS regression: 
 # lm_robust regressiert die Zeitreihe "ts_weeklyCooks_control" (y-variable / outcome) 
 # auf die Zeitindizes (x-variable)  anhand eines lineare Regressionsmodells mit robusten
-# Standardfehlern. Speicehern der OLS regression unter "linearTrend_control"
+# Standardfehlern. Speichern der OLS regression unter "linearTrend_control3"
 linearTrend_control3 <- lm_robust(ts_weeklyCooks_control ~ t)
 summary(linearTrend_control3)
 
