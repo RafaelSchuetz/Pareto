@@ -83,6 +83,7 @@ dfc_2018_control <- dfc_2018_control[-drops,]
 mean_2012_control <- mean(dfc_2012_control$selfworth, na.rm = TRUE)
 mean_2012_treat <- mean(dfc_2012_treat$selfworth, na.rm = TRUE)
 
+mean_
 
 mean(dfc_2012_control$selfworth, na.rm = TRUE)
 
