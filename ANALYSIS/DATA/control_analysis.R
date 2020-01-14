@@ -6,6 +6,11 @@ library(ggplot2)
 library(estimatr)
 library(stats)
 
+# Problem: Die kategorialen Variablen sind im Datentyp "Factor", welche zur weiteren 
+# Bearbeitung in den Datentyp "numeric" geändert werden
+
+dfc <- dfc %>% mutate_if(is.factor, as.numeric)
+
 ### Deskriptive Analyse
 
 ## 1. Schritt: Mittelwert einer Variable (z.B. "Selbstwertgefühl") für Treatment- und Kontroll-
@@ -73,14 +78,14 @@ drops <- c(10, 11, 12, 13, 14)
 dfc_2018_control <- dfc_2018_control[-drops,]
 
 
-# Erstellung 
+## Mittelwert einer bestimmte Variable bilden für Treatment- und Kontrollgruppe in jedem Jahr
 
-  
-dfc_                      
-         
+mean_2012_control <- mean(dfc_2012_control$selfworth, na.rm = TRUE)
+mean_2012_treat <- mean(dfc_2012_treat$selfworth, na.rm = TRUE)
 
-mean_by_year <- dfc %>%
-  group_by(df$year) %>% 
-  group_by(df$treat) %>%
-  summarise(averagedSelfworth = mean(df$selfworth), na.rm = TRUE))             
+
+mean(dfc_2012_control$selfworth, na.rm = TRUE)
+
+class(dfc_2012_control$subsidy)         
+
                       
