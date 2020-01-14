@@ -1,4 +1,5 @@
 #inspectinfluenceofvariablesovertime
+#inpercentages
 
 library(ggplot2)
 library(cowplot)
@@ -19,9 +20,8 @@ expl
 #createfunctionHEREGGPLOT
 
 plotOutcomeOverTime = function(x, y){
-  ggplot(mergedData, aes_string(x = x, y = y) ) +
-    geom_point() + 
-    geom_smooth(method = "loess", se = FALSE, color = "grey74") + 
+  ggplot(mergedData, aes_string(fill = y, x = x, y = y) ) +
+    geom_bar(position="stack", stat="identity") + 
     theme_bw() 
 }
 
@@ -34,7 +34,7 @@ plotOutcomeOverTime("year", "lessIll")
 YearlyOutcome <- map(mergedData, ~plotOutcomeOverTime("year", "lessIll"))
 
 all_yearPlots = map(response,
-                ~map(expl, plotDGEOutcome, y = .x) )
+                ~map(expl, plotOutcomeOverTime, y = .x) )
 
 #printtheplots #allvaribalescanbeplotted #examples
 
@@ -42,3 +42,11 @@ all_yearPlots$age[1:2]
 all_yearPlots$eatersPerMealNo[1:2]
 all_yearPlots$newKidsNo[1:2]
 all_yearPlots$cateringNo[1:2]
+all_yearPlots$mealsInInstitutionNo[1:2]
+all_yearPlots$weeklyCooks
+all_yearPlots$monthlyCooks
+all_yearPlots$tasksLunch
+all_yearPlots$parentalDialog
+all_yearPlots$qualitySatisfies
+all_yearPlots$trainingCompletedNo
+all_yearPlots$trainingStartedNo
