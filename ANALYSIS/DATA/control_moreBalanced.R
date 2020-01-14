@@ -3,11 +3,6 @@
 
 ## Mittelwert einer bestimmte Variable bilden für Treatment- und Kontrollgruppe in jedem Jahr
 
-mean4_2012_control <- mean(dfc_2012_control$moreBalanced, na.rm = TRUE)
-mean4_2012_treat <- mean(dfc_2012_treat$moreBalanced, na.rm = TRUE)
-
-mean4_2013_control <- mean(dfc_2013_control$moreBalanced, na.rm = TRUE)
-mean4_2013_treat <- mean(dfc_2013_treat$moreBalanced, na.rm = TRUE)
 
 mean4_2014_control <- mean(dfc_2014_control$moreBalanced, na.rm = TRUE)
 mean4_2014_treat <- mean(dfc_2014_treat$moreBalanced, na.rm = TRUE)
@@ -27,16 +22,16 @@ mean4_2018_treat <- mean(dfc_2018_treat$moreBalanced, na.rm = TRUE)
 # Nun erstellen wir einen Datensatz (timeseries) mit den Mittelwerten und Jahren, 
 # um es anschließend grafisch darstellen zu können
 
-year4 <- c(2012, 2013, 2014, 2015, 2016, 2017, 2018)
-meanTreat4 <- c(mean4_2012_treat, mean4_2013_treat, mean4_2014_treat, mean4_2015_treat, mean4_2016_treat, mean4_2017_treat, 
+year4 <- c(2014, 2015, 2016, 2017, 2018)
+meanTreat4 <- c(mean4_2014_treat, mean4_2015_treat, mean4_2016_treat, mean4_2017_treat, 
                mean4_2018_treat)
-meanControl4 <- c(mean4_2012_control, mean4_2013_control, mean4_2014_control, mean4_2015_control, 
+meanControl4 <- c(mean4_2014_control, mean4_2015_control, 
                  mean4_2016_control, mean4_2017_control, mean4_2018_control)
 
 timeseries4 <- data.frame(year4, meanTreat4, meanControl4)
 
-ts_moreBalanced_control = ts(timeseries4$meanControl4, start = 2012, end = 2018, frequency = 1)
-ts_moreBalanced_treat = ts(timeseries4$meanTreat4, start = 2012, end = 2018, frequency = 1)
+ts_moreBalanced_control = ts(timeseries4$meanControl4, start = 2014, end = 2018, frequency = 1)
+ts_moreBalanced_treat = ts(timeseries4$meanTreat4, start = 2014, end = 2018, frequency = 1)
 
 # Nun erstellen wir einen Graphen
 
