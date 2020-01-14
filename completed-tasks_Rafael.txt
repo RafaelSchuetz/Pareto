@@ -1,0 +1,8 @@
+outlined hierarchical file structure enabling us to use relative file paths throughout
+made sure that variables with names containing non-standard characters like German Umlaute are correctly read in
+established naming conventions
+created file reading excel sheet with data from 2019 and changing variable names
+systematically compared variable names between years, creating correspondence table, ordered first by variables of 2020, then of 2019, and so on
+reviewed and aligned new English-language variable names across years
+created make and merge files
+created function automatically changing data type of all variables containing only certain numbers (in lieu of categories) from "numeric" to "ordinal"

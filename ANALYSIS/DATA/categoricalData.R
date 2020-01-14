@@ -1,9 +1,29 @@
+# How to write your own function: https://adv-r.hadley.nz/functions.html
+# How does map from package purrr work: https://r4ds.had.co.nz/iteration.html
+
+# load packages
+library(purrr)
+
+
+
 mergedData <- as_tibble(mergedData)
 
 #alle Variablen die 99 sind: Kategorische Daten und 99 bedeutet: keine Angabe
 mergedData[mergedData == '99'] <- NA
 
 # Coerce data type of ordinal variables falsely coded as "numeric" to "ordered"
+
+# changeDataType <- function(x) {
+#   categories <- c(NA, 0, 1, 2, 3, 4, 5)
+#   if(all(unique(x) %in% categories)){
+#     x <- as.ordered(x)
+#   }
+#   else {
+#     x 
+#   }
+# }
+# 
+# mergedData <- map_dfr(mergedData, changeDataType) 
 
 mergedData$participateMore=as.ordered(mergedData$participateMore)
 mergedData$tasksLunch = as.ordered((mergedData$tasksLunch))
@@ -78,7 +98,7 @@ mergedData$suggestionsForCHILDREN = as.ordered(mergedData$suggestionsForCHILDREN
 mergedData$organicFoodstuff = as.ordered(mergedData$organicFoodstuff)
 mergedData$seasonalFoodstuff = as.ordered(mergedData$seasonalFoodstuff)
 mergedData$noSchoolLunch = as.ordered(mergedData$noSchoolLunch)
-mergedData$expensiveSchoolLunch = as.ordered(mergedData$expensiveSchoolLunch)
+mergedData$expensiveSchoolLunch = as.ordered(mergedData$expensiveSchoolLunch) 
 
 
 
