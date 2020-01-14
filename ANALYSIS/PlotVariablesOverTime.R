@@ -21,7 +21,7 @@ expl
 
 plotOutcomeOverTime = function(x, y){
   ggplot(mergedData, aes_string(fill = y, x = x, y = y) ) +
-    geom_bar(position="stack", stat="identity") + 
+    geom_col(position = position_stack(reverse = TRUE)) +  
     theme_bw() 
 }
 
