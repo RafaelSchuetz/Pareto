@@ -35,7 +35,6 @@ dfc_2015 <- subset(dfc, dfc$dummy_2015 == "1")
 dfc_2015_treat <- subset(dfc_2015, dfc_2015$treat_2015 == "1")
 dfc_2015_control <- subset(dfc_2015, dfc_2015$treat_2015 == "0")
 
-
 dfc_2016 <- subset(dfc, dfc$dummy_2016 == "1")
 dfc_2016_treat <- subset(dfc_2016, dfc_2016$treat_2016 == "1")
 dfc_2016_control <- subset(dfc_2016, dfc_2016$treat_2016 == "0")
@@ -83,10 +82,24 @@ dfc_2018_control <- dfc_2018_control[-drops,]
 mean_2012_control <- mean(dfc_2012_control$selfworth, na.rm = TRUE)
 mean_2012_treat <- mean(dfc_2012_treat$selfworth, na.rm = TRUE)
 
-mean_
+mean_2013_control <- mean(dfc_2013_control$selfworth, na.rm = TRUE)
+mean_2013_treat <- mean(dfc_2013_treat$selfworth, na.rm = TRUE)
 
-mean(dfc_2012_control$selfworth, na.rm = TRUE)
+mean_2014_control <- mean(dfc_2014_control$selfworth, na.rm = TRUE)
+mean_2014_treat <- mean(dfc_2014_treat$selfworth, na.rm = TRUE)
 
-class(dfc_2012_control$subsidy)         
+mean_2015_control <- mean(dfc_2015_control$selfworth, na.rm = TRUE)
+mean_2015_treat <- mean(dfc_2015_treat$selfworth, na.rm = TRUE)
+
+mean_2016_control <- mean(dfc_2016_control$selfworth, na.rm = TRUE)
+mean_2016_treat <- mean(dfc_2016_treat$selfworth, na.rm = TRUE)
+
+mean_2017_control <- mean(dfc_2017_control$selfworth, na.rm = TRUE)
+mean_2017_treat <- mean(dfc_2017_treat$selfworth, na.rm = TRUE)
+
+mean_2018_control <- mean(dfc_2018_control$selfworth, na.rm = TRUE)
+mean_2018_treat <- mean(dfc_2018_treat$selfworth, na.rm = TRUE)
+
+        
 
                       
