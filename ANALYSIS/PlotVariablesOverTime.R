@@ -34,7 +34,7 @@ plotOutcomeOverTime("year", "lessIll")
 YearlyOutcome <- map(mergedData, ~plotOutcomeOverTime("year", "lessIll"))
 
 all_yearPlots = map(response,
-                ~map(expl, plotDGEOutcome, y = .x) )
+                ~map(expl, plotOutcomeOverTime, y = .x) )
 
 #printtheplots #allvaribalescanbeplotted #examples
 
