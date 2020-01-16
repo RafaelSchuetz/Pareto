@@ -102,14 +102,14 @@ mergedData$expensiveSchoolLunch = as.ordered(mergedData$expensiveSchoolLunch)
 
 
 
-df <- data.frame(x = 1:5, y = sample(5))
-eval_tidy(expr(x + y), df)
-
-df <- data.frame(x = 1:5, y = sample(5))
-eval_tidy(expr(x + y), df)
-eval_tidy(x + y, df)
-
-x 
+# df <- data.frame(x = 1:5, y = sample(5))
+# eval_tidy(expr(x + y), df)
+# 
+# df <- data.frame(x = 1:5, y = sample(5))
+# eval_tidy(expr(x + y), df)
+# eval_tidy(x + y, df)
+# 
+# x 
 
 
 
