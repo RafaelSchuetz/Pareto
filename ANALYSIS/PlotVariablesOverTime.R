@@ -1,4 +1,5 @@
 #inspectinfluenceofvariablesovertime
+#inpercentages
 
 library(ggplot2)
 library(cowplot)
@@ -19,9 +20,12 @@ expl
 #createfunctionHEREGGPLOT
 
 plotOutcomeOverTime = function(x, y){
-  ggplot(mergedData, aes_string(x = x, y = y) ) +
-    geom_point() + 
-    geom_smooth(method = "loess", se = FALSE, color = "grey74") + 
+  ggplot(mergedData, aes_string(fill = y, x = x, y = y) ) +
+<<<<<<< HEAD
+    geom_bar(position="stack", stat="identity") + 
+=======
+    geom_col(position = position_stack(reverse = TRUE)) +  
+>>>>>>> a6219b51965f321d7a65bd310fd02b3b46546d5a
     theme_bw() 
 }
 
@@ -42,3 +46,11 @@ all_yearPlots$age[1:2]
 all_yearPlots$eatersPerMealNo[1:2]
 all_yearPlots$newKidsNo[1:2]
 all_yearPlots$cateringNo[1:2]
+all_yearPlots$mealsInInstitutionNo[1:2]
+all_yearPlots$weeklyCooks
+all_yearPlots$monthlyCooks
+all_yearPlots$tasksLunch
+all_yearPlots$parentalDialog
+all_yearPlots$qualitySatisfies
+all_yearPlots$trainingCompletedNo
+all_yearPlots$trainingStartedNo
