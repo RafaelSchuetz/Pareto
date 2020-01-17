@@ -19,3 +19,5 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/Merge.R")
 # Recode categorical variables falsely coded as numerical
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/categoricalData.R")
+source(encoding = "UTF8", "./ANALYSIS/DATA/MakeReal.R")
+
