@@ -6,21 +6,23 @@ headers <- c("CC13", "category", "2011", "2012", "2013", "2014", "2015", "2016",
 
 priceIndices <- read_excel("./ANALYSIS/DATA/Verbraucherpreisindizes_Deutschland.xlsx", col_names = headers, skip = 8, n_max = 11)
 
-foodIndices <- subset(priceIndices, category == "Nahrungsmittel und alkoholfreie Getränke", 2:10)
+priceIndices$CC13 = NULL
 
-tripsIndices <- subset(priceIndices, category == "Freizeit, Unterhaltung und Kultur", 2:10)
+priceIndicesLong <- priceIndices %>%
+  gather("2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", key = year, value = Index)
 
-unorderedPriceIndices <- foodIndices %>% 
-  full_join(tripsIndices)
+priceIndicesLong  <- priceIndicesLong %>%  
+  filter(category == "Nahrungsmittel und alkoholfreie Getränke" | category == "Freizeit, Unterhaltung und Kultur")
 
-relevIndices <- data.frame("tripIndex" = c(91.7, 92.5, 94.8, 96.1, 100, 100.7, 102.1, 103.4), "foodIndex" = c(91.6, 94.7, 98.3, 99.4, 100, 100.8, 103.6, 106.0), "year" = c(2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018))
 
-mergedData <- mergedData %>% add_column(tripIndex=NA)
-mergedData <- mergedData %>% add_column(foodIndex=NA) 
-mergedData <- mergedData %>% add_column(realSubsidy=NA)
-mergedData <- mergedData %>% add_column(realSubsidyRequest=NA)
-mergedData <- mergedData %>% add_column(realTripsSubsidy=NA)
-mergedData <- mergedData %>% add_column(realTripsSubsidyRequest=NA) 
+priceIndicesWide <- priceIndicesLong %>% 
+  spread(category, Index)
 
-mergedDataReal <- mergedData %>% 
-  full_join(relevIndices)
+priceIndicesWide$year <- as.numeric(priceIndicesWide$year)
+
+priceIndicesWide <- priceIndicesWide %>% 
+  dplyr::rename(tripsPriceIndex = 'Freizeit, Unterhaltung und Kultur',
+                foodPriceIndex = 'Nahrungsmittel und alkoholfreie Getränke')
+
+
+
