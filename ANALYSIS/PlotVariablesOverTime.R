@@ -21,11 +21,8 @@ expl
 
 plotOutcomeOverTime = function(x, y){
   ggplot(mergedData, aes_string(fill = y, x = x, y = y) ) +
-<<<<<<< HEAD
     geom_bar(position="stack", stat="identity") + 
-=======
-    geom_col(position = position_stack(reverse = TRUE)) +  
->>>>>>> a6219b51965f321d7a65bd310fd02b3b46546d5a
+    # or this: geom_col(position = position_stack(reverse = TRUE)) +  
     theme_bw() 
 }
 
@@ -41,7 +38,7 @@ all_yearPlots = map(response,
                 ~map(expl, plotOutcomeOverTime, y = .x) )
 
 #printtheplots #allvaribalescanbeplotted #examples
-
+  
 all_yearPlots$age[1:2]
 all_yearPlots$eatersPerMealNo[1:2]
 all_yearPlots$newKidsNo[1:2]
