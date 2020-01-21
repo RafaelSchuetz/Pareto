@@ -1,6 +1,7 @@
 
 library(VGAM)
 library(ordinal)
+
 ###inspectunfluenceofDGEcriterium
 ##proportionalOddsModel 
 
@@ -41,3 +42,7 @@ summary(influenceHome.vglm)
 
 moreIndependent.vglm = vglm(moreIndependent ~  yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state, data = mergedData, family = propodds)
 summary(moreIndependent.vglm)
+
+#cumulativelinkmodelsdon'tworkbecausetheyneedafactorasoutcome 
+
+#otherwayofproportionalodds

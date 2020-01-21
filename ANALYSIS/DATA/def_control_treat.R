@@ -36,4 +36,8 @@ data_treat <- subset(dfc, dfc$id != "112" & dfc$id != "191" & dfc$id != "213" & 
                      & dfc$id != "685" & dfc$id != "686" & dfc$id != "687"
                      & dfc$id != "131" & dfc$id != "113" & dfc$id != "190" & dfc$id != "282" 
                      & dfc$id != "226" & dfc$id != "141" & dfc$id != "404" & dfc$id != "221")
+<<<<<<< HEAD
                     
+=======
+                     
+>>>>>>> 2543a29f118029bea52b042c984485ace881ee44
