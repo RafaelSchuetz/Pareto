@@ -41,4 +41,5 @@ dataWithStates <- merge(dataBundeslaender, data201118, all.x = TRUE, all.y = TRU
 
 mergedData <- dataWithStates
 mergedData <- mergedData %>% 
-  full_join(priceIndicesWide)
+  full_join(priceIndicesWide) %>%
+  full_join(totalPriceIndex)
