@@ -4,14 +4,13 @@
 
 library(tidyverse)
 library(readxl)
-library(dplyr)
 
 # read in data
 
 ## read in headers
 
 headers <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2020_Unbereinigte Daten", n_max = 0) %>% 
-    names()
+     names()
 
 ## read in rest of data
 
