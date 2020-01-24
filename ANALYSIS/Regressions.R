@@ -28,6 +28,10 @@ summary(DGE_tasksLunch.vglm)
 LessIll.vglm = vglm(lessIll ~  DGECriteriaNo + regionalProducts + yearsSupportSince + subsidyDifferenceLunch + state, data = mergedData, family = propodds)
 summary(LessIll.vglm)
 
+LessIll_SubsidyDifference.vglm = vglm(lessIll ~ subsidyDifferenceLunch, data = mergedData, family = propodds)
+summary(LessIll_SubsidyDifference.vglm) 
+
+
 ##residualplots
 ##interpretationofpropodds??
 ##darstellung
@@ -48,6 +52,8 @@ summary(influenceHome.vglm)
 
 moreIndependent.vglm = vglm(moreIndependent ~  yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state, data = mergedData, family = propodds)
 summary(moreIndependent.vglm)
+
+
 
 
 
