@@ -28,14 +28,15 @@ mean_by_year1 <- df1 %>%
 
 ## b) Graphische Darstellung der Zeitreihe 
 
-# Defining a time series object for the average subsidy, starting with the observation of year
-# 2011 and ending in year 2018, using a frequency of 1 because the data are collected anually
+# Defining a time series object for the average day-to-day-skills, starting with the observation
+# of year 2011 and ending in year 2018, using a frequency of 1 because the data are collected
+# anually
 ts_averageDayToDaySkills = ts(mean_by_year1$averagedDayToDaySkills, start = 2011, end = 2018, 
                               frequency = 1)
 View(ts_averageSubsidy)
 
 # The command plot() creates a time series graph only mention the time series (R knows that
-# the object is a time series), time on the x-axis and the average subsidy on the y-axis
+# the object is a time series), time on the x-axis and the average day-to-day-skills on the y-axis
 # The parament lwd controls the line width of the time series curve, the parameter cex.main
 # defines the size of the head line
 plot(ts_averageDayToDaySkills, main = "Trend of the average Day-To-Day-Skills", xlab = "Time", 
@@ -49,14 +50,14 @@ box(which = "figure")
 library(estimatr)
 library(stats)
 
-# Defining the length of the time series "ts_averageSubsidy" with the function length()
+# Defining the length of the time series "ts_averageDaytoDaySkills" with the function length()
 # Defining the vector of the time indices t with the function seq() from t = 1 (2011) 
 # to t = n (2018)
 n <- length(ts_averageDayToDaySkills)
 t <- seq(from = 1, to = n)
 
 # Simple OLS regression: 
-# The command lm_robust regress the time series "ts_averageSubsidy" (y-variable / outcome) 
+# The command lm_robust regress the time series "ts_averageDaytoDaySkills" (y-variable / outcome) 
 # on the time indices (x-variable) using a linear regression model and robust standard errors
 # Saving the OLS regression under "linear trend"
 linearTrend1 <- lm_robust(ts_averageDayToDaySkills ~ t)
@@ -74,7 +75,7 @@ plot(ts_averageDayToDaySkills, main = "Trend of the average Day-To-Day-Skills", 
      ylab = "Average Day-To-Day-Skills", col = "blue", lwd = 2, 
      cex.main = 1.25, ylim = c(2.0,3.2))
 lines(linearTrend_fit1, col = "red", lwd = 1.5)
-text(2013, 3.1, "Average subsidy", ,col = "blue", cex = 0.9)
+text(2013, 3.1, "Average subsidy", col = "blue", cex = 0.9)
 text(2014, 2.8, "Linear trend", col = "red", cex = 0.9)
 box(which = "figure")
 
@@ -85,8 +86,8 @@ box(which = "figure")
 detach("package:dplyr")
 
 # The command filter() can be used for calculating simple moving average for the time series
-# "ts_averageSubsidy. We choose the time frame (t-1, t+1) resulting in 3 time periods which are
-# so weighted with 1/3 (the command rep() replicates the values in x). With sides = 2 we use 
+# "ts_averageDayToDaySkills. We choose the time frame (t-1, t+1) resulting in 3 time periods which
+# are so weighted with 1/3 (the command rep() replicates the values in x). With sides = 2 we use 
 # a centered moving average (= standard setting). 
 ts_averageDayToDaySkills_ma <- filter(ts_averageDayToDaySkills, filter = rep(1/3,3), sides = 2)
 View(ts_averageDayToDaySkills_ma)  
