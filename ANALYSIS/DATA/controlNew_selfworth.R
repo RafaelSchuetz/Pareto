@@ -28,10 +28,9 @@ ts_averageSelfworthControl = ts(mean_by_year_control$averageSelfworthControl, st
 ts_averageSelfworthSkip = ts(mean_by_year_skip$averageSelfworthSkip, start = 2011, end = 2018, frequency = 1)
 #Nun wollen wir die Zeitreihen grafisch darstellen
 
-plot(ts_averageSelfworthTreat, main = "New Trend of the average selfworth", xlab = "Time", 
+plot(ts_averageSelfworthTreat, main = "Treatment vs. control group: Selfworth", xlab = "Time", 
      ylab = "Average selfworth", col = "red", lwd = 2, cex.main = 1.25, ylim = c(2,3.5))
 lines(ts_averageSelfworthControl, col = "blue", lwd = 2)
-lines(ts_averageSelfworthSkip, col = "green", lwd = 2)
-text(2013, 3.3, "Treatment group",col = "red", adj = 0.3, cex = 0.9)
+text(2013, 3.2, "Treatment group",col = "red", adj = 0.3, cex = 0.9)
 text(2016, 2.4, "Control group", col = "blue", adj = 0.3, cex = 0.9)
-text(2012, 2.6, "Skipper", col = "green", adj = 0.3, cex = 0.9)
+
