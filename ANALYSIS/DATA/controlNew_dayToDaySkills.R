@@ -64,7 +64,7 @@ linearTrend_fit_treat2 <- ts(linearTrend_fit_treat2, start = 2011, end = 2018, f
 # Hinzufügen der linearen Trends:
 
 plot(ts_averageDayToDaySkills_control, xlab = "Time", ylab = "average dayToDaySkills",
-     main = "Trend of average Day-To-Day-Skills: Treatment vs control", col = "blue", 
+     main = "Treatment vs control: Day-to-day-skills", col = "blue", 
      lwd = 2, ylim = c(1.9,3.3),cex.main = 1.25)
 lines(ts_averageDayToDaySkills_treat, col = "red", lwd = 2)
 lines(linearTrend_fit_control2, col = "blue", lwd = 1)
