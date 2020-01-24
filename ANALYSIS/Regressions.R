@@ -25,8 +25,8 @@ summary(DGE_tasksLunch.vglm)
 
 #expandRegressionDGElessIll
 
-Expand_lessIll.vglm = vglm(lessIll ~  DGECriteriaNo + regionalProducts, data = mergedData, family = propodds)
-summary(DGEregPr_lessIll.vglm)
+LessIll.vglm = vglm(lessIll ~  DGECriteriaNo + regionalProducts + yearsSupportSince + subsidyDifferenceLunch + state, data = mergedData, family = propodds)
+summary(LessIll.vglm)
 
 ##residualplots
 ##interpretationofpropodds??
@@ -34,8 +34,14 @@ summary(DGEregPr_lessIll.vglm)
 
 #approximatingChanceEquality
 
-selfworth.vglm = vglm(selfworth ~  yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state, data = mergedData, family = propodds)
+selfworth.vglm = vglm(selfworth ~ yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state , data = mergedData, family = propodds)
 summary(selfworth.vglm)
+
+ExpandSelfworth.vglm = vglm(selfworth ~ participateMore + enoughFood + yearsSupportSince + subsidy + subsidyDifferenceLunch + weeklyCooks, data = mergedData, family = propodds)
+summary(ExpandSelfworth.vglm)
+
+dayToDaySkills.vglm = vglm(dayToDaySkills ~ yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state , data = mergedData, family = propodds)
+summary(dayToDaySkills.vglm)
 
 influenceHome.vglm = vglm(influenceHome ~  yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state, data = mergedData, family = propodds)
 summary(influenceHome.vglm)
@@ -43,6 +49,11 @@ summary(influenceHome.vglm)
 moreIndependent.vglm = vglm(moreIndependent ~  yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state, data = mergedData, family = propodds)
 summary(moreIndependent.vglm)
 
+
+
+
+
+
 #cumulativelinkmodelsdon'tworkbecausetheyneedafactorasoutcome 
 
-#otherwayofproportionalodds
+

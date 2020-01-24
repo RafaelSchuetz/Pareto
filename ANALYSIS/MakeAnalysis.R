@@ -1,1 +1,6 @@
-source()
+source(encoding = "UTF8", "./ANALYSIS/PlotHealthVariables.R")
+source(encoding = "UTF8", "./ANALYSIS/PlotVariablesOverTime.R")
+source(encoding = "UTF8", "./ANALYSIS/Regressions.R")
+# source(encoding = "UTF8", "./ANALYSIS/CorrelationMatrixEntdecker.R")
+# source(encoding = "UTF8", "./ANALYSIS/CorrelationMatrixMittagstisch.R")
+# source(encoding = "UTF8", "./ANALYSIS/factor_analysis")

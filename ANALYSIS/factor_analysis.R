@@ -7,12 +7,12 @@
 #deshalb muss ich nur die relevanten Variablen auswählen
 
 #relevate packages laden
-library(dplyr)
 library(tidyverse)
+library(polychor)
+library(psych)
 
-factor <- mergedData
 
-factor <- factor %>% 
+ordinalVariablesMeals <- mergedData %>% 
   dplyr::select(participateMore, 
          tasksLunch, 
          monthlyCooks, 
@@ -49,8 +49,11 @@ factor <- factor %>%
          qualitySatisfies,
          regionalProducts,
          cultureReligion,
-         unsweetenedDrinks,
-         tripsSuggestions,
+         unsweetenedDrinks %>% 
+           data.matrix())
+
+ordinalVariablesTrips <- mergedData %>% 
+  select(tripsSuggestions,
          tripsDecisions,
          tripsOrganization,
          tripsCostCalculation,
@@ -83,38 +86,42 @@ factor <- factor %>%
          claimBTP,
          benefitBTP,
          noSchoolLunch,
-         expensiveSchoolLunch)
+         expensiveSchoolLunch) %>% 
+  data.matrix()
 
+correlationMatrixMeals <- hetcor(ordinalVariablesMeals, ML=TRUE)
 
-#weitere R packages installieren/laden
-library(psych)
-#install.packages('psy')
-library(psy)
-#install.packages('nFactors')
-library(nFactors)
+factorAnalysisMeals <- fa(ordinalVariables, nfactors = 10)
 
-#alle ausgwählten Variablen beschreiben
-#bei allen min und max anschauen
-#schauen ob es outliers gibt
-#und ob ich tatsächlich nur kategoriale Variablen ausgewählt habe
-describe(factor)
-
-
-#correlation mit ordinalen variablen
-
-
-
-#Bartlett-Test
-#prüft ob die Variablen miteinander korrelieren
-#wenn der Test signifikant, dann wissen wir ob die variablen miteinander korrelieren
-cortest.bartlett(factor)
-
-#umwandeln der variablen in numeric
-factor <- data.frame(lapply(factor, function(factor_vector) as.numeric(as.character(factor_vector))))
-
-#mochmal bartlett-test
-cortest.bartlett(factor)
-
-cor(factor, y = NULL, use = 'pairwise.complete.obs', method = 'pearson')
-
+# #weitere R packages installieren/laden
+# library(psych)
+# #install.packages('psy')
+# library(psy)
+# #install.packages('nFactors')
+# library(nFactors)
+# 
+# #alle ausgwählten Variablen beschreiben
+# #bei allen min und max anschauen
+# #schauen ob es outliers gibt
+# #und ob ich tatsächlich nur kategoriale Variablen ausgewählt habe
+# describe(factor)
+# 
+# 
+# #correlation mit ordinalen variablen
+# 
+# 
+# 
+# #Bartlett-Test
+# #prüft ob die Variablen miteinander korrelieren
+# #wenn der Test signifikant, dann wissen wir ob die variablen miteinander korrelieren
+# cortest.bartlett(factor)
+# 
+# #umwandeln der variablen in numeric
+# factor <- data.frame(lapply(factor, function(factor_vector) as.numeric(as.character(factor_vector))))
+# 
+# #mochmal bartlett-test
+# cortest.bartlett(factor)
+# 
+# cor(factor, y = NULL, use = 'pairwise.complete.obs', method = 'pearson')
+# 
 
