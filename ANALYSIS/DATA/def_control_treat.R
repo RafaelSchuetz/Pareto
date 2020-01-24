@@ -183,6 +183,9 @@ didreg = lm(dayToDaySkills ~ treat + post + did, data = dfc3)
 summary(didreg)
 
 
+#Treatment Intensity Analyse #####
+
+
 
 
 
