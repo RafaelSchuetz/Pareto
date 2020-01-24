@@ -182,6 +182,12 @@ dfc3 <- dfc3 %>%
 didreg = lm(dayToDaySkills ~ treat + post + did, data = dfc3)
 summary(didreg)
 
+didreg2 = lm(selfworth ~ treat + post + did, data = dfc3)
+summary(didreg2)
+
+
+#Treatment Intensity Analyse #####
+
 
 
 
