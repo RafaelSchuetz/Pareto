@@ -21,8 +21,8 @@ priceIndicesWide <- priceIndicesLong %>%
 priceIndicesWide$year <- as.numeric(priceIndicesWide$year)
 
 priceIndicesWide <- priceIndicesWide %>% 
-  dplyr::rename(tripsPriceIndex = 'Freizeit, Unterhaltung und Kultur',
-                foodPriceIndex = 'Nahrungsmittel und alkoholfreie Getränke')
+  dplyr::rename(PriceIndexTrips = 'Freizeit, Unterhaltung und Kultur',
+                PriceIndexFood = 'Nahrungsmittel und alkoholfreie Getränke')
 
 
 

@@ -21,8 +21,8 @@ expl
 
 plotOutcomeOverTime = function(x, y){
   ggplot(mergedData, aes_string(fill = y, x = x, y = y) ) +
-    geom_bar(position="stack", stat="identity") + 
-    # or this: geom_col(position = position_stack(reverse = TRUE)) +  
+    #geom_bar(position="stack", stat="identity") + 
+    geom_col(position = position_stack(reverse = TRUE)) +  
     theme_bw() 
 }
 
@@ -51,3 +51,7 @@ all_yearPlots$parentalDialog
 all_yearPlots$qualitySatisfies
 all_yearPlots$trainingCompletedNo
 all_yearPlots$trainingStartedNo
+all_yearPlots$selfworth
+all_yearPlots$influenceHome
+all_yearPlots$moreIndependent
+all_yearPlots$dayToDaySkills

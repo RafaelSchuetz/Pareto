@@ -26,7 +26,7 @@ expl
 plotDGEOutcome = function(x, y){
     ggplot(HealthRelVar, aes_string(x = x, y = y) ) +
     geom_point() + 
-    geom_smooth(method = "loess", se = FALSE, color = "grey74") + 
+    #geom_smooth(method = "loess", se = FALSE, color = "grey74") + 
     theme_bw()
 }
 
