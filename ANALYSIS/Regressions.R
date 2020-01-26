@@ -43,7 +43,7 @@ summary(LessIll_Support.vglm)
 
 ##residualplots??
 
-#approximatingChanceEquality
+#approximatingChanceEquality #dayToDaySkills
 
 dayToDaySkills_subsidy.vglm = vglm(dayToDaySkills ~ subsidy, data = mergedData, family = propodds)
 summary(dayToDaySkills_subsidy.vglm)
@@ -54,14 +54,34 @@ summary(dayToDaySkills_Support.vglm)
 dayToDaySkills_monthlyCooks.vglm = vglm(dayToDaySkills ~ monthlyCooks, data = mergedData, family = propodds)
 summary(dayToDaySkills_monthlyCooks.vglm)
 
+dayToDaySkills.vglm = vglm(dayToDaySkills ~ yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state , data = mergedData, family = propodds)
+summary(dayToDaySkills.vglm)
+
+dayToDaySkills_shoppers.vglm = vglm(dayToDaySkills ~ shoppers, data = mergedData, family = propodds)
+summary(dayToDaySkills_shoppers.vglm)
+
+#selfworth
+
+selfworth_subsidy.vglm = vglm(selfworth ~ subsidy, data = mergedData, family = propodds)
+summary(selfworth_subsidy.vglm)
+
+selfworth_support.vglm = vglm(selfworth ~ yearsSupportSince, data = mergedData, family = propodds)
+summary(selfworth_support.vglm)
+
+selfworth_monthlyCooks.vglm = vglm(selfworth ~ monthlyCooks, data = mergedData, family = propodds)
+summary(selfworth_monthlyCooks.vglm)
+
+selfworth_shoppers.vglm = vglm(selfworth ~ shoppers, data = mergedData, family = propodds)
+summary(selfworth_shoppers.vglm)
+
 selfworth.vglm = vglm(selfworth ~ yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state , data = mergedData, family = propodds)
 summary(selfworth.vglm)
 
 ExpandSelfworth.vglm = vglm(selfworth ~ participateMore + enoughFood + yearsSupportSince + subsidy + weeklyCooks, data = mergedData, family = propodds)
 summary(ExpandSelfworth.vglm)
 
-dayToDaySkills.vglm = vglm(dayToDaySkills ~ yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state , data = mergedData, family = propodds)
-summary(dayToDaySkills.vglm)
+
+#other
 
 influenceHome.vglm = vglm(influenceHome ~  yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state, data = mergedData, family = propodds)
 summary(influenceHome.vglm)
