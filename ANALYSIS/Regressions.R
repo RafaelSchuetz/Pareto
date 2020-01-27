@@ -5,11 +5,20 @@ library(ordinal)
 ###inspectunfluenceofDGEcriterium
 ##proportionalOddsModel 
 
-DGE_lessIll.vglm = vglm(lessIll ~  DGECriteriaNo, data = mergedData, family = propodds)
-summary(DGE_lessIll.vglm)
+DGE_lessIll.vglm.propOdds = vglm(lessIll ~  DGECriteriaNo, data = mergedData, family = propodds)
+summary(DGE_lessIll.vglm.propOdds)
+
+DGE_lessIll.cumulative.parallel = vglm(lessIll ~  DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
+summary(DGE_lessIll.vglm.cumulative.parallel)
+
+DGE_lessIll.vglm.cumulative.notParallel = vglm(lessIll ~  DGECriteriaNo, data = mergedData, family = cumulative(parallel = FALSE))
+summary(DGE_lessIll.vglm.cumulative.notParallel)
 
 DGE_dietaryKnowledge.vglm = vglm(dietaryKnowledge ~ DGECriteriaNo, data = mergedData, family = propodds)
 summary(DGE_dietaryKnowledge.vglm)
+
+DGE_dietaryKnowledge.cumulative.parallel = vglm(dietaryKnowledge ~ DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
+summary(DGE_dietaryKnowledge.cumulative.parallel)
 
 DGE_seasonalFoodstuff.vglm = vglm(seasonalFoodstuff ~ DGECriteriaNo, data = mergedData, family = propodds)
 summary(DGE_seasonalFoodstuff.vglm)
@@ -17,11 +26,14 @@ summary(DGE_seasonalFoodstuff.vglm)
 DGE_organicFoodstuff.vglm = vglm(organicFoodstuff ~ DGECriteriaNo, data = mergedData, family = propodds)
 summary(DGE_organicFoodstuff.vglm)
 
-DGE_appreciateHealthy.vglm = vglm(appreciateHealthy ~ DGECriteriaNo, data = mergedData, family = propodds)
-summary(DGE_appreciateHealthy.vglm)
+DGE_appreciateHealthy.cumulative.parallel = vglm(appreciateHealthy ~ DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
+summary(DGE_appreciateHealthy.cumulative.parallel)
 
 DGE_tasksLunch.vglm = vglm(tasksLunch ~ DGECriteriaNo, data = mergedData, family = propodds)
 summary(DGE_tasksLunch.vglm)
+
+## cumulative odds model
+
 
 #expandRegressionLessIll
 
@@ -34,6 +46,8 @@ summary(LessIll.vglm)
 Expand_LessIll.vglm = vglm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + subsidy + state, data = mergedData, family = propodds)
 summary(Expand_LessIll.vglm)
 
+Expand_LessIll.cumulative.parallel = vglm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + subsidy + state, data = mergedData, family = cumulative(parallel = TRUE))
+summary(Expand_LessIll.cumulative.parallel)
 
 
 
@@ -54,6 +68,9 @@ summary(LessIll_Support.vglm)
 dayToDaySkills_subsidy.vglm = vglm(dayToDaySkills ~ subsidy, data = mergedData, family = propodds)
 summary(dayToDaySkills_subsidy.vglm)
 
+dayToDaySkills_subsidy.cumulative.parallel = vglm(dayToDaySkills ~ subsidy, data = mergedData, family = cumulative(parallel = TRUE))
+summary(dayToDaySkills_subsidy.cumulative.parallel)
+
 dayToDaySkills_Support.vglm = vglm(dayToDaySkills ~ yearsSupportSince, data = mergedData, family = propodds)
 summary(dayToDaySkills_Support.vglm)
 
@@ -70,6 +87,9 @@ summary(dayToDaySkills_shoppers.vglm)
 
 selfworth_subsidy.vglm = vglm(selfworth ~ subsidy, data = mergedData, family = propodds)
 summary(selfworth_subsidy.vglm)
+
+selfworth_subsidy.cumulative.parallel = vglm(selfworth ~ subsidy, data = mergedData, family = cumulative(parallel = TRUE))
+summary(selfworth_subsidy.cumulative.parallel)
 
 selfworth_support.vglm = vglm(selfworth ~ yearsSupportSince, data = mergedData, family = propodds)
 summary(selfworth_support.vglm)
