@@ -86,7 +86,7 @@ highCorrelationsMeals <- correlationMatrixMealsLong %>%  arrange(desc(correlatio
 
 numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300)
 
-# fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  7
+# fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  9
 
 factorAnalysisMeals <- fa(correlationMatrixMeals$correlations, nfactors = 9, scores="tenBerge", n.obs = 300, rotate = "varimax", fm = "ml")
 
@@ -144,9 +144,9 @@ correlationMatrixTripsLong <- data.frame(variable1=rownames(correlationMatrixTri
                                          correlation=correlationMatrixTrips$correlations[upper.tri(correlationMatrixTrips$correlations)])
 highCorrelationsTrips <- correlationMatrixTripsLong %>%  arrange(desc(correlation)) %>% filter(abs(correlation)>0.5)
 
-numberFactorsTrips <- fa.parallel(correlationMatrixTrips$correlations, fm = 'ml', fa = 'fa', n.obs = 300)
+numberFactorsTrips <- fa.parallel(correlationMatrixTrips$correlations, fm = 'ml', fa = 'fa', n.obs = 200)
 
-factorAnalysisTrips <- fa(correlationMatrixTrips$correlations, nfactors = 7, scores="tenBerge", n.obs = 300, rotate = "varimax", fm = "ml")
+factorAnalysisTrips <- fa(correlationMatrixTrips$correlations, nfactors = 4, scores="tenBerge", n.obs = 200, rotate = "varimax", fm = "ml")
 
 
 
