@@ -1,6 +1,7 @@
 
 library(VGAM)
 library(ordinal)
+library(MASS)
 
 ###inspectunfluenceofDGEcriterium
 ##proportionalOddsModel 
@@ -107,11 +108,5 @@ summary(mealsNo_sub.lm)
 tripsNo_sub.lm <- lm(tripsNo ~ tripsSubsidy, data = mergedData)
 summary(tripsNo_sub.lm)
 
-
-
-
-
-
-#cumulativelinkmodelsdon'tworkbecausetheyneedafactorasoutcome 
 
 

@@ -55,3 +55,6 @@ all_yearPlots$selfworth
 all_yearPlots$influenceHome
 all_yearPlots$moreIndependent
 all_yearPlots$dayToDaySkills
+
+plotOutcomeOverTime("tripsSubsidy", "tripsNo")
+
