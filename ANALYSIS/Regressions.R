@@ -31,6 +31,12 @@ summary(DGE_lessIll.vglm)
 LessIll.vglm = vglm(lessIll ~  DGECriteriaNo + regionalProducts + yearsSupportSince + subsidyDifferenceLunch + state, data = mergedData, family = propodds)
 summary(LessIll.vglm)
 
+Expand_LessIll.vglm = vglm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + subsidy + state, data = mergedData, family = propodds)
+summary(Expand_LessIll.vglm)
+
+
+
+
 LessIll_SubsidyDifference.vglm = vglm(lessIll ~ subsidyDifferenceLunch, data = mergedData, family = propodds)
 summary(LessIll_SubsidyDifference.vglm) 
 
@@ -74,8 +80,11 @@ summary(selfworth_monthlyCooks.vglm)
 selfworth_shoppers.vglm = vglm(selfworth ~ shoppers, data = mergedData, family = propodds)
 summary(selfworth_shoppers.vglm)
 
-selfworth.vglm = vglm(selfworth ~ yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state , data = mergedData, family = propodds)
-summary(selfworth.vglm)
+selfworth_expand.vglm = vglm(selfworth ~ yearsSupportSince + subsidyDifferenceLunch + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state, data = mergedData, family = propodds)
+summary(selfworth_expand.vglm)
+
+selfworth_Expand.vglm = vglm(selfworth ~ yearsSupportSince + subsidy + subsidyDifferenceLunch + mealsNo + enoughStaffLunch + weeklyCooks + snacksNo + shoppers + state, data = mergedData, family = propodds)
+summary(selfworth_Expand.vglm)
 
 ExpandSelfworth.vglm = vglm(selfworth ~ participateMore + enoughFood + yearsSupportSince + subsidy + weeklyCooks, data = mergedData, family = propodds)
 summary(ExpandSelfworth.vglm)
@@ -90,6 +99,13 @@ moreIndependent.vglm = vglm(moreIndependent ~  yearsSupportSince + subsidyDiffer
 summary(moreIndependent.vglm)
 
 
+#metrischeregression 
+
+mealsNo_sub.lm <- lm(mealsNo ~ subsidy, data = mergedData)
+summary(mealsNo_sub.lm)
+
+tripsNo_sub.lm <- lm(tripsNo ~ tripsSubsidy, data = mergedData)
+summary(tripsNo_sub.lm)
 
 
 
