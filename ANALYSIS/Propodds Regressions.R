@@ -10,7 +10,7 @@ DGE_lessIll.vglm.propOdds = vglm(lessIll ~  DGECriteriaNo, data = mergedData, fa
 summary(DGE_lessIll.vglm.propOdds)
 
 DGE_lessIll.cumulative.parallel = vglm(lessIll ~  DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
-summary(DGE_lessIll.vglm.cumulative.parallel)
+summary(DGE_lessIll.cumulative.parallel)
 
 DGE_lessIll.vglm.cumulative.notParallel = vglm(lessIll ~  DGECriteriaNo, data = mergedData, family = cumulative(parallel = FALSE))
 summary(DGE_lessIll.vglm.cumulative.notParallel)
