@@ -8,7 +8,7 @@ library(dplyr)
 
 #setthevariables
 
-response= names(mergedData)[5:119]
+response= names(mergedData)[5:202]
 expl= names(mergedData)[4]
 
 response = set_names(response)
@@ -40,6 +40,7 @@ all_yearPlots = map(response,
 #printtheplots #allvaribalescanbeplotted #examples
 
 all_yearPlots$age[1:2]
+all_yearPlots$lessIllOrdinal
 all_yearPlots$eatersPerMealNo[1:2]
 all_yearPlots$newKidsNo[1:2]
 all_yearPlots$cateringNo[1:2]
