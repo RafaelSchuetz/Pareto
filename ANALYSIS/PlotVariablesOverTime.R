@@ -56,5 +56,7 @@ all_yearPlots$influenceHome
 all_yearPlots$moreIndependent
 all_yearPlots$dayToDaySkills
 
+#plotforpresentation..explainsubsidyvalue
+
 plotOutcomeOverTime("tripsSubsidy", "tripsNo")
 
