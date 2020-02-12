@@ -59,4 +59,5 @@ all_yearPlots$dayToDaySkills
 #plotforpresentation..explainsubsidyvalue
 
 plotOutcomeOverTime("tripsSubsidy", "tripsNo")
+plotOutcomeOverTime("realTripsSubsidy", "tripsNo")
 

@@ -41,21 +41,21 @@ summary(DGE_tasksLunch.vglm)
 DGE_lessIll.vglm = vglm(lessIllOrdinal ~  DGECriteriaNo, data = mergedData, family = propodds)
 summary(DGE_lessIll.vglm)
 
-LessIll.vglm = vglm(lessIllOrdinal ~  DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + subsidyDifferenceLunch + state, data = mergedData, family = propodds)
+LessIll.vglm = vglm(lessIllOrdinal ~  DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + realSubsidyDifferenceLunch + state, data = mergedData, family = propodds)
 summary(LessIll.vglm)
 
-Expand_LessIll.vglm = vglm(lessIllOrdinal ~ DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + subsidy + state, data = mergedData, family = propodds)
+Expand_LessIll.vglm = vglm(lessIllOrdinal ~ DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + realSubsidy + state, data = mergedData, family = propodds)
 summary(Expand_LessIll.vglm)
 
-Expand_LessIll.cumulative.parallel = vglm(lessIllOrdinal ~ DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + subsidy + state, data = mergedData, family = cumulative(parallel = TRUE))
+Expand_LessIll.cumulative.parallel = vglm(lessIllOrdinal ~ DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + realSubsidy + state, data = mergedData, family = cumulative(parallel = TRUE))
 summary(Expand_LessIll.cumulative.parallel)
 
 
 
-LessIll_SubsidyDifference.vglm = vglm(lessIllOrdinal ~ subsidyDifferenceLunch, data = mergedData, family = propodds)
+LessIll_SubsidyDifference.vglm = vglm(lessIllOrdinal ~ realSubsidyDifferenceLunch, data = mergedData, family = propodds)
 summary(LessIll_SubsidyDifference.vglm) 
 
-LessIll_Subsidy.vglm = vglm(lessIllOrdinal ~ subsidy, data = mergedData, family = propodds)
+LessIll_Subsidy.vglm = vglm(lessIllOrdinal ~ realSubsidy, data = mergedData, family = propodds)
 summary(LessIll_Subsidy.vglm)
 
 LessIll_Support.vglm = vglm(lessIllOrdinal ~ yearsSupportSince, data = mergedData, family = propodds)
@@ -66,10 +66,10 @@ summary(LessIll_Support.vglm)
 
 #approximatingChanceEquality #dayToDaySkills
 
-dayToDaySkills_subsidy.vglm = vglm(dayToDaySkillsOrdinal ~ subsidy, data = mergedData, family = propodds)
+dayToDaySkills_subsidy.vglm = vglm(dayToDaySkillsOrdinal ~ realSubsidy, data = mergedData, family = propodds)
 summary(dayToDaySkills_subsidy.vglm)
 
-dayToDaySkills_subsidy.cumulative.parallel = vglm(dayToDaySkillsOrdinal ~ subsidy, data = mergedData, family = cumulative(parallel = TRUE))
+dayToDaySkills_subsidy.cumulative.parallel = vglm(dayToDaySkillsOrdinal ~ realSubsidy, data = mergedData, family = cumulative(parallel = TRUE))
 summary(dayToDaySkills_subsidy.cumulative.parallel)
 
 dayToDaySkills_Support.vglm = vglm(dayToDaySkillsOrdinal ~ yearsSupportSince, data = mergedData, family = propodds)
@@ -78,7 +78,7 @@ summary(dayToDaySkills_Support.vglm)
 dayToDaySkills_monthlyCooks.vglm = vglm(dayToDaySkillsOrdinal ~ monthlyCooksOrdinal, data = mergedData, family = propodds)
 summary(dayToDaySkills_monthlyCooks.vglm)
 
-dayToDaySkills.vglm = vglm(dayToDaySkillsOrdinal ~ yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state , data = mergedData, family = propodds)
+dayToDaySkills.vglm = vglm(dayToDaySkillsOrdinal ~ yearsSupportSince + realSubsidyDifferenceLunch + realSubsidy + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state , data = mergedData, family = propodds)
 summary(dayToDaySkills.vglm)
 
 dayToDaySkills_shoppers.vglm = vglm(dayToDaySkillsOrdinal ~ shoppersOrdinal, data = mergedData, family = propodds)
@@ -86,10 +86,10 @@ summary(dayToDaySkills_shoppers.vglm)
 
 #selfworth
 
-selfworth_subsidy.vglm = vglm(selfworthOrdinal ~ subsidy, data = mergedData, family = propodds)
+selfworth_subsidy.vglm = vglm(selfworthOrdinal ~ realSubsidy, data = mergedData, family = propodds)
 summary(selfworth_subsidy.vglm)
 
-selfworth_subsidy.cumulative.parallel = vglm(selfworthOrdinal ~ subsidy, data = mergedData, family = cumulative(parallel = TRUE))
+selfworth_subsidy.cumulative.parallel = vglm(selfworthOrdinal ~ realSubsidy, data = mergedData, family = cumulative(parallel = TRUE))
 summary(selfworth_subsidy.cumulative.parallel)
 
 selfworth_support.vglm = vglm(selfworthOrdinal ~ yearsSupportSince, data = mergedData, family = propodds)
@@ -101,31 +101,31 @@ summary(selfworth_monthlyCooks.vglm)
 selfworth_shoppers.vglm = vglm(selfworthOrdinal ~ shoppersOrdinal, data = mergedData, family = propodds)
 summary(selfworth_shoppers.vglm)
 
-selfworth_expand.vglm = vglm(selfworthOrdinal ~ yearsSupportSince + subsidyDifferenceLunch + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state, data = mergedData, family = propodds)
+selfworth_expand.vglm = vglm(selfworthOrdinal ~ yearsSupportSince + realSubsidyDifferenceLunch + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state, data = mergedData, family = propodds)
 summary(selfworth_expand.vglm)
 
-selfworth_Expand.vglm = vglm(selfworthOrdinal ~ yearsSupportSince + subsidy + subsidyDifferenceLunch + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state, data = mergedData, family = propodds)
+selfworth_Expand.vglm = vglm(selfworthOrdinal ~ yearsSupportSince + realSubsidy + realSubsidyDifferenceLunch + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state, data = mergedData, family = propodds)
 summary(selfworth_Expand.vglm)
 
-ExpandSelfworth.vglm = vglm(selfworthOrdinal ~ participateMoreOrdinal + enoughFoodOrdinal + yearsSupportSince + subsidy + weeklyCooksOrdinal, data = mergedData, family = propodds)
+ExpandSelfworth.vglm = vglm(selfworthOrdinal ~ participateMoreOrdinal + enoughFoodOrdinal + yearsSupportSince + realSubsidy + weeklyCooksOrdinal, data = mergedData, family = propodds)
 summary(ExpandSelfworth.vglm)
 
 
 #other
 
-influenceHome.vglm = vglm(influenceHomeOrdinal ~  yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state, data = mergedData, family = propodds)
+influenceHome.vglm = vglm(influenceHomeOrdinal ~  yearsSupportSince + realSubsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state, data = mergedData, family = propodds)
 summary(influenceHome.vglm)
 
-moreIndependent.vglm = vglm(moreIndependentOrdinal ~  yearsSupportSince + subsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state, data = mergedData, family = propodds)
+moreIndependent.vglm = vglm(moreIndependentOrdinal ~  yearsSupportSince + realSubsidyDifferenceLunch + subsidy + mealsNo + enoughStaffLunchOrdinal + weeklyCooksOrdinal + snacksNo + shoppersOrdinal + state, data = mergedData, family = propodds)
 summary(moreIndependent.vglm)
 
 
 #metrischeregression 
 
-mealsNo_sub.lm <- lm(mealsNo ~ subsidy, data = mergedData)
+mealsNo_sub.lm <- lm(mealsNo ~ realSubsidy, data = mergedData)
 summary(mealsNo_sub.lm)
 
-tripsNo_sub.lm <- lm(tripsNo ~ tripsSubsidy, data = mergedData)
+tripsNo_sub.lm <- lm(tripsNo ~ realTripsSubsidy, data = mergedData)
 summary(tripsNo_sub.lm)
 
 

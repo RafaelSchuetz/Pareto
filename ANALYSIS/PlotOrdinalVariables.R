@@ -56,6 +56,7 @@ all_yearPlots$selfworthOrdinal
 all_yearPlots$influenceHomeOrdinal
 all_yearPlots$moreIndependentOrdinal
 all_yearPlots$dayToDaySkillsOrdinal
+all_yearPlots$realSubsidy
 
 #plotforpresentation..explainsubsidyvalue
 
