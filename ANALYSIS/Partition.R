@@ -2,9 +2,10 @@ library(partition)
 library(ggplot2)
 library(dplyr)
 
-https://cran.r-project.org/web/packages/partition/vignettes/introduction-to-partition.html
+#https://cran.r-project.org/web/packages/partition/vignettes/introduction-to-partition.html
 
 #partition merged Data 
+
 #excludeNAs
 
 PartitionedData <- mergedDataImputeMode[ ,colSums(is.na(mergedDataImputeMode)) == 0]
