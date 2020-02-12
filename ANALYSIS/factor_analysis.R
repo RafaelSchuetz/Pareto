@@ -89,7 +89,7 @@ numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml'
 # fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  9
 
 factorAnalysisMeals <- fa(correlationMatrixMeals$correlations, nfactors = 9, scores="tenBerge", n.obs = 300, rotate = "varimax", fm = "ml")
-
+loadings(factorAnalysisMeals)
 # if you do not use fm = "ml", these warnings appear: 
 # Warnmeldungen:
 # 1: In fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs,  :

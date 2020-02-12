@@ -21,6 +21,15 @@ str(partition_scores(prt1))
 
 str(mapping_key(prt1)) #the information each variable explains
 
+mapping_key1 <- as.data.frame(mapping_key(prt1))
+view(mapping_key1)
+
+#values
+mapping_key1[10, 2]
+mapping_key1[11, 2]
+mapping_key1[12, 2]
+#....
+
 unnest_mappings(prt1) #to see each individual mapping
 
 View(prt1)
@@ -56,7 +65,7 @@ plot_information(prt2, geom = geom_histogram) +
 
 plot_ncluster(prt2) + theme_minimal(14)
 
-
+mapping_key2 <- as.data.frame(mapping_key(prt2))
 
 
 
@@ -79,7 +88,7 @@ plot_ncluster(prt3) + theme_minimal(14)
 plot_information(prt3, geom = geom_histogram) +
   theme_minimal(14) 
 
-
+mapping_key3 <- as.data.frame(mapping_key(prt3))
 
 
 #threshold .4
@@ -100,7 +109,7 @@ plot_ncluster(prt4) + theme_minimal(14)
 plot_information(prt4, geom = geom_histogram) +
   theme_minimal(14)
 
-
+mapping_key4 <- as.data.frame(mapping_key(prt4))
 
 
 
@@ -123,3 +132,5 @@ plot_ncluster(prt5) + theme_minimal(14)
 
 plot_information(prt5, geom = geom_histogram) +
   theme_minimal(14)
+
+mapping_key5 <- as.data.frame(mapping_key(prt5))
