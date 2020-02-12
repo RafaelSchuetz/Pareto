@@ -9,39 +9,42 @@ dataset <- mergedData %>%
 
 # drop_na drops rows containing missing values
 
+# select rows with year in which DGECriteriaNo was recorded
+
 dataset <- mergedDataImputeMode %>% 
-  dplyr::select(#participateMore, 
-                # tasksLunch,
-                # monthlyCooks,
-                # weeklyCooks,
-                # shoppers,
-                # ownIdeas,
-                # stayLonger,
-                # easyDishes,
-                # dietaryKnowledge,
-                #appreciateHealthy,
-                # foodCulture,
-                # influenceHome,
-                # cookAtHome,
-                # askRecipes,
-                # moreConcentrated,
-                # moreBalanced,
-                # lessIll,
-                dayToDaySkills,
-                moreIndependent,
-                betterTeamwork,
-                betterReading,
-                betterNumbers,
-                betterGrades,
-                moreRegularSchoolVisits,
-                selfworth,
-                moreOpen,
-                moreConfidence,
-                addressProblems,
-                proud,
-                DGECriteriaNo,
-                realSubsidy) %>% 
-  drop_na()
+  filter(year %in% c(2018, 2017, 2016, 2014))
+  # dplyr::select(#participateMore, 
+  #               # tasksLunch,
+  #               # monthlyCooks,
+  #               # weeklyCooks,
+  #               # shoppers,
+  #               # ownIdeas,
+  #               # stayLonger,
+  #               # easyDishes,
+  #               # dietaryKnowledge,
+  #               #appreciateHealthy,
+  #               # foodCulture,
+  #               # influenceHome,
+  #               # cookAtHome,
+  #               # askRecipes,
+  #               # moreConcentrated,
+  #               # moreBalanced,
+  #               # lessIll,
+  #               dayToDaySkills,
+  #               moreIndependent,
+  #               betterTeamwork,
+  #               betterReading,
+  #               betterNumbers,
+  #               betterGrades,
+  #               moreRegularSchoolVisits,
+  #               selfworth,
+  #               moreOpen,
+  #               moreConfidence,
+  #               addressProblems,
+  #               proud,
+  #               DGECriteriaNo,
+  #               realSubsidy) %>% 
+  # drop_na()
 
 NAsPerVariableMergedData <- mergedData %>% 
   summarise_all(list(~ sum(is.na(.)))) %>% 
