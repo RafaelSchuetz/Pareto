@@ -1,12 +1,16 @@
 # use package hdm to perform double selection: OLS regression after feature selection
 # https://insightr.wordpress.com/2017/08/04/the-package-hdm-for-double-selection-inference-with-a-simple-example/
+
 library(hdm)
+
 
 dataset <- mergedData %>% 
   select_if(is.numeric)
 
-dataset <- mergedData %>% 
-  dplyr::select(participateMore, 
+# drop_na drops rows containing missing values
+
+dataset <- mergedDataImputeMode %>% 
+  dplyr::select(#participateMore, 
                 # tasksLunch,
                 # monthlyCooks,
                 # weeklyCooks,
@@ -15,14 +19,14 @@ dataset <- mergedData %>%
                 # stayLonger,
                 # easyDishes,
                 # dietaryKnowledge,
-                # appreciateHealthy,
+                #appreciateHealthy,
                 # foodCulture,
                 # influenceHome,
                 # cookAtHome,
                 # askRecipes,
                 # moreConcentrated,
                 # moreBalanced,
-                lessIll,
+                # lessIll,
                 dayToDaySkills,
                 moreIndependent,
                 betterTeamwork,
@@ -39,28 +43,60 @@ dataset <- mergedData %>%
                 realSubsidy) %>% 
   drop_na()
 
-fm = paste("lessIll ~", paste(colnames(select(dataset, -"lessIll")), collapse="+"))
-fm = as.formula(fm)
+NAsPerVariableMergedData <- mergedData %>% 
+  summarise_all(list(~ sum(is.na(.)))) %>% 
+  arrange(.)
 
-DS=rlassoEffects(fm, I = ~DGECriteriaNo, method = "double selection", data=dataset)
+datasetNewName <- dataset %>% 
+  rename(X3 = realSubsidy)
+
+fmNewName = paste("participateMore ~", paste(colnames(select(datasetNewName, -"participateMore")), collapse="+"))
+fmNewName = as.formula(fmNewName)
+
+fmOldName = paste("participateMore ~", paste(colnames(select(dataset, -"participateMore")), collapse="+"))
+fmOldName = as.formula(fmOldName)
+
+#dataset <- join(dataset, )
+
+xOldName <- as.matrix(dataset %>% 
+  select(., -lessIll))
+yOldName <- as.matrix(dataset$lessIll)
+dOldName <- as.matrix(dataset$DGECriteriaNo)
+
+DSOldName = rlassoEffect(xOldName, yOldName, dOldName)
+
+summary(DSOldName)
+DSNewName = rlassoEffects(fmNewName, I = ~ DGECriteriaNo + dayToDaySkills + X3, data=datasetNewName)
+DSOldName = rlassoEffects(fmOldName, I = ~ DGECriteriaNo + dayToDaySkills + realSubsidy, data=dataset)
 
 lasso.effect = rlassoEffects(as.matrix(dataset), lessIll, index=3)
 
 library(hdm); library(ggplot2)
 set.seed(1)
-n = 100 #sample size
-p = 100 # number of variables
+n = 38 #sample size
+p = 20 # number of variables
 s = 3 # nubmer of non-zero variables
 X = matrix(rnorm(n*p), ncol=p)
+#X[1,1] = NA
 colnames(X) <- paste("X", 1:p, sep="")
 beta = c(rep(3,s), rep(0,p-s))
 y = 1 + X%*%beta + rnorm(n)
 data = data.frame(cbind(y,X))
-colnames(data)[1] <- "y"
-fm = paste("y ~", paste(colnames(X), collapse="+"))
-fm = as.formula(fm)                 
-lasso.effect = rlassoEffects(X, y, index=c(1,2,3,50))
-lasso.effect = rlassoEffects(fm, I = ~ X1 + X2 + X3 + X50, data=data)
+data <- data %>% 
+mutate(X1 = dataset$DGECriteriaNo, X2 = dataset$realSubsidy, X3 = dataset$lessIll, X4 = dataset$dayToDaySkills)
+dataOrdinal <- data %>% 
+  rename(DGECriteriaNo = X1, realSubsidy = X2, lessIll = X3) # , dayToDaySkills = X4
+dataVerbal <- data %>% 
+  rename(DGECriteriaNo = X1, realSubsidy = X2, lessIll = X3, dayToDaySkills = X4) 
+colnames(dataOrdinal)[1] <- "y"
+colnames(dataVerbal)[1] <- "y"
+fmOrdinal = paste("y ~", paste(colnames(subset(dataOrdinal, select = -y)), collapse="+"))
+fmOrdinal = as.formula(fmOrdinal) 
+fmVerbal = paste("y ~", paste(colnames(subset(dataVerbal, select = -y)), collapse="+"))
+fmVerbal = as.formula(fmVerbal)  
+#lasso.effect = rlassoEffects(X, y, index=c(1,2,3))
+lasso.effect = rlassoEffects(fmOrdinal, I = ~ DGECriteriaNo + realSubsidy + lessIll + X4, data=dataOrdinal)
+lasso.effect = rlassoEffects(fmVerbal, I = ~ DGECriteriaNo + realSubsidy + lessIll + dayToDaySkills, data=dataVerbal)
 print(lasso.effect)
 summary(lasso.effect)
 confint(lasso.effect)
