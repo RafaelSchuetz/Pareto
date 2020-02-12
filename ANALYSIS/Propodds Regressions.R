@@ -4,7 +4,10 @@ library(ordinal)
 library(MASS)
 
 ###inspectunfluenceofDGEcriterium
-##proportionalOddsModel: Cumaltive Link 
+##proportionalOddsModel: Cumulative Link 
+
+DGE_lessIll.vglm.propOdds = vglm(lessIllOrdinal ~  DGECriteriaNo, na.action = na.fail, data = mergedData, family = propodds)
+summary(DGE_lessIll.vglm.propOdds)
 
 DGE_lessIll.vglm.propOdds = vglm(lessIllOrdinal ~  DGECriteriaNo, data = mergedData, family = propodds)
 summary(DGE_lessIll.vglm.propOdds)
