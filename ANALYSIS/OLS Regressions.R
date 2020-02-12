@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # use package hdm to perform double selection: OLS regression after feature selection
 # https://insightr.wordpress.com/2017/08/04/the-package-hdm-for-double-selection-inference-with-a-simple-example/
 library(hdm)
@@ -66,7 +65,6 @@ print(lasso.effect)
 summary(lasso.effect)
 confint(lasso.effect)
 plot(lasso.effect)
-=======
 
 ###model: OLS
 ##influence of DGEcriterium on health relevant variables
@@ -88,4 +86,4 @@ plot(lasso.effect)
 #dayTodaySkillsAndSubsidy 
 
 #selfworthAndSubsidy
->>>>>>> 763fde6c0a19059e2d7ebfff9ebd0145c3f0fbb3
+
