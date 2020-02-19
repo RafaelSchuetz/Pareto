@@ -31,7 +31,7 @@ lines(ts_averageDayToDaySkills_treat, col = "red", lwd = 2)
 text(2016, 2.2, "Control group",col = "blue", adj = 0.3, cex = 0.9)
 text(2013, 3.2, "Treatment group", col = "red", adj = 0.3, cex = 0.9)
 
-## Linear trend component: 
+## Linear trend component:
 
 # Definiere die Länge der Zeitreihe "ts_selfworth_control"mit der Funktion length(). 
 # Definiere einen Vektor an Zeitindizes t mit der Funktion seq()
