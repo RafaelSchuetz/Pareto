@@ -10,4 +10,5 @@ mergedData <- mergedData %>%
          realTotalCosts = totalCost/PriceIndexFood*100,
          realTotalBudget = totalBudget/priceIndex*100,
          yearsSupportSince = 2020 - supportSince,
-         subsidyDifferenceLunch = subsidyRequest - subsidy)
+         subsidyDifferenceLunch = subsidyRequest - subsidy,
+         realSubsidyDifferenceLunch = realSubsidyRequest - realSubsidy)
