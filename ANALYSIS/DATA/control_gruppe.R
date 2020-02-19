@@ -11,7 +11,8 @@ library(tidyselect)
 #dataset dfc2 wählt nur die Variablen mit trips aus
 dfc2 <- dfc
 dfc2 <- dfc2 %>% 
-  dplyr::select(starts_with('trips'))
+  dplyr::select(starts_with('trips')) %>% 
+  select_if(is.numeric)
 
 #alle die NA sind einfach zu 0 umwandeln, dass ich die Summe bilden kann & somit den treatment
 #dummy erstellen kann

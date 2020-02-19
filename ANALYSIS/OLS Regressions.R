@@ -61,6 +61,8 @@ fmOldName = as.formula(fmOldName)
 
 #dataset <- join(dataset, )
 
+# rlassoEffect performs double selection
+
 xOldName <- as.matrix(dataset %>% 
   select(., -lessIll))
 yOldName <- as.matrix(dataset$lessIll)
@@ -71,6 +73,25 @@ DSOldName = rlassoEffect(xOldName, yOldName, dOldName)
 summary(DSOldName)
 DSNewName = rlassoEffects(fmNewName, I = ~ DGECriteriaNo + dayToDaySkills + X3, data=datasetNewName)
 DSOldName = rlassoEffects(fmOldName, I = ~ DGECriteriaNo + dayToDaySkills + realSubsidy, data=dataset)
+
+# loop for regressions with varying outcome and features
+
+flexibleRegression <- function(x, y) {
+  #y <- x$y
+  xOldName <- as.matrix(x %>% 
+                          select(., - !!y))
+  yOldName <- as.matrix(x %>% 
+                          select(., !!y))
+  dOldName <- as.matrix(dataset$DGECriteriaNo)
+  return(xOldName)
+  return(yOldName)
+  #rlassoEffect(xOldName, yOldName, dOldName)
+}
+
+DSflexibleTest <- flexibleRegression(dataset, "lessIll")
+
+dataset %>% 
+  map(~ flexibleRegression(.x, .))
 
 lasso.effect = rlassoEffects(as.matrix(dataset), lessIll, index=3)
 
