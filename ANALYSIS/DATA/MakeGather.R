@@ -29,3 +29,4 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/categoricalData.R")
 source(encoding = "UTF8", "./ANALYSIS/DATA/MakeReal.R")
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/Exclude Outliers Regression.R")
+source(encoding = "UTF8", "./ANALYSIS/DATA/Standardized Coefficents.R")
