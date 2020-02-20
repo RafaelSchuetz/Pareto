@@ -1,5 +1,7 @@
 #https://www.r-bloggers.com/how-to-remove-outliers-in-r/
 
+library(dplyr)
+
 #remove outliers
 
 #mealsNo
@@ -11,5 +13,8 @@ iqr_mealsNo <- IQR(mergedData$mealsNo, na.rm = TRUE)
 up_mealsNo <-  Q[2]+1.5*iqr_mealsNo # Upper Range  
 low_mealsNo<- Q[1]-1.5*iqr_mealsNo # Lower Range
 
-mealsNoEliminated<- subset(mergedData, mergedData$mealsNo > low_mealsNo & mergedData$mealsNo < up_mealsNo)
+outlier_ID <- filter(mergedData, mergedData$mealsNo <= low_mealsNo | mergedData$mealsNo >= up_mealsNo) %>%
+  select(id) %>% unique() %>% as.vector()
 
+mealsNoEliminated <- mergedData %>% 
+  filter(!(mergedData$id %in% outlier_ID))
