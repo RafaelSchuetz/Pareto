@@ -45,10 +45,18 @@ dfc_treat_dummies$treatEF <- ifelse(dfc_treat_dummies$rowSums > 0, '1', '0')
 
 # Hinzufügen der allgemeinen Treatment-Variable zum ursprünglichen Datensatz dfc
 
-dfc$treatEF <- dfc_treat_dummies$treatEF 
+dfcEF$treatEF <- dfc_treat_dummies$treatEF 
+
+# Wichtig: Der Datensatz enthält immer noch Beobachtungen, bei denen auch keine Daten
+# zum Mittagstisch vorliegen.
 
 
 
+# Plausibilisierung 
+
+dfcEF_plausi <- subset(dfcEF, treatEF=="0")
+
+dfcEF_plausi <- subset(dfcEF_plausi, year=="2015")
 
 
 
