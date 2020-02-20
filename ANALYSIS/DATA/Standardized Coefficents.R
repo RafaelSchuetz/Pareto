@@ -1,19 +1,8 @@
-library(QuantPsyc)
 library(Scale)
 
-#standardized coefficents function 
+#standardized coefficents
 
-lm.beta
-function (MOD) 
-{
-  b <- summary(MOD)$coef[-1, 1]
-  sx <- sd(MOD$model[-1])
-  sy <- sd(MOD$model[1])
-  beta <- b * sx/sy
-  return(beta)
-}
-
-#other way: standardized coefficents
+#mergedData
 
 mergedData$mealsNo_scaled<-scale(mergedData$mealsNo)
 mergedData$realSubsidy_scaled<-scale(mergedData$realSubsidy)
@@ -25,6 +14,23 @@ mergedData$regionalProducts_scaled<-scale(mergedData$regionalProducts)
 mergedData$dietaryKnowledge_scaled<-scale(mergedData$dietaryKnowledge)
 mergedData$selfworth_scaled<-scale(mergedData$selfworth)
 mergedData$dayToDaySkills_scaled<-scale(mergedData$dayToDaySkills)
+
+#excluded Outliers
+
+#mealsNo
+
+mealsNoEliminated$mealsNo_scaled<-scale(mealsNoEliminated$mealsNo)
+mealsNoEliminated$realSubsidy_scaled<-scale(mealsNoEliminated$realSubsidy)
+mealsNoEliminated$tripsNo_scaled<-scale(mealsNoEliminated$tripsNo)
+mealsNoEliminated$realTripsSubsidy_scaled<-scale(mealsNoEliminated$realTripsSubsidy)
+mealsNoEliminated$lessIll_scaled<-scale(mealsNoEliminated$lessIll)
+mealsNoEliminated$DGECriteriaNo_scaled<-scale(mealsNoEliminated$DGECriteriaNo)
+mealsNoEliminated$regionalProducts_scaled<-scale(mealsNoEliminated$regionalProducts)
+mealsNoEliminated$dietaryKnowledge_scaled<-scale(mealsNoEliminated$dietaryKnowledge)
+mealsNoEliminated$selfworth_scaled<-scale(mealsNoEliminated$selfworth)
+mealsNoEliminated$dayToDaySkills_scaled<-scale(mealsNoEliminated$dayToDaySkills)
+
+#tripsNo
 
 mergedDataImputeMode$mealsNo_scaled<-scale(mergedDataImputeMode$mealsNo)
 mergedDataImputeMode$realSubsidy_scaled<-scale(mergedDataImputeMode$realSubsidy)
