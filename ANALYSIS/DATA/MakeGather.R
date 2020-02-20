@@ -16,6 +16,7 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/2018.R")
 source(encoding = "UTF8", "./ANALYSIS/DATA/Gather2019.R")
 source(encoding = "UTF8", "./ANALYSIS/DATA/Data Bundeslaender.R")
 source(encoding = "UTF8", "./ANALYSIS/DATA/DataPriceIndices.R")
+
 # source(encoding = "UTF8", "./ANALYSIS/DATA/subsidies_Institution-level.R")
 
 # Merge cleaned and augmented data frames into data.frames "lnRealUSFundAnn19502018", "realUSOutp19502018" and "USRecMonth"
@@ -27,3 +28,4 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/Merge.R")
 source(encoding = "UTF8", "./ANALYSIS/DATA/categoricalData.R")
 source(encoding = "UTF8", "./ANALYSIS/DATA/MakeReal.R")
 
+source(encoding = "UTF8", "./ANALYSIS/DATA/Exclude Outliers Regression.R")
