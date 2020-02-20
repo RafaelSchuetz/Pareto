@@ -1,0 +1,136 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[]{color}
+\usepackage{alltt}
+
+% Load graphicx package in your document's preamble
+% Gandrud (2016), p.192
+
+% turn page 90 degrees with lscape Gandrud (2016), p.185
+
+% Create clickable hyperlinks with hyperref package, Gandrud (2016), p. 218
+
+% Use natbib package for bibliography formatting, authoryear for Harvard style , Gandrud (2016), p. 227
+% commands to change what information is included in the parentheses, Gandrud (2016), p. 228, table 11.2
+
+% Using saveRDS and readRDS, following 
+% https://csgillespie.github.io/efficientR/efficient-inputoutput.html#efficient-data-export-.rdata-or-.rds
+
+\usepackage{lscape}
+\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+\usepackage{floatrow}
+\usepackage[hidelinks]{hyperref}
+% \usepackage[authoryear]{natbib}
+% \bibliographystyle{apalike}
+\usepackage{mathtools}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[left = 72 pt, right = 72 pt]{geometry}
+
+%\addbibresource{Main.bib}
+
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+% Create list of packages used, Gandrud (2016), p 218/219
+
+\title{Effects of CHILDREN's programs}
+\author{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz, Yannick Zurl}
+\date{27th February 2020}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+% To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
+
+
+\section{Introduction}
+
+\section{Outline}
+Descriptive statistics\\
+- dynamics of selected outcomes\\
+- dynamics of real subsidy per institution\\
+- dynamics of real total subsidy\\
+- dynamics of real subsidy per individual\\
+
+Regressions\\
+
+Questions:\\
+- effect of healthy meals (DGE criterion) on healthy characteristics\\
+- effect of real meals subsidy on number of meals\\
+- effect of real trips subsidy on number of trips\\
+- effect of real meals subsidy on self-worth and day-to-day skills\\
+
+Methods:\\
+- simple, metric\\
+- standardized, metric\\
+- cumulative logit\\
+- with control variables\\
+(- without outliers)\\
+(- imputed data)\\
+
+Diff in Diff\\
+
+Outlook for CHILDREN\\
+- double selection \\
+- partition analysis\\
+(- correlation matrix)\\
+(- factor analysis)\\
+- general tips\\
+
+%\printbibliography
+\end{document}
