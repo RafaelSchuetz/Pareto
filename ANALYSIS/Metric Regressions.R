@@ -1,6 +1,5 @@
 #OLS regressions 
 
-library(QuantPsyc)
 library(Scale)
 
 
