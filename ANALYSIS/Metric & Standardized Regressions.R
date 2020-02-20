@@ -15,17 +15,34 @@ function (MOD)
   return(beta)
 }
 
-##subsidy 
-#dataset: mergedData
-
-#standardizedcoefficents
+#other way: standardized coefficents
 
 mergedData$mealsNo_scaled<-scale(mergedData$mealsNo)
 mergedData$realSubsidy_scaled<-scale(mergedData$realSubsidy)
 mergedData$tripsNo_scaled<-scale(mergedData$tripsNo)
 mergedData$realTripsSubsidy_scaled<-scale(mergedData$realTripsSubsidy)
+mergedData$lessIll_scaled<-scale(mergedData$lessIll)
+mergedData$DGECriteriaNo_scaled<-scale(mergedData$DGECriteriaNo)
+mergedData$regionalProducts_scaled<-scale(mergedData$regionalProducts)
+mergedData$dietaryKnowledge_scaled<-scale(mergedData$dietaryKnowledge)
+mergedData$selfworth_scaled<-scale(mergedData$selfworth)
+mergedData$dayToDaySkills_scaled<-scale(mergedData$dayToDaySkills)
 
-#regressions
+mergedDataImputeMode$mealsNo_scaled<-scale(mergedDataImputeMode$mealsNo)
+mergedDataImputeMode$realSubsidy_scaled<-scale(mergedDataImputeMode$realSubsidy)
+mergedDataImputeMode$tripsNo_scaled<-scale(mergedDataImputeMode$tripsNo)
+mergedDataImputeMode$realTripsSubsidy_scaled<-scale(mergedDataImputeMode$realTripsSubsidy)
+mergedDataImputeMode$lessIll_scaled<-scale(mergedDataImputeMode$lessIll)
+mergedDataImputeMode$DGECriteriaNo_scaled<-scale(mergedDataImputeMode$DGECriteriaNo)
+mergedDataImputeMode$regionalProducts_scaled<-scale(mergedDataImputeMode$regionalProducts)
+mergedDataImputeMode$dietaryKnowledge_scaled<-scale(mergedDataImputeMode$dietaryKnowledge)
+mergedDataImputeMode$selfworth_scaled<-scale(mergedDataImputeMode$selfworth)
+mergedDataImputeMode$dayToDaySkills_scaled<-scale(mergedDataImputeMode$dayToDaySkills)
+
+###regressions
+
+##subsidy 
+#dataset: mergedData
 
 mealsNo_sub.lm <- lm(mealsNo ~ realSubsidy, data = mergedData)
 summary(mealsNo_sub.lm)
@@ -45,14 +62,6 @@ summary(tripsNo_sub_scaled.lm) #standardized
 
 #datset: mergedDataImputeMode
 
-#standardizedcoefficents
-
-mergedDataImputeMOde$mealsNo_scaled<-scale(mergedDataImputeMode$mealsNo)
-mergedDataImputeMode$realSubsidy_scaled<-scale(mergedDataImputeMode$realSubsidy)
-mergedDataImputeMode$tripsNo_scaled<-scale(mergedDataImputeMode$tripsNo)
-mergedDataImputeMode$realTripsSubsidy_scaled<-scale(mergedDataImputeMode$realTripsSubsidy)
-
-#regressions 
 
 mealsNo_sub_IM.lm <- lm(mealsNo ~ realSubsidy, data = mergedDataImputeMode)
 summary(mealsNo_sub.lm)
@@ -75,14 +84,6 @@ summary(tripsNo_sub_scaled_IM.lm) #standardized
 
 #dataset: mergedData
 
-#standardized coefficents
-
-mergedData$lessIll_scaled<-scale(mergedData$lessIll)
-mergedData$DGECriteriaNo_scaled<-scale(mergedData$DGECriteriaNo)
-mergedData$regionalProducts_scaled<-scale(mergedData$regionalProducts)
-mergedData$dietaryKnowledge_scaled<-scale(mergedData$dietaryKnowledge)
-
-#regressions
 
 lessIll_DGE.lm <- lm(lessIll ~ DGECriteriaNo, data = mergedData)
 summary(lessIll_DGE.lm)
@@ -118,14 +119,6 @@ summary(dietaryKnowledge_DGE_scaled.lm) #standardized
 
 #dataset: mergedDataImputeMode
 
-#standardized coefficents
-
-mergedDataImputeMode$lessIll_scaled<-scale(mergedDataImputeMode$lessIll)
-mergedDataImputeMode$DGECriteriaNo_scaled<-scale(mergedDataImputeMode$DGECriteriaNo)
-mergedDataImputeMode$regionalProducts_scaled<-scale(mergedDataImputeMode$regionalProducts)
-mergedDataImputeMode$dietaryKnowledge_scaled<-scale(mergedDataImputeMode$dietaryKnowledge)
-
-#regressions
 
 lessIll_DGE_IM.lm <- lm(lessIll ~ DGECriteriaNo, data = mergedDataImputeMode)
 summary(lessIll_DGE_IM.lm)
@@ -162,11 +155,6 @@ summary(dietaryKnowledge_DGE_IM_scaled.lm) #standardized
 ###chance equality
 ##dataset: mergedData 
 
-#standardized coefficents 
-
-mergedData$selfworth_scaled<-scale(mergedData$selfworth)
-mergedData$dayToDaySkills_scaled<-scale(mergedData$dayToDaySkills)
-
 selfworth.lm <- lm(selfworth ~ realSubsidy, data = mergedData)
 summary(selfworth.lm)
 
@@ -184,11 +172,6 @@ dayToDaySkills_scaled.lm <- lm(dayToDaySkills_scaled ~ realSubsidy_scaled, data 
 summary(dayToDaySkills_scaled.lm)
  
 ##dataset: mergedDataImputeMode
-
-#standardized coefficents
-
-mergedDataImputeMode$selfworth_scaled<-scale(mergedDataImputeMode$selfworth)
-mergedDataImputeMode$dayToDaySkills_scaled<-scale(mergedDataImputeMode$dayToDaySkills)
 
 selfworth_IM.lm <- lm(selfworth ~ realSubsidy, data = mergedDataImputeMode)
 summary(selfworth_IM.lm)
