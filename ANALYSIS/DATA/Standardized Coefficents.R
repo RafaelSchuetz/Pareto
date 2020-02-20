@@ -32,13 +32,15 @@ mealsNoEliminated$dayToDaySkills_scaled<-scale(mealsNoEliminated$dayToDaySkills)
 
 #tripsNo
 
-mergedDataImputeMode$mealsNo_scaled<-scale(mergedDataImputeMode$mealsNo)
-mergedDataImputeMode$realSubsidy_scaled<-scale(mergedDataImputeMode$realSubsidy)
-mergedDataImputeMode$tripsNo_scaled<-scale(mergedDataImputeMode$tripsNo)
-mergedDataImputeMode$realTripsSubsidy_scaled<-scale(mergedDataImputeMode$realTripsSubsidy)
-mergedDataImputeMode$lessIll_scaled<-scale(mergedDataImputeMode$lessIll)
-mergedDataImputeMode$DGECriteriaNo_scaled<-scale(mergedDataImputeMode$DGECriteriaNo)
-mergedDataImputeMode$regionalProducts_scaled<-scale(mergedDataImputeMode$regionalProducts)
-mergedDataImputeMode$dietaryKnowledge_scaled<-scale(mergedDataImputeMode$dietaryKnowledge)
-mergedDataImputeMode$selfworth_scaled<-scale(mergedDataImputeMode$selfworth)
-mergedDataImputeMode$dayToDaySkills_scaled<-scale(mergedDataImputeMode$dayToDaySkills)
+#mergedDataImputeMode
+
+# mergedDataImputeMode$mealsNo_scaled<-scale(mergedDataImputeMode$mealsNo)
+# mergedDataImputeMode$realSubsidy_scaled<-scale(mergedDataImputeMode$realSubsidy)
+# mergedDataImputeMode$tripsNo_scaled<-scale(mergedDataImputeMode$tripsNo)
+# mergedDataImputeMode$realTripsSubsidy_scaled<-scale(mergedDataImputeMode$realTripsSubsidy)
+# mergedDataImputeMode$lessIll_scaled<-scale(mergedDataImputeMode$lessIll)
+# mergedDataImputeMode$DGECriteriaNo_scaled<-scale(mergedDataImputeMode$DGECriteriaNo)
+# mergedDataImputeMode$regionalProducts_scaled<-scale(mergedDataImputeMode$regionalProducts)
+# mergedDataImputeMode$dietaryKnowledge_scaled<-scale(mergedDataImputeMode$dietaryKnowledge)
+# mergedDataImputeMode$selfworth_scaled<-scale(mergedDataImputeMode$selfworth)
+# mergedDataImputeMode$dayToDaySkills_scaled<-scale(mergedDataImputeMode$dayToDaySkills)
