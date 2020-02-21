@@ -77,9 +77,6 @@ opts_chunk$set(fig.align = "center",
 \listoffigures
 
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
-
-\section{Introduction}
-
 \section{Outline}
 Descriptive statistics\\
 - dynamics of selected outcomes\\
@@ -113,6 +110,32 @@ Outlook for CHILDREN/variable selection\\
 (- factor analysis)\\
 - general tips\\
 
+\section{Introduction}
+
+CHILDREN's aims for data analysis\\ 
+CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
+Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
+
+\section{Summary Statistics}
+
+% look up official names of price indices in English 
+At the beginning of the time series in 2011, they supported in x institutions. In 2018, this number had increased to y. In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.    
+
+\begin{figure}
+  \caption{Yearly dynamics of total grants in Meals program}
+  \label{totalGrantsDyn}
+
+<<echo=FALSE>>=
+totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER GRAPHS/totalRealSubTrend.Rds")
+print(totalGrantsDyn)
+@
+
+\floatfoot{This graph shows the development of the sum of all grants in the Meals program. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+\end{figure}
+
+
+
+
 Examples\\
 
 Equation\\
@@ -136,7 +159,6 @@ Figure
 \begin{figure}
   \caption{Dispersion in productivity levels}
   \label{LineDisp}
-
 
 <<echo=FALSE>>=
 figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")

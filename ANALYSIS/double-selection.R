@@ -96,8 +96,8 @@ flexibleRegression <- function(y) {
   #rlassoEffect(xOldName, yOldName, dOldName)
 }
 
-DSflexibleTest <- flexibleRegression("lessIll")
-DSflexibleTest2 <- flexibleRegression(dataset, "moreBalanced")
+# DSflexibleTest <- flexibleRegression("selfworth")
+# DSflexibleTest2 <- flexibleRegression("dayToDaySkills")
 
 testDS1 <- dataset %>% 
   map(flexibleRegression(.x, .x))
