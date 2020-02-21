@@ -1,6 +1,7 @@
 library(partition)
 library(ggplot2)
 library(dplyr)
+library(tidyselect)
 
 #https://cran.r-project.org/web/packages/partition/vignettes/introduction-to-partition.html
 
@@ -9,6 +10,8 @@ library(dplyr)
 #excludeNAs
 
 PartitionedData <- mergedDataImputeMode[ ,colSums(is.na(mergedDataImputeMode)) == 0]
+PartitionedData <- PartitionedData %>% 
+  dplyr::select(!contains('scaled'))
 
 
 #threshold .1
