@@ -78,29 +78,31 @@ dataset <- mergedDataImputeMode %>%
 
 # loop for regressions with varying outcome and features
 
-flexibleRegression <- function(x, y) {
+flexibleRegression <- function(y) {
   #y <- x$y
   drops <- y
-  xOldName <- as.matrix(x[, !(names(x) %in% drops)] 
+  xOldName <- as.matrix(dataset[, !(names(dataset) %in% drops)] 
                         # %>% 
                         #   select(., - !!y)
                         )
-  yOldName <- as.matrix(x[, y] 
+  yOldName <- as.matrix(dataset[, y] 
                         # %>% 
                           # select(., !!y)
                           )
-  dOldName <- as.matrix(x$DGECriteriaNo)
+  dOldName <- as.matrix(dataset$DGECriteriaNo)
   #return(xOldName)
   rlassoEffect(xOldName, yOldName, dOldName)
   # return(yOldName)
   #rlassoEffect(xOldName, yOldName, dOldName)
 }
 
-DSflexibleTest <- flexibleRegression(dataset, "lessIll")
+DSflexibleTest <- flexibleRegression("lessIll")
 DSflexibleTest2 <- flexibleRegression(dataset, "moreBalanced")
 
-dataset %>% 
-  map(~ flexibleRegression(.x, .))
+testDS1 <- dataset %>% 
+  map(flexibleRegression(.x, .x))
+
+testDS2 <- map(names(dataset), flexibleRegression)
 
 # lasso.effect = rlassoEffects(as.matrix(dataset), lessIll, index=3)
 # 
