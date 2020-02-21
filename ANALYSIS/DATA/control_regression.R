@@ -213,7 +213,11 @@ summary(lm4_skills)
 
 
 
-### 5. Regression: Zeit-varianter Treatment-Effekt ohne year FE und id FE
+### 5. Regression: Zeit-varianter Treatment-Effekt ohne id FE
+
+# Um den Treatment-Effekt für jedes einzelne Jahr zu schätzen, wird der Interaktionsterm
+# zwischen der Treatmentvariable "dfcEF$treatEF" und den Dummy-Variablen für die verschiedenen
+# Jahres in die Regressionsgleichung aufgenommen.
 
 lm5_skills <- lm(dfcEF$dayToDaySkills ~ (dfcEF$treatEF * dfcEF$dummy_2011)
                   (dfcEF$treatEF * dfcEF$dummy_2012) + (dfcEF$treatEF * dfcEF$dummy_2013)
