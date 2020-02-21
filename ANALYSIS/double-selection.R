@@ -47,6 +47,9 @@ dataset <- mergedDataImputeMode %>%
   #               DGECriteriaNo,
   #               realSubsidy) %>% 
   # drop_na()
+dataset2 <- mergedDataImputeInterpolation %>% 
+  filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
+  dplyr::select(!tidyselect::contains('scaled'))
 
 # NAsPerVariableMergedData <- mergedData %>% 
 #   summarise_all(list(~ sum(is.na(.)))) %>% 
@@ -78,31 +81,20 @@ dataset <- mergedDataImputeMode %>%
 
 # loop for regressions with varying outcome and features
 
-flexibleRegression <- function(y) {
-  #y <- x$y
-  drops <- y
-  xOldName <- as.matrix(dataset[, !(names(dataset) %in% drops)] 
-                        # %>% 
-                        #   select(., - !!y)
-                        )
-  yOldName <- as.matrix(dataset[, y] 
-                        # %>% 
-                          # select(., !!y)
-                          )
-  dOldName <- as.matrix(dataset$DGECriteriaNo)
-  #return(xOldName)
-  rlassoEffect(xOldName, yOldName, dOldName)
-  # return(yOldName)
-  #rlassoEffect(xOldName, yOldName, dOldName)
+flexibleRegression <- function(z, dataset) {
+  drops <- z
+  x <- as.matrix(dataset[, !(names(dataset) %in% drops)])
+  y <- as.matrix(dataset[, z])
+  d <- as.matrix(dataset$DGECriteriaNo)
+  rlassoEffect(x, y, d)
 }
 
 # DSflexibleTest <- flexibleRegression("selfworth")
 # DSflexibleTest2 <- flexibleRegression("dayToDaySkills")
 
-testDS1 <- dataset %>% 
-  map(flexibleRegression(.x, .x))
-
 testDS2 <- map(names(dataset), flexibleRegression)
+
+testDS3 <- map(names(dataset2), flexibleRegression, dataset2)
 
 # lasso.effect = rlassoEffects(as.matrix(dataset), lessIll, index=3)
 # 
