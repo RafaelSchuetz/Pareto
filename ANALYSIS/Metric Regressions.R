@@ -26,6 +26,12 @@ summary(mealsNo_sub_ex.lm)
 mealsNo_sub_ex_scaled.lm <- lm(mealsNo_scaled ~ realSubsidy_scaled, data = mealsNoEliminated)
 summary(mealsNo_sub_ex_scaled.lm) #standardized
 
+tripsNo_sub_ex.lm <- lm(tripsNo ~ realTripsSubsidy, data = tripsNoEliminated)
+summary(tripsNo_sub_ex.lm)
+
+tripsNo_sub_ex_scaled.lm <- lm(tripsNo_scaled ~ realTripsSubsidy_scaled, data = tripsNoEliminated)
+summary(tripsNo_sub_ex_scaled.lm) #standardized
+
 
 # #datset: mergedDataImputeMode
 # 
