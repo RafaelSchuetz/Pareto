@@ -179,6 +179,7 @@ Figure
 
 }
 
+<<<<<<< HEAD
 \begin{table}[!htbp] \centering 
   \caption{Results} 
   \label{} 
@@ -206,12 +207,18 @@ F Statistic & \multicolumn{1}{c}{25.932$^{***}$ (df = 1; 426)} \\
 \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 \end{tabular} 
 \end{table}
+=======
+
+>>>>>>> 68e1e0282ceceab6056603d518bd26bf12c24f24
 
 \end{knitrout}
 \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
 \end{figure}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 68e1e0282ceceab6056603d518bd26bf12c24f24
 %\printbibliography
 \end{document}
