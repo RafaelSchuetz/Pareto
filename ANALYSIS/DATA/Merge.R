@@ -14,7 +14,7 @@ data201118 <- df_2018 %>% #data2019 %>%
   full_join(data2011)
 
 data201118 <- data201118 %>%
-  select(year, everything())
+  dplyr::select(year, everything())
   
 # Join the data with Bundesland
 
