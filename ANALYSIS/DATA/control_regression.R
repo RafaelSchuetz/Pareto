@@ -16,11 +16,14 @@ summary(lm1_skills)
 ### 2. Regression: Lineare Regression mit year-fixed effects 
 # Die lineare Regression wird um year-fixed effects erweitert, indem die Dummy-Variablen für die
 # die verschiedenen Jahre berücksichtigt werden.
-# Methode: Fixed Effects using Least Squares dummy variable dummy
+# Methode: Fixed Effects using Least Squares dummy variable model
 
-lm2_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy_2011 + dfcEF$dummy_2012 + dfcEF$dummy_2013
-          + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
-          + dfcEF$dummy_2017 + dfcEF$dummy_2017 + dfcEF$dummy_2018 - 1)
+# In dem ersten Fixed effects - Modell werden alle t Jahres-Dummies inkludiert und der Intercept
+# weggelassen, um perfekte Multikollinearität zu verhindern
+
+lm2_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy_2011 + dfcEF$dummy_2012 
+                    + dfcEF$dummy_2013 + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
+                    + dfcEF$dummy_2017 + dfcEF$dummy_2018 - 1)
 summary(lm2_selfworth)
 
 # Die Warnung "1 not defined because of singularities" erscheint, wenn zwischen den x-Variablen
@@ -41,7 +44,7 @@ alias(lm2_selfworth)
 # Um zu verhindern, dass der geschätzte Regressionskoeffizient für bestimmte Variablen "NA"
 # annimmt, kann die Dummy-Variable für ein Jahr ausgelassen werden, sodass die Regression nur noch 
 # t-1 Jahres-Dummies enthält. Dabei wird die Dummy-Variable "dummy_2011" für das erste betrachtete
-# Jahr ausgelassen. 
+# Jahr ausgelassen. In diesem Fall kann der Intercept wieder berücksichtigt werden.
 
 lm2_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy_2012 + dfcEF$dummy_2013
           + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
