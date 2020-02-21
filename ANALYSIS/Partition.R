@@ -28,17 +28,18 @@ mapping_key1 <- as.data.frame(mapping_key(prt1))
 view(mapping_key1)
 
 #values
-mapping_key1[10, 2]
-mapping_key1[11, 2]
-mapping_key1[12, 2]
+#mapping_key1[10, 2]
+#mapping_key1[11, 2]
+#mapping_key1[12, 2]
 #....
 
-unnest_mappings(prt1) #to see each individual mapping
+unnested1 <- as.data.frame(unnest_mappings(prt1))
+view(unnested1)#to see each individual mapping
 
 View(prt1)
 
 #Each variable in the original data set maps to one reduced variable;
-#in this partition, there are nine reduced variables,as well as nine of the original variables that did not get reduced because too much information would have been lost.
+#in this partition, there are three reduced variables,as well as nine of the original variables that did not get reduced because too much information would have been lost.
 
 plot_ncluster(prt1) + theme_minimal(14)
 
@@ -59,7 +60,8 @@ str(partition_scores(prt2))
 
 str(mapping_key(prt2))
 
-unnest_mappings(prt2)
+unnested2 <- as.data.frame(unnest_mappings(prt2))
+view(unnested2) #individualmappings
 
 View(prt2)
 
@@ -82,7 +84,8 @@ str(partition_scores(prt3))
 
 str(mapping_key(prt3)) #the information each variable explains
 
-unnest_mappings(prt3) #to see each individual mapping
+unnest3 <- as.data.frame(unnest_mappings(prt3))
+view(unnest3) #to see each individual mapping
 
 View(prt3)
 
@@ -103,7 +106,8 @@ str(partition_scores(prt4))
 
 str(mapping_key(prt4))
 
-unnest_mappings(prt4)
+unnest4 <- as.data.frame(unnest_mappings(prt4)) 
+view(unnest4) #individualmappings
 
 View(prt4)
 
@@ -127,7 +131,8 @@ str(partition_scores(prt5))
 
 str(mapping_key(prt5))
 
-unnest_mappings(prt5)
+unnest5 <- as.data.frame(unnest_mappings(prt5)) 
+view(unnest5) #individualmappings
 
 View(prt5)
 
