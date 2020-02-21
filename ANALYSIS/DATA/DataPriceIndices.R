@@ -31,5 +31,5 @@ priceIndicesWide <- priceIndicesWide %>%
 headers <- c("year", "priceIndex", "change")
 
 totalPriceIndex <- read_excel("./ANALYSIS/DATA/Allgemeiner_Verbraucherpreisindex.xlsx", col_names = headers, skip = 25, n_max = 8)
-totalPriceIndex <- select(totalPriceIndex, 1:2)
+totalPriceIndex <- dplyr::select(totalPriceIndex, 1:2)
 totalPriceIndex$year <- as.numeric(totalPriceIndex$year)
