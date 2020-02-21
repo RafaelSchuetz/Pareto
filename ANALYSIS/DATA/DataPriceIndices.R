@@ -2,6 +2,8 @@ library(readxl)
 library(dplyr)
 library(tidyverse)
 
+#https://www-genesis.destatis.de/genesis/online/data?operation=abruftabelleBearbeiten&levelindex=2&levelid=1579016116880&auswahloperation=abruftabelleAuspraegungAuswaehlen&auswahlverzeichnis=ordnungsstruktur&auswahlziel=werteabruf&code=61111-0005&auswahltext=&nummer=5&variable=5&name=CC13A2&werteabruf=Werteabruf
+
 headers <- c("CC13", "category", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")
 
 priceIndices <- read_excel("./ANALYSIS/DATA/Verbraucherpreisindizes_Deutschland.xlsx", col_names = headers, skip = 8, n_max = 11)
@@ -27,6 +29,8 @@ priceIndicesWide <- priceIndicesWide %>%
 
 
 #allgemeinerPreisindex 
+
+#https://www-genesis.destatis.de/genesis/online/data?operation=result&code=61111-0001&deep=true
 
 headers <- c("year", "priceIndex", "change")
 
