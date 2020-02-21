@@ -231,12 +231,13 @@ View(ts_totalSubsidy_ma3)
 # the moving averages in the time series graphic
 
 # With trend lines:
-plot(ts_totalSubsidy, main = "Trend of total subsidy MT", xlab = "Time", 
+totalSubsidyTrend <- plot(ts_totalSubsidy, main = "Trend of total subsidy MT", xlab = "Time", 
      ylab = "Total subsidy MT", col = "blue", lwd = 2, ylim = c(550000,710000),cex.main = 1.25)
 lines(lt_totSub_fit, col = "red", lwd = 1.5)
 lines(ts_totalSubsidy_ma3, col = "green", lwd = 1.5)
 text(2016.25, 580000, "Total subsidy", adj = 0.3, cex = 0.9)
 box(which = "figure")
 
+#save for paper 
 
-
+saveRDS(totalSubsidyTrend, "./ANALYSIS/GRAPHS/PAPER GRAPHS/totalSubsidyTrend.Rds")
