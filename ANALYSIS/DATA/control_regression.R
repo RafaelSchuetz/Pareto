@@ -124,7 +124,7 @@ alias(lm3_selfworth)
 # Regression ohne die Dummy-Variablen "dummy663", "dummy664", "dummy665", "dummy666", "dummy667"
 # und ohne Intercept
 
-lm3_selfworth <-lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy103 dfcEF$dummy104 + dfcEF$dummy105 + 
+lm3_selfworth <-lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy103 + dfcEF$dummy104 + dfcEF$dummy105 + 
                      dfcEF$dummy106 + dfcEF$dummy108 + dfcEF$dummy109 + dfcEF$dummy111 + 
                      dfcEF$dummy112 + dfcEF$dummy113 + dfcEF$dummy114 + dfcEF$dummy118 +
                      dfcEF$dummy122 + dfcEF$dummy123 + dfcEF$dummy124 + dfcEF$dummy125 +
