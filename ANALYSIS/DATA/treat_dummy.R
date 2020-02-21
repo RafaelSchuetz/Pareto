@@ -24,7 +24,7 @@ dfcEF_treat_dummies <- dfcEF[ ,c("treat_2011", "treat_2012", "treat_2013", "trea
 # Problem: Die Treatment-Dummies für jedes Jahr liegen im Datentyp "character" vor.
 # Umwandeln des Datentyps in "nummeric", um die Summe bilden zu können
 
-dfcEF_treat_dummies <- data.frame(lapply(dfc_treat_dummies, function(x) as.numeric(as.character(x))))
+dfcEF_treat_dummies <- data.frame(lapply(dfcEF_treat_dummies, function(x) as.numeric(as.character(x))))
 
 # Erstellen eines allgemeinen Treatment-Dummies, der angibt, ob eine Beobachtungseinheit 
 # (Einrichtung i im Jahr t) in der Treatmentgruppe ist oder nicht. Die Dummy-Variable "TreatEF"
@@ -37,7 +37,7 @@ dfcEF_treat_dummies <- data.frame(lapply(dfc_treat_dummies, function(x) as.numer
 # im Jahr t enthält (= eine Beobachtungseinheit), dürfte maximal eine jahr-spezifischer
 # Treatment-Dummy den Wert 1 annehmen.
 
-dfcEF_treat_dummies$rowSums <- rowSums(dfc_treat_dummies, na.rm = FALSE, dims = 1L) 
+dfcEF_treat_dummies$rowSums <- rowSums(dfcEF_treat_dummies, na.rm = FALSE, dims = 1L) 
 
 # Der allgemeine Treatment-Dummy ist gleich 1, wenn innerhalb einer Zeile die Summe über alle
 # Spalten hinweg größer ist als 0 (= Kontrollgruppe). Analog: Der allgemeine Treatment-Dummy ist
