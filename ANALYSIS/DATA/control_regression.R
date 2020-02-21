@@ -1,17 +1,20 @@
 ### Regressionen
 
-library(stats)
 library(car)
 library(estimatr)
 
 ### 1. Regression: Simple linear regression
 # Die Zielvariable y wird nur auf die Treatment-Variable "treatEF" regressiert
 
+# Selfworth als Zielvariable
 lm1_selfworth <- lm_robust(dfcEF$selfworth ~ dfcEF$treatEF)
 summary(lm1_selfworth)
 
+# Day-To-Day-Skills als Zielvariable
 lm1_skills <- lm_robust(dfcEF$dayToDaySkills ~ dfcEF$treatEF)
 summary(lm1_skills)
+
+
 
 ### 2. Regression: Lineare Regression mit year-fixed effects 
 # Die lineare Regression wird um year-fixed effects erweitert, indem die Dummy-Variablen für die
@@ -57,6 +60,7 @@ lm2_selfworth <- lm_robust(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy_2012 + 
                     + dfcEF$dummy_2017 + dfcEF$dummy_2017 + dfcEF$dummy_2018)
 summary(lm2_selfworth)
 
+
 ## Analog dazu: "dayToDaySkills" als Zielvariable
 
 # Regression mit allen Jahres-Dummies und ohne Intercept
@@ -79,6 +83,8 @@ lm2_skills <- lm_robust(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$dummy_2012 
                  + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
                  + dfcEF$dummy_2017 + dfcEF$dummy_2017 + dfcEF$dummy_2018)
 summary(lm2_skills)
+
+
 
 ### 3. Regression: Lineare Regression mit id-fixed effects (= entity-fixed effects)
 # Die lineare Regression wird um id-fixed effects erweitert, indem die n-1 Dummy-Variablen für
@@ -141,7 +147,7 @@ lm3_selfworth <-lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy103 + dfcEF$dumm
                      dfcEF$dummy418 + dfcEF$dummy437 + dfcEF$dummy482 + dfcEF$dummy483 +
                      dfcEF$dummy599 + dfcEF$dummy600 + dfcEF$dummy601 + dfcEF$dummy602 + 
                      dfcEF$dummy623 + dfcEF$dummy684 + dfcEF$dummy685 +
-                     dfcEF$dummy686 + dfcEF$dummy687 -1)
+                     dfcEF$dummy686 + dfcEF$dummy687 - 1)
 summary(lm3_selfworth)
 
 # Dieser Lösungsweg ist relativ aufwendig.
@@ -161,10 +167,65 @@ class(dfcEF$id)
 # Regressionskoeffizienten weggelassen, die in der vorherigen Regression ein "NA" lieferten.
 
 # Ohne intercept:
-lm3_selfworth <-lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id - 1)
+lm3_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id - 1)
 summary(lm3_selfworth)
 
 # Mit intercept: 
-lm3_selfworth <-lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id)
+lm3_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id)
 summary(lm3_selfworth)
+
+
+## Analog dazu: "dayToDaySkills" als Zielvariable
+
+lm3_skills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id)
+summary(lm3_skills)
+
+
+
+### 4. Regression: Lineare Regression mit year-fixed effects und id-fixed effects
+
+# Die lineare Regression wird nun sowohl um year-fixed effects als auch um die id-fixed effects
+# (= entity FE) erweitert. Die year-fixed effects kontrollieren für beobachtbare und
+# unbeobachtbare Variablen die über die Zeit variieren, aber über die Einrichtungen konstant sind.
+# Die id-fixed effects kontrollieren für Einrichtungs-spezfische Eigenschaften, die über die 
+# Zeit konstant. 
+
+# Die year-fixed effects werden implementiert, indem t-1 Dummy-Variablen in die Regressions-
+# gleichung aufgenommen werden. Dabei wird die Dummy-Variable "dummy_2011" für das erste
+# betrachtete Jahr ausgelassen (= ausgelassene Referenzkategorie)
+
+# Die id-fixed effects werden über den Befehl lm() automatisch implementiert, indem die als 
+# Datentyp "factor" codierte Variable "dfcEF$id" in Dummy-Variablen für jede einzelne Einrichtung
+# umgewandelt wird.
+
+lm4_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id + dfcEF$dummy_2012 
+                    + dfcEF$dummy_2013 + dfcEF$dummy_2014 + dfcEF$dummy_2015 
+                    + dfcEF$dummy_2016 + dfcEF$dummy_2017 + dfcEF$dummy_2018)
+summary(lm4_selfworth)
+
+
+## Analog dazu: "dayToDaySkills" als Zielvariable
+
+lm4_skills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$dummy_2012
+                 + dfcEF$dummy_2013 + dfcEF$dummy_2014 + dfcEF$dummy_2015 
+                 + dfcEF$dummy_2016 + dfcEF$dummy_2017 + dfcEF$dummy_2018)
+summary(lm4_skills)
+
+
+
+### 5. Regression: Zeit-varianter Treatment-Effekt ohne year FE und id FE
+
+lm5_skills <- lm(dfcEF$dayToDaySkills ~ (dfcEF$treatEF * dfcEF$dummy_2011)
+                  (dfcEF$treatEF * dfcEF$dummy_2012) + (dfcEF$treatEF * dfcEF$dummy_2013)
+                  + (dfcEF$treatEF * dfcEF$dummy_2014) + (dfcEF$treatEF * dfcEF$dummy_2015)
+                  + (dfcEF$treatEF * dfcEF$dummy_2016) + (dfcEF$treatEF * dfcEF$dummy_2017)
+                  + (dfcEF$treatEF *dfcEF$dummy_2018))
+summary(lm5_skills)
+
+lm5_selfworth <- lm(dfcEF$selfworth ~ (dfcEF$treatEF *dfcEF$dummy_2011)
+                 + (dfcEF$treatEF * dfcEF$dummy_2012) + (dfcEF$treatEF * dfcEF$dummy_2013)
+                 + (dfcEF$treatEF * dfcEF$dummy_2014) + (dfcEF$treatEF * dfcEF$dummy_2015)
+                 + (dfcEF$treatEF * dfcEF$dummy_2016) + (dfcEF$treatEF * dfcEF$dummy_2017)
+                 + (dfcEF$treatEF * dfcEF$dummy_2018))
+summary(lm5_selfworth)
 
