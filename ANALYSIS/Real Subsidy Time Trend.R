@@ -1,4 +1,4 @@
-#Real Subsidy Time Trend
+#Real Subsidy Time Trend Total & Median
 
 library(dplyr)
 library(estimatr)
