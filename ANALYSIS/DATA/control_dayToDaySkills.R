@@ -86,3 +86,17 @@ lines(linearTrend_fit_control2, col = "blue", lwd = 1)
 lines(linearTrend_fit_treat2, col = "red", lwd = 1)
 text(2016, 2.7, "Control group",col = "blue", adj = 0.3, cex = 0.9)
 text(2016, 3.25, "Treatment group", col = "red", adj = 0.3, cex = 0.9)
+
+
+### Graphen für die Abschlussarbeit erstellen -------------------------------
+
+ 
+## mithilfe der Packages ggplot2 und hrbrthemes
+
+library(ggplot2)
+library(dplyr)
+library(hrbrthemes)
+
+##Ziel: Hintergrundraster zum Graphen hinzufügen
+
+
