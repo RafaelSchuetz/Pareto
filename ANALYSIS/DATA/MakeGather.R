@@ -2,6 +2,14 @@
 
 library(readxl)
 library(tidyverse)
+library(Scale)
+library(psych)
+library(Hmisc)
+library(lattice)
+library(survival)
+library(Formula)
+library(ggplot2)
+library(dplyr)
 
 # Gather and cleanup raw data files
 

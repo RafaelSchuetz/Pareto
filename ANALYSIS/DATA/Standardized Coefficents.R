@@ -32,6 +32,17 @@ mealsNoEliminated$dayToDaySkills_scaled<-scale(mealsNoEliminated$dayToDaySkills)
 
 #tripsNo
 
+tripsNoEliminated$mealsNo_scaled<-scale(tripsNoEliminated$mealsNo)
+tripsNoEliminated$realSubsidy_scaled<-scale(tripsNoEliminated$realSubsidy)
+tripsNoEliminated$tripsNo_scaled<-scale(tripsNoEliminated$tripsNo)
+tripsNoEliminated$realTripsSubsidy_scaled<-scale(tripsNoEliminated$realTripsSubsidy)
+tripsNoEliminated$lessIll_scaled<-scale(tripsNoEliminated$lessIll)
+tripsNoEliminated$DGECriteriaNo_scaled<-scale(tripsNoEliminated$DGECriteriaNo)
+tripsNoEliminated$regionalProducts_scaled<-scale(tripsNoEliminated$regionalProducts)
+tripsNoEliminated$dietaryKnowledge_scaled<-scale(tripsNoEliminated$dietaryKnowledge)
+tripsNoEliminated$selfworth_scaled<-scale(tripsNoEliminated$selfworth)
+tripsNoEliminated$dayToDaySkills_scaled<-scale(tripsNoEliminated$dayToDaySkills)
+
 #mergedDataImputeMode
 
 # mergedDataImputeMode$mealsNo_scaled<-scale(mergedDataImputeMode$mealsNo)
