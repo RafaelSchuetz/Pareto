@@ -163,85 +163,8 @@ box(which = "figure")
 
 saveRDS(medianrealsub_trend, "./ANALYSIS/GRAPHS/PAPER GRAPHS/medianRealSubTrend.Rds")
 
-########################################################
-#subsidy median time trend (NOT REAL, for comparison)
-
-medianSub2011 <- median(Values2011$subsidy, na.rm = TRUE)
-medianSub2012 <- median(Values2012$subsidy, na.rm = TRUE)
-medianSub2013 <- median(Values2011$subsidy, na.rm = TRUE)
-medianSub2014 <- median(Values2014$subsidy, na.rm = TRUE)
-medianSub2015 <- median(Values2015$subsidy, na.rm = TRUE)
-medianSub2016 <- median(Values2016$subsidy, na.rm = TRUE)
-medianSub2017 <- median(Values2017$subsidy, na.rm = TRUE)
-medianSub2018 <- median(Values2018$subsidy, na.rm = TRUE)
-
-Year <- c(2011,2012,2013,2014,2015,2016,2017,2018)
-medianSubTotal <- c(medianSub2011, medianSub2012, medianSub2013, medianSub2014, medianSub2015, medianSub2016, medianSub2017, medianSub2018)
-
-df_mediansub <- data.frame(Year, medianSubTotal)
-view(df_mediansub)
-
-
-#timetrend 
-
-ts_medianSubsidy = ts(df_mediansub$medianSubTotal, start = 2011, end = 2018, frequency = 1)
-View(ts_medianSubsidy)
-
-#checks 
-str(ts_medianSubsidy)
-class(ts_medianSubsidy)
-ts_medianSubsidy
-summary(ts_medianSubsidy)   
-
-#plot trend 
-plot(ts_medianSubsidy, main = "Trend of the median subsidy MT", xlab = "Time", 
-     ylab = "Median subsidy", col = "blue", lwd = 2, cex.main = 1.25)
-text(2016.25, 11500, "Median subsidy", adj = 0.3, cex = 0.9)
-box(which = "figure")
-
-#linear time trend 
-
-n3 <- length(ts_medianSubsidy)
-t3 <- seq(from = 1, to = n3)
-
-linearTrend_median <- lm_robust(ts_medianSubsidy ~ t3)
-summary(linearTrend_median)
-
-linearTrend_median_fit <- linearTrend_median$fitted.values
-
-linearTrend_median_fit <- ts(linearTrend_median_fit, start = 2011, end = 2018, frequency = 1)
-
-#plotlineartrend 
-
-plot(ts_medianSubsidy, main = "Trend of the median subsidy", xlab = "Time", 
-     ylab = "Median subsidy", col = "blue", lwd = 2, cex.main = 1.25)
-lines(linearTrend_median_fit, col = "red", lwd = 1.5)
-text(2016.25, 11500, "Median subsidy", adj = 0.3, cex = 0.9)
-box(which = "figure")
-
-#simple moving average 
-
-detach("package:dplyr")
-
-ts_medianSubsidy_ma3 <- filter(ts_medianSubsidy, filter = rep(1/3,3), sides = 2)
-View(ts_medianSubsidy_ma3) 
-
-#plot simple moving average & trend line
-
-mediansub_trend <- plot(ts_medianSubsidy, main = "Trend of the median subsidy", xlab = "Time", 
-     ylab = "Median subsidy", col = "blue", lwd = 2, cex.main = 1.25)
-lines(linearTrend_median_fit, col = "red", lwd = 1.5)
-lines(ts_medianSubsidy_ma3, col = "green", lwd = 1.5)
-text(2016.25, 11500, "Median subsidy", adj = 0.3, cex = 0.9)
-box(which = "figure")
-
-saveRDS(mediansub_trend, "./ANALYSIS/GRAPHS/PAPER GRAPHS/medianSubTrend.Rds")
-
-
-
-
-
 #trips 
+#total
 realTripsSub2011 <- sum(Values2011$realTripsSubsidy, na.rm = TRUE)
 realTripsSub2012 <- sum(Values2012$realTripsSubsidy, na.rm = TRUE)
 realTripsSub2013 <- sum(Values2013$realTripsSubsidy, na.rm = TRUE)
@@ -250,4 +173,147 @@ realTripsSub2015 <- sum(Values2015$realTripsSubsidy, na.rm = TRUE)
 realTripsSub2016 <- sum(Values2016$realTripsSubsidy, na.rm = TRUE)
 realTripsSub2017 <- sum(Values2017$realTripsSubsidy, na.rm = TRUE)
 realTripsSub2018 <- sum(Values2018$realTripsSubsidy, na.rm = TRUE)
+
+Year <- c(2011,2012,2013,2014,2015,2016,2017,2018)
+RealTripsSubTotal <- c(realTripsSub2011, realTripsSub2012, realTripsSub2013, realTripsSub2014, realTripsSub2015, realTripsSub2016, realTripsSub2017, realTripsSub2018)
+
+# Create new data frame
+df_realtottripssub <- data.frame(Year, RealTripsSubTotal)
+view(df_realtottripssub)
+
+ts_totalRealTripsSubsidy <- ts(df_realtottripssub$RealTripsSubTotal, start = 2011, end = 2018, frequency = 1)
+View(ts_totalRealTripsSubsidy)
+
+#checks
+str(ts_totalRealTripsSubsidy)
+class(ts_totalRealTripsSubsidy)
+ts_totalRealTripsSubsidy
+summary(ts_totalRealTripsSubsidy)
+
+#plot 
+plot(ts_totalRealTripsSubsidy, main = "Trend of total real subsidy trips", xlab = "Time", 
+     ylab = "Total real subsidy trips", col = "blue", lwd = 2, ylim = c(550000,710000),cex.main = 1.25)
+text(2016.25, 580000, "Total real subsidy trips", adj = 0.3, cex = 0.9)
+box(which = "figure")
+
+#lineartrend 
+
+n4 <- length(ts_totalRealTripsSubsidy)
+t4 <- seq(from = 1, to = n4)
+
+linearTrend_totrealtripssub <- lm_robust(ts_totalRealTripsSubsidy ~ t4 )
+summary(linearTrend_totrealtripssub)
+
+lt_totRealTripsSub_fit <- linearTrend_totrealtripssub$fitted.values
+
+lt_totRealTripsSub_fit <- ts(lt_totRealTripsSub_fit, start = 2011, end = 2018, frequency = 1)
+
+#plottimetrend 
+
+plot(ts_totalRealTripsSubsidy, main = "Trend of total real subsidy trips", xlab = "Time", 
+     ylab = "Total real subsidy trips", col = "blue", lwd = 2, ylim = c(550000,710000),cex.main = 1.25)
+lines(lt_totRealTripsSub_fit, col = "red", lwd = 1.5)
+text(2016.25, 580000, "Total real subsidy trips", adj = 0.3, cex = 0.9)
+box(which = "figure")
+
+#simplemovingaverage 
+
+detach("package:dplyr")
+
+ts_totalRealTripsSubsidy_ma3 <- filter(ts_totalRealTripsSubsidy, filter = rep(1/3,3), sides = 2)
+View(ts_totalRealTripsSubsidy_ma3) 
+
+totalrealTRIPSsub_trend <- plot(ts_totalRealTripsSubsidy, main = "Trend of total real subsidy trips", xlab = "Time", 
+                           ylab = "Total real subsidy trips", col = "blue", lwd = 2, ylim = c(550000,710000),cex.main = 1.25)
+lines(lt_totRealTripsSub_fit, col = "red", lwd = 1.5)
+lines(ts_totalRealTripsSubsidy_ma3, col = "green", lwd = 1.5)
+text(2016.25, 580000, "Total real subsidy trips", adj = 0.3, cex = 0.9)
+box(which = "figure")
+
+#saveplot 
+saveRDS(totalrealTRIPSsub_trend, "./ANALYSIS/GRAPHS/PAPER GRAPHS/totalRealTripsSubTrend.Rds")
+
+
+
+
+
+########################################################
+# #subsidy median time trend (NOT REAL, for comparison)
+# 
+# medianSub2011 <- median(Values2011$subsidy, na.rm = TRUE)
+# medianSub2012 <- median(Values2012$subsidy, na.rm = TRUE)
+# medianSub2013 <- median(Values2011$subsidy, na.rm = TRUE)
+# medianSub2014 <- median(Values2014$subsidy, na.rm = TRUE)
+# medianSub2015 <- median(Values2015$subsidy, na.rm = TRUE)
+# medianSub2016 <- median(Values2016$subsidy, na.rm = TRUE)
+# medianSub2017 <- median(Values2017$subsidy, na.rm = TRUE)
+# medianSub2018 <- median(Values2018$subsidy, na.rm = TRUE)
+# 
+# Year <- c(2011,2012,2013,2014,2015,2016,2017,2018)
+# medianSubTotal <- c(medianSub2011, medianSub2012, medianSub2013, medianSub2014, medianSub2015, medianSub2016, medianSub2017, medianSub2018)
+# 
+# df_mediansub <- data.frame(Year, medianSubTotal)
+# view(df_mediansub)
+# 
+# 
+# #timetrend 
+# 
+# ts_medianSubsidy = ts(df_mediansub$medianSubTotal, start = 2011, end = 2018, frequency = 1)
+# View(ts_medianSubsidy)
+# 
+# #checks 
+# str(ts_medianSubsidy)
+# class(ts_medianSubsidy)
+# ts_medianSubsidy
+# summary(ts_medianSubsidy)   
+# 
+# #plot trend 
+# plot(ts_medianSubsidy, main = "Trend of the median subsidy MT", xlab = "Time", 
+#      ylab = "Median subsidy", col = "blue", lwd = 2, cex.main = 1.25)
+# text(2016.25, 11500, "Median subsidy", adj = 0.3, cex = 0.9)
+# box(which = "figure")
+# 
+# #linear time trend 
+# 
+# n3 <- length(ts_medianSubsidy)
+# t3 <- seq(from = 1, to = n3)
+# 
+# linearTrend_median <- lm_robust(ts_medianSubsidy ~ t3)
+# summary(linearTrend_median)
+# 
+# linearTrend_median_fit <- linearTrend_median$fitted.values
+# 
+# linearTrend_median_fit <- ts(linearTrend_median_fit, start = 2011, end = 2018, frequency = 1)
+# 
+# #plotlineartrend 
+# 
+# plot(ts_medianSubsidy, main = "Trend of the median subsidy", xlab = "Time", 
+#      ylab = "Median subsidy", col = "blue", lwd = 2, cex.main = 1.25)
+# lines(linearTrend_median_fit, col = "red", lwd = 1.5)
+# text(2016.25, 11500, "Median subsidy", adj = 0.3, cex = 0.9)
+# box(which = "figure")
+# 
+# #simple moving average 
+# 
+# detach("package:dplyr")
+# 
+# ts_medianSubsidy_ma3 <- filter(ts_medianSubsidy, filter = rep(1/3,3), sides = 2)
+# View(ts_medianSubsidy_ma3) 
+# 
+# #plot simple moving average & trend line
+# 
+# mediansub_trend <- plot(ts_medianSubsidy, main = "Trend of the median subsidy", xlab = "Time", 
+#      ylab = "Median subsidy", col = "blue", lwd = 2, cex.main = 1.25)
+# lines(linearTrend_median_fit, col = "red", lwd = 1.5)
+# lines(ts_medianSubsidy_ma3, col = "green", lwd = 1.5)
+# text(2016.25, 11500, "Median subsidy", adj = 0.3, cex = 0.9)
+# box(which = "figure")
+# 
+# saveRDS(mediansub_trend, "./ANALYSIS/GRAPHS/PAPER GRAPHS/medianSubTrend.Rds")
+# 
+# 
+# 
+# 
+
+
 
