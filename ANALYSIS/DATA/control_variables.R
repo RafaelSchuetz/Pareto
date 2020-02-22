@@ -46,7 +46,7 @@ corMT_controls <- subset(dfcEF, select = c('selfworth',
                                            "cultureReligion", "unsweetenedDrinks"))
 
 #create a correlation matrix 
-cor(dfcEF$selfworth, corMT_controls, method = "pearson", use = 'complete.obs')
+# cor(dfcEF$selfworth, corMT_controls, method = "pearson", use = 'complete.obs')
 
 #as matrix
 
@@ -59,7 +59,25 @@ correlation_matrix_controls <- rcorr(as.matrix(corMT_controls))
 p <- correlation_matrix_controls$P
 R <- correlation_matrix_controls$r
 
-#define notions for significance levels
+#define notions for significance levels; spacing is important
+stars_significance <- ifelse(p < .0001, "****", ifelse(p < .001, "*** ", 
+                      ifelse(p < .01, "**  ", ifelse(p < .05, "*   ", "    "))))
 
+## trunctuate the correlation matrix to two decimal
+R <- format(round(cbind(rep(-1.11, ncol(corMT_controls)), R), 2))[,-1]
+
+## build a new matrix that includes the correlations with their apropriate stars
+Rnew <- matrix(paste(R, stars_significance, sep=""), ncol=ncol(corMT_controls))
+diag(Rnew) <- paste(diag(R), " ", sep="")
+rownames(Rnew) <- colnames(corMT_controls)
+colnames(Rnew) <- paste(colnames(corMT_controls), "", sep="")
+
+library(dplyr)
+
+
+Rnew <- Rnew [, 1:3]
+view(Rnew)
+
+class(dfcEF$dummy_2012)
 
 
