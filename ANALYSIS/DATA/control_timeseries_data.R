@@ -1,4 +1,5 @@
-# Analyse des Kontrollgruppenmodells
+# Analyse des Kontrollgruppenmodells anhand deskriptiver Analysen
+# Erstellung des Datensatzes für Zeitreihen zum vergleichen von Treatment und Kontrollgruppe
 
 library(tidyverse)
 library(dplyr)
