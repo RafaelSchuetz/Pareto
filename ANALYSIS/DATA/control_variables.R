@@ -25,27 +25,41 @@
 #1. Correlation matrix: Outcomes Mittagstisch
 #Create subset including the outcomes of interest:
 
-corMT <- subset(dfcEF, select = c("eatersPerMealNo", "newKidsNo", "cateringNo",
-                                       "mealsInInstitutionNo", "mealsNo",  "breakfastsNo",
-                                       "lunchesNo", "snacksNo", "dinnersNo", "offersPerWeekNo",
-                                       "weeksOfferedNo", "daysOfferedNo", "DGECriteriaNo", "totalCost",
-                                       "subsidyRequest", "subsidy", "migrantBackgroundShare", "refugeesShare",
-                                       "unemploymentShare", "multipleChildrenHouseholdShare", "singleParentShare",
-                                       "povertyShare", "participateMore", "tasksLunch", "monthlyCooks", "weeklyCooks",
-                                       "shoppers", "ownIdeas", "stayLonger", "easyDishes", "dietaryKnowledge",
-                                       "appreciateHealthy", "foodCulture", "influenceHome", "cookAtHome", "askRecipes",
-                                       "moreConcentrated", "moreBalanced", "lessIll", "moreIndependent",
-                                       "betterTeamwork", "betterReading", "betterNumbers", "betterGrades",
-                                       "moreRegularSchoolVisits", "moreOpen", "moreConfidence",
-                                       "addressProblems", "proud", "success", "abiturNo", "mittlereReifeNo", "hauptschuleNo",
-                                       "noDegreeNo", "trainingStartedNo", "trainingCompletedNo", "enoughFood",
-                                       "enoughStaffLunch", "enoughStaffActivities", "qualitySatisfies", "regionalProducts",
-                                       "cultureReligion", "unsweetenedDrinks"))
+corMT_controls <- subset(dfcEF, select = c('selfworth',
+                                           'dayToDaySkills',
+                                           'treatEF',
+                                           "eatersPerMealNo", "newKidsNo", "cateringNo",
+                                           "mealsInInstitutionNo", "mealsNo",  "breakfastsNo",
+                                           "lunchesNo", "snacksNo", "dinnersNo", "offersPerWeekNo",
+                                           "weeksOfferedNo", "daysOfferedNo", "DGECriteriaNo", "totalCost",
+                                           "subsidyRequest", "subsidy", "migrantBackgroundShare", "refugeesShare",
+                                           "unemploymentShare", "multipleChildrenHouseholdShare", "singleParentShare",
+                                           "povertyShare", "participateMore", "tasksLunch", "monthlyCooks", "weeklyCooks",
+                                           "shoppers", "ownIdeas", "stayLonger", "easyDishes", "dietaryKnowledge",
+                                           "appreciateHealthy", "foodCulture", "influenceHome", "cookAtHome", "askRecipes",
+                                           "moreConcentrated", "moreBalanced", "lessIll", "moreIndependent",
+                                           "betterTeamwork", "betterReading", "betterNumbers", "betterGrades",
+                                           "moreRegularSchoolVisits", "moreOpen", "moreConfidence",
+                                           "addressProblems", "proud", "success", "abiturNo", "mittlereReifeNo", "hauptschuleNo",
+                                           "noDegreeNo", "trainingStartedNo", "trainingCompletedNo", "enoughFood",
+                                           "enoughStaffLunch", "enoughStaffActivities", "qualitySatisfies", "regionalProducts",
+                                           "cultureReligion", "unsweetenedDrinks"))
 
-cor(dfcEF$selfworth, corMT, method = c("pearson", "kendall", "spearman"), use = "complete.obs")
+#create a correlation matrix 
+cor(dfcEF$selfworth, corMT_controls, method = "pearson", use = 'complete.obs')
 
-# Day-To-Day-Skills als Zielvariable
-lm1_skills <- lm_robust(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$subsidy)
-summary(lm1_skills)
+#as matrix
+
+library(Hmisc)
+
+correlation_matrix_controls <- rcorr(as.matrix(corMT_controls))
+
+#extract p-values
+#matrix with p-values only
+p <- correlation_matrix_controls$P
+R <- correlation_matrix_controls$r
+
+#define notions for significance levels
+
 
 
