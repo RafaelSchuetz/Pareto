@@ -191,7 +191,7 @@ ts_totalRealTripsSubsidy
 summary(ts_totalRealTripsSubsidy)
 
 #plot 
-ggplot(ts_totalRealTripsSubsidy, main = "Trend of total real subsidy trips", xlab = "Time", 
+plot(ts_totalRealTripsSubsidy, main = "Trend of total real subsidy trips", xlab = "Time", 
      ylab = "Total real subsidy trips", col = "blue", lwd = 2, ylim = c(550000,710000),cex.main = 1.25)
 text(2016.25, 580000, "Total real subsidy trips", adj = 0.3, cex = 0.9)
 box(which = "figure")
