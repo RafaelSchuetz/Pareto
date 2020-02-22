@@ -92,7 +92,7 @@ flexibleRegression <- function(z, dataset) {
 # DSflexibleTest <- flexibleRegression("selfworth")
 # DSflexibleTest2 <- flexibleRegression("dayToDaySkills")
 
-testDS2 <- map(names(dataset), flexibleRegression)
+# testDS2 <- map(names(dataset), flexibleRegression)
 
 testDS3 <- map(names(dataset2), flexibleRegression, dataset2)
 

@@ -79,10 +79,13 @@ opts_chunk$set(fig.align = "center",
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 \section{Outline}
 Descriptive statistics\\
-- dynamics of selected outcomes\\
-- dynamics of real subsidy per institution\\
-- dynamics of real total subsidy\\
-(- dynamics of real subsidy per individual)\\
+dynamics of\\ 
+(- number of organizations)\\
+(- number of beneficiaries)\\
+- selected ordinal outcomes, stacked\\
+- real total subsidy\\
+- real median subsidy per institution\\
+- real median subsidy per individual\\
 (- which variables have largest variance; also relevant for variable selection)\\
 
 Regressions\\
