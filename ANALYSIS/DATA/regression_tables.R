@@ -4,13 +4,32 @@ library(stargazer)
 #Hlavac, Marek (2018). stargazer: Well-Formatted Regression and Summary Statistics Tables.
 #R package version 5.2.2. https://CRAN.R-project.org/package=stargazer 
 
-### 1. Regression: Simple linear regression
+#Wir fügen immer die Kontrollvariablen hinzu, die wir in dem RScript control_variables rausgefunden haben
+
+### 1. Regression: Simple linear regression ohne und mit controls
 
 #selfworth dependent variable
 lm1_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF)
 
+lm1_selfworth_controls <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dayToDaySkills + dfcEF$tasksLunch 
+                    +dfcEF$monthlyCooks + dfcEF$weeklyCooks + dfcEF$shoppers + dfcEF$easyDishes
+                    + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy + dfcEF$foodCulture
+                    + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                    +dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                    +dfcEF$enoughFood)
+
 #daytoday skills as dependent variable
 lm1_skills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF)
+
+lm1_skills_controls <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$selfworth + dfcEF$DGECriteriaNo 
+                 +dfcEF$subsidy + dfcEF$tasksLunch + dfcEF$monthlyCooks + dfcEF$weeklyCooks
+                 +dfcEF$shoppers + dfcEF$easyDishes + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy
+                 +dfcEF$foodCulture + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                 +dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                 +dfcEF$enoughFood)
+
+#wenn wir moreindependent und moreopen weglassen, dann ist der Effekt signifikant auf dem 1% niveau
+#bad control??
 
 
 ### 2. Regression: Linear regression with year fixed effects
@@ -18,12 +37,31 @@ lm1_skills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF)
 #selfworth as dependent variable
 lm2_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy_2012 + dfcEF$dummy_2013
                     + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
-                    + dfcEF$dummy_2017 + dfcEF$dummy_2018)
+                    + dfcEF$dummy_2017 + dfcEF$dummy_2018 )
+
+lm2_selfworth_controls <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy_2012 + dfcEF$dummy_2013
+                    + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
+                    + dfcEF$dummy_2017 + dfcEF$dummy_2018 + dfcEF$dayToDaySkills + dfcEF$tasksLunch 
+                    + dfcEF$monthlyCooks + dfcEF$weeklyCooks + dfcEF$shoppers + dfcEF$easyDishes
+                    + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy + dfcEF$foodCulture
+                    + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                    + dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                    + dfcEF$enoughFood)
 
 #daytodayskills as dependent variable 
 lm2_skills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$dummy_2012 + dfcEF$dummy_2013
                  + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
-                 + dfcEF$dummy_2017 + dfcEF$dummy_2018)
+                 + dfcEF$dummy_2017 + dfcEF$dummy_2018 )
+
+lm2_skills_controls <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$dummy_2012 + dfcEF$dummy_2013
+                 + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
+                 + dfcEF$dummy_2017 + dfcEF$dummy_2018 + dfcEF$selfworth + dfcEF$DGECriteriaNo 
+                 +dfcEF$subsidy + dfcEF$tasksLunch + dfcEF$monthlyCooks + dfcEF$weeklyCooks
+                 +dfcEF$shoppers + dfcEF$easyDishes + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy
+                 +dfcEF$foodCulture + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                 +dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                 +dfcEF$enoughFood)
+
 
 ### 3. Regression: Linear regression with id fixed effects
 
@@ -238,6 +276,7 @@ table1_skills <- stargazer(lm1_skills,
                                             c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
                            align = TRUE,
                            type = 'text')
+
 
 
 
