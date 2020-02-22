@@ -274,4 +274,4 @@ table1_skills_controls <- stargazer(lm1_skills_controls,
                            add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
                                             c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
                            align = TRUE,
-                           type = 'latex')
+                           type = 'text')
