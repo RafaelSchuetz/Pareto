@@ -102,3 +102,32 @@ text(2016, 3.25, "Treatment group", col = "grey0", adj = 0.3, cex = 0.9)
 grid(nx = NULL, ny = NULL, col = "lightgray", lty = "dotted")
 
 
+# Graphs with ggplot ------------------------------------------------------
+#use the zoo package 
+
+library(zoo)
+
+#First step: Coerce the timeseries to dataframe
+
+#ts_dayToDaySkills_control = ts(timeseries2$meanControl2, start = 2012, end = 2018, frequency = 1)
+#ts_dayToDaySkills_treat = ts(timeseries2$meanTreat2, start = 2012, end = 2018, frequency = 1)
+df_dayToDaySkills_control <- data.frame(Y=as.matrix(ts_dayToDaySkills_control), 
+                                        date=as.Date(as.yearmon(time(ts_dayToDaySkills_control))))
+
+df_dayToDaySkills_treat <- data.frame(Y=as.matrix(ts_dayToDaySkills_treat), 
+                                      date=as.Date(as.yearmon(time(ts_dayToDaySkills_treat))))
+
+#now we do the ggplot graph
+
+ggplot(df_dayToDaySkills_control, aes(x=year, y=Y)) +
+  geom_line() + 
+  xlab("")
+
+#problem: bei ggplot kann man nur verschiedene Variablen aus EINEM Datensatz gleichzeitig plotten
+#wir wollen aber treatment und control vergleichen
+
+ggplot(dfcEF, aes(x=year)) + 
+  geom_line(aes(y = psavert), color = "darkred") + 
+  geom_line(aes(y = uempmed), color="steelblue", linetype="twodash")
+
+
