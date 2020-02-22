@@ -152,130 +152,141 @@ lm4_skills_controls <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcE
 
 ### 5. Alle LMs als RDS speichern ####
 
-saveRDS(lm1_selfworth, file = "./ANALYSIs/Tables/lm1_selfworth.rds")
-saveRDS(lm1_skills, file = "./ANALYSIs/Tables/lm1_skills.rds")
+saveRDS(lm1_selfworth, file = "./ANALYSIS/Tables/lm1_selfworth.Rds")
+saveRDS(lm1_selfworth_controls, file = "./ANALYSIS/Tables/lm1_selfworth_controls.Rds")
+saveRDS(lm1_selfworth_controls_nobad, file = "./ANALYSIS/Tables/lm1_selfworth_controls_nobad.Rds")
+saveRDS(lm1_skills, file = "./ANALYSIS/Tables/lm1_skills.Rds")
+saveRDS(lm1_skills_controls, file = "./ANALYSIS/Tables/lm1_skills_controls.Rds")
 
-saveRDS(lm2_selfworth, file = "./ANALYSIs/Tables/lm2_selfworth.rds")
-saveRDS(lm2_skills, file = "./ANALYSIs/Tables/lm2_skills.rds")
+saveRDS(lm2_selfworth, file = "./ANALYSIS/Tables/lm2_selfworth.Rds")
+saveRDS(lm2_selfworth_controls, file = "./ANALYSIS/Tables/lm2_selfworth_controls.Rds")
+saveRDS(lm2_selfworth_controls_nobad, file = "./ANALYSIS/Tables/lm2_selfworth_controls_nobad.Rds")
+saveRDS(lm2_skills, file = "./ANALYSIS/Tables/lm2_skills.Rds")
+saveRDS(lm2_skills_controls, file = "./ANALYSIS/Tables/lm2_skills_controls.Rds")
 
-saveRDS(lm3_selfworth, file = "./ANALYSIs/Tables/lm3_selfworth.rds")
-saveRDS(lm3_skills, file = "./ANALYSIs/Tables/lm3_skills.rds")
+saveRDS(lm3_selfworth, file = "./ANALYSIS/Tables/lm3_selfworth.Rds")
+saveRDS(lm3_selfworth_controls, file = "./ANALYSIS/Tables/lm3_selfworth_controls.Rds")
+saveRDS(lm3_selfworth_controls_nobad, file = "./ANALYSIS/Tables/lm3_selfworth_controls_nobad.Rds")
+saveRDS(lm3_skills, file = "./ANALYSIS/Tables/lm3_skills.Rds")
+saveRDS(lm3_skills_controls, file = "./ANALYSIS/Tables/lm3_skills_controls.Rds")
 
-saveRDS(lm4_selfworth, file = "./ANALYSIs/Tables/lm4_selfworth.rds")
-saveRDS(lm4_skills, file = "./ANALYSIs/Tables/lm4_skills.rds")
+saveRDS(lm4_selfworth, file = "./ANALYSIS/Tables/lm4_selfworth.Rds")
+saveRDS(lm4_selfworth_controls, file = "./ANALYSIS/Tables/lm4_selfworth_controls.Rds")
+saveRDS(lm4_selfworth_controls_nobad, file = "./ANALYSIS/Tables/lm4_selfworth_controls_nobad.Rds")
+saveRDS(lm4_skills, file = "./ANALYSIS/Tables/lm4_skills.Rds")
+saveRDS(lm4_skills_controls, file = "./ANALYSIS/Tables/lm4_skills_controls.Rds")
 
-
-### 6. Output Tables erstellen ####
-
-### selfworth als dependent variable ####
-table1_selfworth <- stargazer(lm1_selfworth,
-                    lm2_selfworth,
-                    lm3_selfworth,
-                    lm4_selfworth,
-          title = "Regression Results",
-          order = c('Constant', 'treatEF'),
-          omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                   'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                   'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                   'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                   'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                   'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                   'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-                   'dummy_2018', 'id'
-                  ),
-          add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
-                           c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-          align = TRUE)
-
-
-
-
-### selfworth als dependent variable mit controls ####
-
-table1_selfworth_controls <- stargazer(lm1_selfworth_controls,
-                              lm2_selfworth_controls,
-                              lm3_selfworth_controls,
-                              lm4_selfworth_controls,
-                              title = "Regression Results",
-                              order = c('Constant', 'treatEF'),
-                              omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                                       'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                                       'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                                       'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                                       'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                                       'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                                       'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-                                       'dummy_2018', 'id'
-                              ),
-                              add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
-                                               c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-                              align = TRUE,
-                              type = 'text')
-
-### selfworth als dependent variable mit controls aber ohne bad controls ####
-
-table1_selfworth_controls_nobad <- stargazer(lm1_selfworth_controls_nobad,
-                                       lm2_selfworth_controls_nobad,
-                                       lm3_selfworth_controls_nobad,
-                                       lm4_selfworth_controls_nobad,
-                                       title = "Regression Results",
-                                       order = c('Constant', 'treatEF'),
-                                       omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                                                'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                                                'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                                                'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                                                'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                                                'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                                                'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-                                                'dummy_2018', 'id'
-                                       ),
-                                       add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
-                                                        c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-                                       align = TRUE,
-                                       type = 'text')
-
-### daytoday skills als dependent variable ####
-
-table1_skills <- stargazer(lm1_skills,
-                           lm2_skills,
-                           lm3_skills,
-                           lm4_skills,
-                           title = "Regression Results",
-                           order = c('Constant', 'treatEF'),
-                           omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                                    'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                                    'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                                    'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                                    'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                                    'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                                    'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-                                    'dummy_2018', 'id'
-                           ),
-                           add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
-                                            c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-                           align = TRUE,
-                           type = 'text')
-
-### day to day skills als dependent variable mit controls ####
-
-table1_skills_controls <- stargazer(lm1_skills_controls,
-                           lm2_skills_controls,
-                           lm3_skills_controls,
-                           lm4_skills_controls,
-                           title = "Regression Results",
-                           order = c('Constant', 'treatEF'),
-                           omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                                    'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                                    'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                                    'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                                    'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                                    'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                                    'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-                                    'dummy_2018'
-                           ),
-                           add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
-                                            c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-                           align = TRUE,
-                           type = 'latex')
-
-
+# ### 6. Output Tables erstellen ####
+# 
+# ### selfworth als dependent variable ####
+# table1_selfworth <- stargazer(lm1_selfworth,
+#                     lm2_selfworth,
+#                     lm3_selfworth,
+#                     lm4_selfworth,
+#           title = "Regression Results",
+#           order = c('Constant', 'treatEF'),
+#           omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
+#                    'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
+#                    'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
+#                    'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
+#                    'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
+#                    'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
+#                    'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
+#                    'dummy_2018', 'id'
+#                   ),
+#           add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
+#                            c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
+#           align = TRUE)
+# 
+# 
+# 
+# 
+# ### selfworth als dependent variable mit controls ####
+# 
+# table1_selfworth_controls <- stargazer(lm1_selfworth_controls,
+#                               lm2_selfworth_controls,
+#                               lm3_selfworth_controls,
+#                               lm4_selfworth_controls,
+#                               title = "Regression Results",
+#                               order = c('Constant', 'treatEF'),
+#                               omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
+#                                        'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
+#                                        'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
+#                                        'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
+#                                        'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
+#                                        'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
+#                                        'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
+#                                        'dummy_2018', 'id'
+#                               ),
+#                               add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
+#                                                c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
+#                               align = TRUE,
+#                               type = 'text')
+# 
+# ### selfworth als dependent variable mit controls aber ohne bad controls ####
+# 
+# table1_selfworth_controls_nobad <- stargazer(lm1_selfworth_controls_nobad,
+#                                        lm2_selfworth_controls_nobad,
+#                                        lm3_selfworth_controls_nobad,
+#                                        lm4_selfworth_controls_nobad,
+#                                        title = "Regression Results",
+#                                        order = c('Constant', 'treatEF'),
+#                                        omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
+#                                                 'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
+#                                                 'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
+#                                                 'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
+#                                                 'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
+#                                                 'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
+#                                                 'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
+#                                                 'dummy_2018', 'id'
+#                                        ),
+#                                        add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
+#                                                         c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
+#                                        align = TRUE,
+#                                        type = 'text')
+# 
+# ### daytoday skills als dependent variable ####
+# 
+# table1_skills <- stargazer(lm1_skills,
+#                            lm2_skills,
+#                            lm3_skills,
+#                            lm4_skills,
+#                            title = "Regression Results",
+#                            order = c('Constant', 'treatEF'),
+#                            omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
+#                                     'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
+#                                     'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
+#                                     'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
+#                                     'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
+#                                     'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
+#                                     'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
+#                                     'dummy_2018', 'id'
+#                            ),
+#                            add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
+#                                             c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
+#                            align = TRUE,
+#                            type = 'text')
+# 
+# ### day to day skills als dependent variable mit controls ####
+# 
+# table1_skills_controls <- stargazer(lm1_skills_controls,
+#                            lm2_skills_controls,
+#                            lm3_skills_controls,
+#                            lm4_skills_controls,
+#                            title = "Regression Results",
+#                            order = c('Constant', 'treatEF'),
+#                            omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
+#                                     'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
+#                                     'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
+#                                     'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
+#                                     'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
+#                                     'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
+#                                     'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
+#                                     'dummy_2018'
+#                            ),
+#                            add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
+#                                             c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
+#                            align = TRUE,
+#                            type = 'latex')
+# 
+# 
