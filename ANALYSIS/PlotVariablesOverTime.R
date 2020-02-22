@@ -5,10 +5,11 @@ library(ggplot2)
 library(cowplot)
 library(purrr)
 library(dplyr)
+library(ggpubr)
 
 #setthevariables
 
-response= names(mergedData)[5:119]
+response= names(mergedData)[5:213]
 expl= names(mergedData)[4]
 
 response = set_names(response)
@@ -23,12 +24,12 @@ plotOutcomeOverTime = function(x, y){
   ggplot(mergedData, aes_string(fill = y, x = x, y = y) ) +
     #geom_bar(position="stack", stat="identity") + 
     geom_col(position = position_stack(reverse = TRUE)) +  
-    theme_bw() 
+    theme_bw()
 }
 
 #checkifthefunctionworks
 
-plotOutcomeOverTime("year", "lessIll")
+plotOutcomeOverTime("year", "lessIllOrdinal")
 
 #mapthefunction
 
@@ -55,6 +56,9 @@ all_yearPlots$selfworth
 all_yearPlots$influenceHome
 all_yearPlots$moreIndependent
 all_yearPlots$dayToDaySkills
+all_yearPlots$dayToDaySkillsOrdinal
+all_yearPlots$lessIllOrdinal
+
 
 #plotforpresentation..explainsubsidyvalue
 
@@ -62,5 +66,36 @@ plotOutcomeOverTime("tripsSubsidy", "tripsNo")
 plotOutcomeOverTime("realTripsSubsidy", "tripsNo")
 
 #plots for paper 
+
+
+####plots we need for the paper 
+
+lessIll_Time<- all_yearPlots$lessIllOrdinal
+AppreciateHealthy_Time<- all_yearPlots$appreciateHealthyOrdinal 
+DietaryKnowledge_Time<- all_yearPlots$dietaryKnowledgeOrdinal 
+
+as.grob(lessIll_Time)
+
+summaryStatistics_HealthVariables <- plot_grid(lessIll_Time, AppreciateHealthy_Time, DietaryKnowledge_Time, 
+                                       ncol = 1, nrow = 3, align = "v",
+                                       labels = "AUTO",
+                                       hjust = -3, vjust = -1.5, label_fontface = "plain", label_size = 11)
+
+saveRDS(, "./ANALYSIS/GRAPHS/PAPER GRAPHS/.Rds")
+
+selfworth_total <- all_yearPlots$selfworthOrdinal
+dayToDaySkills_total <- all_yearPlots$dayToDaySkillsOrdinal 
+
+plot_grid(selfworth_total, dayToDaySkills_total, 
+          ncol = 2, nrow = 1, align = "h",
+          labels = "AUTO",
+          label_x = 0, label_y = 0, hjust = -3, vjust = 
+            -1.5, label_fontface = "plain", label_size = 11)
+
+# ggarrange(selfworth_total, dayToDaySkills_total + rremove("x.text"), 
+#           labels = c("A", "B"),
+#           ncol = 2, nrow = 1)
+
+
 saveRDS(, "./ANALYSIS/GRAPHS/PAPER GRAPHS/.Rds")
 
