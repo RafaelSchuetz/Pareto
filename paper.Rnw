@@ -190,6 +190,9 @@ Empirical Approach\\
 The baseline of the empirical approach is the determination of the treatment and control group. Using the data provided by children we specify the treatment group as all organizations that receive funding for both the Entdeckerfonds and the Mittagstisch program. On the other hand, the control group represents all organizations that do not receive funding from CHILDREN to provide the Entdeckerfonds.
 
 <<echo=FALSE, results='asis', message=FALSE>>=
+
+# first, read in all Rds objects that you need
+
 lm1_selfworth = readRDS("./ANALYSIS/Tables/lm1_selfworth.Rds")
 lm2_selfworth = readRDS("./ANALYSIS/Tables/lm2_selfworth.Rds")
 lm3_selfworth = readRDS("./ANALYSIS/Tables/lm3_selfworth.Rds")
@@ -213,6 +216,9 @@ table1_selfworth <- stargazer(lm1_selfworth,
           add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
                            c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
           align = TRUE,
+          
+          # this line of code rotates the table by 90 degrees counterclockwise
+          
           float.env = "sidewaystable")
 # row.names(tableDispSumm) <- c("$Disp_t^n$", "$Disp_t^d$", "$Disp_t^a$", "$Y_t^n$", "$Y_t^d$", "$GDP_t$")
 # colnames(tableDispSumm) <- c("$Corr(X_t, X_{t-1})$", "$\\sigma(X)$", "$\\frac{\\sigma(X)}{\\sigma(Y)}$", "$\\frac{\\sigma(X)}{\\sigma(GDP)}$")
