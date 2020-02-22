@@ -126,8 +126,19 @@ ggplot(df_dayToDaySkills_control, aes(x=year, y=Y)) +
 #problem: bei ggplot kann man nur verschiedene Variablen aus EINEM Datensatz gleichzeitig plotten
 #wir wollen aber treatment und control vergleichen
 
-ggplot(dfcEF, aes(x=year)) + 
-  geom_line(aes(y = psavert), color = "darkred") + 
-  geom_line(aes(y = uempmed), color="steelblue", linetype="twodash")
+#mögliche lösung: subset bilden mit
+#mean_treat und mean_control als variablen
+
+library(dplyr)
+library(tidyverse)
+library(magrittr)
+library(tidyselect)
+
+#dataset dfcEF_treat wählt nur die Variablen mit treatEF == 1 aus, dfcEF_control mit treatEF==0
+dfcEF_treat <- subset(dfcEF, dfcEF$treatEF == "1")
+dfcEF_control <- subset(dfcEF, dfcEF$treatEF == "0")
+
+
+
 
 
