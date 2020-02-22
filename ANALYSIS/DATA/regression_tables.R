@@ -185,8 +185,10 @@ table1_selfworth <- stargazer(lm1_selfworth,
                   ),
           add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
                            c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-          align = TRUE,
-          type = 'text')
+          align = TRUE)
+
+
+
 
 ### selfworth als dependent variable mit controls ####
 
@@ -269,9 +271,11 @@ table1_skills_controls <- stargazer(lm1_skills_controls,
                                     'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
                                     'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
                                     'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-                                    'dummy_2018', 'id'
+                                    'dummy_2018'
                            ),
                            add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
                                             c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
                            align = TRUE,
-                           type = 'text')
+                           type = 'latex')
+
+

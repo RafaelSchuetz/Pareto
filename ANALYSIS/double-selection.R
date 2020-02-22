@@ -4,55 +4,74 @@
 library(hdm)
 library(tidyselect)
 
+outcomesMeals <- c("participateMore",
+                   "tasksLunch",
+                   "monthlyCooks",
+                   "weeklyCooks",
+                   "shoppers",
+                   "ownIdeas",
+                   "stayLonger",
+                   "easyDishes",
+                   "dietaryKnowledge",
+                   "appreciateHealthy",
+                   "foodCulture",
+                   "influenceHome",
+                   "cookAtHome",
+                   "askRecipes",
+                   "moreConcentrated",
+                   "moreBalanced",
+                   "lessIll",
+                   "dayToDaySkills",
+                   "moreIndependent",
+                   "betterTeamwork",
+                   "betterReading",
+                   "betterNumbers",
+                   "betterGrades",
+                   "moreRegularSchoolVisits",
+                   "selfworth",
+                   "moreOpen",
+                   "moreConfidence",
+                   "addressProblems",
+                   "proud")
 
-# dataset <- mergedData %>% 
-#   select_if(is.numeric)
-
-# drop_na drops rows containing missing values
+outcomesTrips <- c("tripsSuggestions",
+                   "tripsDecision",
+                   "tripsOrganization",
+                   "tripsCostCalculations",
+                   "tripsBudget",
+                   "tripsMoney",
+                   "tripsReview",
+                   "tripsPublicTransport",
+                   "tripsMobility",
+                   "tripsNewPlaces",
+                   "tripsNewCommunities",
+                   "tripsNewIdeas",
+                   "tripsAdditionalAcivities",
+                   "tripsSpecificSkills",
+                   "tripsDayToDaySkills",
+                   "tripsSuccess",
+                   "tripsSelfEfficacy",
+                   "tripsSelfworth", 
+                   "tripsSocialSkills",
+                   "tripsFrustrationTolerance",
+                   "tripsCHILDRENSuggestionsOrdinal",
+                   "tripsReachedOrdinal",
+                   "tripsKnowledgeOrdinal",
+                   "tripsBehaviorOrdinal")
 
 # select rows with year in which DGECriteriaNo was recorded
 
-dataset <- mergedDataImputeMode %>% 
+datasetMode <- mergedDataImputeMode %>% 
   filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
   dplyr::select(!tidyselect::contains('scaled'))
-  # dplyr::select(#participateMore, 
-  #               # tasksLunch,
-  #               # monthlyCooks,
-  #               # weeklyCooks,
-  #               # shoppers,
-  #               # ownIdeas,
-  #               # stayLonger,
-  #               # easyDishes,
-  #               # dietaryKnowledge,
-  #               #appreciateHealthy,
-  #               # foodCulture,
-  #               # influenceHome,
-  #               # cookAtHome,
-  #               # askRecipes,
-  #               # moreConcentrated,
-  #               # moreBalanced,
-  #               # lessIll,
-  #               dayToDaySkills,
-  #               moreIndependent,
-  #               betterTeamwork,
-  #               betterReading,
-  #               betterNumbers,
-  #               betterGrades,
-  #               moreRegularSchoolVisits,
-  #               selfworth,
-  #               moreOpen,
-  #               moreConfidence,
-  #               addressProblems,
-  #               proud,
-  #               DGECriteriaNo,
-  #               realSubsidy) %>% 
-  # drop_na()
-dataset2 <- mergedDataImputeInterpolation %>% 
+  
+names(.) %in% outcomesMeals
+datasetInterpolation <- mergedDataImputeInterpolation %>% 
   filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
   dplyr::select(!tidyselect::contains('scaled'))
 
-# NAsPerVariableMergedData <- mergedData %>% 
-#   summarise_all(list(~ sum(is.na(.)))) %>% 
+# NAsPerVariableMergedData <- mergedData %>%
+#   summarise_all(list(~ sum(is.na(.)))) %>%
 #   arrange(.)
 # 
 # datasetNewName <- dataset %>% 
@@ -90,11 +109,11 @@ flexibleRegression <- function(z, dataset) {
 }
 
 # DSflexibleTest <- flexibleRegression("selfworth")
-# DSflexibleTest2 <- flexibleRegression("dayToDaySkills")
+# DSflexibleTest2 <- flexibleRegression("dayToySkills")
 
 # testDS2 <- map(names(dataset), flexibleRegression)
 
-testDS3 <- map(names(dataset2), flexibleRegression, dataset2)
+doubleSelectionRegressions <- map(names(dataset2), flexibleRegression, datasetInterpolation)
 
 # lasso.effect = rlassoEffects(as.matrix(dataset), lessIll, index=3)
 # 
