@@ -11,8 +11,8 @@ library(cowplot)
 
 realTripsSubTotal <- mergedData %>% 
   group_by(year)%>%
-  summarize(total_TripsSubsidy=sum(realTripsSubsidy, na.rm = TRUE))%>%
-  filter(!(total_TripsSubsidy == 0.0))
+  dplyr::summarize(total_TripsSubsidy=sum(realTripsSubsidy, na.rm = TRUE))%>%
+  dplyr::filter(!(total_TripsSubsidy == 0.0))
 
 
 #plot the linear time trend of total real trips subsidy trend with ggplot 
@@ -22,8 +22,8 @@ totalRealTripSub <- ggplot(realTripsSubTotal, aes(year, total_TripsSubsidy)) + g
 
 medianRealTripsSubTotal <- mergedData %>%
   group_by(year)%>%
-  summarize(Median_TripsSubsidy=median(realTripsSubsidy, na.rm = TRUE))%>%
-  filter(!(Median_TripsSubsidy == 0.0))
+  dplyr::summarize(Median_TripsSubsidy=median(realTripsSubsidy, na.rm = TRUE))%>%
+  dplyr::filter(!(Median_TripsSubsidy == 0.0))
 
 #plot the linear time trend of median real trips subsidy trend with ggplot 
 medianRealTripSub <- ggplot(medianRealTripsSubTotal, aes(year, Median_TripsSubsidy)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y = "Trips, median")
@@ -31,7 +31,7 @@ medianRealTripSub <- ggplot(medianRealTripsSubTotal, aes(year, Median_TripsSubsi
 #total lunch subsidy 
 realSubTotal <- mergedData %>% 
   group_by(year)%>%
-  summarize(total_Subsidy=sum(realSubsidy, na.rm = TRUE))
+  dplyr::summarize(total_Subsidy=sum(realSubsidy, na.rm = TRUE))
 
 #plot the linear time trend of total real subsidy trend with ggplot 
 totalRealSub <- ggplot(realSubTotal, aes(year, total_Subsidy)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Meals, total")
@@ -39,21 +39,46 @@ totalRealSub <- ggplot(realSubTotal, aes(year, total_Subsidy)) + geom_line() + g
 
 #median lunch subsidy 
 
-medianRealSubTotal <- mergedData %>%
+medianRealSub <- mergedData %>%
   group_by(year)%>%
-  summarize(median_Subsidy=median(realSubsidy, na.rm = TRUE))
+  dplyr::summarize(median_Subsidy=median(realSubsidy, na.rm = TRUE))
   
 #plot the linear time trend of median real trips subsidy trend with ggplot 
-medianRealSub <- ggplot(medianRealSubTotal, aes(year, median_Subsidy)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Meals, median")
+medianRealSub <- ggplot(medianRealSub, aes(year, median_Subsidy)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Meals, median")
 
-###save subsidy plots in one graph 
+###per individual 
 
-summaryStatistics_Subsidy <- plot_grid(totalRealSub, totalRealTripSub, medianRealSub,medianRealTripSub, 
-                      ncol = 2, nrow = 2, align = "vh",
-                      labels = c("A", "B", "C", "D"),
-                      label_x = 0, label_y = 0, hjust = -1.5, vjust = 
-                        -1.5, label_fontface = "plain", label_size = 11)
+#lunch
+#median
+
+medianRealSubInd <- mergedData %>%
+  group_by(year)%>%
+  dplyr::summarize(median_SubsidyInd=median(realSubsidyPerBeneficiary, na.rm = TRUE))
+
+#plot the linear time trend of median real trips subsidy per ind trend with ggplot 
+medianSubInd <- ggplot(medianRealSubInd, aes(year, median_SubsidyInd)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Meals, median grant/beneficiary")
+
+
+#trips 
+
+#median
+medianRealTripsSubInd <- mergedData %>%
+  group_by(year)%>%
+  dplyr::summarize(median_TripsSubsidyInd=median(realTripsSubsidyPerBeneficiary, na.rm = TRUE))%>%
+  dplyr::filter(!(median_TripsSubsidyInd == 0.0))
+
+#plot the linear time trend of median real trips subsidy per ind trend with ggplot 
+medianTripsSubInd <- ggplot(medianRealTripsSubInd, aes(year, median_TripsSubsidyInd)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Trips, median grant/beneficiary")
+
+#save in one grid 
+
+summaryStatistics_Subsidy <- plot_grid(totalRealSub, totalRealTripSub, medianRealSub, medianRealTripSub, medianSubInd, medianTripsSubInd, 
+                                       ncol = 2, nrow = 3, align = "vh",
+                                       labels = "AUTO",
+                                       label_x = 0, label_y = 0, hjust = -3, vjust = 
+                                         -1.5, label_fontface = "plain", label_size = 11)
 
 saveRDS(summaryStatistics_Subsidy, "./ANALYSIS/GRAPHS/PAPER GRAPHS/summaryStatistics_Subsidy.Rds")
 
-###per individual 
+
+

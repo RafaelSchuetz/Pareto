@@ -5,6 +5,7 @@ library(ggplot2)
 library(cowplot)
 library(purrr)
 library(dplyr)
+library(ggpubr)
 
 #setthevariables
 
@@ -55,7 +56,6 @@ all_yearPlots$selfworth
 all_yearPlots$influenceHome
 all_yearPlots$moreIndependent
 all_yearPlots$dayToDaySkills
-
 all_yearPlots$dayToDaySkillsOrdinal
 all_yearPlots$lessIllOrdinal
 
@@ -74,16 +74,28 @@ lessIll_Time<- all_yearPlots$lessIllOrdinal
 AppreciateHealthy_Time<- all_yearPlots$appreciateHealthyOrdinal 
 DietaryKnowledge_Time<- all_yearPlots$dietaryKnowledgeOrdinal 
 
+as.grob(lessIll_Time)
+
 summaryStatistics_HealthVariables <- plot_grid(lessIll_Time, AppreciateHealthy_Time, DietaryKnowledge_Time, 
                                        ncol = 1, nrow = 3, align = "v",
-                                       labels = c("A", "B", "C"),
-                                       label_x = 0, label_y = 0, hjust = -1.5, vjust = 
-                                         -1.5, label_fontface = "plain", label_size = 11)
+                                       labels = "AUTO",
+                                       hjust = -3, vjust = -1.5, label_fontface = "plain", label_size = 11)
 
 saveRDS(, "./ANALYSIS/GRAPHS/PAPER GRAPHS/.Rds")
 
-all_yearPlots$selfworthOrdinal
-all_yearPlots$dayToDaySkillsOrdinal 
+selfworth_total <- all_yearPlots$selfworthOrdinal
+dayToDaySkills_total <- all_yearPlots$dayToDaySkillsOrdinal 
+
+plot_grid(selfworth_total, dayToDaySkills_total, 
+          ncol = 2, nrow = 1, align = "h",
+          labels = "AUTO",
+          label_x = 0, label_y = 0, hjust = -3, vjust = 
+            -1.5, label_fontface = "plain", label_size = 11)
+
+# ggarrange(selfworth_total, dayToDaySkills_total + rremove("x.text"), 
+#           labels = c("A", "B"),
+#           ncol = 2, nrow = 1)
+
 
 saveRDS(, "./ANALYSIS/GRAPHS/PAPER GRAPHS/.Rds")
 

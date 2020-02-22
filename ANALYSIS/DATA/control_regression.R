@@ -7,11 +7,11 @@ library(estimatr)
 # Die Zielvariable y wird nur auf die Treatment-Variable "treatEF" regressiert
 
 # Selfworth als Zielvariable
-lm1_selfworth <- lm_robust(dfcEF$selfworth ~ dfcEF$treatEF)
+lm1_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF)
 summary(lm1_selfworth)
 
 # Day-To-Day-Skills als Zielvariable
-lm1_skills <- lm_robust(dfcEF$dayToDaySkills ~ dfcEF$treatEF)
+lm1_skills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF)
 summary(lm1_skills)
 
 
@@ -226,12 +226,116 @@ lm5_selfworth <- lm(dfcEF$selfworth ~
                  + (dfcEF$treatEF * dfcEF$dummy_2018))
 summary(lm5_selfworth)
 
-lm5_skills <- lm(dfcEF$dayToDaySkills ~ (dfcEF$treatEF * dfcEF$dummy_2011)
+
+lm5_skills <- lm(dfcEF$dayToDaySkills ~ 
                   (dfcEF$treatEF * dfcEF$dummy_2012) + (dfcEF$treatEF * dfcEF$dummy_2013)
                   + (dfcEF$treatEF * dfcEF$dummy_2014) + (dfcEF$treatEF * dfcEF$dummy_2015)
                   + (dfcEF$treatEF * dfcEF$dummy_2016) + (dfcEF$treatEF * dfcEF$dummy_2017)
-                  + (dfcEF$treatEF *dfcEF$dummy_2018))
+                  + (dfcEF$treatEF * dfcEF$dummy_2018))
 summary(lm5_skills)
+
+
+
+### Mit Kontrollvariablen, die im R-Skript "control_variables.R" identifiziert wurden
+
+
+### 1. Regression: Simple linear regression
+
+# Selfworth als Zielvariable
+lm1_selfworth_controls <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dayToDaySkills + dfcEF$tasksLunch 
+                           + dfcEF$monthlyCooks + dfcEF$weeklyCooks + dfcEF$shoppers + dfcEF$easyDishes
+                           + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy + dfcEF$foodCulture
+                           + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                           + dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                           + dfcEF$enoughFood)
+summary(lm1_selfworth_controls)
+
+# Day-To-Day-Skills als Zielvariable
+lm1_skills_controls <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$selfworth + dfcEF$DGECriteriaNo 
+                                 +dfcEF$subsidy + dfcEF$tasksLunch + dfcEF$monthlyCooks + dfcEF$weeklyCooks
+                                 +dfcEF$shoppers + dfcEF$easyDishes + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy
+                                 +dfcEF$foodCulture + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                                 +dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                                 +dfcEF$enoughFood)
+summary(lm1_skills_controls)
+
+
+### 2. Regression: Lineare Regression mit year-fixed effects
+
+# Selfworth als Zielvariable
+lm2_selfworth_controls <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$dummy_2012 + dfcEF$dummy_2013
+                    + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
+                    + dfcEF$dummy_2017 + dfcEF$dummy_2017 + dfcEF$dummy_2018 
+                    + dfcEF$dayToDaySkills + dfcEF$tasksLunch 
+                    + dfcEF$monthlyCooks + dfcEF$weeklyCooks + dfcEF$shoppers + dfcEF$easyDishes
+                    + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy + dfcEF$foodCulture
+                    + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                    + dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                    + dfcEF$enoughFood)
+summary(lm2_selfworth_controls)
+
+# Day-To-Day-Skills als Zielvariable
+
+lm2_skills_controls <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$dummy_2012 + dfcEF$dummy_2013
+                 + dfcEF$dummy_2014 + dfcEF$dummy_2015 + dfcEF$dummy_2016 
+                 + dfcEF$dummy_2017 + dfcEF$dummy_2017 + dfcEF$dummy_2018
+                 + dfcEF$selfworth + dfcEF$DGECriteriaNo 
+                 + dfcEF$subsidy + dfcEF$tasksLunch + dfcEF$monthlyCooks + dfcEF$weeklyCooks
+                 + dfcEF$shoppers + dfcEF$easyDishes + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy
+                 + dfcEF$foodCulture + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                 + dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                 + dfcEF$enoughFood)
+summary(lm2_skills_controls)
+
+
+### 3. Regression: Lineare Regression mit id-fixed effects (= entity-fixed effects)
+
+# Selfworth als Zielvariable
+
+lm3_selfworth_controls <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id + dfcEF$dayToDaySkills + dfcEF$tasksLunch 
+                             + dfcEF$monthlyCooks + dfcEF$weeklyCooks + dfcEF$shoppers + dfcEF$easyDishes
+                             + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy + dfcEF$foodCulture
+                             + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                             + dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                             + dfcEF$enoughFood)
+summary(lm3_selfworth_controls)
+
+# Day-To-Day-Skills als Zielvariable
+
+lm3_skills_controls <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$selfworth + dfcEF$DGECriteriaNo 
+                 +dfcEF$subsidy + dfcEF$tasksLunch + dfcEF$monthlyCooks + dfcEF$weeklyCooks
+                 +dfcEF$shoppers + dfcEF$easyDishes + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy
+                 +dfcEF$foodCulture + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                 +dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                 +dfcEF$enoughFood)
+summary(lm3_skills_controls)
+
+
+### 4. Regression: Lineare Regression mit year-fixed effects und id-fixed effects
+
+# Selfworth als Zielvariable
+lm4_selfworth_controls <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id + dfcEF$dummy_2012 
+                    + dfcEF$dummy_2013 + dfcEF$dummy_2014 + dfcEF$dummy_2015 
+                    + dfcEF$dummy_2016 + dfcEF$dummy_2017 + dfcEF$dummy_2018
+                    + dfcEF$dayToDaySkills + dfcEF$tasksLunch 
+                    + dfcEF$monthlyCooks + dfcEF$weeklyCooks + dfcEF$shoppers + dfcEF$easyDishes
+                    + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy + dfcEF$foodCulture
+                    + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                    + dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                    + dfcEF$enoughFood)
+summary(lm4_selfworth_controls)
+
+# Day-To-Day-Skills als Zielvariable
+lm4_skills_controls <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$dummy_2012
+                 + dfcEF$dummy_2013 + dfcEF$dummy_2014 + dfcEF$dummy_2015 
+                 + dfcEF$dummy_2016 + dfcEF$dummy_2017 + dfcEF$dummy_2018
+                 + dfcEF$selfworth + dfcEF$DGECriteriaNo 
+                 + dfcEF$subsidy + dfcEF$tasksLunch + dfcEF$monthlyCooks + dfcEF$weeklyCooks
+                 + dfcEF$shoppers + dfcEF$easyDishes + dfcEF$dietaryKnowledge + dfcEF$appreciateHealthy
+                 + dfcEF$foodCulture + dfcEF$moreConcentrated + dfcEF$moreBalanced + dfcEF$moreIndependent
+                 + dfcEF$moreOpen + dfcEF$moreConfidence + dfcEF$addressProblems + dfcEF$proud
+                 + dfcEF$enoughFood)
+summary(lm4_skills_controls)
 
 
 ### Ergänzung: 
