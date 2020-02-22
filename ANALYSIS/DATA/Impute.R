@@ -14,21 +14,29 @@ mergedDataImputeMode <- mergedData[, colSums(is.na(mergedData)) <= sum(is.na(mer
 
 ### order by year and id
 
-mergedDataImputeInterpolation <- mergedData[, colSums(is.na(mergedData)) <= sum(is.na(mergedData$DGECriteriaNo))] %>% 
+# [, colSums(is.na(mergedData)) <= sum(is.na(mergedData$DGECriteriaNo))]
+
+mergedDataImputeInterpolation <- mergedData %>% 
   select_if(is.numeric) %>%
   arrange(id, year) %>% 
   group_by(id) %>% 
-  mutate_all(na.approx, na.rm = FALSE)
+  mutate_all(na.approx, na.rm = FALSE) %>% 
+  ungroup()
+
+NAsPerVariableMergedDataImputeInterpolation <- mergedDataImputeInterpolation %>%
+  summarise_all(list(~ sum(is.na(.)))) %>%
+  arrange(.)
+
 # %>%
   # mutate(ppentInterp = na.approx(ppent, na.rm = FALSE))
 
-mergedDataImputeInterpolation <- ungroup(purrr::modify(mergedDataImputeInterpolation, na.approx, na.rm = FALSE))
+# mergedDataImputeInterpolation <- ungroup(purrr::modify(mergedDataImputeInterpolation, na.approx, na.rm = FALSE))
 
-mergedDataImputeTest <- mergedDataImputeInterpolation %>% 
-  purrr::modify_at("tasksLunch", na.approx, na.rm = FALSE)
+# mergedDataImputeTest <- mergedDataImputeInterpolation %>% 
+  # purrr::modify_at("tasksLunch", na.approx, na.rm = FALSE)
 
-mergedDataImputeTest <- mergedDataImputeInterpolation %>% 
-  mutate_all(na.approx, na.rm = FALSE)
+# mergedDataImputeTest <- mergedDataImputeInterpolation %>% 
+#   mutate_all(na.approx, na.rm = FALSE)
 # 
 # mergedDataImputeMode <- mergedData[, colSums(is.na(mergedData)) <= sum(is.na(mergedData$DGECriteriaNo))]  
 # 

@@ -85,16 +85,18 @@ dynamics of\\
 - selected ordinal outcomes, stacked\\
 - real total subsidy\\
 - real median subsidy per institution\\
-- real median subsidy per individual\\
+- real median subsidy per beneficiary\\
 (- which variables have largest variance; also relevant for variable selection)\\
 
 Regressions\\
 
 Questions:\\
-- effect of healthy meals (DGE criterion) on healthy characteristics\\
-- effect of real meals subsidy on number of meals\\
-- effect of real trips subsidy on number of trips\\
-- effect of real meals subsidy on self-worth and day-to-day skills\\
+effect of\\
+- healthy meals (DGE criterion) on healthy characteristics\\
+- real meals subsidy on number of meals\\
+- real trips subsidy on number of trips\\
+- real meals subsidy on self-worth and day-to-day skills\\
+- real trips subsidy on self-worth and day-to-day skills\\
 
 Methods:\\
 - simple, metric\\
