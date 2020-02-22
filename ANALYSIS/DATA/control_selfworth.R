@@ -89,14 +89,13 @@ text(2016, 3.25, "Treatment group", col = "red", adj = 0.3, cex = 0.9)
 ### Graphen für die Abschlussarbeit erstellen -------------------------------
 
 
-##Ziel: Raster im Hintergrund einfügen, Linien + Punkte, gestrichelt und durchgezogen
+##Ziel: Raster im Hintergrund einfügen, Linien + Punkte
 
-plot(ts_selfworth_control, main = "Trend of selfworth: Treatment vs control", xlab = "Time", 
-     ylab = "average selfworth", col = "blue", lwd = 1.5, type = "b", ylim = c(2.6,3.2),cex.main = 1.25)
-lines(ts_selfworth_treat, col = "red", lwd = 1.5, type = "b")
-lines(linearTrend_fit_control, col = "blue", lwd = 1)
-lines(linearTrend_fit_treat, col = "red", lwd = 1)
-text(2016, 2.6, "Control group",col = "blue", adj = 0.3, cex = 0.9)
-text(2016, 3.25, "Treatment group", col = "red", adj = 0.3, cex = 0.9)
-
-?plot
+plot(ts_selfworth_control, main = "Trend of selfworth: Treatment vs control", xlab = "Year", 
+     ylab = "Average Selfworth", col = "grey40", lwd = 1.7, type = "o", ylim = c(2.5,3.4),cex.main = 1.25)
+lines(ts_selfworth_treat, col = "grey0", lwd = 1.7, type = "o")
+lines(linearTrend_fit_control, col = "grey40", lwd = 1)
+lines(linearTrend_fit_treat, col = "grey0", lwd = 1)
+text(2016, 2.6, "Control group",col = "grey40", adj = 0.3, cex = 0.9)
+text(2016, 3.25, "Treatment group", col = "grey0", adj = 0.3, cex = 0.9)
+grid(nx = NULL, ny = NULL, col = "lightgray", lty = "dotted")
