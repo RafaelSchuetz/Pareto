@@ -86,3 +86,19 @@ lines(linearTrend_fit_control2, col = "blue", lwd = 1)
 lines(linearTrend_fit_treat2, col = "red", lwd = 1)
 text(2016, 2.7, "Control group",col = "blue", adj = 0.3, cex = 0.9)
 text(2016, 3.25, "Treatment group", col = "red", adj = 0.3, cex = 0.9)
+
+
+### Graphen für die Abschlussarbeit erstellen -------------------------------
+
+##Ziel: Raster im Hintergrund einfügen, Linien + Punkte
+
+plot(ts_dayToDaySkills_control, main = "Trend of dayToDaySkills: Treatment vs control", xlab = "Year", 
+     ylab = "Average dayToDaySkills", col = "grey40", lwd = 1.7, type = "o", ylim = c(2.2,3.4),cex.main = 1.25)
+lines(ts_dayToDaySkills_treat, col = "grey0", lwd = 1.7, type = "o")
+lines(linearTrend_fit_control2, col = "grey40", lwd = 1)
+lines(linearTrend_fit_treat2, col = "grey0", lwd = 1)
+text(2016, 2.7, "Control group",col = "grey40", adj = 0.3, cex = 0.9)
+text(2016, 3.25, "Treatment group", col = "grey0", adj = 0.3, cex = 0.9)
+grid(nx = NULL, ny = NULL, col = "lightgray", lty = "dotted")
+
+
