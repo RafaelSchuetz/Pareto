@@ -17,11 +17,18 @@ mergedDataImputeMode <- mergedData[, colSums(is.na(mergedData)) <= sum(is.na(mer
 mergedDataImputeInterpolation <- mergedData[, colSums(is.na(mergedData)) <= sum(is.na(mergedData$DGECriteriaNo))] %>% 
   select_if(is.numeric) %>%
   arrange(id, year) %>% 
-  group_by(id)
+  group_by(id) %>% 
+  mutate_all(na.approx, na.rm = FALSE)
 # %>%
   # mutate(ppentInterp = na.approx(ppent, na.rm = FALSE))
 
 mergedDataImputeInterpolation <- ungroup(purrr::modify(mergedDataImputeInterpolation, na.approx, na.rm = FALSE))
+
+mergedDataImputeTest <- mergedDataImputeInterpolation %>% 
+  purrr::modify_at("tasksLunch", na.approx, na.rm = FALSE)
+
+mergedDataImputeTest <- mergedDataImputeInterpolation %>% 
+  mutate_all(na.approx, na.rm = FALSE)
 # 
 # mergedDataImputeMode <- mergedData[, colSums(is.na(mergedData)) <= sum(is.na(mergedData$DGECriteriaNo))]  
 # 
