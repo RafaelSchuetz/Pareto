@@ -1,11 +1,9 @@
 % IMPORTANT
-
 % 
 % Install tex distribution
 % https://www.latex-project.org/get/
 % With Windows, install MikTeX
 % 
-
 % Go to Tools/Global Options/Sweave
 % Select Weave Rnw files using: knitr
 % Select Typeset LaTeX into PDF using: pdfLaTeX
@@ -120,9 +118,6 @@
 \listoffigures
 
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
-
-\section{Introduction}
-
 \section{Outline}
 Descriptive statistics\\
 - dynamics of selected outcomes\\
@@ -156,6 +151,35 @@ Outlook for CHILDREN/variable selection\\
 (- factor analysis)\\
 - general tips\\
 
+\section{Introduction}
+
+CHILDREN's aims for data analysis\\ 
+CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
+Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
+
+\section{Summary Statistics}
+
+% look up official names of price indices in English 
+At the beginning of the time series in 2011, they supported in x institutions. In 2018, this number had increased to y. In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.    
+
+\begin{figure}
+  \caption{Yearly dynamics of total grants in Meals program}
+  \label{totalGrantsDyn}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## NULL
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\floatfoot{This graph shows the development of the sum of all grants in the Meals program. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+\end{figure}
+
+
+
+
 Examples\\
 
 Equation\\
@@ -179,45 +203,20 @@ Figure
 \begin{figure}
   \caption{Dispersion in productivity levels}
   \label{LineDisp}
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-1-1} 
+{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-2-1} 
 
 }
 
-\begin{table}[!htbp] \centering 
-  \caption{Results} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} } 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
-\cline{2-2} 
-\\[-1.8ex] & \multicolumn{1}{c}{dayToDaySkills} \\ 
-\hline \\[-1.8ex] 
- treatEF & 0.411^{***} \\ 
-  & (0.081) \\ 
-  & \\ 
- Constant & 2.598^{***} \\ 
-  & (0.071) \\ 
-  & \\ 
-\hline \\[-1.8ex] 
-Observations & \multicolumn{1}{c}{428} \\ 
-R$^{2}$ & \multicolumn{1}{c}{0.057} \\ 
-Adjusted R$^{2}$ & \multicolumn{1}{c}{0.055} \\ 
-Residual Std. Error & \multicolumn{1}{c}{0.699 (df = 426)} \\ 
-F Statistic & \multicolumn{1}{c}{25.932$^{***}$ (df = 1; 426)} \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table}
+
 
 \end{knitrout}
+
 \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
 \end{figure}
-
 
 
 %\printbibliography

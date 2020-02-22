@@ -61,3 +61,6 @@ all_yearPlots$dayToDaySkills
 plotOutcomeOverTime("tripsSubsidy", "tripsNo")
 plotOutcomeOverTime("realTripsSubsidy", "tripsNo")
 
+#plots for paper 
+saveRDS(, "./ANALYSIS/GRAPHS/PAPER GRAPHS/.Rds")
+
