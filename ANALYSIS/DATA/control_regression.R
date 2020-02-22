@@ -219,6 +219,13 @@ summary(lm4_skills)
 # zwischen der Treatmentvariable "dfcEF$treatEF" und den Dummy-Variablen für die verschiedenen
 # Jahres in die Regressionsgleichung aufgenommen.
 
+lm5_selfworth <- lm(dfcEF$selfworth ~
+                 (dfcEF$treatEF * dfcEF$dummy_2012) + (dfcEF$treatEF * dfcEF$dummy_2013)
+                 + (dfcEF$treatEF * dfcEF$dummy_2014) + (dfcEF$treatEF * dfcEF$dummy_2015)
+                 + (dfcEF$treatEF * dfcEF$dummy_2016) + (dfcEF$treatEF * dfcEF$dummy_2017)
+                 + (dfcEF$treatEF * dfcEF$dummy_2018))
+summary(lm5_selfworth)
+
 lm5_skills <- lm(dfcEF$dayToDaySkills ~ (dfcEF$treatEF * dfcEF$dummy_2011)
                   (dfcEF$treatEF * dfcEF$dummy_2012) + (dfcEF$treatEF * dfcEF$dummy_2013)
                   + (dfcEF$treatEF * dfcEF$dummy_2014) + (dfcEF$treatEF * dfcEF$dummy_2015)
@@ -226,10 +233,14 @@ lm5_skills <- lm(dfcEF$dayToDaySkills ~ (dfcEF$treatEF * dfcEF$dummy_2011)
                   + (dfcEF$treatEF *dfcEF$dummy_2018))
 summary(lm5_skills)
 
-lm5_selfworth <- lm(dfcEF$selfworth ~ (dfcEF$treatEF *dfcEF$dummy_2011)
-                 + (dfcEF$treatEF * dfcEF$dummy_2012) + (dfcEF$treatEF * dfcEF$dummy_2013)
-                 + (dfcEF$treatEF * dfcEF$dummy_2014) + (dfcEF$treatEF * dfcEF$dummy_2015)
-                 + (dfcEF$treatEF * dfcEF$dummy_2016) + (dfcEF$treatEF * dfcEF$dummy_2017)
-                 + (dfcEF$treatEF * dfcEF$dummy_2018))
-summary(lm5_selfworth)
+
+### Ergänzung: 
+# Um die Regressionen zukünftig leichter erstellen zu können, wenn die Variablen "dfcEF$year" und
+# "dfcEF$treatEF" ebenfalls im Datentyp "factor" codiert.
+
+dfcEF$year <- as.factor(dfcEF$year)
+class(dfcEF$year)
+
+dfcEF$treatEF <- as.factor(dfcEF$treatEF)
+class(dfcEF$treatEF) 
 

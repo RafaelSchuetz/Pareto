@@ -62,3 +62,17 @@ dfcEF$treatEF <- dfcEF_treat_dummies$treatEF
 dfcEF_plausi <- subset(dfcEF, treatEF=="0")
 
 dfcEF_plausi <- subset(dfcEF_plausi, year=="2015")
+
+
+
+### Für spätere Zwecke: Änderung des Datentyps der Jahres-Dummies in "numeric"
+
+dfcEF$dummy_2011 <- as.numeric(dfcEF$dummy_2011)
+dfcEF$dummy_2012 <- as.numeric(dfcEF$dummy_2012)
+dfcEF$dummy_2013 <- as.numeric(dfcEF$dummy_2013)
+dfcEF$dummy_2014 <- as.numeric(dfcEF$dummy_2014)
+dfcEF$dummy_2015 <- as.numeric(dfcEF$dummy_2015)
+dfcEF$dummy_2016 <- as.numeric(dfcEF$dummy_2016)
+dfcEF$dummy_2017 <- as.numeric(dfcEF$dummy_2017)
+dfcEF$dummy_2018 <- as.numeric(dfcEF$dummy_2018)
+
