@@ -8,23 +8,11 @@
 
 ### Ermitteln relevanter zeit-varianter Kontrollvariablen
 
-
 # Methode: Korrelation zwischen den relevanten Variablen und möglichen Kontrollvariablen aus
 # den Mittagstisch Outcomes
 
-
-
-#Aim: Correlation Matrix of Mittagstisch Outcomes
-#data of interest: data201118 to include only numeric variables
-#show cor between complete observations to include missing values
-
-
-# Outcomes Mittagstisch ---------------------------------------------------
-
-
-#1. Correlation matrix: Outcomes Mittagstisch
-#Create subset including the outcomes of interest:
-
+# Erstellen eines Teildatensatzes, der die Zielvariablen (selfworth & dayToDaySkills), 
+# Treatment-Dummy und alle Variablen für den Mittagstisch umfasst
 corMT_controls <- subset(dfcEF, select = c('selfworth',
                                            'dayToDaySkills',
                                            'treatEF',
@@ -45,21 +33,19 @@ corMT_controls <- subset(dfcEF, select = c('selfworth',
                                            "enoughStaffLunch", "enoughStaffActivities", "qualitySatisfies", "regionalProducts",
                                            "cultureReligion", "unsweetenedDrinks"))
 
-#create a correlation matrix 
-# cor(dfcEF$selfworth, corMT_controls, method = "pearson", use = 'complete.obs')
-
-#as matrix
+# Erstellen einer Korrelationsmatrix anhand des Befehls rcorr() aus dem Package 'Hmisc'
 
 library(Hmisc)
 
 correlation_matrix_controls <- rcorr(as.matrix(corMT_controls))
 
-#extract p-values
-#matrix with p-values only
+# Speichern der p-Werte aus der Korrelationsmatrix in p
+# Speicher der Korrelationskoeffizienten aus der Korrelationsmatrix in R
 p <- correlation_matrix_controls$P
 R <- correlation_matrix_controls$r
 
-#define notions for significance levels; spacing is important
+# Definition der Notation für das Signifikanzniveau in Sterne
+# Wichtig ist, dass die Lehrzeichen bei den Sternen eingehalten werden
 stars_significance <- ifelse(p < .0001, "****", ifelse(p < .001, "*** ", 
                       ifelse(p < .01, "**  ", ifelse(p < .05, "*   ", "    "))))
 
