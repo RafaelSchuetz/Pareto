@@ -9,7 +9,7 @@ library(tidyselect)
 
 #excludeNAs
 
-PartitionedData <- mergedDataImputeMode[ ,colSums(is.na(mergedDataImputeMode)) == 0]
+PartitionedData <- mergedDataImputeAll[ ,colSums(is.na(mergedDataImputeAll)) == 0]
 PartitionedData <- PartitionedData %>% 
   dplyr::select(!contains('scaled'))
 

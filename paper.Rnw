@@ -72,7 +72,7 @@
 \usepackage[onehalfspacing]{setspace}
 \usepackage[left = 72 pt, right = 72 pt]{geometry}
 
-% \addbibresource{Main.bib}
+\addbibresource{references.bib}
 
 <<LoadingPackages, include=FALSE>>=
 library(knitr)
@@ -283,7 +283,7 @@ table1_selfworth <- stargazer(lm1_selfworth,
 # print(tableDispSumm, sanitize.text.function = function(x) {x}, caption.placement = "top")
 @
 
-<<<<<<< HEAD
+
 % table1_selfworth <- stargazer(lm1_selfworth,
 %                     lm2_selfworth,
 %                     lm3_selfworth,
@@ -340,7 +340,5 @@ table1_selfworth <- stargazer(lm1_selfworth,
 
 
 
-=======
->>>>>>> 1f8b8207a1c6ea96ee2e5d34dcd809d680f985ee
-%\printbibliography
+\printbibliography
 \end{document}
