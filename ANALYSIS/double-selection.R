@@ -59,13 +59,78 @@ outcomesTrips <- c("tripsSuggestions",
                    "tripsKnowledgeOrdinal",
                    "tripsBehaviorOrdinal")
 
+# this function returns all years in which a variable was recorded
+
+availableYears <- function(dataSet, variableName) {
+  if(is_string(variableName)) {
+    variable <- dataSet[, variableName]
+  }
+  else {
+    variable <- variableName
+  }
+  availableObservations <- dataSet %>% 
+    filter(!is.na(variable))
+  availableYears <- unique(availableObservations$year)
+  return(availableYears)
+}
+
+# availableObservations1 <- mergedData %>% 
+#   filter(!is.na(mergedData[, "id"]))
+# 
+# availableObservations2 <- mergedData %>% 
+#   filter(!is.na(mergedData$id))
+# 
+# availableYears(mergedData, mergedData$kidsTotalNo)
+# compareAvailableYears("kidsTotalNo", "DGECriteriaNo", mergedData)
+
+# This function says whether "firstVariableName" was recorded in all years in which "secondVariableName" was recorded
+
+compareAvailableYears <- function(firstVariableName, secondVariableName, dataSet) {
+  if(availableYears(dataSet, secondVariableName) %in% availableYears(dataSet, firstVariableName)){
+    return(TRUE)
+  }
+  else {
+    return(FALSE)
+  }
+}
+
+# This function returns the names of all variables in "dataSet" that were recorded in all years in which "variableName" was recorded
+
+availableVariables <- function(dataSet, variableName) {
+  comparisonAvailableYears <- map_dfc(dataSet, compareAvailableYears, variableName, dataSet) %>% 
+    select_if(is_true)
+  return(names(comparisonAvailableYears))
+}
+
+# availableVariables(mergedData, "subsidy")
+# comparisonAvailableYears <- map_dfc(mergedData, compareAvailableYears, "subsidy", mergedData) 
+# 
+# comparisonAvailableYears %>% 
+#   select_if(is_true)
+# 
+# identical(mergedData$id), mergedData[,"id"])
+# this function selects all variables of a data set that were recorded in all year in which a given variable was recorded
+# availableVariables <- function(dataset, variableName) {
+#   variable <- dataset[, variableName]
+#   availableObservations <- dataset %>% 
+#     filter(!is.na(variable))
+#   availableYears <- unique(availableObservations$year)
+#   availableDataset <- dataset %>% 
+#     filter(year %in% availableYears) 
+#   availableDataset <- availableDataset[, availableYears(availableDataset) == availableYears]
+#   return(str(availableDataset))
+# }
+# 
+# availableVariables(mergedData, "DGECriteriaNo")
+
+
 # select rows with year in which DGECriteriaNo was recorded
 
 datasetMode <- mergedDataImputeMode %>% 
-  filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
+  filter(year %in% c(2018, 2017, 2016, 2014)) %>%
   dplyr::select(!tidyselect::contains('scaled'))
-  
-names(.) %in% outcomesMeals
+#   
+# names(.) %in% outcomesMeals
 datasetInterpolation <- mergedDataImputeInterpolation %>% 
   filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
   dplyr::select(!tidyselect::contains('scaled'))
@@ -108,12 +173,16 @@ flexibleRegression <- function(z, dataset) {
   rlassoEffect(x, y, d)
 }
 
-# DSflexibleTest <- flexibleRegression("selfworth")
+DSflexibleTest <- flexibleRegression("selfworth", datasetMode)
+
+saveRDS(DSflexibleTest, "./ANALYSIS/Tables/DSflexibleTest.Rds")
+
+stargazer(DSflexibleTest)
 # DSflexibleTest2 <- flexibleRegression("dayToySkills")
 
 # testDS2 <- map(names(dataset), flexibleRegression)
 
-doubleSelectionRegressions <- map(names(dataset2), flexibleRegression, datasetInterpolation)
+# doubleSelectionRegressions <- map(names(dataset2), flexibleRegression, datasetInterpolation)
 
 # lasso.effect = rlassoEffects(as.matrix(dataset), lessIll, index=3)
 # 
