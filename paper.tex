@@ -57,7 +57,57 @@
 
 % Create list of packages used, Gandrud (2016), p 218/219
 
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, a4paper]{article}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 \usepackage{lscape}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
@@ -73,24 +123,14 @@
 
 % \addbibresource{Main.bib}
 
-<<LoadingPackages, include=FALSE>>=
-library(knitr)
-library(xtable)
-library(dplyr)
-library(stargazer)
-@
 
-<<CentAlignFig, include=FALSE>>=
-# Center align all knitr figures
-# Gandrud (2016), p. 53-55
-opts_chunk$set(fig.align = "center",
-                out.width = "0.8\\textwidth")
-@
+
+
 
 \title{Effects of CHILDREN's programs}
 \author{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz, Yannick Zurl}
 \date{27th February 2020}
-
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 \begin{titlepage}
@@ -155,10 +195,13 @@ At the beginning of the time series in 2011, they supported in x institutions. I
   \caption{Yearly dynamics of total grants in Meals program}
   \label{totalGrantsDyn}
 
-<<echo=FALSE>>=
-totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER GRAPHS/totalRealSubTrend.Rds")
-print(totalGrantsDyn)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## NULL
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 
 \floatfoot{This graph shows the development of the sum of all grants in the Meals program. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
 \end{figure}
@@ -190,10 +233,16 @@ Figure
   \caption{Dispersion in productivity levels}
   \label{LineDisp}
 
-<<echo=FALSE>>=
-figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
-print(figureLineDisp)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-2-1} 
+
+}
+
+
+
+\end{knitrout}
 
 \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
 \end{figure}
@@ -245,42 +294,41 @@ how we determined which controls
 Ende??
 the dataset does not allow a channel analysis but these could be possible channels that might explain the effects we find
 =======
-<<echo=FALSE, results='asis', message=FALSE>>=
 
-# first, read in all Rds objects that you need
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: So., Feb 23, 2020 - 20:02:37
+% Requires LaTeX packages: dcolumn rotating 
+\begin{sidewaystable}[!htbp] \centering 
+  \caption{Regression Results} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{4}{c}{selfworth} \\ 
+\\[-1.8ex] & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)}\\ 
+\hline \\[-1.8ex] 
+ Constant & 2.796^{***} & 2.870^{***} & 2.774^{***} & 2.847^{***} \\ 
+  & (0.065) & (0.095) & (0.092) & (0.107) \\ 
+  & & & & \\ 
+ treatEF & 0.249^{***} & 0.320^{***} & 0.253^{***} & 0.333^{***} \\ 
+  & (0.074) & (0.097) & (0.075) & (0.100) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+ID fixed effects & No & No & Yes & Yes \\ 
+Time fixed effects & No & Yes & No & Yes \\ 
+Observations & \multicolumn{1}{c}{430} & \multicolumn{1}{c}{430} & \multicolumn{1}{c}{430} & \multicolumn{1}{c}{430} \\ 
+R$^{2}$ & \multicolumn{1}{c}{0.026} & \multicolumn{1}{c}{0.035} & \multicolumn{1}{c}{0.026} & \multicolumn{1}{c}{0.036} \\ 
+Adjusted R$^{2}$ & \multicolumn{1}{c}{0.024} & \multicolumn{1}{c}{0.017} & \multicolumn{1}{c}{0.022} & \multicolumn{1}{c}{0.015} \\ 
+Residual Std. Error & \multicolumn{1}{c}{0.642 (df = 428)} & \multicolumn{1}{c}{0.644 (df = 421)} & \multicolumn{1}{c}{0.642 (df = 427)} & \multicolumn{1}{c}{0.645 (df = 420)} \\ 
+F Statistic & \multicolumn{1}{c}{11.417$^{***}$ (df = 1; 428)} & \multicolumn{1}{c}{1.916$^{*}$ (df = 8; 421)} & \multicolumn{1}{c}{5.752$^{***}$ (df = 2; 427)} & \multicolumn{1}{c}{1.724$^{*}$ (df = 9; 420)} \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{sidewaystable} 
 
-lm1_selfworth = readRDS("./ANALYSIS/Tables/lm1_selfworth.Rds")
-lm2_selfworth = readRDS("./ANALYSIS/Tables/lm2_selfworth.Rds")
-lm3_selfworth = readRDS("./ANALYSIS/Tables/lm3_selfworth.Rds")
-lm4_selfworth = readRDS("./ANALYSIS/Tables/lm4_selfworth.Rds")
- 
-table1_selfworth <- stargazer(lm1_selfworth,
-                    lm2_selfworth,
-                    lm3_selfworth,
-                    lm4_selfworth,
-          title = "Regression Results",
-          order = c('Constant', 'treatEF'),
-          omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                   'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                   'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                   'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                   'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                   'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                   'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-                   'dummy_2018', 'id'
-                  ),
-          add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
-                           c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-          align = TRUE,
-          
-          # this line of code rotates the table by 90 degrees counterclockwise
-          
-          float.env = "sidewaystable")
-# row.names(tableDispSumm) <- c("$Disp_t^n$", "$Disp_t^d$", "$Disp_t^a$", "$Y_t^n$", "$Y_t^d$", "$GDP_t$")
-# colnames(tableDispSumm) <- c("$Corr(X_t, X_{t-1})$", "$\\sigma(X)$", "$\\frac{\\sigma(X)}{\\sigma(Y)}$", "$\\frac{\\sigma(X)}{\\sigma(GDP)}$")
-# tableDispSumm <- xtable(tableDispSumm, caption = "Productivity dispersion: Summary statistics", digits = 3, align = "crccc")
-# print(tableDispSumm, sanitize.text.function = function(x) {x}, caption.placement = "top")
-@
 
 % table1_selfworth <- stargazer(lm1_selfworth,
 %                     lm2_selfworth,
