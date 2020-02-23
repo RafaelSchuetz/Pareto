@@ -7,10 +7,6 @@ library(tidyselect)
 library(tseries)
 library(graphics)
 
-#dataset dfcEF_treat wählt nur die Variablen mit treatEF == 1 aus, dfcEF_control mit treatEF==0
-dfcEF_treat <- subset(dfcEF, dfcEF$treatEF == "1")
-dfcEF_control <- subset(dfcEF, dfcEF$treatEF == "0")
-
 #Time series treat: ts_dayToDaySkills_control, ts_selfworth_treat
 #Time series control: ts_dayToDaySkills_treat, ts_selfworth_control
 
