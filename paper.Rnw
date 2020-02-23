@@ -32,6 +32,11 @@
 % Command line
 % R -e 'library(knitr);knit("knitr_example.Rnw")'
 
+% rotate tables in knitr
+% https://stackoverflow.com/questions/21840878/rotate-a-table-from-r-markdown-in-pdf
+% in particular stargazer tables
+% https://stackoverflow.com/questions/31169845/rotate-stargazer-table-in-knitr/34292292#34292292
+
 % Create list of packages used, Gandrud (2016), p 218/219
 
 \documentclass[12pt, a4paper]{article}
@@ -41,6 +46,7 @@
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 \usepackage{floatrow}
 \usepackage[hidelinks]{hyperref}
+\usepackage{rotating}
 % \usepackage[authoryear]{natbib}
 % \bibliographystyle{apalike}
 \usepackage{mathtools}
@@ -53,6 +59,7 @@
 library(knitr)
 library(xtable)
 library(dplyr)
+library(stargazer)
 @
 
 <<CentAlignFig, include=FALSE>>=
@@ -182,14 +189,16 @@ Empirical Approach\\
 
 The baseline of the empirical approach is the determination of the treatment and control group. Using the data provided by children we specify the treatment group as all organizations that receive funding for both the Entdeckerfonds and the Mittagstisch program. On the other hand, the control group represents all organizations that do not receive funding from CHILDREN to provide the Entdeckerfonds.
 
-<<echo=FALSE, results='asis'>>=
-library(stargazer)
+<<echo=FALSE, results='asis', message=FALSE>>=
+
+# first, read in all Rds objects that you need
+
 lm1_selfworth = readRDS("./ANALYSIS/Tables/lm1_selfworth.Rds")
 lm2_selfworth = readRDS("./ANALYSIS/Tables/lm2_selfworth.Rds")
 lm3_selfworth = readRDS("./ANALYSIS/Tables/lm3_selfworth.Rds")
 lm4_selfworth = readRDS("./ANALYSIS/Tables/lm4_selfworth.Rds")
-# table1_selfworth <- 
-stargazer(lm1_selfworth,
+ 
+table1_selfworth <- stargazer(lm1_selfworth,
                     lm2_selfworth,
                     lm3_selfworth,
                     lm4_selfworth,
@@ -206,7 +215,11 @@ stargazer(lm1_selfworth,
                   ),
           add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
                            c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-          align = TRUE)
+          align = TRUE,
+          
+          # this line of code rotates the table by 90 degrees counterclockwise
+          
+          float.env = "sidewaystable")
 # row.names(tableDispSumm) <- c("$Disp_t^n$", "$Disp_t^d$", "$Disp_t^a$", "$Y_t^n$", "$Y_t^d$", "$GDP_t$")
 # colnames(tableDispSumm) <- c("$Corr(X_t, X_{t-1})$", "$\\sigma(X)$", "$\\frac{\\sigma(X)}{\\sigma(Y)}$", "$\\frac{\\sigma(X)}{\\sigma(GDP)}$")
 # tableDispSumm <- xtable(tableDispSumm, caption = "Productivity dispersion: Summary statistics", digits = 3, align = "crccc")
