@@ -1,12 +1,30 @@
 % IMPORTANT
-% 
+ 
 % Install tex distribution
 % https://www.latex-project.org/get/
 % With Windows, install MikTeX
-% 
+ 
+% in RStudio, install.packages("knitR")
+% also, install all packages that appear in first code chunk in this file, i.e. in the one that looks like this
+% <<LoadingPackages, include=FALSE>>=
+% library(knitr)
+% library(xtable)
+% library(dplyr)
+% library(stargazer)
+% @
+
 % Go to Tools/Global Options/Sweave
 % Select Weave Rnw files using: knitr
 % Select Typeset LaTeX into PDF using: pdfLaTeX
+ 
+% Use button "Compile PDF" to knit the Rnw file to a tex file and compile the tex file to a pdf file.
+
+% Always install all packages that you're asked to after having pressed "Compile PDF".
+ 
+% If there is no error while knitting from Rnw to tex, but an error while compiling from tex to pdf, have a look at the pdf file. It might still have worked.
+
+
+
 
 
 
