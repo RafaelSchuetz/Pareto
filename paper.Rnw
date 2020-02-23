@@ -4,6 +4,8 @@
 % https://www.latex-project.org/get/
 % With Windows, install MikTeX
 % 
+% in RStudio, install.packages("knitR")
+% 
 % Go to Tools/Global Options/Sweave
 % Select Weave Rnw files using: knitr
 % Select Typeset LaTeX into PDF using: pdfLaTeX
