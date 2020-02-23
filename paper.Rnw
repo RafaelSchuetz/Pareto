@@ -11,6 +11,7 @@
 % library(xtable)
 % library(dplyr)
 % library(stargazer)
+% library(cowplot)
 % @
 
 % Go to Tools/Global Options/Sweave
@@ -78,6 +79,7 @@ library(knitr)
 library(xtable)
 library(dplyr)
 library(stargazer)
+library(cowplot)
 @
 
 <<CentAlignFig, include=FALSE>>=
@@ -156,7 +158,7 @@ At the beginning of the time series in 2011, they supported in x institutions. I
   \label{totalGrantsDyn}
 
 <<echo=FALSE>>=
-totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER GRAPHS/totalRealSubTrend.Rds")
+totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/totalRealSubTrend.Rds")
 print(totalGrantsDyn)
 @
 
@@ -184,7 +186,7 @@ List\\
 \end{itemize}
 
 
-Figure
+Figure\\
 
 \begin{figure}
   \caption{Dispersion in productivity levels}
@@ -207,7 +209,6 @@ Empirical Approach\\
 
 The baseline of the empirical approach is the determination of the treatment and control group. Using the data provided by children we specify the treatment group as all organizations that receive funding for both the Entdeckerfonds and the Mittagstisch program. On the other hand, the control group represents all organizations that do not receive funding from CHILDREN to provide the Entdeckerfonds.
 
-<<<<<<< HEAD
 Determining the treatment and control group this way, however, was a problem.
 
 THerefore we used the cleaned data set and only determined the control group - all organizations that have no values/answers for the questions of the Entdeckerfonds. We assume that these organizations did not receive the funding for the Entdeckerfonds and therefore are the control group in our analysis. All organizations that gave answers to at least one question of the survey part regarding the entdeckerfonds are considered the treatment group. 
@@ -244,7 +245,7 @@ how we determined which controls
 
 Ende??
 the dataset does not allow a channel analysis but these could be possible channels that might explain the effects we find
-=======
+
 <<echo=FALSE, results='asis', message=FALSE>>=
 
 # first, read in all Rds objects that you need
@@ -282,6 +283,7 @@ table1_selfworth <- stargazer(lm1_selfworth,
 # print(tableDispSumm, sanitize.text.function = function(x) {x}, caption.placement = "top")
 @
 
+<<<<<<< HEAD
 % table1_selfworth <- stargazer(lm1_selfworth,
 %                     lm2_selfworth,
 %                     lm3_selfworth,
@@ -338,5 +340,7 @@ table1_selfworth <- stargazer(lm1_selfworth,
 
 
 
+=======
+>>>>>>> 1f8b8207a1c6ea96ee2e5d34dcd809d680f985ee
 %\printbibliography
 \end{document}
