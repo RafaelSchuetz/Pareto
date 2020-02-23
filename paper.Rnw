@@ -207,6 +207,44 @@ Empirical Approach\\
 
 The baseline of the empirical approach is the determination of the treatment and control group. Using the data provided by children we specify the treatment group as all organizations that receive funding for both the Entdeckerfonds and the Mittagstisch program. On the other hand, the control group represents all organizations that do not receive funding from CHILDREN to provide the Entdeckerfonds.
 
+<<<<<<< HEAD
+Determining the treatment and control group this way, however, was a problem.
+
+THerefore we used the cleaned data set and only determined the control group - all organizations that have no values/answers for the questions of the Entdeckerfonds. We assume that these organizations did not receive the funding for the Entdeckerfonds and therefore are the control group in our analysis. All organizations that gave answers to at least one question of the survey part regarding the entdeckerfonds are considered the treatment group. 
+Our analysis is based on this very strong definition of the treatment and control group.
+
+Because we do not have data for the entdeckerfonds survey for the control group as this group is not observed we use the answers of the mittagstisch survey for our analysis. THerefore our possible dependent variables are limited as most of the questions are specific to the meals program. 
+
+As the dataset does not include the variables for the Entdeckerfonds survey for the control group, the potential outcomes regarding the Entdeckerfonds are not observed. Therefore we have to use the survey answers from the Mittagstisch survey.
+
+Generally our data set contains variables from the years 2011 until 2018. 
+
+The constellation of the treatment and control group varies from year to year. 
+Assumption: erhalten der treatment gleichbedeutend wie ein verlust
+
+Possible variables as dependent variables
+how we determined that:
+The used variables should not be specific to the mittagstisch but more general and should also apply to the context of the Entdeckerfonds
+possible variables selfworth, day to day skills
+used these variables because these variables could be influenced both by the mittagstisch and entdeckerfonds and are not specific to the entdeckerfonds
+
+looked at the general trends of these two variables with the difference of the treatment and control group to look at whether our idea makes sense
+
+linear regression just to look at whether there are effects
+
+add controls and fixed effects time and id fixedeffects --> explain why (id: specific effects of being in Bayern for example or the subsidy amount)
+how fixed effects are implemented
+
+which control variables we use
+how we determined which controls
+
+
+
+
+
+Ende??
+the dataset does not allow a channel analysis but these could be possible channels that might explain the effects we find
+=======
 <<echo=FALSE, results='asis', message=FALSE>>=
 
 # first, read in all Rds objects that you need
@@ -293,6 +331,7 @@ table1_selfworth <- stargazer(lm1_selfworth,
 % \textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 % \end{tabular} 
 % \end{table}
+>>>>>>> 3eb442a9f4c1647ff30d34dc2d0bdb37f47bef84
 
 
 
