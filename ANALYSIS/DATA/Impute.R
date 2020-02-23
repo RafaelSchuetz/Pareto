@@ -6,6 +6,11 @@ library(zoo)
 
 ## impute mode
 
+mergedDataImputeAll <- mergedData[, colSums(is.na(mergedData)) < nrow(mergedData)] %>% 
+  select_if(is.numeric) %>%    
+  impute_most_freq() %>% 
+  dplyr::select(!tidyselect::contains('scaled'))
+
 mergedDataImputeMode <- mergedData[, colSums(is.na(mergedData)) <= sum(is.na(mergedData$DGECriteriaNo))] %>% 
   select_if(is.numeric) %>%    
   impute_most_freq()
