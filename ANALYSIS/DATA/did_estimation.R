@@ -44,10 +44,10 @@ dfcEF$treatEF <- as.numeric(dfcEF$treatEF)
 
 lmdid <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id + dfcEF$year + (dfcEF$year*dfcEF$treatEF))
 
-lm_did_selfworth <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$year + dfcEF$treat_2011 + dfcEF$treat_2012 +
+lm_did_daytodayskills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$year + dfcEF$treat_2011 + dfcEF$treat_2012 +
                          dfcEF$treat_2013 + dfcEF$treat_2014 + dfcEF$treat_2015 + dfcEF$treat_2016 + 
                          dfcEF$treat_2017 + dfcEF$treat_2018)
-summary(lm_did_selfworth)
+summary(lm_did_daytodayskills)
 
 summary(lmdid)
 
@@ -81,7 +81,7 @@ texreg(lmdid2)
 
 ### Regression Results Table ####
 
-table_did_daytodayskills <- stargazer(lm_did_selfworth,
+table_did_daytodayskills <- stargazer(lm_did_daytodayskills,
                                  omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
                                          'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
                                          'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
@@ -93,7 +93,7 @@ table_did_daytodayskills <- stargazer(lm_did_selfworth,
                                  add.lines = list(c('ID fixed effects', 'Yes'),
                                                   c('Year fixed effects', 'Yes')),
                                  type = 'text',
-                                 out = 'did_regression_results.txt')
+                                 out = 'did_regression_results_variante2.txt')
 
 
 
