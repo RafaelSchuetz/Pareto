@@ -26,7 +26,25 @@
 
 
 
+% Julian's suggestions from February 24
 
+% Freitag: 
+% - CD mit Daten, do-files
+% - Codebook in Anhang 
+% 
+% soll nicht nach Evaluation durch LMU klingen
+% 
+% Seitenbegrenzung egal
+% 
+% Cronbach's alpha
+% 
+% immer robuste Standardfehler
+% 
+% i.year i.id
+% 
+% leading trailing - abdiskontieren
+% 
+% thematisch gegliederter Appendix
 
 
 
