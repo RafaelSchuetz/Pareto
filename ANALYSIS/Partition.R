@@ -9,7 +9,7 @@ library(tidyselect)
 
 #excludeNAs
 
-PartitionedData <- mergedDataImputeMode[ ,colSums(is.na(mergedDataImputeMode)) == 0]
+PartitionedData <- mergedDataImputeAll[ ,colSums(is.na(mergedDataImputeAll)) == 0]
 PartitionedData <- PartitionedData %>% 
   dplyr::select(!contains('scaled'))
 
@@ -40,12 +40,12 @@ View(prt1)
 
 rawfeatures1 <- plot_ncluster(prt1) + theme_minimal(14)
 
-saveRDS(rawfeatures1, "./ANALYSIS/GRAPHS/PAPER GRAPHS/rawfeat1.Rds")
+saveRDS(rawfeatures1, "./ANALYSIS/GRAPHS/PAPER/rawfeat1.Rds")
 
 observedinfo1 <- plot_information(prt1, geom = geom_histogram) +
   theme_minimal(14) #obeservedinformation
 
-saveRDS(observedinfo1, "./ANALYSIS/GRAPHS/PAPER GRAPHS/obsinf1.Rds")
+saveRDS(observedinfo1, "./ANALYSIS/GRAPHS/PAPER/obsinf1.Rds")
 
 
 
@@ -70,10 +70,10 @@ View(prt2)
 
 observedinfo2 <- plot_information(prt2, geom = geom_histogram) +
   theme_minimal(14)
-saveRDS(observedinfo2, "./ANALYSIS/GRAPHS/PAPER GRAPHS/obsinf2.Rds")
+saveRDS(observedinfo2, "./ANALYSIS/GRAPHS/PAPER/obsinf2.Rds")
 
 rawfeatures2 <- plot_ncluster(prt2) + theme_minimal(14)
-saveRDS(rawfeatures2, "./ANALYSIS/GRAPHS/PAPER GRAPHS/rawfeat2.Rds")
+saveRDS(rawfeatures2, "./ANALYSIS/GRAPHS/PAPER/rawfeat2.Rds")
 
 
 
@@ -98,11 +98,11 @@ View(prt3)
 #plot the raw feautures & the observed information & save them in workspace
 
 rawfeatures3 <- plot_ncluster(prt3) + theme_minimal(14) 
-saveRDS(rawfeatures3, "./ANALYSIS/GRAPHS/PAPER GRAPHS/rawfeat3.Rds")
+saveRDS(rawfeatures3, "./ANALYSIS/GRAPHS/PAPER/rawfeat3.Rds")
 
 observedinformation3 <- plot_information(prt3, geom = geom_histogram) +
   theme_minimal(14) 
-saveRDS(observedinformation3, "./ANALYSIS/GRAPHS/PAPER GRAPHS/obsinf3.Rds")
+saveRDS(observedinformation3, "./ANALYSIS/GRAPHS/PAPER/obsinf3.Rds")
 
 
 
@@ -126,11 +126,11 @@ View(prt4)
 #plot the raw feautures & the observed information & save them in workspace
 
 rawfeatures4 <- plot_ncluster(prt4) + theme_minimal(14)
-saveRDS(rawfeatures4, "./ANALYSIS/GRAPHS/PAPER GRAPHS/rawfeat4.Rds")
+saveRDS(rawfeatures4, "./ANALYSIS/GRAPHS/PAPER/rawfeat4.Rds")
 
 observedinfo4 <- plot_information(prt4, geom = geom_histogram) +
   theme_minimal(14)
-saveRDS(observedinfo4, "./ANALYSIS/GRAPHS/PAPER GRAPHS/obsinf4.Rds")
+saveRDS(observedinfo4, "./ANALYSIS/GRAPHS/PAPER/obsinf4.Rds")
 
 
 
@@ -157,9 +157,9 @@ View(prt5)
 #plot the raw feautures & the observed information & save them in workspace
 
 rawfeatures5 <- plot_ncluster(prt5) + theme_minimal(14)
-saveRDS(rawfeatures5, "./ANALYSIS/GRAPHS/PAPER GRAPHS/rawfeat5.Rds")
+saveRDS(rawfeatures5, "./ANALYSIS/GRAPHS/PAPER/rawfeat5.Rds")
 
 observedinformation5 <- plot_information(prt5, geom = geom_histogram) +
   theme_minimal(14)
-saveRDS(observedinformation5, "./ANALYSIS/GRAPHS/PAPER GRAPHS/obsinf5.Rds")
+saveRDS(observedinformation5, "./ANALYSIS/GRAPHS/PAPER/obsinf5.Rds")
 

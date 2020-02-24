@@ -8,8 +8,6 @@ library(Hmisc)
 library(lattice)
 library(survival)
 library(Formula)
-library(ggplot2)
-library(dplyr)
 
 # Gather and cleanup raw data files
 
@@ -34,8 +32,12 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/Merge.R")
 # Recode categorical variables falsely coded as numerical
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/categoricalData.R")
+
+
 source(encoding = "UTF8", "./ANALYSIS/DATA/MakeReal.R")
+
 source(encoding = "UTF8", "./ANALYSIS/DATA/additionalVariables.R")
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/Exclude Outliers Regression.R")
+
 source(encoding = "UTF8", "./ANALYSIS/DATA/Standardized Coefficents.R")
