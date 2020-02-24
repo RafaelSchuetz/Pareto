@@ -304,7 +304,31 @@ table1_selfworth <- stargazer(lm1_selfworth,
 # tableDispSumm <- xtable(tableDispSumm, caption = "Productivity dispersion: Summary statistics", digits = 3, align = "crccc")
 # print(tableDispSumm, sanitize.text.function = function(x) {x}, caption.placement = "top")
 @
+<<Partition, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
+# first, read in all Rds objects that you need
+
+partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.4.Rds")
+partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.4.Rds")
+ 
+colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
+colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
+
+xtable(partition_meals,
+                               #digits = c(0, 0, 1, 1, 0, 0),
+          caption = "Partition of outcomes, Meals"
+          #align = "lmmm"
+          )
+#print(partition_meals, include.rownames = FALSE)
+
+
+xtable(partition_trips,
+                               #digits = c(0, 0, 1, 1, 0, 0),
+          caption = "Partition of outcomes, Trips"
+          #align = "lmmm"
+          )
+print(partition_meals, partition_trips, include.rownames = FALSE)
+@
 
 % table1_selfworth <- stargazer(lm1_selfworth,
 %                     lm2_selfworth,

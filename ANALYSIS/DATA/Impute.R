@@ -33,9 +33,9 @@ outcomesMeals <- c("participateMore",
                    "proud")
 
 outcomesTrips <- c("tripsSuggestions",
-                   "tripsDecision",
+                   "tripsDecisions",
                    "tripsOrganization",
-                   "tripsCostCalculations",
+                   "tripsCostCalculation",
                    "tripsBudget",
                    "tripsMoney",
                    "tripsReview",
@@ -44,18 +44,14 @@ outcomesTrips <- c("tripsSuggestions",
                    "tripsNewPlaces",
                    "tripsNewCommunities",
                    "tripsNewIdeas",
-                   "tripsAdditionalAcivities",
+                   "tripsAdditionalActivities",
                    "tripsSpecificSkills",
                    "tripsDayToDaySkills",
                    "tripsSuccess",
                    "tripsSelfEfficacy",
                    "tripsSelfworth", 
                    "tripsSocialSkills",
-                   "tripsFrustrationTolerance",
-                   "tripsCHILDRENSuggestionsOrdinal",
-                   "tripsReachedOrdinal",
-                   "tripsKnowledgeOrdinal",
-                   "tripsBehaviorOrdinal")
+                   "tripsFrustrationTolerance")
 
 
 # impute missing values in all variables where there are fewer missing values than in DGECriteriaNo
