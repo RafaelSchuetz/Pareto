@@ -1,52 +1,47 @@
 #OLS regressions 
 
-library(Scale)
+library(estimatr)
 
+#NOCHKEINEMODELLEMITOUTLIERN ERSTELLEN
 
 ##subsidy 
 #dataset: mergedData
 
-mealsNo_sub.lm <- lm(mealsNo ~ realSubsidy, data = mergedData)
+mealsNo_sub.lm <- lm_robust(mealsNo ~ realSubsidy, data = mergedData)
 summary(mealsNo_sub.lm)
 
-mealsNo_sub_scaled.lm <- lm(mealsNo_scaled ~ realSubsidy_scaled, data = mergedData)
-summary(mealsNo_sub_scaled.lm) #standardized
+saveRDS(mealsNo_sub.lm,"./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 
-tripsNo_sub.lm <- lm(tripsNo ~ realTripsSubsidy, data = mergedData)
+tripsNo_sub.lm <- lm_robust(tripsNo ~ realTripsSubsidy, data = mergedData)
 summary(tripsNo_sub.lm)
 
-tripsNo_sub_scaled.lm <- lm(tripsNo_scaled ~ realTripsSubsidy_scaled, data = mergedData)
-summary(tripsNo_sub_scaled.lm) #standardized
+saveRDS(tripsNo_sub.lm,"./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
+
 
 #dataset with excluded outliers: mealsNo / tripsNo
 
-mealsNo_sub_ex.lm <- lm(mealsNo ~ realSubsidy, data = mealsNoEliminated)
+mealsNo_sub_ex.lm <- lm_robust(mealsNo ~ realSubsidy, data = mealsNoEliminated)
 summary(mealsNo_sub_ex.lm)
 
-mealsNo_sub_ex_scaled.lm <- lm(mealsNo_scaled ~ realSubsidy_scaled, data = mealsNoEliminated)
-summary(mealsNo_sub_ex_scaled.lm) #standardized
+saveRDS(mealsNo_sub_ex.lm,"./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds")
 
-tripsNo_sub_ex.lm <- lm(tripsNo ~ realTripsSubsidy, data = tripsNoEliminated)
+tripsNo_sub_ex.lm <- lm_robust(tripsNo ~ realTripsSubsidy, data = tripsNoEliminated)
 summary(tripsNo_sub_ex.lm)
 
-tripsNo_sub_ex_scaled.lm <- lm(tripsNo_scaled ~ realTripsSubsidy_scaled, data = tripsNoEliminated)
-summary(tripsNo_sub_ex_scaled.lm) #standardized
+saveRDS(tripsNo_sub_ex.lm,"./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds")
 
 
-# #datset: mergedDataImputeMode
+
+# #datset: mergedDataImputeAll
 # 
 # 
-# mealsNo_sub_IM.lm <- lm(mealsNo ~ realSubsidy, data = mergedDataImputeMode)
+# mealsNo_sub_IM.lm <- lm_robust(mealsNo ~ realSubsidy, data = mergedDataImputeAll)
 # summary(mealsNo_sub.lm)
 # 
-# mealsNo_sub_scaled_IM.lm <- lm(mealsNo_scaled ~ realSubsidy_scaled, data = mergedDataImputeMode)
-# summary(mealsNo_sub_scaled_IM.lm) #standardized
-# 
-# tripsNo_sub_IM.lm <- lm(tripsNo ~ realTripsSubsidy, data = mergedDataImputeMode)
+# tripsNo_sub_IM.lm <- lm_robust(tripsNo ~ realTripsSubsidy, data = mergedDataImputeAll)
 # summary(tripsNo_sub.lm)
 # 
-# tripsNo_sub_scaled_IM.lm <- lm(tripsNo_scaled ~ realTripsSubsidy_scaled, data = mergedDataImputeMode)
-# summary(tripsNo_sub_scaled_IM.lm) #standardized
+
 
 
 ##healthinfluence 
@@ -54,86 +49,111 @@ summary(tripsNo_sub_ex_scaled.lm) #standardized
 #dataset: mergedData
 
 
-lessIll_DGE.lm <- lm(lessIll ~ DGECriteriaNo, data = mergedData)
+lessIll_DGE.lm <- lm_robust(lessIll ~ DGECriteriaNo, data = mergedData)
 summary(lessIll_DGE.lm)
 
-lessIll_DGE_scaled.lm <- lm(lessIll_scaled ~ DGECriteriaNo_scaled, data = mergedData)
+saveRDS(lessIll_DGE.lm,"./ANALYSIS/Tables/lessIll_DGE.lm.Rds")
+
+lessIll_DGE_scaled.lm <- lm_robust(lessIll_scaled ~ DGECriteriaNo_scaled, data = mergedData)
 summary(lessIll_DGE.lm) #standardized
 
-Expand_LessIll.lm = lm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + realSubsidy + state, data = mergedData)
+saveRDS(lessIll_DGE_scaled.lm,"./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
+
+
+Expand_LessIll.lm = lm_robust(lessIll_weighted ~ DGECriteriaNo + regionalProducts + yearsSupportSince + realSubsidy + state, data = mergedData)
 summary(Expand_LessIll.lm)
 
-Expand_LessIll_scaled.lm = lm(lessIll_scaled ~ DGECriteriaNo_scaled + regionalProducts_scaled + yearsSupportSince + realSubsidy_scaled + state, data = mergedData)
+saveRDS(Expand_LessIll.lm,"./ANALYSIS/Tables/Expand_LessIll.lm.Rds")
+
+Expand_LessIll_scaled.lm = lm_robust(lessIll_scaled ~ DGECriteriaNo_scaled + regionalProducts_scaled + yearsSupportSince + realSubsidy + state, data = mergedData)
 summary(Expand_LessIll_scaled.lm) #standardized
 
-dietaryKnowledge_DGE.lm <- lm(dietaryKnowledge ~ DGECriteriaNo, data = mergedData)
+saveRDS(Expand_LessIll_scaled.lm,"./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+
+dietaryKnowledge_DGE.lm <- lm_robust(dietaryKnowledge ~ DGECriteriaNo, data = mergedData)
 summary(dietaryKnowledge_DGE.lm)
 
-dietaryKnowledge_DGE_scaled.lm <- lm(dietaryKnowledge_scaled ~ DGECriteriaNo_scaled, data = mergedData)
+saveRDS(dietaryKnowledge_DGE.lm,"./ANALYSIS/Tables/dietaryKnowledge_DGE.lm.Rds")
+
+dietaryKnowledge_DGE_scaled.lm <- lm_robust(dietaryKnowledge_scaled ~ DGECriteriaNo_scaled, data = mergedData)
 summary(dietaryKnowledge_DGE_scaled.lm) #standardized
 
-appreciateHealthy_DGE.lm <- lm(appreciateHealthy ~ DGECriteriaNo, data = mergedData)
+saveRDS(dietaryKnowledge_DGE_scaled.lm,"./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
+
+appreciateHealthy_DGE.lm <- lm_robust(appreciateHealthy ~ DGECriteriaNo, data = mergedData)
 summary(dietaryKnowledge_DGE.lm)
 
-appreciateHealthy_DGE_scaled.lm <- lm(appreciateHealthy_scaled ~ DGECriteriaNo_scaled, data = mergedData)
+saveRDS(appreciateHealthy_DGE.lm,"./ANALYSIS/Tables/appreciateHealthy_DGE.Rds")
+
+appreciateHealthy_DGE_scaled.lm <- lm_robust(appreciateHealthy_scaled ~ DGECriteriaNo_scaled, data = mergedData)
 summary(dietaryKnowledge_DGE_scaled.lm) #standardized
 
+saveRDS(appreciateHealthy_DGE_scaled.lm,"./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
 
-# #dataset: mergedDataImputeMode
+
+# #dataset: mergedDataImputeAll
 # 
-# lessIll_DGE_IM.lm <- lm(lessIll ~ DGECriteriaNo, data = mergedDataImputeMode)
+# lessIll_DGE_IM.lm <- lm_robust(lessIll ~ DGECriteriaNo, data = mergedDataImputeAll)
 # summary(lessIll_DGE_IM.lm)
 # 
-# lessIll_DGE_IM_scaled.lm <- lm(lessIll_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeMode)
+# lessIll_DGE_IM_scaled.lm <- lm_robust(lessIll_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeAll)
 # summary(lessIll_DGE_IM_scaled.lm) #standardized
 # 
-# Expand_LessIll_IM.lm = lm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + realSubsidy + state, data = mergedDataImputeMode)
+# Expand_LessIll_IM.lm = lm_robust(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + realSubsidy + state, data = mergedDataImputeAll)
 # summary(Expand_LessIll_IM.lm)
 # 
-# Expand_LessIll_IM_scaled.lm = lm(lessIll_scaled ~ DGECriteriaNo_scaled + regionalProducts_scaled + yearsSupportSince + realSubsidy_scaled + state, data = mergedDataImputeMode)
+# Expand_LessIll_IM_scaled.lm = lm_robust(lessIll_scaled ~ DGECriteriaNo_scaled + regionalProducts_scaled + yearsSupportSince + realSubsidy + state, data = mergedDataImputeAll)
 # summary(Expand_LessIll_IM_scaled.lm) #standardized
 # 
-# dietaryKnowledge_DGE_IM.lm <- lm(dietaryKnowledge ~ DGECriteriaNo, data = mergedDataImputeMode)
+# dietaryKnowledge_DGE_IM.lm <- lm_robust(dietaryKnowledge ~ DGECriteriaNo, data = mergedDataImputeAll)
 # summary(dietaryKnowledge_DGE_IM.lm)
 # 
-# dietaryKnowledge_DGE_IM_scaled.lm <- lm(dietaryKnowledge_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeMode)
+# dietaryKnowledge_DGE_IM_scaled.lm <- lm_robust(dietaryKnowledge_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeAll)
 # summary(dietaryKnowledge_DGE_IM_scaled.lm) #standardized
 # 
-# appreciateHealthy_DGE_IM.lm <- lm(appreciateHealthy ~ DGECriteriaNo, data = mergedDataImputeMode)
+# appreciateHealthy_DGE_IM.lm <- lm_robust(appreciateHealthy ~ DGECriteriaNo, data = mergedDataImputeAll)
 # summary(dietaryKnowledge_DGE_IM.lm)
 # 
-# appreciateHealthy_DGE_IM_scaled.lm <- lm(appreciateHealthy_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeMode)
+# appreciateHealthy_DGE_IM_scaled.lm <- lm_robust(appreciateHealthy_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeAll)
 # summary(dietaryKnowledge_DGE_IM_scaled.lm) #standardized
 
 ###chance equality
 ##dataset: mergedData 
 
-selfworth.lm <- lm(selfworth ~ realSubsidy, data = mergedData)
+selfworth.lm <- lm_robust(selfworth_weighted ~ realSubsidy, data = mergedData)
 summary(selfworth.lm)
 
-selfworth_scaled.lm <- lm(selfworth_scaled ~ realSubsidy_scaled, data = mergedData)
+saveRDS(selfworth.lm,"./ANALYSIS/Tables/selfworth.lm.Rds")
+
+selfworth_scaled.lm <- lm_robust(selfworth_scaled ~ realSubsidy, data = mergedData)
 summary(selfworth_scaled.lm) #standardized
 
-dayToDaySkills.lm <- lm(dayToDaySkills ~ realSubsidy, data = mergedData)
+saveRDS(selfworth_scaled.lm,"./ANALYSIS/Tables/selfworth_scaled.Rds")
+
+dayToDaySkills.lm <- lm_robust(dayToDaySkills_weighted ~ realSubsidy, data = mergedData)
 summary(dayToDaySkills.lm)
 
-dayToDaySkills_scaled.lm <- lm(dayToDaySkills_scaled ~ realSubsidy_scaled, data = mergedData)
-summary(dayToDaySkills_scaled.lm)
+saveRDS(dayToDaySkills.lm,"./ANALYSIS/Tables/dayToDaySkills.lm.Rds")
+
+dayToDaySkills_scaled.lm <- lm_robust(dayToDaySkills_scaled ~ realSubsidy, data = mergedData)
+summary(dayToDaySkills_scaled.lm) #standardized
+
+saveRDS(dayToDaySkills_scaled.lm,"./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds")
  
-# ##dataset: mergedDataImputeMode
+# ##dataset: mergedDataImputeAll
 # 
-# selfworth_IM.lm <- lm(selfworth ~ realSubsidy, data = mergedDataImputeMode)
+# selfworth_IM.lm <- lm_robust(selfworth ~ realSubsidy, data = mergedDataImputeAll)
 # summary(selfworth_IM.lm)
 # 
-# selfworth_IM_scaled.lm <- lm(selfworth_scaled ~ realSubsidy_scaled, data = mergedDataImputeMode)
+# selfworth_IM_scaled.lm <- lm_robust(selfworth_scaled ~ realSubsidy_scaled, data = mergedDataImputeAll)
 # summary(selfworth_IM_scaled.lm) #standardized
 # 
-# dayToDaySkills_IM.lm <- lm(dayToDaySkills ~ realSubsidy, data = mergedDataImputeMode)
+# dayToDaySkills_IM.lm <- lm_robust(dayToDaySkills ~ realSubsidy, data = mergedDataImputeAll)
 # summary(dayToDaySkills_IM.lm)
 # 
-# dayToDaySkills_IM_scaled.lm <- lm(dayToDaySkills_scaled ~ realSubsidy_scaled, data = mergedDataImputeMode)
+# dayToDaySkills_IM_scaled.lm <- lm_robust(dayToDaySkills_scaled ~ realSubsidy_scaled, data = mergedDataImputeAll)
 # summary(dayToDaySkills_IM_scaled.lm)
 # 
-library(robustbase)
-lessIll_more.lm <- lmrob(lessIll_scaled ~ DGECriteriaNo_scaled, state, data = mergedData)
-summary(lessIll_more.lm)
+
+
+
