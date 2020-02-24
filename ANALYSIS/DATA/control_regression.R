@@ -234,6 +234,10 @@ lm5_skills <- lm(dfcEF$dayToDaySkills ~
                   + (dfcEF$treatEF * dfcEF$dummy_2018))
 summary(lm5_skills)
 
+table_test <- stargazer(lm5_skills,
+                        title = 'Regression Results',
+                        align = TRUE,
+                        type = 'text')
 
 
 ### Mit Kontrollvariablen, die im R-Skript "control_variables.R" identifiziert wurden
@@ -347,4 +351,3 @@ class(dfcEF$year)
 
 dfcEF$treatEF <- as.factor(dfcEF$treatEF)
 class(dfcEF$treatEF) 
-
