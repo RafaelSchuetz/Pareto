@@ -59,113 +59,82 @@ outcomesTrips <- c("tripsSuggestions",
                    "tripsKnowledgeOrdinal",
                    "tripsBehaviorOrdinal")
 
+# this function returns all years in which a variable was recorded
+
+availableYears <- function(dataSet, variableName) {
+  if(is_string(variableName)) {
+    variable <- dataSet[, variableName]
+  }
+  else {
+    variable <- variableName
+  }
+  availableObservations <- dataSet %>% 
+    filter(!is.na(variable))
+  availableYears <- unique(availableObservations$year)
+  return(availableYears)
+}
+
+# This function says whether "firstVariableName" was recorded in all years in which "secondVariableName" was recorded
+
+compareAvailableYears <- function(firstVariableName, secondVariableName, dataSet) {
+  if(availableYears(dataSet, secondVariableName) %in% availableYears(dataSet, firstVariableName)){
+    return(TRUE)
+  }
+  else {
+    return(FALSE)
+  }
+}
+
+# This function returns the names of all variables in "dataSet" that were recorded in all years in which "variableName" was recorded
+
+availableVariables <- function(dataSet, variableName) {
+  comparisonAvailableYears <- map_dfc(dataSet, compareAvailableYears, variableName, dataSet) %>% 
+    select_if(is_true)
+  return(names(comparisonAvailableYears))
+}
+
+
 # select rows with year in which DGECriteriaNo was recorded
 
 datasetMode <- mergedDataImputeMode %>% 
-  filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
+  filter(year %in% c(2018, 2017, 2016, 2014)) %>%
   dplyr::select(!tidyselect::contains('scaled'))
-  
-names(.) %in% outcomesMeals
+#   
+
 datasetInterpolation <- mergedDataImputeInterpolation %>% 
   filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
   dplyr::select(!tidyselect::contains('scaled'))
 
-# NAsPerVariableMergedData <- mergedData %>%
-#   summarise_all(list(~ sum(is.na(.)))) %>%
-#   arrange(.)
-# 
-# datasetNewName <- dataset %>% 
-#   rename(X3 = realSubsidy)
-# 
-# fmNewName = paste("participateMore ~", paste(colnames(select(datasetNewName, -"participateMore")), collapse="+"))
-# fmNewName = as.formula(fmNewName)
-# 
-# fmOldName = paste("participateMore ~", paste(colnames(select(dataset, -"participateMore")), collapse="+"))
-# fmOldName = as.formula(fmOldName)
 
-#dataset <- join(dataset, )
 
 # rlassoEffect performs double selection
 
-# xOldName <- as.matrix(dataset %>% 
-#   select(., -lessIll))
-# yOldName <- as.matrix(dataset$lessIll)
-# dOldName <- as.matrix(dataset$DGECriteriaNo)
-# 
-# DSOldName = rlassoEffect(xOldName, yOldName, dOldName)
-# 
-# summary(DSOldName)
-# DSNewName = rlassoEffects(fmNewName, I = ~ DGECriteriaNo + dayToDaySkills + X3, data=datasetNewName)
-# DSOldName = rlassoEffects(fmOldName, I = ~ DGECriteriaNo + dayToDaySkills + realSubsidy, data=dataset)
-
 # loop for regressions with varying outcome and features
 
-flexibleRegression <- function(z, dataset) {
-  drops <- z
-  x <- as.matrix(dataset[, !(names(dataset) %in% drops)])
-  y <- as.matrix(dataset[, z])
-  d <- as.matrix(dataset$DGECriteriaNo)
+flexibleRegression <- function(response, predictor, dataset) {
+  x <- as.matrix(dataset[, !(names(dataset) %in% response)])
+  y <- as.matrix(dataset[, response])
+  d <- as.matrix(dataset[, predictor])
   rlassoEffect(x, y, d)
 }
 
-# DSflexibleTest <- flexibleRegression("selfworth")
-# DSflexibleTest2 <- flexibleRegression("dayToySkills")
+DSSelfworthRealSubsidy <- flexibleRegression("selfworth", "realSubsidy", mergedDataImputeAll)
 
-# testDS2 <- map(names(dataset), flexibleRegression)
+DSDayToDaySkillsRealSubsidy <- flexibleRegression("dayToDaySkills", "realSubsidy", mergedDataImputeAll)
 
-doubleSelectionRegressions <- map(names(dataset2), flexibleRegression, datasetInterpolation)
+DSMealsNoRealSubsidy <- flexibleRegression("mealsNo", "realSubsidy", mergedDataImputeAll)
 
-# lasso.effect = rlassoEffects(as.matrix(dataset), lessIll, index=3)
-# 
-# library(hdm); library(ggplot2)
-# set.seed(1)
-# n = 38 #sample size
-# p = 20 # number of variables
-# s = 3 # nubmer of non-zero variables
-# X = matrix(rnorm(n*p), ncol=p)
-# #X[1,1] = NA
-# colnames(X) <- paste("X", 1:p, sep="")
-# beta = c(rep(3,s), rep(0,p-s))
-# y = 1 + X%*%beta + rnorm(n)
-# data = data.frame(cbind(y,X))
-# data <- data %>% 
-# mutate(X1 = dataset$DGECriteriaNo, X2 = dataset$realSubsidy, X3 = dataset$lessIll, X4 = dataset$dayToDaySkills)
-# dataOrdinal <- data %>% 
-#   rename(DGECriteriaNo = X1, realSubsidy = X2, lessIll = X3) # , dayToDaySkills = X4
-# dataVerbal <- data %>% 
-#   rename(DGECriteriaNo = X1, realSubsidy = X2, lessIll = X3, dayToDaySkills = X4) 
-# colnames(dataOrdinal)[1] <- "y"
-# colnames(dataVerbal)[1] <- "y"
-# fmOrdinal = paste("y ~", paste(colnames(subset(dataOrdinal, select = -y)), collapse="+"))
-# fmOrdinal = as.formula(fmOrdinal) 
-# fmVerbal = paste("y ~", paste(colnames(subset(dataVerbal, select = -y)), collapse="+"))
-# fmVerbal = as.formula(fmVerbal)  
-# #lasso.effect = rlassoEffects(X, y, index=c(1,2,3))
-# lasso.effect = rlassoEffects(fmOrdinal, I = ~ DGECriteriaNo + realSubsidy + lessIll + X4, data=dataOrdinal)
-# lasso.effect = rlassoEffects(fmVerbal, I = ~ DGECriteriaNo + realSubsidy + lessIll + dayToDaySkills, data=dataVerbal)
-# print(lasso.effect)
-# summary(lasso.effect)
-# confint(lasso.effect)
-# plot(lasso.effect)
+DSTripsSelfworthRealTripsSubsidy <- flexibleRegression("tripsSelfworth", "realTripsSubsidy", mergedDataImputeAll)
 
-###model: OLS
-##influence of DGEcriterium on health relevant variables
+DSTripsDayToDaySkillsRealTripsSubsidy <- flexibleRegression("dayToDaySkills", "realTripsSubsidy", mergedDataImputeAll)
 
-#DGEandLessIll
+DSTripsNoRealTripsSubsidy <- flexibleRegression("tripsNo", "realTripsSubsidy", mergedDataImputeAll)
 
-#DGEandAppreciateHealthy 
+DSLessIllDGECriteriaNo <- flexibleRegression("lessIll", "DGECriteriaNo", mergedDataImputeAll)
 
-#DGEandDietaryKnowledge
+DSDietaryKnowledgeDGECriteriaNo <- flexibleRegression("dietaryKnowledge", "DGECriteriaNo", mergedDataImputeAll)
 
-#expandedModelLessIll
+DSAppreciateHealthyDGECriteriaNo <- flexibleRegression("appreciateHealthy", "DGECriteriaNo", mergedDataImputeAll)
 
 
-
-
-
-##approximating Chance Equality with the following proxies 
-
-#dayTodaySkillsAndSubsidy 
-
-#selfworthAndSubsidy
 
