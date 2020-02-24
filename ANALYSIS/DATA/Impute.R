@@ -2,31 +2,46 @@ library(tidyimpute)
 library(imputeMissings)
 library(zoo)
 
-# impute missing values in all variables where there are less missing values than in DGECriteriaNo
+# impute missing values in all variables where there are fewer missing values than in DGECriteriaNo
 
 ## impute mode
+
+mergedDataImputeAll <- mergedData[, colSums(is.na(mergedData)) < nrow(mergedData)] %>% 
+  select_if(is.numeric) %>%    
+  impute_most_freq() %>% 
+  dplyr::select(!tidyselect::contains('scaled'))
 
 mergedDataImputeMode <- mergedData[, colSums(is.na(mergedData)) <= sum(is.na(mergedData$DGECriteriaNo))] %>% 
   select_if(is.numeric) %>%    
   impute_most_freq()
 
-## impute linear interpolation
+## impute linear interpolation by group
 
-### order by year and id
+## https://stackoverflow.com/questions/33696795/r-interpolation-of-nas-by-group
 
 # [, colSums(is.na(mergedData)) <= sum(is.na(mergedData$DGECriteriaNo))]
 
 mergedDataImputeInterpolation <- mergedData %>% 
   select_if(is.numeric) %>%
-  arrange(id, year) %>% 
   group_by(id) %>% 
   mutate_all(na.approx, na.rm = FALSE) %>% 
   ungroup()
 
+selectionInterpolation <- mergedDataImputeInterpolation[, c("id", "year", outcomesMeals)]
+
+#   NAsPerVariableMergedDataImputeInterpolation <- mergedDataImputeInterpolation %>%
+#   summarise_all(list(~ sum(is.na(.)))) %>%
+#   arrange(.)
+
 NAsPerVariableMergedDataImputeInterpolation <- mergedDataImputeInterpolation %>%
-  summarise_all(list(~ sum(is.na(.)))) %>%
+  purrr::map_dfc(~sum(is.na(.))) %>% 
   arrange(.)
 
+NAsPerVariableMergedDataImputeInterpolation
+
+NAsPerVariableMergedData <- mergedData %>% 
+  select_if(is.numeric) %>% 
+  map(~sum(is.na(.)))
 # %>%
   # mutate(ppentInterp = na.approx(ppent, na.rm = FALSE))
 
