@@ -1,4 +1,15 @@
-library(Scale)
+# library(Scale)
+
+# function for standardizing
+
+standardizeVariable <- function(expr, df) {
+  expr <- enquo(expr)
+  name <- paste0(quo_name(expr), "_scaled")
+  mutate(df,
+         !! name := scale(!! expr)
+  )
+}
+
 
 #standardized coefficents
 

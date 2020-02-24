@@ -9,55 +9,65 @@ library(ggpubr)
 
 #setthevariables
 
-response= names(mergedData)[5:213]
-expl= names(mergedData)[4]
+responset= names(mergedData)
+# [5:213]
+# expl= names(mergedData)[4]
 
-response = set_names(response)
-response
+responset = purrr::set_names(response)
+responset
 
-expl = set_names(expl)
-expl
+explt = purrr::set_names("year")
+explt
 
 #createfunctionHEREGGPLOT
 
 plotOutcomeOverTime = function(x, y){
   ggplot(mergedData, aes_string(fill = y, x = x, y = y) ) +
-    #geom_bar(position="stack", stat="identity") + 
+    # geom_bar(position="stack", stat="identity") + 
     geom_col(position = position_stack(reverse = TRUE)) +  
-    theme_bw()
+    theme_bw()  + theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())
 }
+
+# plotOutcomeOverTimeTest = function(x, y){
+#   ggplot(mergedData, aes_string(fill = y, x = x, y = y) ) +
+#     geom_bar(position = position_stack(reverse = TRUE), stat="identity") + 
+#     # geom_col(position = position_stack(reverse = TRUE)) +  
+#     theme_bw()
+# }
 
 #checkifthefunctionworks
 
-plotOutcomeOverTime("year", "lessIllOrdinal")
+test <-  plotOutcomeOverTime("year", "lessIllOrdinal")
+
+# plotOutcomeOverTimeTest("year", "lessIllOrdinal")
 
 #mapthefunction
 
-YearlyOutcome <- map(mergedData, ~plotOutcomeOverTime("year", "lessIll"))
+# YearlyOutcome <- map(mergedData, ~plotOutcomeOverTime("year", "lessIll"))
 
-all_yearPlots = map(response,
-                ~map(expl, plotOutcomeOverTime, y = .x) )
+all_yearPlots = map(responset,
+                ~map(explt, plotOutcomeOverTime, y = .x) )
 
 #printtheplots #allvaribalescanbeplotted #examples
   
-all_yearPlots$age[1:2]
-all_yearPlots$eatersPerMealNo[1:2]
-all_yearPlots$newKidsNo[1:2]
-all_yearPlots$cateringNo[1:2]
-all_yearPlots$mealsInInstitutionNo[1:2]
-all_yearPlots$weeklyCooks
-all_yearPlots$monthlyCooks
-all_yearPlots$tasksLunch
-all_yearPlots$parentalDialog
-all_yearPlots$qualitySatisfies
-all_yearPlots$trainingCompletedNo
-all_yearPlots$trainingStartedNo
-all_yearPlots$selfworth
-all_yearPlots$influenceHome
-all_yearPlots$moreIndependent
-all_yearPlots$dayToDaySkills
-all_yearPlots$dayToDaySkillsOrdinal
-all_yearPlots$lessIllOrdinal
+# all_yearPlots$age[1:2]
+# all_yearPlots$eatersPerMealNo[1:2]
+# all_yearPlots$newKidsNo[1:2]
+# all_yearPlots$cateringNo[1:2]
+# all_yearPlots$mealsInInstitutionNo[1:2]
+# all_yearPlots$weeklyCooks
+# all_yearPlots$monthlyCooks
+# all_yearPlots$tasksLunch
+# all_yearPlots$parentalDialog
+# all_yearPlots$qualitySatisfies
+# all_yearPlots$trainingCompletedNo
+# all_yearPlots$trainingStartedNo
+# all_yearPlots$selfworth
+# all_yearPlots$influenceHome
+# all_yearPlots$moreIndependent
+# all_yearPlots$dayToDaySkills
+# all_yearPlots$dayToDaySkillsOrdinal
+# all_yearPlots$lessIllOrdinal
 
 
 #plotforpresentation..explainsubsidyvalue
@@ -71,31 +81,26 @@ plotOutcomeOverTime("realTripsSubsidy", "tripsNo")
 ####plots we need for the paper 
 
 lessIll_Time<- all_yearPlots$lessIllOrdinal
-AppreciateHealthy_Time<- all_yearPlots$appreciateHealthyOrdinal 
-DietaryKnowledge_Time<- all_yearPlots$dietaryKnowledgeOrdinal 
+appreciateHealthy_Time<- all_yearPlots$appreciateHealthyOrdinal 
+dietaryKnowledge_Time<- all_yearPlots$dietaryKnowledgeOrdinal
 
-as.grob(lessIll_Time)
+saveRDS(lessIll_Time, "./ANALYSIS/GRAPHS/PAPER/lessIll_Time.Rds")
+saveRDS(AppreciateHealthy_Time, "./ANALYSIS/GRAPHS/PAPER/appreciateHealthy_time.Rds")
+saveRDS(DietaryKnowledge_Time, "./ANALYSIS/GRAPHS/PAPER/dietaryKnowledge_Time.Rds")
 
-summaryStatistics_HealthVariables <- plot_grid(lessIll_Time, AppreciateHealthy_Time, DietaryKnowledge_Time, 
-                                       ncol = 1, nrow = 3, align = "v",
-                                       labels = "AUTO",
-                                       hjust = -3, vjust = -1.5, label_fontface = "plain", label_size = 11)
+selfworth_Time <- all_yearPlots$selfworthOrdinal
+dayToDaySkills_Time <- all_yearPlots$dayToDaySkillsOrdinal
 
-saveRDS(, "./ANALYSIS/GRAPHS/PAPER GRAPHS/.Rds")
-
-selfworth_total <- all_yearPlots$selfworthOrdinal
-dayToDaySkills_total <- all_yearPlots$dayToDaySkillsOrdinal 
-
-plot_grid(selfworth_total, dayToDaySkills_total, 
-          ncol = 2, nrow = 1, align = "h",
-          labels = "AUTO",
-          label_x = 0, label_y = 0, hjust = -3, vjust = 
-            -1.5, label_fontface = "plain", label_size = 11)
-
-# ggarrange(selfworth_total, dayToDaySkills_total + rremove("x.text"), 
-#           labels = c("A", "B"),
-#           ncol = 2, nrow = 1)
+saveRDS(selfworth_Time, "./ANALYSIS/GRAPHS/PAPER/selfworth_Time.Rds")
+saveRDS(dayToDaySkills_Time.lm, "./ANALYSIS/GRAPHS/PAPER/dayToDaySkills_Time.Rds")
 
 
-saveRDS(, "./ANALYSIS/GRAPHS/PAPER GRAPHS/.Rds")
+
+
+
+
+
+
+
+
 

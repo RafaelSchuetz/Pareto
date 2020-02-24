@@ -8,14 +8,15 @@ library(dplyr)
 #createdataset
 
 HealthRelVar <- mergedData %>% 
-  select(lessIll, dietaryKnowledge, seasonalFoodstuff, organicFoodstuff, appreciateHealthy, tasksLunch, DGECriteriaNo)
+  dplyr::select(lessIll, dietaryKnowledge, seasonalFoodstuff, organicFoodstuff, appreciateHealthy, tasksLunch, 
+                lessIllOrdinal, dietaryKnowledgeOrdinal, seasonalFoodstuffOrdinal, appreciateHealthyOrdinal, tasksLunchOrdinal,DGECriteriaNo,)
 
 #setthevariables
 
-response= names(HealthRelVar)[1:6]
-expl= names(HealthRelVar)[7]
+response= names(HealthRelVar)[1:11]
+expl= names(HealthRelVar)[12]
 
-response = set_names(response)
+response = purrr::set_names(response)
 response
 
 expl = set_names(expl)
@@ -45,19 +46,19 @@ all_plots = map(response,
 
 all_plots$lessIll[1:2]
 all_plots$dietaryKnowledge[1:2]
-all_plots$seasonalFoodstuff[1:2]
-all_plots$organicFoodstuff[1:2]
 all_plots$appreciateHealthy[1:2]
-all_plots$tasksLunch[1:2]
+all_plots$lessIllOrdinal
+all_plots$dietaryKnowledgeOrdinal
+all_plots$appreciateHealthyOrdinal
 
 
 
 #againbutinpercentages #differentggplotfunction
 
-response= names(HealthRelVar)[1:6]
-expl= names(HealthRelVar)[7]
+response= names(HealthRelVar)[1:11]
+expl= names(HealthRelVar)[12]
 
-response = set_names(response)
+response = purrr::set_names(response)
 response
 
 expl = set_names(expl)
@@ -70,7 +71,7 @@ plotDGEOutcomeInPercent = function(x, y){
  #filter(HealthRelVar, !is.na(y)) %>%
   ggplot(HealthRelVar, aes_string(fill = y, order = y, x = x, y = y) ) +
     geom_col(position = position_stack(reverse = TRUE)) +
-    theme_bw()
+    theme_bw()  + theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())
   #+ scale_fill_discrete(na.translate=FALSE) 
 
 }
@@ -90,7 +91,11 @@ all_percentagePlots = map(response,
 
 all_percentagePlots$lessIll
 all_percentagePlots$dietaryKnowledge
-all_percentagePlots$seasonalFoodstuff
-all_percentagePlots$organicFoodstuff
 all_percentagePlots$appreciateHealthy
-all_percentagePlots$tasksLunch
+lessIll_DGE <- all_percentagePlots$lessIllOrdinal
+dietaryKnowledge_DGE <- all_percentagePlots$dietaryKnowledgeOrdinal
+appreciateHealthy_DGE <- all_percentagePlots$appreciateHealthyOrdinal
+
+saveRDS(lessIll_DGE, "./ANALYSIS/GRAPHS/PAPER/lessIll_DGE.Rds")
+saveRDS(dietaryKnowledge_DGE, "./ANALYSIS/GRAPHS/PAPER/dietaryKnowledge_DGE.Rds")
+saveRDS(appreciateHealthy_DGE, "./ANALYSIS/GRAPHS/PAPER/appreciateHealthy_DGE.Rds")

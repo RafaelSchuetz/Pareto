@@ -149,38 +149,7 @@ numberFactorsTrips <- fa.parallel(correlationMatrixTrips$correlations, fm = 'ml'
 factorAnalysisTrips <- fa(correlationMatrixTrips$correlations, nfactors = 4, scores="tenBerge", n.obs = 200, rotate = "varimax", fm = "ml")
 
 
+# factor analysis assuming variables are metric, standardized
 
 
-#factorAnalysisMeals2 <- fa.poly(ordinalVariablesMeals, nfactors = 10)
-# #weitere R packages installieren/laden
-# library(psych)
-# #install.packages('psy')
-# library(psy)
-# #install.packages('nFactors')
-# library(nFactors)
-# 
-# #alle ausgwählten Variablen beschreiben
-# #bei allen min und max anschauen
-# #schauen ob es outliers gibt
-# #und ob ich tatsächlich nur kategoriale Variablen ausgewählt habe
-# describe(factor)
-# 
-# 
-# #correlation mit ordinalen variablen
-# 
-# 
-# 
-# #Bartlett-Test
-# #prüft ob die Variablen miteinander korrelieren
-# #wenn der Test signifikant, dann wissen wir ob die variablen miteinander korrelieren
-# cortest.bartlett(factor)
-# 
-# #umwandeln der variablen in numeric
-# factor <- data.frame(lapply(factor, function(factor_vector) as.numeric(as.character(factor_vector))))
-# 
-# #mochmal bartlett-test
-# cortest.bartlett(factor)
-# 
-# cor(factor, y = NULL, use = 'pairwise.complete.obs', method = 'pearson')
-# 
 
