@@ -32,7 +32,7 @@ dfcEF <- dfcEF %>%
 
 #id als factor definieren
 dfcEF$id <- as.factor(dfcEF$id)
-dfcEF$year <- as.numeric(dfcEF$year)
+dfcEF$year <- as.factor(dfcEF$year)
 dfcEF$treatEF <- as.numeric(dfcEF$treatEF)
 
 ### DID Regression ####
@@ -44,10 +44,21 @@ dfcEF$treatEF <- as.numeric(dfcEF$treatEF)
 
 lmdid <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id + dfcEF$year + (dfcEF$year*dfcEF$treatEF))
 
-lm_did_daytodayskills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$year + dfcEF$treat_2011 + dfcEF$treat_2012 +
+lm_did_daytodayskills <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$dummy_2012
+                            + dfcEF$dummy_2013
+                            + dfcEF$dummy_2014
+                            + dfcEF$dummy_2015
+                            + dfcEF$dummy_2016
+                            + dfcEF$dummy_2017
+                            + dfcEF$dummy_2018
+                            + dfcEF$treat_2012 +
                          dfcEF$treat_2013 + dfcEF$treat_2014 + dfcEF$treat_2015 + dfcEF$treat_2016 + 
                          dfcEF$treat_2017 + dfcEF$treat_2018)
+
+summary(lm_did_daytodayskills, cluster = c('id'))
 summary(lm_did_daytodayskills)
+
+summary(lm.object, cluster=c("variable")) 
 
 summary(lmdid)
 
@@ -89,7 +100,7 @@ table_did_daytodayskills <- stargazer(lm_did_daytodayskills,
                                          'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
                                          'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
                                          'id687', 'year2012', 'year2013', 'year2014', 'year2015', 'year2016', 'year2017',
-                                         'year2018'),
+                                         'year2018', 'year2', 'year3', 'year4', 'year5', 'year6', 'year7', 'year8'),
                                  add.lines = list(c('ID fixed effects', 'Yes'),
                                                   c('Year fixed effects', 'Yes')),
                                  type = 'text',
