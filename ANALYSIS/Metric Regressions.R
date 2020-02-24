@@ -134,4 +134,6 @@ summary(dayToDaySkills_scaled.lm)
 # dayToDaySkills_IM_scaled.lm <- lm(dayToDaySkills_scaled ~ realSubsidy_scaled, data = mergedDataImputeMode)
 # summary(dayToDaySkills_IM_scaled.lm)
 # 
-
+library(robustbase)
+lessIll_more.lm <- lmrob(lessIll_scaled ~ DGECriteriaNo_scaled, state, data = mergedData)
+summary(lessIll_more.lm)
