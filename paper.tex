@@ -189,24 +189,32 @@ Unless otherwise specified, we consider all variables to be metric, even if they
 
 \section{Summary Statistics}
 
+% <<results='asis', echo=FALSE>>=
+% tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
+% colnames(tableCyclicDisp) <- c("Lead in years", "All", "p-value", "Non-Durables", "p-value", "Durables", "p-value")
+% tableCyclicDisp <- xtable(tableCyclicDisp, caption = "Cyclicality of productivity dispersion", digits = c(0, 0, 3, 2, 3, 2, 3, 2))
+% print(tableCyclicDisp, include.rownames = FALSE)
+% @
+
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Feb 24 10:40:37 2020
+% Mon Feb 24 11:03:13 2020
 \begin{table}[ht]
 \centering
-\begin{tabular}{rrrrrr}
+\begin{tabular}{mmmmm}
   \hline
- & year & Lunch\_KidsNo & trips\_KidsNo & Lunch\_OrganisationsNo & Trips\_OrganisationNo \\ 
+Year & Beneficiaries, Meals & Beneficiaries, Trips & Organizations, Meals & Organizations, Trips \\ 
   \hline
-1 & 2011.00 & 3748.00 &  &  52 &  \\ 
-  2 & 2012.00 & 3556.00 & 2803.00 &  51 &  44 \\ 
-  3 & 2013.00 & 4015.00 & 2823.00 &  55 &  42 \\ 
-  4 & 2014.00 & 4685.00 & 2752.00 &  55 &  43 \\ 
-  5 & 2015.00 & 5857.00 & 3823.00 &  55 &  49 \\ 
-  6 & 2016.00 & 3075.00 & 3819.00 &  59 &  48 \\ 
-  7 & 2017.00 & 4895.00 & 4150.00 &  64 &  48 \\ 
-  8 & 2018.00 & 5102.50 & 6911.00 &  68 &  49 \\ 
+2011 & 3748.0 &  & 52 &  \\ 
+  2012 & 3556.0 & 2803.0 & 51 & 44 \\ 
+  2013 & 4015.0 & 2823.0 & 55 & 42 \\ 
+  2014 & 4685.0 & 2752.0 & 55 & 43 \\ 
+  2015 & 5857.0 & 3823.0 & 55 & 49 \\ 
+  2016 & 3075.0 & 3819.0 & 59 & 48 \\ 
+  2017 & 4895.0 & 4150.0 & 64 & 48 \\ 
+  2018 & 5102.5 & 6911.0 & 68 & 49 \\ 
    \hline
 \end{tabular}
+\caption{Summary Statistics} 
 \end{table}
 
 % look up official names of price indices in English 
@@ -316,7 +324,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mo, Feb 24, 2020 - 10:40:38
+% Date and time: Mo, Feb 24, 2020 - 11:03:14
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
