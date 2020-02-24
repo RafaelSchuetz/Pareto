@@ -97,3 +97,8 @@ TripsOrganisationsNumber <- TripsOrgaData%>%
 #join 
 organisationsbeneficaries <- organisations_beneficiaries %>% 
   full_join(TripsOrganisationsNumber) 
+
+organisationsbeneficaries[1,3] <- NA
+
+fundamental_dynamics = saveRDS(organisationsbeneficaries,"./ANALYSIS/Tables/fundamental_dynamics.Rds")
+
