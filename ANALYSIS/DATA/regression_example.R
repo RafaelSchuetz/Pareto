@@ -14,7 +14,7 @@ rm(list = ls())
 
 # install necessary packages
 
-install.packages('devtools')
+#install.packages('devtools')
 library(devtools) # load devtools package
 
 devtools::install_github("leifeld/texreg") # get developer versions of packages directly from e.g. github, in this case: https://github.com/leifeld/texreg
@@ -212,16 +212,16 @@ rm(list = ls())
 
 # Install packages 
 # You only have to do this once; if you've already installed it, simply jump to the next step
-install.packages('tidyverse') 
-install.packages('rdrobust')
-install.packages('rdd')
-install.packages('haven') 
-install.packages('labelled')
-install.packages('ggplot2')
-install.packages('ggpubr')
-install.packages('stargazer')
-install.packages('devtools')
-install.packages('pander')
+#install.packages('tidyverse') 
+#install.packages('rdrobust')
+#install.packages('rdd')
+#install.packages('haven') 
+#install.packages('labelled')
+#install.packages('ggplot2')
+#install.packages('ggpubr')
+#install.packages('stargazer')
+#install.packages('devtools')
+#install.packages('pander')
 
 # NOTE: for the installation of 'texreg' see the Rscript 'texreg_rdrobust_extract_function_LV.R'
 
