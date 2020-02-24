@@ -2,6 +2,58 @@ library(tidyimpute)
 library(imputeMissings)
 library(zoo)
 
+outcomesMeals <- c("participateMore",
+                   "tasksLunch",
+                   "monthlyCooks",
+                   "weeklyCooks",
+                   "shoppers",
+                   "ownIdeas",
+                   "stayLonger",
+                   "easyDishes",
+                   "dietaryKnowledge",
+                   "appreciateHealthy",
+                   "foodCulture",
+                   "influenceHome",
+                   "cookAtHome",
+                   "askRecipes",
+                   "moreConcentrated",
+                   "moreBalanced",
+                   "lessIll",
+                   "dayToDaySkills",
+                   "moreIndependent",
+                   "betterTeamwork",
+                   "betterReading",
+                   "betterNumbers",
+                   "betterGrades",
+                   "moreRegularSchoolVisits",
+                   "selfworth",
+                   "moreOpen",
+                   "moreConfidence",
+                   "addressProblems",
+                   "proud")
+
+outcomesTrips <- c("tripsSuggestions",
+                   "tripsDecisions",
+                   "tripsOrganization",
+                   "tripsCostCalculation",
+                   "tripsBudget",
+                   "tripsMoney",
+                   "tripsReview",
+                   "tripsPublicTransport",
+                   "tripsMobility",
+                   "tripsNewPlaces",
+                   "tripsNewCommunities",
+                   "tripsNewIdeas",
+                   "tripsAdditionalActivities",
+                   "tripsSpecificSkills",
+                   "tripsDayToDaySkills",
+                   "tripsSuccess",
+                   "tripsSelfEfficacy",
+                   "tripsSelfworth", 
+                   "tripsSocialSkills",
+                   "tripsFrustrationTolerance")
+
+
 # impute missing values in all variables where there are fewer missing values than in DGECriteriaNo
 
 ## impute mode

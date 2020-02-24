@@ -189,24 +189,32 @@ Unless otherwise specified, we consider all variables to be metric, even if they
 
 \section{Summary Statistics}
 
+% <<results='asis', echo=FALSE>>=
+% tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
+% colnames(tableCyclicDisp) <- c("Lead in years", "All", "p-value", "Non-Durables", "p-value", "Durables", "p-value")
+% tableCyclicDisp <- xtable(tableCyclicDisp, caption = "Cyclicality of productivity dispersion", digits = c(0, 0, 3, 2, 3, 2, 3, 2))
+% print(tableCyclicDisp, include.rownames = FALSE)
+% @
+
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Feb 24 10:40:37 2020
+% Mon Feb 24 13:15:38 2020
 \begin{table}[ht]
 \centering
-\begin{tabular}{rrrrrr}
+\begin{tabular}{mmmmm}
   \hline
- & year & Lunch\_KidsNo & trips\_KidsNo & Lunch\_OrganisationsNo & Trips\_OrganisationNo \\ 
+Year & Beneficiaries, Meals & Beneficiaries, Trips & Organizations, Meals & Organizations, Trips \\ 
   \hline
-1 & 2011.00 & 3748.00 &  &  52 &  \\ 
-  2 & 2012.00 & 3556.00 & 2803.00 &  51 &  44 \\ 
-  3 & 2013.00 & 4015.00 & 2823.00 &  55 &  42 \\ 
-  4 & 2014.00 & 4685.00 & 2752.00 &  55 &  43 \\ 
-  5 & 2015.00 & 5857.00 & 3823.00 &  55 &  49 \\ 
-  6 & 2016.00 & 3075.00 & 3819.00 &  59 &  48 \\ 
-  7 & 2017.00 & 4895.00 & 4150.00 &  64 &  48 \\ 
-  8 & 2018.00 & 5102.50 & 6911.00 &  68 &  49 \\ 
+2011 & 3748.0 &  & 52 &  \\ 
+  2012 & 3556.0 & 2803.0 & 51 & 44 \\ 
+  2013 & 4015.0 & 2823.0 & 55 & 42 \\ 
+  2014 & 4685.0 & 2752.0 & 55 & 43 \\ 
+  2015 & 5857.0 & 3823.0 & 55 & 49 \\ 
+  2016 & 3075.0 & 3819.0 & 59 & 48 \\ 
+  2017 & 4895.0 & 4150.0 & 64 & 48 \\ 
+  2018 & 5102.5 & 6911.0 & 68 & 49 \\ 
    \hline
 \end{tabular}
+\caption{Summary Statistics} 
 \end{table}
 
 % look up official names of price indices in English 
@@ -316,7 +324,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mo, Feb 24, 2020 - 10:40:38
+% Date and time: Mo, Feb 24, 2020 - 13:15:39
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -349,7 +357,82 @@ F Statistic & \multicolumn{1}{c}{11.417$^{***}$ (df = 1; 428)} & \multicolumn{1}
 \end{tabular} 
 \end{sidewaystable} 
 
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Feb 24 13:15:39 2020
+\begin{table}[ht]
+\centering
+\begin{tabular}{rllr}
+  \hline
+ & Variable, Meals & Mapping, Meals & Information, Meals \\ 
+  \hline
+1 & participateMore & participateMore & 1.00 \\ 
+  2 & tasksLunch & tasksLunch & 1.00 \\ 
+  3 & ownIdeas & ownIdeas & 1.00 \\ 
+  4 & stayLonger & stayLonger & 1.00 \\ 
+  5 & dietaryKnowledge & dietaryKnowledge & 1.00 \\ 
+  6 & appreciateHealthy & appreciateHealthy & 1.00 \\ 
+  7 & foodCulture & foodCulture & 1.00 \\ 
+  8 & lessIll & lessIll & 1.00 \\ 
+  9 & betterTeamwork & betterTeamwork & 1.00 \\ 
+  10 & moreRegularSchoolVisits & moreRegularSchoolVisits & 1.00 \\ 
+  11 & addressProblems & addressProblems & 1.00 \\ 
+  12 & reduced\_var\_1 & moreConcentrated & 0.66 \\ 
+  13 & reduced\_var\_1 & moreBalanced & 0.66 \\ 
+  14 & reduced\_var\_2 & monthlyCooks & 0.42 \\ 
+  15 & reduced\_var\_2 & weeklyCooks & 0.42 \\ 
+  16 & reduced\_var\_2 & shoppers & 0.42 \\ 
+  17 & reduced\_var\_2 & easyDishes & 0.42 \\ 
+  18 & reduced\_var\_3 & dayToDaySkills & 0.43 \\ 
+  19 & reduced\_var\_3 & moreIndependent & 0.43 \\ 
+  20 & reduced\_var\_3 & selfworth & 0.43 \\ 
+  21 & reduced\_var\_3 & moreOpen & 0.43 \\ 
+  22 & reduced\_var\_3 & moreConfidence & 0.43 \\ 
+  23 & reduced\_var\_3 & proud & 0.43 \\ 
+  24 & reduced\_var\_4 & betterReading & 0.53 \\ 
+  25 & reduced\_var\_4 & betterNumbers & 0.53 \\ 
+  26 & reduced\_var\_4 & betterGrades & 0.53 \\ 
+  27 & reduced\_var\_5 & influenceHome & 0.41 \\ 
+  28 & reduced\_var\_5 & cookAtHome & 0.41 \\ 
+  29 & reduced\_var\_5 & askRecipes & 0.41 \\ 
+   \hline
+\end{tabular}
+\caption{Partition of outcomes, Meals} 
+\end{table}
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Feb 24 13:15:39 2020
+\begin{table}[ht]
+\centering
+\begin{tabular}{rllr}
+  \hline
+ & Variable, Trips & Mapping, Trips & Information, Trips \\ 
+  \hline
+1 & tripsSuggestions & tripsSuggestions & 1.00 \\ 
+  2 & tripsDecisions & tripsDecisions & 1.00 \\ 
+  3 & tripsOrganization & tripsOrganization & 1.00 \\ 
+  4 & tripsCostCalculation & tripsCostCalculation & 1.00 \\ 
+  5 & tripsBudget & tripsBudget & 1.00 \\ 
+  6 & tripsMoney & tripsMoney & 1.00 \\ 
+  7 & tripsReview & tripsReview & 1.00 \\ 
+  8 & tripsPublicTransport & tripsPublicTransport & 1.00 \\ 
+  9 & tripsMobility & tripsMobility & 1.00 \\ 
+  10 & tripsAdditionalActivities & tripsAdditionalActivities & 1.00 \\ 
+  11 & tripsSelfworth & tripsSelfworth & 1.00 \\ 
+  12 & tripsFrustrationTolerance & tripsFrustrationTolerance & 1.00 \\ 
+  13 & reduced\_var\_1 & tripsSuccess & 0.68 \\ 
+  14 & reduced\_var\_1 & tripsSelfEfficacy & 0.68 \\ 
+  15 & reduced\_var\_2 & tripsNewPlaces & 0.60 \\ 
+  16 & reduced\_var\_2 & tripsNewCommunities & 0.60 \\ 
+  17 & reduced\_var\_2 & tripsNewIdeas & 0.60 \\ 
+  18 & reduced\_var\_2 & tripsSocialSkills & 0.60 \\ 
+  19 & reduced\_var\_3 & tripsSpecificSkills & 0.46 \\ 
+  20 & reduced\_var\_3 & tripsDayToDaySkills & 0.46 \\ 
+   \hline
+\end{tabular}
+\caption{Partition of outcomes, Trips} 
+\end{table}
+\begin{kframe}
 
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
 
 % table1_selfworth <- stargazer(lm1_selfworth,
 %                     lm2_selfworth,
