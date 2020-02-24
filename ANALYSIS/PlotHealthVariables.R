@@ -92,6 +92,10 @@ all_percentagePlots = map(response,
 all_percentagePlots$lessIll
 all_percentagePlots$dietaryKnowledge
 all_percentagePlots$appreciateHealthy
-all_percentagePlots$lessIllOrdinal
-all_percentagePlots$dietaryKnowledgeOrdinal
-all_percentagePlots$appreciateHealthyOrdinal
+lessIll_DGE <- all_percentagePlots$lessIllOrdinal
+dietaryKnowledge_DGE <- all_percentagePlots$dietaryKnowledgeOrdinal
+appreciateHealthy_DGE <- all_percentagePlots$appreciateHealthyOrdinal
+
+saveRDS(lessIll_DGE, "./ANALYSIS/GRAPHS/PAPER/lessIll_DGE.Rds")
+saveRDS(dietaryKnowledge_DGE, "./ANALYSIS/GRAPHS/PAPER/dietaryKnowledge_DGE.Rds")
+saveRDS(appreciateHealthy_DGE, "./ANALYSIS/GRAPHS/PAPER/appreciateHealthy_DGE.Rds")
