@@ -55,7 +55,7 @@ summary(lessIll_DGE.lm)
 saveRDS(lessIll_DGE.lm,"./ANALYSIS/Tables/lessIll_DGE.lm.Rds")
 
 lessIll_DGE_scaled.lm <- lm_robust(lessIll_scaled ~ DGECriteriaNo_scaled, data = mergedData)
-summary(lessIll_DGE.lm) #standardized
+summary(lessIll_DGE_scaled.lm) #standardized
 
 saveRDS(lessIll_DGE_scaled.lm,"./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
 
