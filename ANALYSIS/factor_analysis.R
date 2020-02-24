@@ -11,54 +11,15 @@
 library(tidyverse)
 library(polycor)
 library(psych)
+library(lavaan)
 
 
-ordinalVariablesMeals <- mergedData %>% 
-  dplyr::select(participateMore, 
-         tasksLunch,
-         monthlyCooks,
-         weeklyCooks,
-         shoppers,
-         ownIdeas,
-         stayLonger,
-         easyDishes,
-         dietaryKnowledge,
-         appreciateHealthy,
-         foodCulture,
-         influenceHome,
-         cookAtHome,
-         askRecipes,
-         moreConcentrated,
-         moreBalanced,
-         lessIll,
-         dayToDaySkills,
-         moreIndependent,
-         betterTeamwork,
-         betterReading,
-         betterNumbers,
-         betterGrades,
-         moreRegularSchoolVisits,
-         selfworth,
-         moreOpen,
-         moreConfidence,
-         addressProblems,
-         proud)
-         # success, # collected only for 2018
-         # enoughFood,
-         # enoughStaffLunch,
-         # enoughStaffActivities,
-         # qualitySatisfies,
-         # regionalProducts,
-         # cultureReligion,
-         # unsweetenedDrinks,
-         # noSchoolLunch,
-         # expensiveSchoolLunch,
-         # organicFoodstuff,
-         # seasonalFoodstuff,
-         # parentalDialog,
-         # friendlyEnvironment,
-         # menu,
-         # menuCycle) 
+ordinalVariablesMeals <- mergedDataImputeInterpolation %>% 
+  dplyr::select(-generalOutcomes_scaled) %>% 
+  dplyr::select(one_of(alwaysRecordedVariables)) %>% 
+  dplyr::select(tidyselect::contains('scaled') & !tidyselect::contains('trips')) %>%
+  drop_na
+         
 
 # with ML=TRUE, hetcor() takes very long to compute
 # https://john-uebersax.com/stat/tetra.htm
@@ -84,11 +45,18 @@ highCorrelationsMeals <- correlationMatrixMealsLong %>%  arrange(desc(correlatio
 # use fa.parallel to estimate optimal number of factors
 # https://www.promptcloud.com/blog/exploratory-factor-analysis-in-r/
 
-numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300)
+numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 235)
 
 # fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  9
 
-factorAnalysisMeals <- fa(correlationMatrixMeals$correlations, nfactors = 9, scores="tenBerge", n.obs = 300, rotate = "varimax", fm = "ml")
+factorAnalysisMeals <- fa(correlationMatrixMeals$correlations, nfactors = 9, scores = "regression", n.obs = 300, rotate = "varimax", fm = "ml")
+
+factorAnalysisMeals2 <- fa(ordinalVariablesMeals, nfactors = 2, scores="regression", n.obs = 48, rotate = "varimax", fm = "ml")
+
+dfFATest <- cbind.data.frame(factorAnalysisMeals2$scores, mergedData$lessIll_scaled, mergedData$realSubsidy)
+
+lmFAtest <- lm(mergedData$lessIll_scaled ~ mergedData$realSubsidy + ML1 + ML2, dfFATest)
+
 loadings(factorAnalysisMeals)
 # if you do not use fm = "ml", these warnings appear: 
 # Warnmeldungen:
