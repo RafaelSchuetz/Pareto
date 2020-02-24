@@ -7,6 +7,13 @@ library(dplyr)
 library(stargazer)
 
 dfcEF$treat_2011 <- NULL
+dfcEF$treat_2012 <- NULL
+dfcEF$treat_2013 <- NULL
+dfcEF$treat_2014 <- NULL
+dfcEF$treat_2015 <- NULL
+dfcEF$treat_2016 <- NULL
+dfcEF$treat_2017 <- NULL
+dfcEF$treat_2018 <- NULL
 
 
 dfcEF <- dfcEF %>% 
@@ -101,7 +108,7 @@ texreg(lmdid2)
 
 ### Regression Results Table ####
 
-table_did_daytodayskills <- stargazer(lm_did_daytodayskills1,
+table_did_daytodayskills <- stargazer(lmdid3,
                                  omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
                                          'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
                                          'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
@@ -109,11 +116,17 @@ table_did_daytodayskills <- stargazer(lm_did_daytodayskills1,
                                          'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
                                          'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
                                          'id687', 'year2012', 'year2013', 'year2014', 'year2015', 'year2016', 'year2017',
-                                         'year2018', 'year2', 'year3', 'year4', 'year5', 'year6', 'year7', 'year8'),
+                                         'year2018', 'year2', 'year3', 'year4', 'year5', 'year6', 'year7', 'year8',
+                                         'dummy_2012',
+                                         'dummy_2013',
+                                         'dummy_2014',
+                                         'dummy_2015',
+                                         'dummy_2016',
+                                         'dummy_2017',
+                                         'dummy_2018'),
                                  add.lines = list(c('ID fixed effects', 'Yes'),
                                                   c('Year fixed effects', 'Yes')),
-                                 type = 'text',
-                                 out = 'did_regression_results_variante2.txt')
+                                 type = 'text')
 
 
 corr.test(dfcEF$dummy_2018, dfcEF$treatEF, use = 'pairwise', method = 'pearson', ci = TRUE)
@@ -121,6 +134,40 @@ corr.test(dfcEF$dummy_2018, dfcEF$treatEF, use = 'pairwise', method = 'pearson',
 cor(dfcEF$dummy_2018, dfcEF$treatEF, use = 'everything', method = 'pearson')
 
 alias(lm_did_daytodayskills)
+
+library(RCurl)
+library(gdata) 
+library(zoo)
+
+lmdid3 <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$year)
+
+### clustern #####
+
+library(robustbase)
+library(tidyverse)
+library(sandwich)
+library(lmtest)
+library(modelr)
+library(broom)
+
+lmdid3 <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$year)
+
+lmdid3 <- coeftest(lmdid3, vcov. = vcovHC(lmdid3, type = 'HC1'))
+
+summary(lmdid3)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
