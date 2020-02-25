@@ -13,6 +13,8 @@ library(stargazer)
 
 
 
+### Zeit-variables Treatment ### ----------------------------------------
+
 ### Variante 1: Regression für DiD-Estimation ###
 
 ### a) dayToDaySkills
@@ -63,7 +65,7 @@ saveRDS(lmdid_dayToDaySkills, file = "./ANALYSIS/Tables/lmdid_dayToDaySkills.Rds
 
 ### b) Selfworth:
 
-lmdid_selfworth <- lm(dfcEF$selfworth_scaled ~ dfcEF$treatEF + dfcEF$id + dfcEF$year)
+lmdid_selfworth <- lm(dfcEF$selfworth_scaled ~ dfcEF$treatEF + dfcEF$id + dfcEF$year + dfcEF$newKidsNo)
 summary(lmdid_selfworth)
 
 # Berechnung von robusten Standardfehlern, indem eine Heteroskedastität-konsistente Varianz-Kovarianz-Matrix
@@ -84,10 +86,11 @@ table_did_selfworth <- stargazer(lmdid_selfworth,
                                                'year2018'),
                                       add.lines = list(c('ID fixed effects', 'Yes'),
                                                        c('Year fixed effects', 'Yes')),
-                                      type = 'text')
+                                      type = 'text',
+                                 out = 'lmdid_selfworth_with_controls.txt')
 
 # Regressionstables als RDS speichern
-saveRDS(lmdid_selfworth, file = "./ANALYSIS/Tables/lmdid_selfworth.Rds")
+saveRDS(lmdid_selfworth, file = "./ANALYSIS/Tables/lmdid_selfworth.rds")
 
 
 
@@ -198,23 +201,20 @@ saveRDS(lmdid2_selfworth, file = "./ANALYSIS/Tables/lmdid2_selfworth.Rds")
 
 
 
-### Beispiel für die Erstellung robuster Standardfehler clustern ####
+### Einmal Treatment, immer Treatment ------------------------------------
 
-# lmdid3 <- lm(dfcEF$dayToDaySkills ~ dfcEF$treatEF + dfcEF$id + dfcEF$year)
-# lmdid3 <- coeftest(lmdid3, vcov. = vcovHC(lmdid3, type = 'HC1'))
-# summary(lmdid3)
+dfcEF2 <- dfcEF
 
+# Neue Definition der Dummy-Variable für das Treatment
+# Sobald eine Einrichtung i das Treatment erhält, ist der Treatment-Dummy für die folgenden Perioden 
+# immer gleich 1 (= Einmal Treatment, immer Treatment)
 
+# Identifizieren aller Einrichtungen, bei denen das Treatment-Status von Treat = 1 auf Treat = 0 wechselt
 
+dfcEF_check <- dfcEF2
 
-
-
-
-
-
-
-
-
+dfcEF_check <- dfcEF_check %>% 
+  dplyr :: select(id, treatEF)
 
 
 
