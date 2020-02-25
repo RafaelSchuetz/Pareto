@@ -32,6 +32,11 @@ weight <- function(expr) {
   }
 }
 
+scale_this <- function(x){
+  (x - mean(x, na.rm=TRUE)) / sd(x, na.rm=TRUE)
+}
+
+weight(mergedData$DGECriteriaNo)
 # enquo(mergedData$ownIdeas)
 # 
 # weight(mergedData$ownIdeas)
@@ -39,7 +44,14 @@ weight <- function(expr) {
 # testWeighted <- weightOutcome(lessIll, mergedData, eatersPerMealNo)
 
 mergedData <- mergedData %>% 
-  mutate_if(pretendsToBeMetric, list(scaled = scale, ordered = as.ordered, weighted = weight))
+  mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weight))
+
+# mutate scaled, ordinal, and weighted variants of DGECriteriaNo
+# call it Scaled, Ordered, and Weighted to differentiate from outcomes
+
+mergedData <- mergedData %>% 
+  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
+
 
 # pretendsToBeMetric(mergedData$eatersPerMealNo)
 # 
