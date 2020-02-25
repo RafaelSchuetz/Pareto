@@ -81,7 +81,7 @@
 % models with robust standard errors texreg
 % https://github.com/DeclareDesign/estimatr/issues/316
 
-\documentclass[12pt, a4paper]{article}\usepackage[]{graphicx}\usepackage[]{color}
+\documentclass[12pt, a4paper, titlepage]{article}\usepackage[]{graphicx}\usepackage[]{color}
 % maxwidth is the original width if it is less than linewidth
 % otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -144,6 +144,14 @@
 \usepackage{mathtools}
 \usepackage[onehalfspacing]{setspace}
 \usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
+<<<<<<< HEAD
+=======
+
+% 1.5 spacing in Word is about this in LaTeX
+% https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
+
+\linespread{1.25}
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 
 \addbibresource{references.bib}
 
@@ -151,15 +159,46 @@
 
 
 
+
+% multiple authors
+% https://tex.stackexchange.com/questions/4805/whats-the-correct-use-of-author-when-multiple-authors
+
 \title{Effects of CHILDREN's programs}
+<<<<<<< HEAD
 \author{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz (11574909), Yannick Zurl}
+=======
+\author{
+Laura Huber\\
+\texttt{11111111}
+\and
+Laura Jepsen\\
+\texttt{11111111}
+\and
+Jonathan Kirschner\\
+\texttt{11724530}
+\and
+Rafael Schütz\\
+\texttt{11574909} 
+\and 
+Yannick Zurl\\
+\texttt{11111111}
+\and
+Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
+\and
+Ludwig-Maximilians-Universität Munich
+}
+
+
+% Winter Term 2019/20\\
+
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \date{27th February 2020}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
-\begin{titlepage}
+% \begin{titlepage}
 \maketitle
-\end{titlepage}
+% \end{titlepage}
 
 \tableofcontents
 \listoftables
@@ -169,10 +208,21 @@
 abstract on separate page
 100 - 150 words
 \end{abstract}
+<<<<<<< HEAD
 
 Examples\\
+=======
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 
-Equation with\\
+\section{Formal requirements}
+all important information on title page, maybe use template\\
+always name sources of tables and graphs\\
+have to cite data sets\\
+
+
+\section{Examples}
+
+Equation with double index\\
 
 \begin{equation}
 \label{ModelProdu}
@@ -300,7 +350,11 @@ How do children benefit from visiting social institutions that CHILDREN supports
 \section{Summary Statistics}
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Wed Feb 26 00:00:05 2020
+=======
+% Tue Feb 25 23:58:46 2020
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \begin{table}[ht]
 \centering
 \begin{tabular}{mmmmm}
@@ -432,16 +486,43 @@ Table 3: The first two columns are simple OLS models, in column 3 and 4 outliers
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
+
+\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): cannot open compressed file './ANALYSIS/Tables/Expand\_LessIll\_IM\_scaled.Rds', probable reason 'No such file or directory'}}
+
 <<<<<<< HEAD
+\begin{kframe}
+
+=======
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): cannot open the connection}}\end{kframe}
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c c c }
+\hline
+ & LessIll & DietaryKnowledge & AppreciateHealthy & LessIll & DietaryKnowledge & AppreciateHealthy \\
+\hline
+(Intercept)         & $0.02$       & $0.02$   & $-0.03$      & $0.09$       & $0.02$     & $0.02$       \\
+                    & $(0.08)$     & $(0.07)$ & $(0.07)$     & $(0.07)$     & $(0.06)$   & $(0.06)$     \\
+DGECriteriaNoScaled & $0.33^{***}$ & $0.11$   & $0.27^{***}$ & $0.25^{***}$ & $0.12^{*}$ & $0.25^{***}$ \\
+                    & $(0.08)$     & $(0.07)$ & $(0.07)$     & $(0.07)$     & $(0.06)$   & $(0.06)$     \\
+\hline
+R$^2$               & 0.12         & 0.01     & 0.06         & 0.07         & 0.02       & 0.06         \\
+Adj. R$^2$          & 0.11         & 0.01     & 0.06         & 0.07         & 0.01       & 0.06         \\
+Num. obs.           & 121          & 214      & 213          & 177          & 275        & 274          \\
+RMSE                & 0.91         & 0.98     & 1.02         & 0.94         & 0.96       & 1.01         \\
+\hline
+\multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Health Outcome Regressions}
+\label{table:coefficients}
+\end{center}
+\end{table}
 
 
 \begin{kframe}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:1:1: Unerwartete(s) '>'\\\#\# 1: >\\\#\#\ \ \ \  \textasciicircum{}}}\end{kframe}
-
-\begin{kframe}
-
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 
 {\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): kann komprimierte Datei './ANALYSIS/Tables/selfworthTrips\_scaled.lm.Rds' nicht öffnen. Grund evtl. 'No such file or directory'}}
 
@@ -457,6 +538,8 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}
 
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in "{}list"{} \%in\% class(l)[1]: Objekt 'ssI' nicht gefunden}}\end{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in l[[i]]: subscript out of bounds}}\end{kframe}
 
 
 
@@ -505,7 +588,11 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Mi, Feb 26, 2020 - 00:00:10
+=======
+% Date and time: Tue, Feb 25, 2020 - 11:58:54 PM
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -562,7 +649,11 @@ QUOTES FROM PAPER, describe method
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Wed Feb 26 00:00:10 2020
+=======
+% Tue Feb 25 23:58:54 2020
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -603,7 +694,11 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \caption{Partition of outcomes, Meals} 
 \end{table}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Wed Feb 26 00:00:10 2020
+=======
+% Tue Feb 25 23:58:54 2020
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -636,8 +731,13 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \end{table}
 \begin{kframe}
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): invalid 'digits' argument}}\end{kframe}
 
 \{Ehrenwörtliche Erklärung aller Teilnehmer}
 
+<<<<<<< HEAD
+\{Ehrenwörtliche Erklärung aller Teilnehmer}
+
+=======
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \end{document}

@@ -81,7 +81,7 @@
 % models with robust standard errors texreg
 % https://github.com/DeclareDesign/estimatr/issues/316
 
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, a4paper, titlepage]{article}
 \usepackage{lscape}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
@@ -94,6 +94,11 @@
 \usepackage{mathtools}
 \usepackage[onehalfspacing]{setspace}
 \usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
+
+% 1.5 spacing in Word is about this in LaTeX
+% https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
+
+\linespread{1.25}
 
 \addbibresource{references.bib}
 
@@ -113,15 +118,42 @@ opts_chunk$set(fig.align = "center",
                 out.width = "0.8\\textwidth")
 @
 
+
+% multiple authors
+% https://tex.stackexchange.com/questions/4805/whats-the-correct-use-of-author-when-multiple-authors
+
 \title{Effects of CHILDREN's programs}
-\author{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz (11574909), Yannick Zurl}
+\author{
+Laura Huber\\
+\texttt{11111111}
+\and
+Laura Jepsen\\
+\texttt{11111111}
+\and
+Jonathan Kirschner\\
+\texttt{11724530}
+\and
+Rafael Schütz\\
+\texttt{11574909} 
+\and 
+Yannick Zurl\\
+\texttt{11111111}
+\and
+Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
+\and
+Ludwig-Maximilians-Universität Munich
+}
+
+
+% Winter Term 2019/20\\
+
 \date{27th February 2020}
 
 \begin{document}
 
-\begin{titlepage}
+% \begin{titlepage}
 \maketitle
-\end{titlepage}
+% \end{titlepage}
 
 \tableofcontents
 \listoftables
@@ -132,9 +164,15 @@ abstract on separate page
 100 - 150 words
 \end{abstract}
 
-Examples\\
+\section{Formal requirements}
+all important information on title page, maybe use template\\
+always name sources of tables and graphs\\
+have to cite data sets\\
 
-Equation with\\
+
+\section{Examples}
+
+Equation with double index\\
 
 \begin{equation}
 \label{ModelProdu}
@@ -324,8 +362,6 @@ print(Health_percentageplots)
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
-<<<<<<< HEAD
-
 
 
 Where: 
@@ -333,7 +369,7 @@ y: Health outcomes: lessIll, dietaryKnowledge,  appreciateHealthy
 x: DGECriteria Number
 
 <<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
+
 
 #scaled regressions
 
