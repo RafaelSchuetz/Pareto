@@ -53,6 +53,7 @@ mergedData <- mergedData %>%
 
 # mergedData <- map_dfr(mergedData, changeDataType) 
 
+names(dplyr::select(mergedData, contains("scaled")))
 
 
 # mergedData$participateMoreOrdinal=as.ordered(mergedData$participateMore)
