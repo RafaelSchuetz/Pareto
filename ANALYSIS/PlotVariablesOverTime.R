@@ -67,32 +67,42 @@ all_yearPlots = map(responset,
 # all_yearPlots$moreIndependent
 # all_yearPlots$dayToDaySkills
 # all_yearPlots$dayToDaySkillsOrdinal
-# all_yearPlots$lessIllOrdinal
+#all_yearPlots$lessIll_ordered
 
 
 #plotforpresentation..explainsubsidyvalue
 
 plotOutcomeOverTime("tripsSubsidy", "tripsNo")
-plotOutcomeOverTime("realTripsSubsidy", "tripsNo")
-
-#plots for paper 
+TripsSub_plot<- plotOutcomeOverTime("realTripsSubsidy", "tripsNo")
+MealsSub_plot<- plotOutcomeOverTime("realSubsidy", "mealsNo")
 
 
 ####plots we need for the paper 
 
-lessIll_Time<- all_yearPlots$lessIllOrdinal
-appreciateHealthy_Time<- all_yearPlots$appreciateHealthyOrdinal 
-dietaryKnowledge_Time<- all_yearPlots$dietaryKnowledgeOrdinal
+lessIll_Time<- plotOutcomeOverTime("year", "lessIll_ordered")
+appreciateHealthy_Time<- plotOutcomeOverTime("year", "appreciateHealthy_ordered")
+dietaryKnowledge_Time<- plotOutcomeOverTime("year", "dietaryKnowledge_ordered")
 
-saveRDS(lessIll_Time, "./ANALYSIS/GRAPHS/PAPER/lessIll_Time.Rds")
-saveRDS(AppreciateHealthy_Time, "./ANALYSIS/GRAPHS/PAPER/appreciateHealthy_time.Rds")
-saveRDS(DietaryKnowledge_Time, "./ANALYSIS/GRAPHS/PAPER/dietaryKnowledge_Time.Rds")
+Health_Year <- plot_grid(lessIll_Time, dietaryKnowledge_Time, appreciateHealthy_Time, 
+                          ncol = 2, nrow = 2, align = "hv",
+                          labels = "AUTO",
+                          label_x = 0, label_y = 0, hjust = -3, vjust = 
+                            -1.5, label_fontface = "plain", label_size = 11)
 
-selfworth_Time <- all_yearPlots$selfworthOrdinal
-dayToDaySkills_Time <- all_yearPlots$dayToDaySkillsOrdinal
 
-saveRDS(selfworth_Time, "./ANALYSIS/GRAPHS/PAPER/selfworth_Time.Rds")
-saveRDS(dayToDaySkills_Time.lm, "./ANALYSIS/GRAPHS/PAPER/dayToDaySkills_Time.Rds")
+saveRDS(Health_Year, "./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
+
+selfworth_Time <- plotOutcomeOverTime("year", "selfworth_ordered")
+dayToDaySkills_Time <- plotOutcomeOverTime("year", "dayToDaySkills_ordered")
+
+Equality_Year <- plot_grid(selfworth_Time, dayToDaySkills_Time, 
+                         ncol = 2, nrow = 1, align = "hv",
+                         labels = "AUTO",
+                         label_x = 0, label_y = 0, hjust = -3, vjust = 
+                           -1.5, label_fontface = "plain", label_size = 11)
+
+
+saveRDS(Equality_Year, "./ANALYSIS/GRAPHS/PAPER/Equality_Year.Rds")
 
 
 

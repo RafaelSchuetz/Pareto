@@ -23,7 +23,7 @@ ordinalVariablesMeals <- mergedDataImputeInterpolation %>%
 ordinalVariablesMealsFA <- ordinalVariablesMeals %>% 
   dplyr::select(-DGECriteriaNoScaled)
 
-lessIllDGECriteriaNo_scaled <- ordinalVariablesMeals %>% 
+lessIll_DGECriteriaNo <- ordinalVariablesMeals %>% 
   dplyr::select(DGECriteriaNoScaled, lessIll_scaled) %>% 
   data.frame()
 
@@ -55,16 +55,39 @@ numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml'
 
 # fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  9
 
+# perform exploratory factor analysis on these variables 
+
+names(ordinalVariablesMealsFA)
+
+# this is the factor analysis
+
 factorAnalysisMeals <- fa(ordinalVariablesMealsFA, nfactors = numberFactorsMeals$nfact, scores = "regression", n.obs = nrow(ordinalVariablesMealsFA), rotate = "varimax", fm = "ml")
 
-# factorAnalysisMeals2 <- fa(ordinalVariablesMeals, nfactors = 2, scores="regression", n.obs = 48, rotate = "varimax", fm = "ml")
-
-scoresMeals <- data.frame(factorAnalysisMeals$scores)
-dfFATest <- cbind.data.frame(scoresMeals, lessIllDGECriteria_scaled)
-
-lmFAtest <- lm(lessIll_scaled ~ DGECriteriaNoScaled + ML1 + ML2 + ML3, dfFATest)
+# show factor loadings
 
 loadings(factorAnalysisMeals)
+
+# save factor scores
+
+scoresMeals <- data.frame(factorAnalysisMeals$scores)
+
+# append variables lessIll_scaled and DGECriteria_scaled to matrix with factor scores
+
+lessIll_DGECriteriaNo_scoresMeals <- cbind.data.frame(scoresMeals, lessIll_DGECriteriaNo)
+
+# show first couple of values of each variable
+
+str(lessIll_DGECriteriaNo_scoresMeals)
+
+# regress lessIll_scaled on DGECriteriaNoScaled, with factors as controls
+
+lm_lessIll_DGECriteriaNo_scoresMeals <- lm(lessIll_scaled ~ DGECriteriaNoScaled + ML1 + ML2 + ML3, lessIll_DGECriteriaNo_scoresMeals)
+
+# show summary of linear model fit
+
+summary(lm_lessIll_DGECriteriaNo_scoresMeals)
+
+# factorAnalysisMeals2 <- fa(ordinalVariablesMeals, nfactors = 2, scores="regression", n.obs = 48, rotate = "varimax", fm = "ml")
 # if you do not use fm = "ml", these warnings appear: 
 # Warnmeldungen:
 # 1: In fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs,  :

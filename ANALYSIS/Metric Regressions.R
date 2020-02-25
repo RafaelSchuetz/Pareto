@@ -7,24 +7,30 @@ library(sandwich)
 library(lmtest)
 library(modelr)
 
+
+
 #NOCHKEINEMODELLEMITOUTLIERN ERSTELLEN
 
 ##subsidy 
 #dataset: mergedData
 
-mealsNo_sub.lm <- lm(mealsNo ~ realSubsidy, data = mergedData)
-summary(mealsNo_sub.lm)
+mealsNo_sub.lm <- lm_robust(mealsNo ~ realSubsidy, data = mergedData)%>%
+  extract.lm_robust(include.ci = FALSE)
+summary(mealsNo_sub.lm) 
 
-mealsNo_sub.lm <- coeftest(mealsNo_sub.lm, vcov. = vcovHC(mealsNo_sub.lm, type = 'HC1'))
-summary(mealsNo_sub.lm)
+texreg(mealsNo_sub.lm)
+
+# mealsNo_sub.lm <- coeftest(mealsNo_sub.lm, vcov. = vcovHC(mealsNo_sub.lm, type = 'HC1'))
+# summary(mealsNo_sub.lm)
 
 saveRDS(mealsNo_sub.lm,"./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 
-tripsNo_sub.lm <- lm(tripsNo ~ realTripsSubsidy, data = mergedData)
+tripsNo_sub.lm <- lm_robust(tripsNo ~ realTripsSubsidy, data = mergedData)%>%
+  extract.lm_robust(include.ci = FALSE)
 summary(tripsNo_sub.lm)
 
-tripsNo_sub.lm <- coeftest(tripsNo_sub.lm, vcov. = vcovHC(tripsNo_sub.lm, type = 'HC1'))
-summary(tripsNo_sub.lm)
+# tripsNo_sub.lm <- coeftest(tripsNo_sub.lm, vcov. = vcovHC(tripsNo_sub.lm, type = 'HC1'))
+# summary(tripsNo_sub.lm)
 
 saveRDS(tripsNo_sub.lm,"./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 

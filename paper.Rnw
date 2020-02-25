@@ -76,6 +76,11 @@
 
 % Create list of packages used, Gandrud (2016), p 218/219
 
+
+
+% models with robust standard errors texreg
+% https://github.com/DeclareDesign/estimatr/issues/316
+
 \documentclass[12pt, a4paper]{article}
 \usepackage{lscape}
 \usepackage{graphicx}
@@ -98,6 +103,7 @@ library(xtable)
 library(dplyr)
 library(stargazer)
 library(cowplot)
+library(texreg)
 @
 
 <<CentAlignFig, include=FALSE>>=
@@ -217,8 +223,24 @@ lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 #impute meals
 #imputetrips
 
-stargazer(lm_ms, lm_ts, title = "Regression outcome: Grants", align = TRUE)  
+stargazer(list(lm_ms, lm_ts), title = "Regression outcome: Grants", align = TRUE)  
 @
+
+<<Health Regressions Scatterplots, echo=FALSE, results='asis', message=FALSE>>=
+Health_plots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_plots.Rds")
+print(Health_plots)
+@
+
+<<Health Regressions percentageplots, echo=FALSE, results='asis', message=FALSE>>=
+Health_percentageplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_percentageplots.Rds")
+print(Health_percentageplots)
+@
+
+<<Health Regressions time plots, echo=FALSE, results='asis', message=FALSE>>=
+Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
+print(Health_timeplots)
+@
+
 <<Health Regressions, echo=FALSE, results='asis', message=FALSE>>=
 
 #scaled regressions
@@ -231,7 +253,7 @@ lm_aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
 
 lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
 
-stargazer(lm_lDGE, lm_dDGE, lm_aDGE, title = "Regression outcome: Health", align = TRUE)
+stargazer(lm_dDGE, lm_aDGE, title = "Regression outcome: Health", align = TRUE)
 @
 <<Chance Equality Regressions, echo=FALSE, results='asis', message=FALSE>>=
 

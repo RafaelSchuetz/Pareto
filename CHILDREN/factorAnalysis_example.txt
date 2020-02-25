@@ -1,0 +1,83 @@
+> # perform exploratory factor analysis on these variables 
+> 
+> names(ordinalVariablesMealsFA)
+ [1] "participateMore_scaled"   "monthlyCooks_scaled"      "weeklyCooks_scaled"      
+ [4] "shoppers_scaled"          "easyDishes_scaled"        "dietaryKnowledge_scaled" 
+ [7] "appreciateHealthy_scaled" "foodCulture_scaled"       "influenceHome_scaled"    
+[10] "lessIll_scaled"           "dayToDaySkills_scaled"    "selfworth_scaled"        
+> 
+> # this is the factor analysis
+> 
+> factorAnalysisMeals <- fa(ordinalVariablesMealsFA, nfactors = numberFactorsMeals$nfact, scores = "regression", n.obs = nrow(ordinalVariablesMealsFA), rotate = "varimax", fm = "ml")
+> 
+> # show factor loadings
+> 
+> loadings(factorAnalysisMeals)
+
+Loadings:
+                         ML2    ML1    ML3   
+participateMore_scaled                  0.338
+monthlyCooks_scaled       0.326  0.833 -0.115
+weeklyCooks_scaled        0.165  0.816  0.191
+shoppers_scaled                  0.552  0.353
+easyDishes_scaled         0.438  0.401  0.256
+dietaryKnowledge_scaled   0.675  0.170       
+appreciateHealthy_scaled  0.663         0.330
+foodCulture_scaled        0.420  0.103  0.483
+influenceHome_scaled      0.411  0.138  0.236
+lessIll_scaled            0.285  0.106  0.387
+dayToDaySkills_scaled     0.545  0.310  0.184
+selfworth_scaled          0.606  0.237       
+
+                 ML2   ML1   ML3
+SS loadings    2.316 2.052 0.942
+Proportion Var 0.193 0.171 0.079
+Cumulative Var 0.193 0.364 0.443
+> 
+> # save factor scores
+> 
+> scoresMeals <- data.frame(factorAnalysisMeals$scores)
+> 
+> # append variables lessIll_scaled and DGECriteria_scaled to matrix with factor scores
+> 
+> lessIll_DGECriteriaNo_scoresMeals <- cbind.data.frame(scoresMeals, lessIll_DGECriteriaNo)
+> 
+> # show first couple of values of each variable
+> 
+> str(lessIll_DGECriteriaNo_scoresMeals)
+'data.frame':	161 obs. of  5 variables:
+ $ ML2                : num  0.5039 0.0747 -0.9778 -0.0675 -0.5912 ...
+ $ ML1                : num  -0.5142 -0.4222 -0.0631 -0.3813 -0.9395 ...
+ $ ML3                : num  -0.48 -0.337 -0.369 -0.711 0.284 ...
+ $ DGECriteriaNoScaled: num  0.16 0.16 0.16 -0.234 -0.627 ...
+ $ lessIll_scaled     : num  0.455 0.455 0.455 -1.027 0.455 ...
+> 
+> # regress lessIll_scaled on DGECriteriaNoScaled, with factors as controls
+> 
+> lm_lessIll_DGECriteriaNo_scoresMeals <- lm(lessIll_scaled ~ DGECriteriaNoScaled + ML1 + ML2 + ML3, lessIll_DGECriteriaNo_scoresMeals)
+> 
+> # show summary of linear model fit
+> 
+> summary(lm_lessIll_DGECriteriaNo_scoresMeals)
+
+Call:
+lm(formula = lessIll_scaled ~ DGECriteriaNoScaled + ML1 + ML2 + 
+    ML3, data = lessIll_DGECriteriaNo_scoresMeals)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.30550 -0.47774  0.05198  0.59496  1.61697 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         -0.01151    0.06177  -0.186  0.85241    
+DGECriteriaNoScaled  0.11482    0.06606   1.738  0.08418 .  
+ML1                  0.09236    0.06774   1.364  0.17466    
+ML2                  0.22842    0.07530   3.033  0.00283 ** 
+ML3                  0.58324    0.08762   6.656 4.52e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7837 on 156 degrees of freedom
+Multiple R-squared:  0.3474,	Adjusted R-squared:  0.3307 
+F-statistic: 20.76 on 4 and 156 DF,  p-value: 9.754e-14
