@@ -76,3 +76,11 @@ dfcEF$dummy_2016 <- as.numeric(dfcEF$dummy_2016)
 dfcEF$dummy_2017 <- as.numeric(dfcEF$dummy_2017)
 dfcEF$dummy_2018 <- as.numeric(dfcEF$dummy_2018)
 
+
+### Teildatensatz mit ID-Nummern und Treatment-Dummy
+
+dfcEF_check <- dfcEF
+
+dfcEF_check <- dfcEF_check %>% 
+  dplyr :: select(id, treatEF)
+
