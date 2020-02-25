@@ -163,7 +163,7 @@ saveRDS(lessIll_DGE_IM_scaled.lm,"./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds
 
 
 
-Expand_LessIll_IM.lm = lm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + realSubsidy + state, data = mergedDataImputeInterpolation)
+Expand_LessIll_IM.lm = lm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + realSubsidy, data = mergedDataImputeInterpolation)
 summary(Expand_LessIll_IM.lm)
 
 Expand_LessIll_IM.lm <- coeftest(Expand_LessIll_IM.lm, vcov. = vcovHC(Expand_LessIll_IM.lm, type = 'HC1'))
@@ -171,7 +171,7 @@ summary(Expand_LessIll_IM.lm)
 
 saveRDS(Expand_LessIll_IM.lm,"./ANALYSIS/Tables/Expand_LessIll_IM.lm.Rds")
 # 
-Expand_LessIll_IM_scaled.lm = lm(lessIll_scaled ~ DGECriteriaNoScaled + regionalProducts_scaled + yearsSupportSince + realSubsidy + state, data = mergedDataImputeInterpolation)
+Expand_LessIll_IM_scaled.lm = lm(lessIll_scaled ~ DGECriteriaNoScaled + regionalProducts_scaled + yearsSupportSince + realSubsidy, data = mergedDataImputeInterpolation)
 summary(Expand_LessIll_IM_scaled.lm) #standardized
 
 Expand_LessIll_IM_scaled.lm <- coeftest(Expand_LessIll_IM_scaled.lm, vcov. = vcovHC(Expand_LessIll_IM_scaled.lm, type = 'HC1'))
