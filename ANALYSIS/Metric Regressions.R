@@ -16,7 +16,7 @@ mealsNo_sub.lm <- lm_robust(mealsNo ~ realSubsidy, data = mergedData)%>%
   extract.lm_robust(include.ci = FALSE)
 summary(mealsNo_sub.lm) 
 
-
+texreg(mealsNo_sub.lm)
 
 saveRDS(mealsNo_sub.lm,"./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 
@@ -41,8 +41,11 @@ texreg(mealsNo_sub_ex.lm)
 saveRDS(mealsNo_sub_ex.lm,"./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds")
 
 
-tripsNo_sub_ex.lm <- lm(tripsNo ~ realTripsSubsidy, data = tripsNoOutliers)
+tripsNo_sub_ex.lm <- lm(tripsNo ~ realTripsSubsidy, data = tripsNoOutliers)%>%
+  extract.lm_robust(include.ci = FALSE)
 summary(tripsNo_sub_ex.lm)
+
+texreg(tripsNo_sub_ex.lm)
 
 saveRDS(tripsNo_sub_ex.lm,"./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds")
 
@@ -50,13 +53,19 @@ saveRDS(tripsNo_sub_ex.lm,"./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds")
 
 #datset: mergedDataImputeInterpolation
 
-mealsNo_sub_IM.lm <- lm(mealsNo ~ realSubsidy, data = mergedDataImputeInterpolation)
-summary(mealsNo_sub.lm)
+mealsNo_sub_IM.lm <- lm(mealsNo ~ realSubsidy, data = mergedDataImputeInterpolation)%>%
+  extract.lm_robust(include.ci = FALSE)
+summary(mealsNo_sub_IM.lm)
+
+texreg(mealsNo_sub_IM.lm)
 
 saveRDS(mealsNo_sub_IM.lm,"./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")
 
-tripsNo_sub_IM.lm <- lm(tripsNo ~ realTripsSubsidy, data = mergedDataImputeInterpolation)
-summary(tripsNo_sub.lm)
+tripsNo_sub_IM.lm <- lm(tripsNo ~ realTripsSubsidy, data = mergedDataImputeInterpolation)%>%
+  extract.lm_robust(include.ci = FALSE)
+summary(tripsNo_sub_IM.lm)
+
+texreg(mealsNo_sub_IM.lm)
 
 saveRDS(tripsNo_sub_IM.lm,"./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds")
  
