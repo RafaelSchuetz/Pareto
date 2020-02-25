@@ -171,10 +171,10 @@ Regression fit output with texreg\\
 <<mealsTripsSubsidyRegressions, echo=FALSE, results='asis'>>=
 # , message=FALSE, warning=FALSE
 # first, read in all Rds objects that you need
-
+# 
 mealsNo_sub.lm = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 tripsNo_sub.lm = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
- 
+#  
 texreg(list(mealsNo_sub.lm, tripsNo_sub.lm))
 @
 
@@ -289,15 +289,14 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
-#outlier meals
-#outlier trips 
-#impute meals
-#imputetrips
+lm_ms_o = readRDS("./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds") #outlier meals
+lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds")#outlier trips 
+lm_ms_i = readRDS("./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")#impute meals
+lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds")#imputetrips
 
-texreg(list(lm_ms, lm_ts), caption = "Grants Regressions", custom.model.names = c("Number of Meals", "Number of Trips"))
+texreg(list(lm_ms, lm_ts, lm_ms_o, lm_ts_o, lm_ms_i, lm_ts_i), caption = "Grants Regressions", custom.model.names = c("MealsNo", "Trips No", "Meals No", "Trips No", "Meals No", "Trips No"))
 @
-
-
+The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed.  
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -311,12 +310,7 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 \end{figure}
 
 <<<<<<< HEAD
-<<Health Regressions, echo=FALSE, results='asis', message=FALSE>>=
-=======
-<<HealthRegressionsTimePlots, echo=FALSE, message=FALSE>>=
-Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
-print(Health_timeplots)
-@
+
 
 <<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
 >>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
