@@ -231,6 +231,11 @@ Health_percentageplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_percentageplot
 print(Health_percentageplots)
 @
 
+<<Health Regressions time plots, echo=FALSE, results='asis', message=FALSE>>=
+Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
+print(Health_timeplots)
+@
+
 <<Health Regressions, echo=FALSE, results='asis', message=FALSE>>=
 
 #scaled regressions
