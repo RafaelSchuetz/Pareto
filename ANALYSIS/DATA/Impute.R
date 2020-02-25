@@ -79,6 +79,10 @@ mergedDataImputeInterpolation <- mergedData %>%
   mutate_all(na.approx, na.rm = FALSE) %>% 
   ungroup()
 
+# append variable "state", which was removed before due to not being numeric
+
+mergedDataImputeInterpolation <- cbind.data.frame(mergedDataImputeInterpolation, mergedData$state)
+
 # selectionInterpolation <- mergedDataImputeInterpolation[, c("id", "year", outcomesMeals)]
 
 #   NAsPerVariableMergedDataImputeInterpolation <- mergedDataImputeInterpolation %>%
