@@ -10,12 +10,6 @@ library(purrr)
 library(tidyselect)
 library(stringr)
 
-
-mergedData <- as_tibble(mergedData)
-
-#alle Variablen die 99 sind: Kategorische Daten und 99 bedeutet: keine Angabe
-mergedData[mergedData == '99'] <- NA
-
 categories <- c(NA, 0, 1, 2, 3, 4)
 
 pretendsToBeMetric <- function(x) {
@@ -52,6 +46,29 @@ mergedData <- mergedData %>%
 mergedData <- mergedData %>% 
   mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
 
+# do the same for mergedDataImputeInterpolation
+
+mergedDataImputeInterpolation <- mergedDataImputeInterpolation %>% 
+  mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weight))
+
+mergedDataImputeInterpolation <- mergedDataImputeInterpolation %>% 
+  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
+
+# do the same for mealsNoOutliers
+
+mealsNoOutliers <- mealsNoOutliers %>% 
+  mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weight))
+
+mealsNoOutliers <- mealsNoOutliers %>% 
+  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
+
+# do the same for tripsNoOutliers
+
+tripsNoOutliers <- tripsNoOutliers %>% 
+  mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weight))
+
+tripsNoOutliers <- tripsNoOutliers %>% 
+  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
 
 # pretendsToBeMetric(mergedData$eatersPerMealNo)
 # 
@@ -68,7 +85,7 @@ mergedData <- mergedData %>%
 
 # mergedData <- map_dfr(mergedData, changeDataType) 
 
-names(dplyr::select(mergedData, contains("scaled")))
+# names(dplyr::select(mergedData, contains("scaled")))
 
 
 # mergedData$participateMoreOrdinal=as.ordered(mergedData$participateMore)
