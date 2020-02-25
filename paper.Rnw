@@ -250,7 +250,7 @@ Equation\\
 
 \begin{equation}
 \label{ModelProdu}
-\ln y_{it} = \beta_0 + \beta_k \ln k_{it-1} + \beta_n \ln n_{it} + \beta_m \ln m_{it} + \beta_t D_t + \beta_i D_i + \epsilon_{it}
+\ln y_{it} = \beta_0 + \beta_k \ln k_{it-1}^{n} + \beta_n \ln n_{it} + \beta_m \ln m_{it} + \beta_t D_t + \beta_i D_i + \epsilon_{it}
 \end{equation}
 
 List\\
