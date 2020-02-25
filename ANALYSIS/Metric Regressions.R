@@ -82,7 +82,7 @@ summary(lessIll_DGE.lm)
 
 saveRDS(lessIll_DGE.lm,"./ANALYSIS/Tables/lessIll_DGE.lm.Rds")
 
-lessIll_DGE_scaled.lm <- lm(lessIll_scaled ~ DGECriteriaNoScaled, data = mergedData)%>%
+lessIll_DGE_scaled.lm <- lm(lessIll_scaled ~ DGECriteriaNoScaled, data = mergedData) %>%
   extract.lm_robust(include.ci = FALSE)
 summary(lessIll_DGE_scaled.lm) #standardized
 
