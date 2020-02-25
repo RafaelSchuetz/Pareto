@@ -332,11 +332,15 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 \section{Regressions}
 
 \begin{equation}
-\label{Meals Grants Regression Model}
+\label{Equation 1}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
 
+In this section we use a standard OLS equation, as described in equation 1. Where needed, we modified the given data, by using weights, excluding outliers and by scaling relevant variables. We also compared the results with the actual dataset to the results we gained by using a dataset in which we imputed necessary data. (DESCRIBE METHODS EXACT) 
 
+\\Number of Meals and Number of Trips
+
+As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
 
 <<GrantsRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
@@ -349,7 +353,10 @@ lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds")#imputetrips
 
 texreg(list(lm_ms, lm_ts, lm_ms_o, lm_ts_o, lm_ms_i, lm_ts_i), caption = "Grants Regressions", custom.model.names = c("MealsNo", "Trips No", "Meals No", "Trips No", "Meals No", "Trips No"))
 @
-Table 3: The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed.  
+The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed. 
+(DESCRIBE RESULTS) (COMPARE TO SUMMARY STATISTICS)
+
+In the next section, we want to explore the influence of the DGE Criterion on relevant health outcomes.
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -364,9 +371,7 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 
 
-Where: 
-y: Health outcomes: lessIll, dietaryKnowledge,  appreciateHealthy
-x: DGECriteria Number
+In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
 <<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
@@ -388,9 +393,6 @@ elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.Rds")
 texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Health Outcome Regressions", custom.model.names = c("LessIll", "DietaryKnowledge", "AppreciateHealthy","LessIll", "DietaryKnowledge", "AppreciateHealthy"))
 @
 
-Where: 
-y: Equal Opportunity proxies: selfworth, dayToDaySkills
-x: Real Lunch grant, real Trips grant
 <<ChanceEqualityRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
