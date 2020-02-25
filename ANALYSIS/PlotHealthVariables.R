@@ -8,13 +8,12 @@ library(dplyr)
 #createdataset
 
 HealthRelVar <- mergedData %>% 
-  dplyr::select(lessIll, dietaryKnowledge, seasonalFoodstuff, organicFoodstuff, appreciateHealthy, tasksLunch, 
-                lessIllOrdinal, dietaryKnowledgeOrdinal, seasonalFoodstuffOrdinal, appreciateHealthyOrdinal, tasksLunchOrdinal,DGECriteriaNo,)
+  dplyr::select(lessIll_ordered, dietaryKnowledge_ordered, appreciateHealthy_ordered, DGECriteriaNo)
 
 #setthevariables
 
-response= names(HealthRelVar)[1:11]
-expl= names(HealthRelVar)[12]
+response= names(HealthRelVar)[1:3]
+expl= names(HealthRelVar)[4]
 
 response = purrr::set_names(response)
 response
@@ -33,30 +32,32 @@ plotDGEOutcome = function(x, y){
 
 #checkifthefunctionworks
 
-plotDGEOutcome("DGECriteriaNo", "lessIll")
+plotDGEOutcome("DGECriteriaNo", "lessIll_ordered")
 
 #mapthefunction
 
-DGEHealthOutcome <- map(HealthRelVar, ~plotDGEOutcome("DGECriteriaNo", "lessIll"))
+DGEHealthOutcome <- map(HealthRelVar, ~plotDGEOutcome("DGECriteriaNo", "lessIll_ordered"))
 
 all_plots = map(response,
                 ~map(expl, plotDGEOutcome, y = .x) )
 
 #printtheplots
 
-all_plots$lessIll[1:2]
-all_plots$dietaryKnowledge[1:2]
-all_plots$appreciateHealthy[1:2]
-all_plots$lessIllOrdinal
-all_plots$dietaryKnowledgeOrdinal
-all_plots$appreciateHealthyOrdinal
+# all_plots$lessIll[1:2]
+# all_plots$dietaryKnowledge[1:2]
+# all_plots$appreciateHealthy[1:2]
+all_plots$lessIll_ordered
+all_plots$dietaryKnowledge_ordered
+all_plots$appreciateHealthy_ordered
 
+DGE_plots = map(all_plots, ~cowplot::plot_grid(plotlist = .x))
+DGE_plots
 
 
 #againbutinpercentages #differentggplotfunction
 
-response= names(HealthRelVar)[1:11]
-expl= names(HealthRelVar)[12]
+response= names(HealthRelVar)[1:3]
+expl= names(HealthRelVar)[4]
 
 response = purrr::set_names(response)
 response
@@ -78,24 +79,30 @@ plotDGEOutcomeInPercent = function(x, y){
 
 #checkifitworks
 
-plotDGEOutcomeInPercent("DGECriteriaNo", "lessIll")
+plotDGEOutcomeInPercent("DGECriteriaNo", "lessIll_ordered")
 
 #mapthefunction
 
-DGEHealthOutcomePercent <- map(HealthRelVar, ~plotDGEOutcomeInPercent("DGECriteriaNo", "lessIll"))
+DGEHealthOutcomePercent <- map(HealthRelVar, ~plotDGEOutcomeInPercent("DGECriteriaNo", "lessIll_ordered"))
 
 all_percentagePlots = map(response,
                 ~map(expl, plotDGEOutcomeInPercent, y = .x) )
 
 #printtheplots
 
-all_percentagePlots$lessIll
-all_percentagePlots$dietaryKnowledge
-all_percentagePlots$appreciateHealthy
-lessIll_DGE <- all_percentagePlots$lessIllOrdinal
-dietaryKnowledge_DGE <- all_percentagePlots$dietaryKnowledgeOrdinal
-appreciateHealthy_DGE <- all_percentagePlots$appreciateHealthyOrdinal
+# all_percentagePlots$lessIll
+# all_percentagePlots$dietaryKnowledge
+# all_percentagePlots$appreciateHealthy
+lessIll_DGE <- all_percentagePlots$lessIll_ordered
+dietaryKnowledge_DGE <- all_percentagePlots$dietaryKnowledge_ordered
+appreciateHealthy_DGE <- all_percentagePlots$appreciateHealthy_ordered
 
 saveRDS(lessIll_DGE, "./ANALYSIS/GRAPHS/PAPER/lessIll_DGE.Rds")
 saveRDS(dietaryKnowledge_DGE, "./ANALYSIS/GRAPHS/PAPER/dietaryKnowledge_DGE.Rds")
 saveRDS(appreciateHealthy_DGE, "./ANALYSIS/GRAPHS/PAPER/appreciateHealthy_DGE.Rds")
+
+
+#option to save all plots with same expl in one 
+
+response_percentageplots = map(all_percentagePlots, ~cowplot::plot_grid(plotlist = .x))
+response_percentageplots
