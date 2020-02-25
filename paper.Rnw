@@ -293,6 +293,13 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 
 \section{Regressions}
 
+\begin{equation}
+\label{Meals Grants Regression Model}
+  y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
+\end{equation}
+
+
+
 <<GrantsRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
@@ -320,6 +327,11 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 <<<<<<< HEAD
 
 
+
+Where: 
+y: Health outcomes: lessIll, dietaryKnowledge,  appreciateHealthy
+x: DGECriteria Number
+
 <<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
 >>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
 
@@ -340,6 +352,9 @@ elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.Rds")
 texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Health Outcome Regressions", custom.model.names = c("LessIll", "DietaryKnowledge", "AppreciateHealthy","LessIll", "DietaryKnowledge", "AppreciateHealthy"))
 @
 
+Where: 
+y: Equal Opportunity proxies: selfworth, dayToDaySkills
+x: Real Lunch grant, real Trips grant
 <<ChanceEqualityRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
