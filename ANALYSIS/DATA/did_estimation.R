@@ -309,4 +309,5 @@ table_did3_selfworth <- stargazer(lmdid3_selfworth,
 # Regressionstables als RDS speichern
 saveRDS(lmdid_selfworth, file = "./ANALYSIS/Tables/lmdid3_selfworth.rds")
 
-With controls
+
+# Kontrollvariablen: total cost, subsidy, eatersPerMealNo
