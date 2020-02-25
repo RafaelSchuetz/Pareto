@@ -93,7 +93,7 @@
 % \bibliographystyle{apalike}
 \usepackage{mathtools}
 \usepackage[onehalfspacing]{setspace}
-\usepackage[left = 72 pt, right = 72 pt]{geometry}
+\usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
 
 \addbibresource{references.bib}
 
@@ -114,7 +114,7 @@ opts_chunk$set(fig.align = "center",
 @
 
 \title{Effects of CHILDREN's programs}
-\author{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz, Yannick Zurl}
+\author{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz (11574909), Yannick Zurl}
 \date{27th February 2020}
 
 \begin{document}
@@ -126,6 +126,11 @@ opts_chunk$set(fig.align = "center",
 \tableofcontents
 \listoftables
 \listoffigures
+
+\begin{abstract} 
+abstract on separate page
+100 - 150 words
+\end{abstract}
 
 Examples\\
 
@@ -178,11 +183,6 @@ tripsNo_sub.lm = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 texreg(list(mealsNo_sub.lm, tripsNo_sub.lm))
 @
 
-
-\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
-
-How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
-
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 \section{Outline}
 Descriptive statistics\\
@@ -224,9 +224,17 @@ Outlook for CHILDREN/variable selection\\
 
 \section{Introduction}
 
+the introduction should include: motivation, precise research questions, very short literature review, most important results, further proceedings
+
 CHILDREN's aims for data analysis\\ 
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
+
+\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
+
+How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
+
+
 
 \section{Summary Statistics}
 
@@ -398,10 +406,14 @@ table1_selfworth <- stargazer(lm1_selfworth,
 
 \section{Factor Analysis}
 
+\section{Conclusion}
+
+\printbibliography
+
 \section{Appendix}
 
-A1\\ 
-Cumulative Odds Regression 
+\subsection{A1: Cumulative Odds Regression} 
+ 
 Outliers? 
 
 <<echo=FALSE, results='asis', message=FALSE>>=
@@ -410,8 +422,7 @@ Outliers?
 
 @
 
-A2\\
-Partition 
+\subsection{A2: Partition}
 
 In addition to the factor analysis described in section 6, we would like to introduce to a another dimensionality reduction method called partition. 
 
@@ -445,5 +456,6 @@ xtable(partition_trips,
 print(partition_meals, partition_trips, include.rownames = FALSE)
 @
 
-\printbibliography
+\{Ehrenwörtliche Erklärung aller Teilnehmer}
+
 \end{document}

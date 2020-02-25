@@ -10,7 +10,7 @@ library(purrr)
 library(tidyselect)
 library(stringr)
 
-categories <- c(NA, 0, 1, 2, 3, 4)
+categories <- c(NA, 0, 1, 2, 3, 4, 1/2, 3/2, 5/2, 7/2, 1/3, 2/3, 4/3, 5/3, 7/3, 8/3, 10/3, 11/3, 1/4, 3/4, 5/4, 7/4, 9/4, 11/4, 13/4, 15/4, 7/6, 8/6, 10/6, 11/6)
 
 pretendsToBeMetric <- function(x) {
   return(all(unique(x) %in% categories))
@@ -175,5 +175,19 @@ tripsNoOutliers <- tripsNoOutliers %>%
 # x 
 
 
-
+# names(dplyr::select(mergedData, tidyselect::contains('scaled'))) %in% names(dplyr::select(mergedDataImputeInterpolation, tidyselect::contains('scaled')))
+# 
+# c(unique(mergedDataImputeInterpolation$lessIll))[] %in% categories
+# class(c(unique(mergedDataImputeInterpolation$influenceHome))[10]) > class(1/3)
+# %in% categories
+# # numericData <- mergedData %>% 
+# #   select_if(!(is.numeric))
+# # 
+# # ncol(mergedData)
+# ncol(mergedDataImputeInterpolation)
+# ncol(mealsNoOutliers)
+# ncol(tripsNoOutliers)
+# ncol(numericData)
+# 
+# unique(mergedDataImputeInterpolation$lessIll) %in% categories
 
