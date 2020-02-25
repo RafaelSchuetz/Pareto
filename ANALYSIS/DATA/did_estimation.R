@@ -12,7 +12,10 @@ library(dplyr)
 library(stargazer)
 
 
+
 ### Variante 1: Regression für DiD-Estimation ###
+
+### a) dayToDaySkills
 
 # Als Zielvariable (= y-Variable) wird "dayToDaySkills" in skalierter Form verwendet
 # Der Treatment-Dummy "TreatEF" (= variable of interest) ist gleich 1, wenn Einrichtung i im Jahr t
@@ -53,6 +56,43 @@ table_did_dayToDaySkills <- stargazer(lmdid_dayToDaySkills,
                                                        c('Year fixed effects', 'Yes')),
                                       type = 'text')
 
+# Regressionstables als RDS speichern
+saveRDS(lmdid_dayToDaySkills, file = "./ANALYSIS/Tables/lmdid_dayToDaySkills.Rds")
+
+
+
+### b) Selfworth:
+
+lmdid_selfworth <- lm(dfcEF$selfworth_scaled ~ dfcEF$treatEF + dfcEF$id + dfcEF$year)
+summary(lmdid_selfworth)
+
+# Berechnung von robusten Standardfehlern, indem eine Heteroskedastität-konsistente Varianz-Kovarianz-Matrix
+# für die geschätzten Regressionskoeffizienten generiert wird. Die robusten Standardfehler der geschätzten
+# Regressionskoeffizienten werden wird unter "lmdid" gespeichert
+lmdid_selfworth <- coeftest(lmdid_selfworth, vcov. = vcovHC(lmdid_selfworth, type = 'HC1'))
+summary(lmdid_selfworth)
+
+# Erstellen des Regression-Tables mit der Funktion stargazer()
+table_did_selfworth <- stargazer(lmdid_selfworth,
+                                      omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
+                                               'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
+                                               'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
+                                               'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
+                                               'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
+                                               'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
+                                               'id687', 'year2012', 'year2013', 'year2014', 'year2015', 'year2016', 'year2017',
+                                               'year2018'),
+                                      add.lines = list(c('ID fixed effects', 'Yes'),
+                                                       c('Year fixed effects', 'Yes')),
+                                      type = 'text')
+
+# Regressionstables als RDS speichern
+saveRDS(lmdid_selfworth, file = "./ANALYSIS/Tables/lmdid_selfworth.Rds")
+
+
+
+
+
 
 
 ### Variante 2: Regression für die DiD-Estimation mit year-specific treatment effects ###
@@ -85,6 +125,9 @@ dfcEF <- dfcEF %>%
     treat_2018 = treatEF*dummy_2018
   )
 
+
+### a) dayToDaySkills
+
 # Als Zielvariable (= y-Variable) wird wieder "dayToDaySkills" in skalierter Form verwendet.
 # Statt dem einfachen Treatment-Dummy "TreatEF", werden nun die verschiedenen Interaktionsterme 
 # (TreatEF * Year) in die Regressionsgleichung aufgenommen. # Die Regression enthält außerdem wieder
@@ -92,8 +135,8 @@ dfcEF <- dfcEF %>%
 # Regressionsgleichung aufgenommen werden.
 
 lmdid2_dayToDaySkills <- lm(dfcEF$dayToDaySkills_scaled ~ dfcEF$treat_2011 + dfcEF$treat_2012 + dfcEF$treat_2013
-                              + dfcEF$treat_2014 + dfcEF$treat_2015 + dfcEF$treat_2016
-                              + dfcEF$treat_2017 + dfcEF$treat_2018 + dfcEF$id + dfcEF$year)
+                            + dfcEF$treat_2014 + dfcEF$treat_2015 + dfcEF$treat_2016
+                            + dfcEF$treat_2017 + dfcEF$treat_2018 + dfcEF$id + dfcEF$year)
 summary(lmdid2_dayToDaySkills)
 
 # Berechnung von robusten Standardfehlern, indem eine Heteroskedastität-konsistente Varianz-Kovarianz-Matrix
@@ -104,71 +147,6 @@ summary(lmdid2_dayToDaySkills)
 
 # Erstellen des Regression-Tables mit der Funktion stargazer()
 table_did2_dayToDaySkills <- stargazer(lmdid2_dayToDaySkills,
-                                      omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                                               'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                                               'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                                               'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                                               'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                                               'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                                               'id687', 'year2012', 'year2013', 'year2014', 'year2015', 'year2016', 'year2017',
-                                               'year2018'),
-                                      add.lines = list(c('ID fixed effects', 'Yes'),
-                                                       c('Year fixed effects', 'Yes')),
-                                      type = 'text')
-
-# Regressionstables als RDS speichern
-saveRDS(lmdid_dayToDaySkills, file = "./ANALYSIS/Tables/lmdid_dayToDaySkills.Rds")
-saveRDS(lmdid2_dayToDaySkills, file = "./ANALYSIS/Tables/lmdid2_dayToDaySkills.Rds")
-
-
-
-
-
-
-
-### Analoge Vorgehensweise: Selfworth in skalierter Form als Zielvariable verwenden ###
-
-# Variante 1: Regression für DiD-Estimation #
-
-lmdid_selfworth <- lm(dfcEF$selfworth ~ dfcEF$treatEF + dfcEF$id + dfcEF$year)
-summary(lmdid_selfworth)
-
-# Berechnung von robusten Standardfehlern, indem eine Heteroskedastität-konsistente Varianz-Kovarianz-Matrix
-# für die geschätzten Regressionskoeffizienten generiert wird. Die robusten Standardfehler der geschätzten
-# Regressionskoeffizienten werden wird unter "lmdid" gespeichert
-lmdid_selfworth <- coeftest(lmdid_selfworth, vcov. = vcovHC(lmdid_selfworth, type = 'HC1'))
-summary(lmdid_selfworth)
-
-# Erstellen des Regression-Tables mit der Funktion stargazer()
-table_did_selfworth <- stargazer(lmdid_selfworth,
-                                      omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                                               'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                                               'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                                               'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                                               'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                                               'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                                               'id687', 'year2012', 'year2013', 'year2014', 'year2015', 'year2016', 'year2017',
-                                               'year2018'),
-                                      add.lines = list(c('ID fixed effects', 'Yes'),
-                                                       c('Year fixed effects', 'Yes')),
-                                      type = 'text')
-
-
-# Variante 2: Regression für die DiD-Estimation mit year-specific treatment effects #
-
-lmdid2_selfworth <- lm(dfcEF$selfworth_scaled ~ dfcEF$treat_2011 + dfcEF$treat_2012 + dfcEF$treat_2013
-                            + dfcEF$treat_2014 + dfcEF$treat_2015 + dfcEF$treat_2016
-                            + dfcEF$treat_2017 + dfcEF$treat_2018 + dfcEF$id + dfcEF$year)
-summary(lmdid2_selfworth)
-
-# Berechnung von robusten Standardfehlern, indem eine Heteroskedastität-konsistente Varianz-Kovarianz-Matrix
-# für die geschätzten Regressionskoeffizienten generiert wird. Die robusten Standardfehler der geschätzten
-# Regressionskoeffizienten werden wird unter "lmdid" gespeichert
-lmdid2_selfworth <- coeftest(lmdid2_selfworth, vcov. = vcovHC(lmdid2_selfworth, type = 'HC1'))
-summary(lmdid2_selfworth)
-
-# Erstellen des Regression-Tables mit der Funktion stargazer()
-table_did2_selfworth <- stargazer(lmdid2_selfworth,
                                        omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
                                                 'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
                                                 'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
@@ -182,9 +160,40 @@ table_did2_selfworth <- stargazer(lmdid2_selfworth,
                                        type = 'text')
 
 # Regressionstables als RDS speichern
-saveRDS(lmdid_selfworth, file = "./ANALYSIS/Tables/lmdid_selfworth.Rds")
-saveRDS(lmdid2_selfworth, file = "./ANALYSIS/Tables/lmdid2_selfworth.Rds")
+saveRDS(lmdid2_dayToDaySkills, file = "./ANALYSIS/Tables/lmdid2_dayToDaySkills.Rds")
 
+
+
+### b) Selfworth:
+
+lmdid2_selfworth <- lm(dfcEF$selfworth_scaled ~ dfcEF$treat_2011 + dfcEF$treat_2012 + dfcEF$treat_2013
+                       + dfcEF$treat_2014 + dfcEF$treat_2015 + dfcEF$treat_2016
+                       + dfcEF$treat_2017 + dfcEF$treat_2018 + dfcEF$id + dfcEF$year)
+summary(lmdid2_selfworth)
+
+# Berechnung von robusten Standardfehlern, indem eine Heteroskedastität-konsistente Varianz-Kovarianz-Matrix
+# für die geschätzten Regressionskoeffizienten generiert wird. Die robusten Standardfehler der geschätzten
+# Regressionskoeffizienten werden wird unter "lmdid" gespeichert
+lmdid2_selfworth <- coeftest(lmdid2_selfworth, vcov. = vcovHC(lmdid2_selfworth, type = 'HC1'))
+summary(lmdid2_selfworth)
+
+# Erstellen des Regression-Tables mit der Funktion stargazer()
+table_did2_selfworth <- stargazer(lmdid2_selfworth,
+                                  omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
+                                           'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
+                                           'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
+                                           'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
+                                           'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
+                                           'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
+                                           'id687', 'year2012', 'year2013', 'year2014', 'year2015', 'year2016', 'year2017',
+                                           'year2018'),
+                                  add.lines = list(c('ID fixed effects', 'Yes'),
+                                                   c('Year fixed effects', 'Yes')),
+                                  type = 'text')
+
+
+# Regressionstables als RDS speichern
+saveRDS(lmdid2_selfworth, file = "./ANALYSIS/Tables/lmdid2_selfworth.Rds")
 
 
 
