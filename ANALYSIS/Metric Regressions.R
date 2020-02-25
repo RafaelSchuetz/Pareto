@@ -6,6 +6,7 @@ library(broom)
 library(sandwich)
 library(lmtest)
 library(modelr)
+library(texreg)
 
 
 
@@ -18,7 +19,7 @@ mealsNo_sub.lm <- lm_robust(mealsNo ~ realSubsidy, data = mergedData)%>%
   extract.lm_robust(include.ci = FALSE)
 summary(mealsNo_sub.lm) 
 
-texreg(mealsNo_sub.lm)
+
 
 # mealsNo_sub.lm <- coeftest(mealsNo_sub.lm, vcov. = vcovHC(mealsNo_sub.lm, type = 'HC1'))
 # summary(mealsNo_sub.lm)
