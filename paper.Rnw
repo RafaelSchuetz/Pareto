@@ -296,7 +296,7 @@ lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds")#imputetrips
 
 texreg(list(lm_ms, lm_ts, lm_ms_o, lm_ts_o, lm_ms_i, lm_ts_i), caption = "Grants Regressions", custom.model.names = c("MealsNo", "Trips No", "Meals No", "Trips No", "Meals No", "Trips No"))
 @
-The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed.  
+Table 3: The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed.  
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -320,12 +320,16 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 lm_lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
 lm_dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 lm_aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
+lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds") #impute
+dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
+aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
 
 #expanded model less ill 
 
 lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.Rds")
 
-stargazer(lm_dDGE, lm_aDGE, title = "Regression outcome: Health", align = TRUE)
+texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Health Outcome Regressions", custom.model.names = c("LessIll", "DietaryKnowledge", "AppreciateHealthy","LessIll", "DietaryKnowledge", "AppreciateHealthy"))
 @
 
 <<ChanceEqualityRegressions, echo=FALSE, results='asis', message=FALSE>>=
