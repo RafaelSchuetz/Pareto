@@ -84,7 +84,7 @@ appreciateHealthy_Time<- plotOutcomeOverTime("year", "appreciateHealthy_ordered"
 dietaryKnowledge_Time<- plotOutcomeOverTime("year", "dietaryKnowledge_ordered")
 
 Health_Year <- plot_grid(lessIll_Time, dietaryKnowledge_Time, appreciateHealthy_Time, 
-                          ncol = 2, nrow = 2, align = "hv",
+                          ncol = 1, nrow = 3, align = "v",
                           labels = "AUTO",
                           label_x = 0, label_y = 0, hjust = -3, vjust = 
                             -1.5, label_fontface = "plain", label_size = 11)
@@ -96,7 +96,7 @@ selfworth_Time <- plotOutcomeOverTime("year", "selfworth_ordered")
 dayToDaySkills_Time <- plotOutcomeOverTime("year", "dayToDaySkills_ordered")
 
 Equality_Year <- plot_grid(selfworth_Time, dayToDaySkills_Time, 
-                         ncol = 2, nrow = 1, align = "hv",
+                         ncol = 1, nrow = 2, align = "v",
                          labels = "AUTO",
                          label_x = 0, label_y = 0, hjust = -3, vjust = 
                            -1.5, label_fontface = "plain", label_size = 11)

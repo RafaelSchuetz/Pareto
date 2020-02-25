@@ -226,17 +226,18 @@ lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 stargazer(list(lm_ms, lm_ts), title = "Regression outcome: Grants", align = TRUE)  
 @
 
-<<Health Regressions Scatterplots, echo=FALSE, results='asis', message=FALSE>>=
-Health_plots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_plots.Rds")
-print(Health_plots)
-@
-
-<<Health Regressions percentageplots, echo=FALSE, results='asis', message=FALSE>>=
+\begin{figure}
+  \caption{Health Outcomes versus Healthy Meals}
+  \label{Health_Plots}
+<<Health Regressions percentageplots, echo=FALSE, message=FALSE>>=
 Health_percentageplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_percentageplots.Rds")
 print(Health_percentageplots)
 @
+\floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on the criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them their menus. An ecotrophologist collaborating with CHILDREN assesed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
+The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
+\end{figure}
 
-<<Health Regressions time plots, echo=FALSE, results='asis', message=FALSE>>=
+<<Health Regressions time plots, echo=FALSE, message=FALSE>>=
 Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
 print(Health_timeplots)
 @
