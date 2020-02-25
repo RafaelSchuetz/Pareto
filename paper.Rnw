@@ -212,6 +212,10 @@ print(totalGrantsDyn)
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
+#outlier meals
+#outlier trips 
+#impute meals
+#imputetrips
 
 stargazer(lm_ms, lm_ts, title = "Regression outcome: Grants", align = TRUE)  
 @
