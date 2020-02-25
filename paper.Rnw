@@ -230,8 +230,6 @@ Unless otherwise specified, we consider all variables to be metric, even if they
 
 \section{Summary Statistics}
 
-
-
 <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
 # first, read in all Rds objects that you need
@@ -252,15 +250,37 @@ print(fundamental_dynamics, include.rownames = FALSE)
 At the beginning of the time series in 2011, they supported in x institutions. In 2018, this number had increased to y. In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.    
 
 \begin{figure}
-  \caption{Yearly dynamics of total grants in Meals program}
+  \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
 
-<<echo=FALSE>>=
-totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/totalRealSubTrend.Rds")
+<<Grant Trend, echo=FALSE, message=FALSE>>=
+totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
 print(totalGrantsDyn)
 @
 
-\floatfoot{This graph shows the development of the sum of all grants in the Meals program. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+\floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median and the median grant per beneficiary. From left to right: Meals, Trips, from top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals progam and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+\end{figure}
+
+\begin{figure}
+  \caption{Health outcome over time}
+  \label{Health_timeplots}
+<<Health time plots, echo=FALSE, message=FALSE>>=
+Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
+print(Health_timeplots)
+@
+\floatfoot{In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
+The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
+\end{figure}
+
+\begin{figure}
+  \caption{Equality of opportunities over time}
+  \label{Equality_timeplots}
+<<Equality time plots, echo=FALSE, message=FALSE>>=
+Equality_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Equality_Year.Rds")
+print(Equality_timeplots)
+@
+\floatfoot{In its yearly surveys CHILDREN has always asked about two variables closley related to increasing the beneficiaries' equality of opportunities. These are the degree to which beneficiaries: have more selfworth (selfworth\_ordered) and have a growing understanding for everyday expertise (dayToDaySkills\_ordered).  
+The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries have more selfowrth, then this would be coded as 3.}
 \end{figure}
 
 \section{Regressions}
@@ -274,8 +294,10 @@ lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 #impute meals
 #imputetrips
 
-stargazer(list(lm_ms, lm_ts), title = "Regression outcome: Grants", align = TRUE)  
+texreg(list(lm_ms, lm_ts), caption = "Grants Regressions", custom.model.names = c("Number of Meals", "Number of Trips"))
 @
+
+
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -288,12 +310,16 @@ print(Health_percentageplots)
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
+<<<<<<< HEAD
+<<Health Regressions, echo=FALSE, results='asis', message=FALSE>>=
+=======
 <<HealthRegressionsTimePlots, echo=FALSE, message=FALSE>>=
 Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
 print(Health_timeplots)
 @
 
 <<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
+>>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
 
 #scaled regressions
 

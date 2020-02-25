@@ -43,3 +43,14 @@ mergedData <- dataWithStates
 mergedData <- mergedData %>% 
   full_join(priceIndicesWide) %>%
   full_join(totalPriceIndex)
+
+mergedData <- as_tibble(mergedData)
+
+#alle Variablen die 99 sind: Kategorische Daten und 99 bedeutet: keine Angabe
+mergedData[mergedData == '99'] <- NA
+
+# order by id and year
+
+mergedData <- mergedData %>% 
+  arrange(id, year)
+
