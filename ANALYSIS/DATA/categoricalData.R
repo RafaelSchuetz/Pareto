@@ -1,3 +1,6 @@
+# scale returns values below -1
+
+
 # How to write your own function: https://adv-r.hadley.nz/functions.html
 # How does map from package purrr work: https://r4ds.had.co.nz/iteration.html
 # How to mutate columns selectively with automatic new names: https://dplyr.tidyverse.org/reference/mutate_all.html
