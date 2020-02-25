@@ -210,9 +210,6 @@ Figure\\
 % print(tableCyclicDisp, include.rownames = FALSE)
 % @
 
-<<<<<<< HEAD
-Regression fit ouput with texreg
-=======
 Regression fit output with texreg\\
 
 
@@ -242,7 +239,6 @@ RMSE             & 39992.79        & 2.96         \\
 \end{table}
 
 
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
 
 \section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
 
@@ -295,15 +291,8 @@ Unless otherwise specified, we consider all variables to be metric, even if they
 
 \section{Summary Statistics}
 
-<<<<<<< HEAD
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Tue Feb 25 18:51:50 2020
-=======
-
-
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Tue Feb 25 17:48:03 2020
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
+% Tue Feb 25 21:40:28 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{mmmmm}
@@ -368,24 +357,15 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-<<<<<<< HEAD
 {\centering \includegraphics[width=0.8\textwidth]{figure/Equality_time_plots-1} 
-=======
-{\centering \includegraphics[width=0.8\textwidth]{figure/HealthRegressionsPercentageplots-1} 
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
 
 }
 
 
 
 \end{knitrout}
-<<<<<<< HEAD
 \floatfoot{In its yearly surveys CHILDREN has always asked about two variables closley related to increasing the beneficiaries' equality of opportunities. These are the degree to which beneficiaries: have more selfworth (selfworth\_ordered) and have a growing understanding for everyday expertise (dayToDaySkills\_ordered).  
 The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries have more selfowrth, then this would be coded as 3.}
-=======
-\floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on the criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them their menus. An ecotrophologist collaborating with CHILDREN assesed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
-The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
 \end{figure}
 
 \section{Regressions}
@@ -393,31 +373,30 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c }
+\begin{tabular}{l c c c c c c }
 \hline
- & Number of Meals & Number of Trips \\
+ & MealsNo & Trips No & Meals No & Trips No & Meals No & Trips No \\
 \hline
-(Intercept)      & $-12089.14^{*}$ & $3.70^{***}$ \\
-                 & $(5192.86)$     & $(0.33)$     \\
-realSubsidy      & $2.61^{***}$    &              \\
-                 & $(0.57)$        &              \\
-realTripsSubsidy &                 & $0.00^{*}$   \\
-                 &                 & $(0.00)$     \\
+(Intercept)      & $-12089.14^{*}$ & $3.70^{***}$ & $-12089.14^{***}$ & $3.70^{***}$ & $-12250.60^{***}$ & $3.62^{***}$ \\
+                 & $(5192.86)$     & $(0.33)$     & $(2919.15)$       & $(0.25)$     & $(2500.33)$       & $(0.25)$     \\
+realSubsidy      & $2.61^{***}$    &              & $2.61^{***}$      &              & $2.72^{***}$      &              \\
+                 & $(0.57)$        &              & $(0.17)$          &              & $(0.14)$          &              \\
+realTripsSubsidy &                 & $0.00^{*}$   &                   & $0.00^{***}$ &                   & $0.00^{***}$ \\
+                 &                 & $(0.00)$     &                   & $(0.00)$     &                   & $(0.00)$     \\
 \hline
-R$^2$            & 0.43            & 0.05         \\
-Adj. R$^2$       & 0.43            & 0.04         \\
-Num. obs.        & 329             & 322          \\
-RMSE             & 39992.79        & 2.96         \\
+R$^2$            & 0.43            & 0.05         & 0.43              & 0.05         & 0.45              & 0.05         \\
+Adj. R$^2$       & 0.43            & 0.04         & 0.43              & 0.04         & 0.45              & 0.05         \\
+Num. obs.        & 329             & 322          & 329               & 322          & 440               & 334          \\
+RMSE             & 39992.79        & 2.96         & 39992.79          & 2.96         & 39601.41          & 2.93         \\
 \hline
-\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 \caption{Grants Regressions}
 \label{table:coefficients}
 \end{center}
 \end{table}
 
-
-
+Table 3: The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed.  
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -425,11 +404,7 @@ RMSE             & 39992.79        & 2.96         \\
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-<<<<<<< HEAD
-{\centering \includegraphics[width=0.8\textwidth]{figure/Health_Regressions_percentageplots-1} 
-=======
-{\centering \includegraphics[width=0.8\textwidth]{figure/HealthRegressionsTimePlots-1} 
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
+{\centering \includegraphics[width=0.8\textwidth]{figure/HealthRegressionsPercentageplots-1} 
 
 }
 
@@ -440,46 +415,17 @@ RMSE             & 39992.79        & 2.96         \\
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
-
-% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
 <<<<<<< HEAD
-% Date and time: Di, Feb 25, 2020 - 18:51:55
-=======
-% Date and time: Di, Feb 25, 2020 - 17:48:07
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
-% Requires LaTeX packages: dcolumn 
-\begin{table}[!htbp] \centering 
-  \caption{Regression outcome: Health} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} D{.}{.}{-3} } 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{2}{c}{\textit{Dependent variable:}} \\ 
-\cline{2-3} 
-\\[-1.8ex] & \multicolumn{2}{c}{ } \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)}\\ 
-\hline \\[-1.8ex] 
- DGECriteriaNoScaled & 0.112^{*} & 0.266^{***} \\ 
-  & (0.063) & (0.065) \\ 
-  & & \\ 
- Constant & 0.015 & -0.026 \\ 
-  & (0.067) & (0.070) \\ 
-  & & \\ 
-\hline \\[-1.8ex] 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table} 
 
+
+\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:1:1: Unerwartete(s) '>'\\\#\# 1: >\\\#\#\ \ \ \  \textasciicircum{}}}\end{kframe}
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Di, Feb 25, 2020 - 18:51:55
-=======
-% Date and time: Di, Feb 25, 2020 - 17:48:08
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
+% Date and time: Di, Feb 25, 2020 - 21:40:33
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Regression outcome: Chance Equality} 
@@ -553,11 +499,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Di, Feb 25, 2020 - 18:51:55
-=======
-% Date and time: Di, Feb 25, 2020 - 17:48:08
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
+% Date and time: Di, Feb 25, 2020 - 21:40:33
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -611,11 +553,7 @@ QUOTES FROM PAPER, describe method
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Tue Feb 25 18:51:55 2020
-=======
-% Tue Feb 25 17:48:08 2020
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
+% Tue Feb 25 21:40:33 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -656,11 +594,7 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \caption{Partition of outcomes, Meals} 
 \end{table}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Tue Feb 25 18:51:55 2020
-=======
-% Tue Feb 25 17:48:08 2020
->>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
+% Tue Feb 25 21:40:33 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}

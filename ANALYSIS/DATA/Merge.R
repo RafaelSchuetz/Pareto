@@ -52,5 +52,6 @@ mergedData[mergedData == '99'] <- NA
 # order by id and year
 
 mergedData <- mergedData %>% 
+  dplyr::select(-trips) %>% 
   arrange(id, year)
 
