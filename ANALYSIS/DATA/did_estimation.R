@@ -48,8 +48,8 @@ summary(lmdid_dayToDaySkills)
 # enthält und im Regressiontable somit ein Regressionskoeffizient von 0 ausgewiesen wird.
 # Lösung: Die Kontrollvariablen "dfcEF$subsidy" und "dfcEF$totalCost" werden durch 1000 geteilt. 
 
-# dfcEF$subsidy <- (dfcEF$subsidy/1000)
-# dfcEF$totalCost <- (dfcEF$totalCost/1000)
+#dfcEF$subsidy <- (dfcEF$subsidy/1000)
+#dfcEF$totalCost <- (dfcEF$totalCost/1000)
 
 lmdid_dayToDaySkills_controls <- lm(dfcEF$dayToDaySkills_scaled ~ dfcEF$treatEF + dfcEF$id + dfcEF$year
                                     + dfcEF$subsidy + dfcEF$totalCost)
