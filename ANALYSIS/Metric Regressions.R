@@ -7,24 +7,30 @@ library(sandwich)
 library(lmtest)
 library(modelr)
 
+
+
 #NOCHKEINEMODELLEMITOUTLIERN ERSTELLEN
 
 ##subsidy 
 #dataset: mergedData
 
-mealsNo_sub.lm <- lm(mealsNo ~ realSubsidy, data = mergedData)
-summary(mealsNo_sub.lm)
+mealsNo_sub.lm <- lm_robust(mealsNo ~ realSubsidy, data = mergedData)%>%
+  extract.lm_robust(include.ci = FALSE)
+summary(mealsNo_sub.lm) 
 
-mealsNo_sub.lm <- coeftest(mealsNo_sub.lm, vcov. = vcovHC(mealsNo_sub.lm, type = 'HC1'))
-summary(mealsNo_sub.lm)
+texreg(mealsNo_sub.lm)
+
+# mealsNo_sub.lm <- coeftest(mealsNo_sub.lm, vcov. = vcovHC(mealsNo_sub.lm, type = 'HC1'))
+# summary(mealsNo_sub.lm)
 
 saveRDS(mealsNo_sub.lm,"./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 
-tripsNo_sub.lm <- lm(tripsNo ~ realTripsSubsidy, data = mergedData)
+tripsNo_sub.lm <- lm_robust(tripsNo ~ realTripsSubsidy, data = mergedData)%>%
+  extract.lm_robust(include.ci = FALSE)
 summary(tripsNo_sub.lm)
 
-tripsNo_sub.lm <- coeftest(tripsNo_sub.lm, vcov. = vcovHC(tripsNo_sub.lm, type = 'HC1'))
-summary(tripsNo_sub.lm)
+# tripsNo_sub.lm <- coeftest(tripsNo_sub.lm, vcov. = vcovHC(tripsNo_sub.lm, type = 'HC1'))
+# summary(tripsNo_sub.lm)
 
 saveRDS(tripsNo_sub.lm,"./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 
@@ -83,7 +89,7 @@ summary(lessIll_DGE.lm)
 
 saveRDS(lessIll_DGE.lm,"./ANALYSIS/Tables/lessIll_DGE.lm.Rds")
 
-lessIll_DGE_scaled.lm <- lm(lessIll_scaled ~ DGECriteriaNo_scaled, data = mergedData)
+lessIll_DGE_scaled.lm <- lm(lessIll_scaled ~ DGECriteriaNoScaled, data = mergedData)
 summary(lessIll_DGE_scaled.lm) #standardized
 
 lessIll_DGE_Scaled.lm <- coeftest(lessIll_DGE_scaled.lm, vcov. = vcovHC(lessIll_DGE_scaled.lm, type = 'HC1'))
@@ -100,7 +106,7 @@ summary(Expand_LessIll.lm)
 
 saveRDS(Expand_LessIll.lm,"./ANALYSIS/Tables/Expand_LessIll.lm.Rds")
 
-Expand_LessIll_scaled.lm = lm(lessIll_scaled ~ DGECriteriaNo_scaled + regionalProducts_scaled + yearsSupportSince + realSubsidy + state, data = mergedData)
+Expand_LessIll_scaled.lm = lm(lessIll_scaled ~ DGECriteriaNoScaled + regionalProducts_scaled + yearsSupportSince + realSubsidy + state, data = mergedData)
 summary(Expand_LessIll_scaled.lm) #standardized
 
 Expand_LessIll_scaled.lm <- coeftest(Expand_LessIll_scaled.lm, vcov. = vcovHC(Expand_LessIll_scaled.lm, type = 'HC1'))
@@ -116,7 +122,7 @@ summary(dietaryKnowledge_DGE.lm)
 
 saveRDS(dietaryKnowledge_DGE.lm,"./ANALYSIS/Tables/dietaryKnowledge_DGE.lm.Rds")
 
-dietaryKnowledge_DGE_scaled.lm <- lm(dietaryKnowledge_scaled ~ DGECriteriaNo_scaled, data = mergedData)
+dietaryKnowledge_DGE_scaled.lm <- lm(dietaryKnowledge_scaled ~ DGECriteriaNoScaled, data = mergedData)
 summary(dietaryKnowledge_DGE_scaled.lm) #standardized
 
 dietaryKnowledge_DGE_scaled.lm <- coeftest(dietaryKnowledge_DGE_scaled.lm, vcov. = vcovHC(dietaryKnowledge_DGE_scaled.lm, type = 'HC1'))
@@ -125,15 +131,15 @@ summary(dietaryKnowledge_DGE_scaled.lm)
 saveRDS(dietaryKnowledge_DGE_scaled.lm,"./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 
 appreciateHealthy_DGE.lm <- lm(appreciateHealthy ~ DGECriteriaNo, data = mergedData)
-summary(dietaryKnowledge_DGE.lm)
+summary(appreciateHealthy_DGE.lm)
 
 appreciateHealthy_DGE.lm <- coeftest(appreciateHealthy_DGE.lm, vcov. = vcovHC(appreciateHealthy_DGE.lm, type = 'HC1'))
 summary(appreciateHealthy_DGE.lm)
 
 saveRDS(appreciateHealthy_DGE.lm,"./ANALYSIS/Tables/appreciateHealthy_DGE.Rds")
 
-appreciateHealthy_DGE_scaled.lm <- lm(appreciateHealthy_scaled ~ DGECriteriaNo_scaled, data = mergedData)
-summary(dietaryKnowledge_DGE_scaled.lm) #standardized
+appreciateHealthy_DGE_scaled.lm <- lm(appreciateHealthy_scaled ~ DGECriteriaNoScaled, data = mergedData)
+summary(appreciateHealthy_DGE_scaled.lm) #standardized
 
 appreciateHealthy_DGE_scaled.lm <- coeftest(appreciateHealthy_DGE_scaled.lm, vcov. = vcovHC(appreciateHealthy_DGE_scaled.lm, type = 'HC1'))
 summary(appreciateHealthy_DGE_scaled.lm)
@@ -153,7 +159,7 @@ saveRDS(lessIll_DGE_IM.lm,"./ANALYSIS/Tables/lessIll_DGE_IM.lm.Rds")
 
 
 
-lessIll_DGE_IM_scaled.lm <- lm(lessIll_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeInterpolation)
+lessIll_DGE_IM_scaled.lm <- lm(lessIll_scaled ~ DGECriteriaNoScaled, data = mergedDataImputeInterpolation)
 summary(lessIll_DGE_IM_scaled.lm) #standardized
 
 lessIll_DGE_IM_scaled.lm <- coeftest(lessIll_DGE_IM_scaled.lm, vcov. = vcovHC(lessIll_DGE_IM_scaled.lm, type = 'HC1'))
@@ -163,7 +169,7 @@ saveRDS(lessIll_DGE_IM_scaled.lm,"./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds
 
 
 
-Expand_LessIll_IM.lm = lm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + realSubsidy + state, data = mergedDataImputeInterpolation)
+Expand_LessIll_IM.lm = lm(lessIll ~ DGECriteriaNo + regionalProducts + yearsSupportSince + realSubsidy, data = mergedDataImputeInterpolation)
 summary(Expand_LessIll_IM.lm)
 
 Expand_LessIll_IM.lm <- coeftest(Expand_LessIll_IM.lm, vcov. = vcovHC(Expand_LessIll_IM.lm, type = 'HC1'))
@@ -171,7 +177,7 @@ summary(Expand_LessIll_IM.lm)
 
 saveRDS(Expand_LessIll_IM.lm,"./ANALYSIS/Tables/Expand_LessIll_IM.lm.Rds")
 # 
-Expand_LessIll_IM_scaled.lm = lm(lessIll_scaled ~ DGECriteriaNo_scaled + regionalProducts_scaled + yearsSupportSince + realSubsidy + state, data = mergedDataImputeInterpolation)
+Expand_LessIll_IM_scaled.lm = lm(lessIll_scaled ~ DGECriteriaNoScaled + regionalProducts_scaled + yearsSupportSince + realSubsidy, data = mergedDataImputeInterpolation)
 summary(Expand_LessIll_IM_scaled.lm) #standardized
 
 Expand_LessIll_IM_scaled.lm <- coeftest(Expand_LessIll_IM_scaled.lm, vcov. = vcovHC(Expand_LessIll_IM_scaled.lm, type = 'HC1'))
@@ -189,7 +195,7 @@ summary(dietaryKnowledge_DGE_IM.lm)
 saveRDS(dietaryKnowledge_DGE_IM.lm,"./ANALYSIS/Tables/dietaryKnowledge_DGE_IM.lm.Rds")
 
 # 
-dietaryKnowledge_DGE_IM_scaled.lm <- lm(dietaryKnowledge_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeInterpolation)
+dietaryKnowledge_DGE_IM_scaled.lm <- lm(dietaryKnowledge_scaled ~ DGECriteriaNoScaled, data = mergedDataImputeInterpolation)
 summary(dietaryKnowledge_DGE_IM_scaled.lm) #standardized
 
 dietaryKnowledge_DGE_IM_scaled.lm <- coeftest(dietaryKnowledge_DGE_IM_scaled.lm, vcov. = vcovHC(dietaryKnowledge_DGE_IM_scaled.lm, type = 'HC1'))
@@ -199,7 +205,7 @@ saveRDS(dietaryKnowledge_DGE_IM_scaled.lm,"./ANALYSIS/Tables/dietaryKnowledge_DG
 
 # 
 appreciateHealthy_DGE_IM.lm <- lm(appreciateHealthy ~ DGECriteriaNo, data = mergedDataImputeInterpolation)
-summary(dietaryKnowledge_DGE_IM.lm)
+summary(appreciateHealthy_DGE_IM.lm)
 
 appreciateHealthy_DGE_IM.lm <- coeftest(appreciateHealthy_DGE_IM.lm, vcov. = vcovHC(appreciateHealthy_DGE_IM.lm, type = 'HC1'))
 summary(appreciateHealthy_DGE_IM.lm)
@@ -207,8 +213,8 @@ summary(appreciateHealthy_DGE_IM.lm)
 saveRDS(appreciateHealthy_DGE_IM.lm,"./ANALYSIS/Tables/appreciateHealthy_DGE_IM.lm.Rds")
 
 # 
-appreciateHealthy_DGE_IM_scaled.lm <- lm_robust(appreciateHealthy_scaled ~ DGECriteriaNo_scaled, data = mergedDataImputeInterpolation)
-summary(dietaryKnowledge_DGE_IM_scaled.lm) #standardized
+appreciateHealthy_DGE_IM_scaled.lm <- lm(appreciateHealthy_scaled ~ DGECriteriaNoScaled, data = mergedDataImputeInterpolation)
+summary(appreciateHealthy_DGE_IM_scaled.lm) #standardized
 
 appreciateHealthy_DGE_IM_scaled.lm <- coeftest(appreciateHealthy_DGE_IM_scaled.lm, vcov. = vcovHC(appreciateHealthy_DGE_IM_scaled.lm, type = 'HC1'))
 summary(appreciateHealthy_DGE_IM_scaled.lm)
