@@ -76,6 +76,11 @@
 
 % Create list of packages used, Gandrud (2016), p 218/219
 
+
+
+% models with robust standard errors texreg
+% https://github.com/DeclareDesign/estimatr/issues/316
+
 \documentclass[12pt, a4paper]{article}
 \usepackage{lscape}
 \usepackage{graphicx}
