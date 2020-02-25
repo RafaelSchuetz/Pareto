@@ -310,17 +310,3 @@ table_did3_selfworth <- stargazer(lmdid3_selfworth,
 saveRDS(lmdid_selfworth, file = "./ANALYSIS/Tables/lmdid3_selfworth.rds")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
