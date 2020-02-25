@@ -1,13 +1,4 @@
-mergedData <- mergedData %>% 
-  mutate(realSubsidyPerBeneficiary = realSubsidy/eatersPerMealNo,
-         realTripsSubsidyPerBeneficiary = realTripsSubsidy/tripsKidsNo)
-
-# order by id and year
-
-mergedData <- mergedData %>% 
-  arrange(id, year)
-
-# remove 
+# outcomes not directly related to beneficiaries 
 
 generalOutcomes <- c(
   'enoughFood',

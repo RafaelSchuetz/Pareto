@@ -111,7 +111,7 @@ Dietary_percentageplot <- plotDGEOutcomeInPercent("DGECriteriaNo", "dietaryKnowl
 Appreciate_percentageplot <- plotDGEOutcomeInPercent("DGECriteriaNo", "appreciateHealthy_ordered")
 
 Health_percentageplots <- plot_grid(LessIll_percentageplot, Dietary_percentageplot, Appreciate_percentageplot, 
-                          ncol = 2, nrow = 2, align = "hv",
+                          ncol = 1, nrow = 3, align = "hv",
                           labels = "AUTO",
                           label_x = 0, label_y = 0, hjust = -3, vjust = 
                             -1.5, label_fontface = "plain", label_size = 11)
