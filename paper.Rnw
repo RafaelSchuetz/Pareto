@@ -166,7 +166,18 @@ print(figureLineDisp)
 % print(tableCyclicDisp, include.rownames = FALSE)
 % @
 
-Regression fit ouput with texreg
+Regression fit output with texreg\\
+
+<<mealsTripsSubsidyRegressions, echo=FALSE, results='asis'>>=
+# , message=FALSE, warning=FALSE
+# first, read in all Rds objects that you need
+
+mealsNo_sub.lm = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
+tripsNo_sub.lm = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
+ 
+texreg(list(mealsNo_sub.lm, tripsNo_sub.lm))
+@
+
 
 \section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
 
@@ -274,7 +285,7 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 
 \section{Regressions}
 
-<<Grants Regressions, echo=FALSE, results='asis', message=FALSE>>=
+<<GrantsRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
@@ -291,7 +302,7 @@ texreg(list(lm_ms, lm_ts), caption = "Grants Regressions", custom.model.names = 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
   \label{Health_Plots}
-<<Health Regressions percentageplots, echo=FALSE, message=FALSE>>=
+<<HealthRegressionsPercentageplots, echo=FALSE, message=FALSE>>=
 Health_percentageplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_percentageplots.Rds")
 print(Health_percentageplots)
 @
@@ -299,7 +310,16 @@ print(Health_percentageplots)
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
+<<<<<<< HEAD
 <<Health Regressions, echo=FALSE, results='asis', message=FALSE>>=
+=======
+<<HealthRegressionsTimePlots, echo=FALSE, message=FALSE>>=
+Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
+print(Health_timeplots)
+@
+
+<<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
+>>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
 
 #scaled regressions
 
@@ -313,7 +333,8 @@ lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
 
 stargazer(lm_dDGE, lm_aDGE, title = "Regression outcome: Health", align = TRUE)
 @
-<<Chance Equality Regressions, echo=FALSE, results='asis', message=FALSE>>=
+
+<<ChanceEqualityRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
 lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted

@@ -6,6 +6,7 @@ library(broom)
 library(sandwich)
 library(lmtest)
 library(modelr)
+library(texreg)
 
 
 ##subsidy 
@@ -15,7 +16,7 @@ mealsNo_sub.lm <- lm_robust(mealsNo ~ realSubsidy, data = mergedData)%>%
   extract.lm_robust(include.ci = FALSE)
 summary(mealsNo_sub.lm) 
 
-texreg(mealsNo_sub.lm)
+
 
 saveRDS(mealsNo_sub.lm,"./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 

@@ -16,7 +16,7 @@ low_mealsNo<- mergedData_mealsNoexcludedOutliers[1]-1.5*iqr_mealsNo # Lower Rang
 outlier_meals_ID <- filter(mergedData, mergedData$mealsNo <= low_mealsNo | mergedData$mealsNo >= up_mealsNo) %>%
   dplyr::select(id) %>% unique() %>% as.vector()
 
-mealsNoEliminated <- mergedData %>% 
+mealsNoOutliers <- mergedData %>% 
   filter(!(mergedData$id %in% outlier_meals_ID))
 
 #tripsNo 
@@ -31,5 +31,5 @@ low_tripsNo<- mergedData_tripsNoexcludedOutliers[1]-1.5*iqr_tripsNo # Lower Rang
 outlier_trips_ID <- filter(mergedData, mergedData$tripsNo <= low_tripsNo | mergedData$tripsNo >= up_tripsNo) %>%
   dplyr::select(id) %>% unique() %>% as.vector()
 
-tripsNoEliminated <- mergedData %>% 
+tripsNoOutliers <- mergedData %>% 
   filter(!(mergedData$id %in% outlier_trips_ID))
