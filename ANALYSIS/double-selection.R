@@ -4,48 +4,11 @@
 library(hdm)
 library(tidyselect)
 
-
-# this function returns all years in which a variable was recorded
-
-availableYears <- function(dataSet, variableName) {
-  if(is_string(variableName)) {
-    variable <- dataSet[, variableName]
-  }
-  else {
-    variable <- variableName
-  }
-  availableObservations <- dataSet %>% 
-    filter(!is.na(variable))
-  availableYears <- unique(availableObservations$year)
-  return(availableYears)
-}
-
-# This function says whether "firstVariableName" was recorded in all years in which "secondVariableName" was recorded
-
-compareAvailableYears <- function(firstVariableName, secondVariableName, dataSet) {
-  if(availableYears(dataSet, secondVariableName) %in% availableYears(dataSet, firstVariableName)){
-    return(TRUE)
-  }
-  else {
-    return(FALSE)
-  }
-}
-
-# This function returns the names of all variables in "dataSet" that were recorded in all years in which "variableName" was recorded
-
-availableVariables <- function(dataSet, variableName) {
-  comparisonAvailableYears <- map_dfc(dataSet, compareAvailableYears, variableName, dataSet) %>% 
-    select_if(is_true)
-  return(names(comparisonAvailableYears))
-}
-
-
 # select rows with year in which DGECriteriaNo was recorded
 
 datasetMode <- mergedDataImputeMode %>% 
   filter(year %in% c(2018, 2017, 2016, 2014)) %>%
   dplyr::select(!tidyselect::contains('scaled'))
-#   
 
 datasetInterpolation <- mergedDataImputeInterpolation %>% 
   filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
