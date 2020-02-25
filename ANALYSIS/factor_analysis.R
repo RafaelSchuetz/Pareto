@@ -16,10 +16,16 @@ library(lavaan)
 
 ordinalVariablesMeals <- mergedDataImputeInterpolation %>% 
   dplyr::select(-generalOutcomes_scaled) %>% 
-  dplyr::select(one_of(alwaysRecordedVariables)) %>% 
-  dplyr::select(tidyselect::contains('scaled') & !tidyselect::contains('trips')) %>%
+  dplyr::select(c(any_of(alwaysRecordedVariables), 'DGECriteriaNoScaled')) %>% 
+  dplyr::select(c(tidyselect::contains('_scaled') & !tidyselect::contains('trips'), 'DGECriteriaNoScaled')) %>%
   drop_na
          
+ordinalVariablesMealsFA <- ordinalVariablesMeals %>% 
+  dplyr::select(-DGECriteriaNoScaled)
+
+lessIllDGECriteriaNo_scaled <- ordinalVariablesMeals %>% 
+  dplyr::select(DGECriteriaNoScaled, lessIll_scaled) %>% 
+  data.frame()
 
 # with ML=TRUE, hetcor() takes very long to compute
 # https://john-uebersax.com/stat/tetra.htm
@@ -27,7 +33,7 @@ ordinalVariablesMeals <- mergedDataImputeInterpolation %>%
 # pairwise.complete.obs. considered dangerous
 # https://www.r-bloggers.com/pairwise-complete-correlation-considered-dangerous/
 
-correlationMatrixMeals <- hetcor(ordinalVariablesMeals, ML=FALSE, use = "pairwise.complete.obs")
+correlationMatrixMeals <- hetcor(ordinalVariablesMealsFA, ML=FALSE, use = "pairwise.complete.obs")
 
 # hetcor() creates many warnings, either "In log(P) : NaNs wurden erzeugt" or "In polychor(x, y, ML = ML, std.err = std.err) : 1 column with zero marginal removed"
 
@@ -37,25 +43,26 @@ correlationMatrixMeals <- hetcor(ordinalVariablesMeals, ML=FALSE, use = "pairwis
 ## print cases with correlations above a threshold
 ## https://stackoverflow.com/questions/49510472/print-cases-with-correlations-above-a-threshold
 
-correlationMatrixMealsLong <- data.frame(variable1=rownames(correlationMatrixMeals$correlations)[row(correlationMatrixMeals$correlations)[upper.tri(correlationMatrixMeals$correlations)]], 
-                                         variable2=colnames(correlationMatrixMeals$correlations)[col(correlationMatrixMeals$correlations)[upper.tri(correlationMatrixMeals$correlations)]], 
+correlationMatrixMealsLong <- data.frame(variable1=rownames(correlationMatrixMeals$correlations)[row(correlationMatrixMeals$correlations)[upper.tri(correlationMatrixMeals$correlations)]],
+                                         variable2=colnames(correlationMatrixMeals$correlations)[col(correlationMatrixMeals$correlations)[upper.tri(correlationMatrixMeals$correlations)]],
                                          correlation=correlationMatrixMeals$correlations[upper.tri(correlationMatrixMeals$correlations)])
 highCorrelationsMeals <- correlationMatrixMealsLong %>%  arrange(desc(correlation)) %>% filter(abs(correlation)>0.5)
 
 # use fa.parallel to estimate optimal number of factors
 # https://www.promptcloud.com/blog/exploratory-factor-analysis-in-r/
 
-numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 235)
+numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = nrow(ordinalVariablesMealsFA))
 
 # fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  9
 
-factorAnalysisMeals <- fa(correlationMatrixMeals$correlations, nfactors = 9, scores = "regression", n.obs = 300, rotate = "varimax", fm = "ml")
+factorAnalysisMeals <- fa(ordinalVariablesMealsFA, nfactors = numberFactorsMeals$nfact, scores = "regression", n.obs = nrow(ordinalVariablesMealsFA), rotate = "varimax", fm = "ml")
 
-factorAnalysisMeals2 <- fa(ordinalVariablesMeals, nfactors = 2, scores="regression", n.obs = 48, rotate = "varimax", fm = "ml")
+# factorAnalysisMeals2 <- fa(ordinalVariablesMeals, nfactors = 2, scores="regression", n.obs = 48, rotate = "varimax", fm = "ml")
 
-dfFATest <- cbind.data.frame(factorAnalysisMeals2$scores, mergedData$lessIll_scaled, mergedData$realSubsidy)
+scoresMeals <- data.frame(factorAnalysisMeals$scores)
+dfFATest <- cbind.data.frame(scoresMeals, lessIllDGECriteria_scaled)
 
-lmFAtest <- lm(mergedData$lessIll_scaled ~ mergedData$realSubsidy + ML1 + ML2, dfFATest)
+lmFAtest <- lm(lessIll_scaled ~ DGECriteriaNoScaled + ML1 + ML2 + ML3, dfFATest)
 
 loadings(factorAnalysisMeals)
 # if you do not use fm = "ml", these warnings appear: 
