@@ -165,6 +165,85 @@
 \listoftables
 \listoffigures
 
+Examples\\
+
+Equation with\\
+
+\begin{equation}
+\label{ModelProdu}
+\ln y_{it}^{n} = \beta_0 + \beta_k \ln k_{it-1}^{n} + \beta_n \ln n_{it} + \beta_m \ln m_{it} + \beta_t D_t + \beta_i D_i + \epsilon_{it}
+\end{equation}
+
+List\\
+
+\begin{itemize}
+  \item{The firm is not incorporated in the U.S. (FIC is not equal to USA.)}
+  \item{The company is from the financial or utilities sector. This is the case when the SIC code lies between 4900 and 4999 or between 6000 and 6999.}
+  \item{A firm's acquisitions are larger than five percent of the value of its total assets. This is the case when AQC over AT is larger than 0.05.} 
+\end{itemize}
+
+
+Figure\\
+
+\begin{figure}
+  \caption{Dispersion in productivity levels}
+  \label{LineDisp}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-1-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
+\end{figure}
+
+% <<results='asis', echo=FALSE>>=
+% tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
+% colnames(tableCyclicDisp) <- c("Lead in years", "All", "p-value", "Non-Durables", "p-value", "Durables", "p-value")
+% tableCyclicDisp <- xtable(tableCyclicDisp, caption = "Cyclicality of productivity dispersion", digits = c(0, 0, 3, 2, 3, 2, 3, 2))
+% print(tableCyclicDisp, include.rownames = FALSE)
+% @
+
+Regression fit output with texreg\\
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c }
+\hline
+ & Model 1 & Model 2 \\
+\hline
+(Intercept)      & $-12089.14^{*}$ & $3.70^{***}$ \\
+                 & $(5192.86)$     & $(0.33)$     \\
+realSubsidy      & $2.61^{***}$    &              \\
+                 & $(0.57)$        &              \\
+realTripsSubsidy &                 & $0.00^{*}$   \\
+                 &                 & $(0.00)$     \\
+\hline
+R$^2$            & 0.43            & 0.05         \\
+Adj. R$^2$       & 0.43            & 0.04         \\
+Num. obs.        & 329             & 322          \\
+RMSE             & 39992.79        & 2.96         \\
+\hline
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
+
+
+
+\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
+
+How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
+
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 \section{Outline}
 Descriptive statistics\\
@@ -212,15 +291,10 @@ Unless otherwise specified, we consider all variables to be metric, even if they
 
 \section{Summary Statistics}
 
-% <<results='asis', echo=FALSE>>=
-% tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
-% colnames(tableCyclicDisp) <- c("Lead in years", "All", "p-value", "Non-Durables", "p-value", "Durables", "p-value")
-% tableCyclicDisp <- xtable(tableCyclicDisp, caption = "Cyclicality of productivity dispersion", digits = c(0, 0, 3, 2, 3, 2, 3, 2))
-% print(tableCyclicDisp, include.rownames = FALSE)
-% @
+
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Tue Feb 25 17:16:40 2020
+% Tue Feb 25 17:48:03 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{mmmmm}
@@ -272,21 +346,21 @@ At the beginning of the time series in 2011, they supported in x institutions. I
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=0.8\textwidth]{figure/Health_Regressions_percentageplots-1} 
+{\centering \includegraphics[width=0.8\textwidth]{figure/HealthRegressionsPercentageplots-1} 
 
 }
 
 
 
 \end{knitrout}
-\floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on the criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them their menus. An ecotrophologist collaborating with CHILDREN assesed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered.
+\floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on the criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them their menus. An ecotrophologist collaborating with CHILDREN assesed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=0.8\textwidth]{figure/Health_Regressions_time_plots-1} 
+{\centering \includegraphics[width=0.8\textwidth]{figure/HealthRegressionsTimePlots-1} 
 
 }
 
@@ -296,7 +370,7 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Di, Feb 25, 2020 - 17:16:42
+% Date and time: Di, Feb 25, 2020 - 17:48:07
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Regression outcome: Health} 
@@ -323,8 +397,9 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 \end{table} 
 
 
+
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Di, Feb 25, 2020 - 17:16:42
+% Date and time: Di, Feb 25, 2020 - 17:48:08
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Regression outcome: Chance Equality} 
@@ -352,47 +427,7 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 
 
-Examples\\
 
-Equation\\
-
-\begin{equation}
-\label{ModelProdu}
-\ln y_{it} = \beta_0 + \beta_k \ln k_{it-1}^{n} + \beta_n \ln n_{it} + \beta_m \ln m_{it} + \beta_t D_t + \beta_i D_i + \epsilon_{it}
-\end{equation}
-
-List\\
-
-\begin{itemize}
-  \item{The firm is not incorporated in the U.S. (FIC is not equal to USA.)}
-  \item{The company is from the financial or utilities sector. This is the case when the SIC code lies between 4900 and 4999 or between 6000 and 6999.}
-  \item{A firm's acquisitions are larger than five percent of the value of its total assets. This is the case when AQC over AT is larger than 0.05.} 
-\end{itemize}
-
-
-Figure\\
-
-\begin{figure}
-  \caption{Dispersion in productivity levels}
-  \label{LineDisp}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-2-1} 
-
-}
-
-
-
-\end{knitrout}
-
-\floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
-\end{figure}
-
-\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
-
-How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
 
 
 Empirical Approach\\
@@ -438,7 +473,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Di, Feb 25, 2020 - 17:16:43
+% Date and time: Di, Feb 25, 2020 - 17:48:08
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -492,7 +527,7 @@ QUOTES FROM PAPER, describe method
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Tue Feb 25 17:16:43 2020
+% Tue Feb 25 17:48:08 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -533,7 +568,7 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \caption{Partition of outcomes, Meals} 
 \end{table}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Tue Feb 25 17:16:43 2020
+% Tue Feb 25 17:48:08 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -567,62 +602,6 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \begin{kframe}
 
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
-
-% table1_selfworth <- stargazer(lm1_selfworth,
-%                     lm2_selfworth,
-%                     lm3_selfworth,
-%                     lm4_selfworth,
-%           title = "Regression Results",
-%           order = c('Constant', 'treatEF'),
-%           omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-%                    'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-%                    'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-%                    'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-%                    'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-%                    'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-%                    'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-%                    'dummy_2018', 'id'
-%                   ),
-%           add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
-%                            c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-%           align = TRUE)
-
-% \begin{table}[!htbp] \centering 
-%   \caption{Regression Results} 
-%   \label{} 
-% \begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
-% \\[-1.8ex]\hline 
-% \hline \\[-1.8ex] 
-%  & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
-% \cline{2-5} 
-% \\[-1.8ex] & \multicolumn{4}{c}{selfworth} \\ 
-% \\[-1.8ex] & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)}\\ 
-% \hline \\[-1.8ex] 
-%  Constant & 2.796^{***} & 2.870^{***} & 2.774^{***} & 2.847^{***} \\ 
-%   & (0.065) & (0.095) & (0.092) & (0.107) \\ 
-%   & & & & \\ 
-%  treatEF & 0.249^{***} & 0.320^{***} & 0.253^{***} & 0.333^{***} \\ 
-%   & (0.074) & (0.097) & (0.075) & (0.100) \\ 
-%   & & & & \\ 
-% \hline \\[-1.8ex] 
-% ID fixed effects & No & No & Yes & Yes \\ 
-% Time fixed effects & No & Yes & No & Yes \\ 
-% Observations & \multicolumn{1}{c}{430} & \multicolumn{1}{c}{430} & \multicolumn{1}{c}{430} & \multicolumn{1}{c}{430} \\ 
-% R$^{2}$ & \multicolumn{1}{c}{0.026} & \multicolumn{1}{c}{0.035} & \multicolumn{1}{c}{0.026} & \multicolumn{1}{c}{0.036} \\ 
-% Adjusted R$^{2}$ & \multicolumn{1}{c}{0.024} & \multicolumn{1}{c}{0.017} & \multicolumn{1}{c}{0.022} & \multicolumn{1}{c}{0.015} \\ 
-% Residual Std. Error & \multicolumn{1}{c}{0.642 (df = 428)} & \multicolumn{1}{c}{0.644 (df = 421)} & \multicolumn{1}{c}{0.642 (df = 427)} & \multicolumn{1}{c}{0.645 (df = 420)} \\ 
-% F Statistic & \multicolumn{1}{c}{11.417$^{***}$ (df = 1; 428)} & \multicolumn{1}{c}{1.916$^{*}$ (df = 8; 421)} & \multicolumn{1}{c}{5.752$^{***}$ (df = 2; 427)} & \multicolumn{1}{c}{1.724$^{*}$ (df = 9; 420)} \\ 
-% \hline 
-% \hline \\[-1.8ex] 
-% \textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-% \end{tabular} 
-% \end{table}
-
-
-
-
-
-
 
 \printbibliography
 \end{document}
