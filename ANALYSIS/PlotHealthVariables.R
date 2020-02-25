@@ -50,9 +50,18 @@ all_plots$lessIll_ordered
 all_plots$dietaryKnowledge_ordered
 all_plots$appreciateHealthy_ordered
 
-DGE_plots = map(all_plots, ~cowplot::plot_grid(plotlist = .x))
-DGE_plots
 
+LessIll_plot <- plotDGEOutcome("DGECriteriaNo", "lessIll_ordered")
+DietaryKnowledge_plot <- plotDGEOutcome("DGECriteriaNo", "dietaryKnowledge_ordered")
+AppreciateHealthy_plot <- plotDGEOutcome("DGECriteriaNo", "appreciateHealthy_ordered")
+
+Health_plots <- plot_grid(LessIll_plot, DietaryKnowledge_plot, AppreciateHealthy_plot, 
+                                       ncol = 2, nrow = 2, align = "hv",
+                                       labels = "AUTO",
+                                       label_x = 0, label_y = 0, hjust = -3, vjust = 
+                                         -1.5, label_fontface = "plain", label_size = 11)
+
+saveRDS(Health_plots, "./ANALYSIS/GRAPHS/PAPER/Health_plots.Rds")
 
 #againbutinpercentages #differentggplotfunction
 
@@ -97,12 +106,14 @@ lessIll_DGE <- all_percentagePlots$lessIll_ordered
 dietaryKnowledge_DGE <- all_percentagePlots$dietaryKnowledge_ordered
 appreciateHealthy_DGE <- all_percentagePlots$appreciateHealthy_ordered
 
-saveRDS(lessIll_DGE, "./ANALYSIS/GRAPHS/PAPER/lessIll_DGE.Rds")
-saveRDS(dietaryKnowledge_DGE, "./ANALYSIS/GRAPHS/PAPER/dietaryKnowledge_DGE.Rds")
-saveRDS(appreciateHealthy_DGE, "./ANALYSIS/GRAPHS/PAPER/appreciateHealthy_DGE.Rds")
+LessIll_percentageplot <- plotDGEOutcomeInPercent("DGECriteriaNo", "lessIll_ordered")
+Dietary_percentageplot <- plotDGEOutcomeInPercent("DGECriteriaNo", "dietaryKnowledge_ordered")
+Appreciate_percentageplot <- plotDGEOutcomeInPercent("DGECriteriaNo", "appreciateHealthy_ordered")
 
+Health_percentageplots <- plot_grid(LessIll_percentageplot, Dietary_percentageplot, Appreciate_percentageplot, 
+                          ncol = 2, nrow = 2, align = "hv",
+                          labels = "AUTO",
+                          label_x = 0, label_y = 0, hjust = -3, vjust = 
+                            -1.5, label_fontface = "plain", label_size = 11)
 
-#option to save all plots with same expl in one 
-
-response_percentageplots = map(all_percentagePlots, ~cowplot::plot_grid(plotlist = .x))
-response_percentageplots
+saveRDS(Health_percentageplots, "./ANALYSIS/GRAPHS/PAPER/Health_percentageplots.Rds")
