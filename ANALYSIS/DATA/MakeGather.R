@@ -1,5 +1,6 @@
 # read packages
 
+library(texreg)
 library(readxl)
 library(tidyverse)
 library(Scale)
@@ -9,6 +10,7 @@ library(lattice)
 library(survival)
 library(Formula)
 library(tidyimpute)
+
 
 # Gather and cleanup raw data files
 
