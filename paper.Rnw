@@ -176,10 +176,10 @@ Regression fit output with texreg\\
 <<mealsTripsSubsidyRegressions, echo=FALSE, results='asis'>>=
 # , message=FALSE, warning=FALSE
 # first, read in all Rds objects that you need
-
+# 
 mealsNo_sub.lm = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 tripsNo_sub.lm = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
- 
+#  
 texreg(list(mealsNo_sub.lm, tripsNo_sub.lm))
 @
 
@@ -238,8 +238,6 @@ How do children benefit from visiting social institutions that CHILDREN supports
 
 \section{Summary Statistics}
 
-
-
 <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
 # first, read in all Rds objects that you need
@@ -260,15 +258,37 @@ print(fundamental_dynamics, include.rownames = FALSE)
 At the beginning of the time series in 2011, they supported in x institutions. In 2018, this number had increased to y. In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.    
 
 \begin{figure}
-  \caption{Yearly dynamics of total grants in Meals program}
+  \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
 
-<<echo=FALSE>>=
-totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/totalRealSubTrend.Rds")
+<<Grant Trend, echo=FALSE, message=FALSE>>=
+totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
 print(totalGrantsDyn)
 @
 
-\floatfoot{This graph shows the development of the sum of all grants in the Meals program. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+\floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median and the median grant per beneficiary. From left to right: Meals, Trips, from top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals progam and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+\end{figure}
+
+\begin{figure}
+  \caption{Health outcome over time}
+  \label{Health_timeplots}
+<<Health time plots, echo=FALSE, message=FALSE>>=
+Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
+print(Health_timeplots)
+@
+\floatfoot{In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
+The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
+\end{figure}
+
+\begin{figure}
+  \caption{Equality of opportunities over time}
+  \label{Equality_timeplots}
+<<Equality time plots, echo=FALSE, message=FALSE>>=
+Equality_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Equality_Year.Rds")
+print(Equality_timeplots)
+@
+\floatfoot{In its yearly surveys CHILDREN has always asked about two variables closley related to increasing the beneficiaries' equality of opportunities. These are the degree to which beneficiaries: have more selfworth (selfworth\_ordered) and have a growing understanding for everyday expertise (dayToDaySkills\_ordered).  
+The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries have more selfowrth, then this would be coded as 3.}
 \end{figure}
 
 \section{Regressions}
@@ -277,13 +297,14 @@ print(totalGrantsDyn)
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
-#outlier meals
-#outlier trips 
-#impute meals
-#imputetrips
+lm_ms_o = readRDS("./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds") #outlier meals
+lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds")#outlier trips 
+lm_ms_i = readRDS("./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")#impute meals
+lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds")#imputetrips
 
-stargazer(list(lm_ms, lm_ts), title = "Regression outcome: Grants", align = TRUE)  
+texreg(list(lm_ms, lm_ts, lm_ms_o, lm_ts_o, lm_ms_i, lm_ts_i), caption = "Grants Regressions", custom.model.names = c("MealsNo", "Trips No", "Meals No", "Trips No", "Meals No", "Trips No"))
 @
+Table 3: The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed.  
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -296,24 +317,27 @@ print(Health_percentageplots)
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
-<<HealthRegressionsTimePlots, echo=FALSE, message=FALSE>>=
-Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
-print(Health_timeplots)
-@
+<<<<<<< HEAD
+
 
 <<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
+>>>>>>> baa67ebc52a230630056f29a4c5002f3940eea0b
 
 #scaled regressions
 
 lm_lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
 lm_dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 lm_aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
+lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds") #impute
+dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
+aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
 
 #expanded model less ill 
 
 lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.Rds")
 
-stargazer(lm_dDGE, lm_aDGE, title = "Regression outcome: Health", align = TRUE)
+texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Health Outcome Regressions", custom.model.names = c("LessIll", "DietaryKnowledge", "AppreciateHealthy","LessIll", "DietaryKnowledge", "AppreciateHealthy"))
 @
 
 <<ChanceEqualityRegressions, echo=FALSE, results='asis', message=FALSE>>=
