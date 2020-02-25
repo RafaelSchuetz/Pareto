@@ -2,6 +2,7 @@
 library(VGAM)
 library(ordinal)
 library(MASS)
+library(texreg)
 
 
 
@@ -16,17 +17,22 @@ library(MASS)
 #DGE_lessIll.vglm.propOdds = vglm(lessIllOrdinal ~  DGECriteriaNo, data = mergedData, family = propodds)
 #summary(DGE_lessIll.vglm.propOdds)
 
-DGE_lessIll.cumulative.parallel = vglm(lessIllOrdinal ~  DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
+DGE_lessIll.cumulative.parallel = vglm(lessIll_ordered ~  DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
 summary(DGE_lessIll.cumulative.parallel)
 
-DGE_lessIll.vglm.cumulative.notParallel = vglm(lessIllOrdinal ~  DGECriteriaNo, data = mergedData, family = cumulative(parallel = FALSE))
-summary(DGE_lessIll.vglm.cumulative.notParallel)
+saveRDS(DGE_lessIll.cumulative.parallel,"./ANALYSIS/Tables/DGE_lessIll.cumulative.parallel.Rds")
+# 
+
+#DGE_lessIll.vglm.cumulative.notParallel = vglm(lessIllOrdinal ~  DGECriteriaNo, data = mergedData, family = cumulative(parallel = FALSE))
+#summary(DGE_lessIll.vglm.cumulative.notParallel)
 
 #DGE_dietaryKnowledge.vglm = vglm(dietaryKnowledgeOrdinal ~ DGECriteriaNo, data = mergedData, family = propodds)
 #summary(DGE_dietaryKnowledge.vglm)
 
-DGE_dietaryKnowledge.cumulative.parallel = vglm(dietaryKnowledgeOrdinal ~ DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
+DGE_dietaryKnowledge.cumulative.parallel = vglm(dietaryKnowledge_ordered ~ DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
 summary(DGE_dietaryKnowledge.cumulative.parallel)
+
+saveRDS(DGE_dietaryKnowledge.cumulative.parallel,"./ANALYSIS/Tables/DGE_dietaryKnowledge.cumulative.parallel.Rds")
 
 #DGE_seasonalFoodstuff.vglm = vglm(seasonalFoodstuffOrdinal ~ DGECriteriaNo, data = mergedData, family = propodds)
 #summary(DGE_seasonalFoodstuff.vglm)
@@ -34,25 +40,35 @@ summary(DGE_dietaryKnowledge.cumulative.parallel)
 #DGE_organicFoodstuff.vglm = vglm(organicFoodstuffOrdinal ~ DGECriteriaNo, data = mergedData, family = propodds)
 #summary(DGE_organicFoodstuff.vglm)
 
-DGE_appreciateHealthy.cumulative.parallel = vglm(appreciateHealthyOrdinal ~ DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
+DGE_appreciateHealthy.cumulative.parallel = vglm(appreciateHealthy_ordered ~ DGECriteriaNo, data = mergedData, family = cumulative(parallel = TRUE))
 summary(DGE_appreciateHealthy.cumulative.parallel)
+
+saveRDS(DGE_appreciateHealthy.cumulative.parallel,"./ANALYSIS/Tables/DGE_appreciateHealthy.cumulative.parallel.Rds")
 
 #DGE_tasksLunch.vglm = vglm(tasksLunchOrdinal ~ DGECriteriaNo, data = mergedData, family = propodds)
 #summary(DGE_tasksLunch.vglm)
 
-#dataset: mergedDataImputeMode
+#dataset: mergedDataImputeInterpolation
 
-DGE_lessIll_IM.cumulative.parallel = vglm(lessIllOrdinal ~  DGECriteriaNo, data = mergedDataImputeMode, family = cumulative(parallel = TRUE))
+DGE_lessIll_IM.cumulative.parallel = vglm(lessIll_ordered ~  DGECriteriaNo, data = mergedDataImputeInterpolation, family = cumulative(parallel = TRUE))
 summary(DGE_lessIll_IM.cumulative.parallel)
 
-DGE_lessIll_IM.vglm.cumulative.notParallel = vglm(lessIllOrdinal ~  DGECriteriaNo, data = mergedDataImputeMode, family = cumulative(parallel = FALSE))
+saveRDS(DGE_lessIll_IM.cumulative.parallel,"./ANALYSIS/Tables/DGE_lessIll_IM.cumulative.parallel.Rds")
+
+DGE_lessIll_IM.vglm.cumulative.notParallel = vglm(lessIll_ordered ~  DGECriteriaNo, data = mergedDataImputeInterpolation, family = cumulative(parallel = FALSE))
 summary(DGE_lessIll_IM.vglm.cumulative.notParallel)
 
-DGE_dietaryKnowledge_IM.cumulative.parallel = vglm(dietaryKnowledgeOrdinal ~ DGECriteriaNo, data = mergedDataImputeMode, family = cumulative(parallel = TRUE))
+saveRDS(,"./ANALYSIS/Tables/.Rds")
+
+DGE_dietaryKnowledge_IM.cumulative.parallel = vglm(dietaryKnowledge_ordered ~ DGECriteriaNo, data = mergedDataImputeInterpolation, family = cumulative(parallel = TRUE))
 summary(DGE_dietaryKnowledge_IM.cumulative.parallel)
 
-DGE_appreciateHealthy_IM.cumulative.parallel = vglm(appreciateHealthyOrdinal ~ DGECriteriaNo, data = mergedDataImputeMode, family = cumulative(parallel = TRUE))
+saveRDS(,"./ANALYSIS/Tables/.Rds")
+
+DGE_appreciateHealthy_IM.cumulative.parallel = vglm(appreciateHealthy_ordered ~ DGECriteriaNo, data = mergedDataImputeInterpolation, family = cumulative(parallel = TRUE))
 summary(DGE_appreciateHealthy_IM.cumulative.parallel)
+
+saveRDS(,"./ANALYSIS/Tables/.Rds")
 
 
 
@@ -68,8 +84,10 @@ summary(DGE_appreciateHealthy_IM.cumulative.parallel)
 #Expand_LessIll.vglm = vglm(lessIllOrdinal ~ DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + realSubsidy + state, data = mergedData, family = propodds)
 #summary(Expand_LessIll.vglm)
 
-Expand_LessIll.cumulative.parallel = vglm(lessIllOrdinal ~ DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + realSubsidy + state, data = mergedData, family = cumulative(parallel = TRUE))
+Expand_LessIll.cumulative.parallel = vglm(lessIll_ordered ~ DGECriteriaNo + regionalProducts_ordered + yearsSupportSince + realSubsidy + state, data = mergedData, family = cumulative(parallel = TRUE))
 summary(Expand_LessIll.cumulative.parallel)
+
+saveRDS(,"./ANALYSIS/Tables/.Rds")
 
 #LessIll_SubsidyDifference.vglm = vglm(lessIllOrdinal ~ realSubsidyDifferenceLunch, data = mergedData, family = propodds)
 #summary(LessIll_SubsidyDifference.vglm) 
@@ -80,10 +98,12 @@ summary(Expand_LessIll.cumulative.parallel)
 #LessIll_Support.vglm = vglm(lessIllOrdinal ~ yearsSupportSince, data = mergedData, family = propodds)
 #summary(LessIll_Support.vglm)
 
-#dataset: mergedDataImputeMode
+#dataset: mergedDataImputeInterpolation
 
-Expand_LessIll_IM.cumulative.parallel = vglm(lessIllOrdinal ~ DGECriteriaNo + regionalProductsOrdinal + yearsSupportSince + realSubsidy + state, data = mergedDataImputeMode, family = cumulative(parallel = TRUE))
+Expand_LessIll_IM.cumulative.parallel = vglm(lessIll_ordered ~ DGECriteriaNo + regionalProducts_ordered + yearsSupportSince + realSubsidy + state, data = mergedDataImputeInterpolation, family = cumulative(parallel = TRUE))
 summary(Expand_LessIll_IM.cumulative.parallel)
+
+saveRDS(,"./ANALYSIS/Tables/.Rds")
 
 
 
@@ -94,8 +114,10 @@ summary(Expand_LessIll_IM.cumulative.parallel)
 #dayToDaySkills_subsidy.vglm = vglm(dayToDaySkillsOrdinal ~ realSubsidy, data = mergedData, family = propodds)
 #summary(dayToDaySkills_subsidy.vglm)
 
-dayToDaySkills_subsidy.cumulative.parallel = vglm(dayToDaySkillsOrdinal ~ realSubsidy, data = mergedData, family = cumulative(parallel = TRUE))
+dayToDaySkills_subsidy.cumulative.parallel = vglm(dayToDaySkills_ordered ~ realSubsidy, data = mergedData, family = cumulative(parallel = TRUE))
 summary(dayToDaySkills_subsidy.cumulative.parallel)
+
+saveRDS(,"./ANALYSIS/Tables/.Rds")
 
 #dayToDaySkills_Support.vglm = vglm(dayToDaySkillsOrdinal ~ yearsSupportSince, data = mergedData, family = propodds)
 #summary(dayToDaySkills_Support.vglm)
@@ -109,10 +131,12 @@ summary(dayToDaySkills_subsidy.cumulative.parallel)
 #dayToDaySkills_shoppers.vglm = vglm(dayToDaySkillsOrdinal ~ shoppersOrdinal, data = mergedData, family = propodds)
 #summary(dayToDaySkills_shoppers.vglm)
 
-#dataset: mergedDataImputeMode
+#dataset: mergedDataImputeInterpolation
 
-dayToDaySkills_subsidy_IM.cumulative.parallel = vglm(dayToDaySkillsOrdinal ~ realSubsidy, data = mergedDataImputeMode, family = cumulative(parallel = TRUE))
+dayToDaySkills_subsidy_IM.cumulative.parallel = vglm(dayToDaySkills_ordered ~ realSubsidy, data = mergedDataImputeInterpolation, family = cumulative(parallel = TRUE))
 summary(dayToDaySkills_subsidy_IM.cumulative.parallel)
+
+saveRDS(,"./ANALYSIS/Tables/.Rds")
 
 ##selfworth
 #dataset: mergedData
@@ -120,8 +144,10 @@ summary(dayToDaySkills_subsidy_IM.cumulative.parallel)
 #selfworth_subsidy.vglm = vglm(selfworthOrdinal ~ realSubsidy, data = mergedData, family = propodds)
 #summary(selfworth_subsidy.vglm)
 
-selfworth_subsidy.cumulative.parallel = vglm(selfworthOrdinal ~ realSubsidy, data = mergedData, family = cumulative(parallel = TRUE))
+selfworth_subsidy.cumulative.parallel = vglm(selfworth_ordered ~ realSubsidy, data = mergedData, family = cumulative(parallel = TRUE))
 summary(selfworth_subsidy.cumulative.parallel)
+
+saveRDS(,"./ANALYSIS/Tables/.Rds")
 
 #selfworth_support.vglm = vglm(selfworthOrdinal ~ yearsSupportSince, data = mergedData, family = propodds)
 #summary(selfworth_support.vglm)
@@ -141,10 +167,12 @@ summary(selfworth_subsidy.cumulative.parallel)
 #ExpandSelfworth.vglm = vglm(selfworthOrdinal ~ participateMoreOrdinal + enoughFoodOrdinal + yearsSupportSince + realSubsidy + weeklyCooksOrdinal, data = mergedData, family = propodds)
 #summary(ExpandSelfworth.vglm)
 
-#dataset: mergedDataImputeMode
+#dataset: mergedDataImputeInterpolation
 
-selfworth_subsidy_IM.cumulative.parallel = vglm(selfworthOrdinal ~ realSubsidy, data = mergedDataImputeMode, family = cumulative(parallel = TRUE))
+selfworth_subsidy_IM.cumulative.parallel = vglm(selfworth_ordered ~ realSubsidy, data = mergedDataImputeInterpolation, family = cumulative(parallel = TRUE))
 summary(selfworth_subsidy_IM.cumulative.parallel)
+
+saveRDS(,"./ANALYSIS/Tables/.Rds")
 
 #other
 

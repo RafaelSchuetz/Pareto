@@ -380,14 +380,28 @@ texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Healt
 
 lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
 lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
-ts =
-td =
+ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
+td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
 lm_ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") #standardized
 lm_ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardized 
-tss =
-tds =
+tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.lm.Rds")
+tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
 
-texreg(list(), caption = "Equal Opportunities Regressions", custom.model.names = c())
+texreg(list(lm_s, lm_d, ts, td, lm_ss, lm_ds, tss, tds), caption = "Equal Opportunities Regressions", custom.model.names = c("selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills" ))
+@
+
+<<ChanceEqualityRegressionsImpute, echo=FALSE, results='asis', message=FALSE>>=
+
+sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
+dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
+tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
+tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
+ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.Rds") #standardized
+dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") #standardized 
+tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds")
+tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
+
+texreg(list(sI, dI, tsI, tdI, ssI, dsI, tssI, tdsI), caption = "Equal Opportunities Regressions, imputed data", custom.model.names = c("selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills" ))
 @
 
 
