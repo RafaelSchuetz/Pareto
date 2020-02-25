@@ -127,6 +127,44 @@ opts_chunk$set(fig.align = "center",
 \listoftables
 \listoffigures
 
+Examples\\
+
+Equation with\\
+
+\begin{equation}
+\label{ModelProdu}
+\ln y_{it}^{n} = \beta_0 + \beta_k \ln k_{it-1}^{n} + \beta_n \ln n_{it} + \beta_m \ln m_{it} + \beta_t D_t + \beta_i D_i + \epsilon_{it}
+\end{equation}
+
+List\\
+
+\begin{itemize}
+  \item{The firm is not incorporated in the U.S. (FIC is not equal to USA.)}
+  \item{The company is from the financial or utilities sector. This is the case when the SIC code lies between 4900 and 4999 or between 6000 and 6999.}
+  \item{A firm's acquisitions are larger than five percent of the value of its total assets. This is the case when AQC over AT is larger than 0.05.} 
+\end{itemize}
+
+
+Figure\\
+
+\begin{figure}
+  \caption{Dispersion in productivity levels}
+  \label{LineDisp}
+
+<<echo=FALSE>>=
+figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
+print(figureLineDisp)
+@
+
+\floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
+\end{figure}
+
+Regression fit ouput with texreg
+
+\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
+
+How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
+
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 \section{Outline}
 Descriptive statistics\\
@@ -266,41 +304,7 @@ stargazer(lm_s, lm_d, lm_ss, lm_ds, title = "Regression outcome: Chance Equality
 @
 
 
-Examples\\
 
-Equation\\
-
-\begin{equation}
-\label{ModelProdu}
-\ln y_{it} = \beta_0 + \beta_k \ln k_{it-1}^{n} + \beta_n \ln n_{it} + \beta_m \ln m_{it} + \beta_t D_t + \beta_i D_i + \epsilon_{it}
-\end{equation}
-
-List\\
-
-\begin{itemize}
-  \item{The firm is not incorporated in the U.S. (FIC is not equal to USA.)}
-  \item{The company is from the financial or utilities sector. This is the case when the SIC code lies between 4900 and 4999 or between 6000 and 6999.}
-  \item{A firm's acquisitions are larger than five percent of the value of its total assets. This is the case when AQC over AT is larger than 0.05.} 
-\end{itemize}
-
-
-Figure\\
-
-\begin{figure}
-  \caption{Dispersion in productivity levels}
-  \label{LineDisp}
-
-<<echo=FALSE>>=
-figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
-print(figureLineDisp)
-@
-
-\floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
-\end{figure}
-
-\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
-
-How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
 
 
 Empirical Approach\\
