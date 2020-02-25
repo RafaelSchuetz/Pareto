@@ -320,7 +320,7 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 lm_lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
 lm_dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 lm_aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
-lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds") #impute
+lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds")
 dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
 aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
 
@@ -336,10 +336,14 @@ texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Healt
 
 lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
 lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
+ts =
+td =
 lm_ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") #standardized
 lm_ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardized 
+tss =
+tds =
 
-stargazer(lm_s, lm_d, lm_ss, lm_ds, title = "Regression outcome: Chance Equality", align = TRUE)
+texreg(list(), caption = "Equal Opportunities Regressions", custom.model.names = c())
 @
 
 
