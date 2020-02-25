@@ -81,7 +81,7 @@
 % models with robust standard errors texreg
 % https://github.com/DeclareDesign/estimatr/issues/316
 
-\documentclass[12pt, a4paper]{article}\usepackage[]{graphicx}\usepackage[]{color}
+\documentclass[12pt, a4paper, titlepage]{article}\usepackage[]{graphicx}\usepackage[]{color}
 % maxwidth is the original width if it is less than linewidth
 % otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -143,7 +143,15 @@
 % \bibliographystyle{apalike}
 \usepackage{mathtools}
 \usepackage[onehalfspacing]{setspace}
-\usepackage[left = 72 pt, right = 72 pt]{geometry}
+\usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
+<<<<<<< HEAD
+=======
+
+% 1.5 spacing in Word is about this in LaTeX
+% https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
+
+\linespread{1.25}
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 
 \addbibresource{references.bib}
 
@@ -151,23 +159,70 @@
 
 
 
+
+% multiple authors
+% https://tex.stackexchange.com/questions/4805/whats-the-correct-use-of-author-when-multiple-authors
+
 \title{Effects of CHILDREN's programs}
-\author{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz, Yannick Zurl}
+<<<<<<< HEAD
+\author{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz (11574909), Yannick Zurl}
+=======
+\author{
+Laura Huber\\
+\texttt{11111111}
+\and
+Laura Jepsen\\
+\texttt{11111111}
+\and
+Jonathan Kirschner\\
+\texttt{11724530}
+\and
+Rafael Schütz\\
+\texttt{11574909} 
+\and 
+Yannick Zurl\\
+\texttt{11111111}
+\and
+Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
+\and
+Ludwig-Maximilians-Universität Munich
+}
+
+
+% Winter Term 2019/20\\
+
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \date{27th February 2020}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
-\begin{titlepage}
+% \begin{titlepage}
 \maketitle
-\end{titlepage}
+% \end{titlepage}
 
 \tableofcontents
 \listoftables
 \listoffigures
 
-Examples\\
+\begin{abstract} 
+abstract on separate page
+100 - 150 words
+\end{abstract}
+<<<<<<< HEAD
 
-Equation with\\
+Examples\\
+=======
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
+
+\section{Formal requirements}
+all important information on title page, maybe use template\\
+always name sources of tables and graphs\\
+have to cite data sets\\
+
+
+\section{Examples}
+
+Equation with double index\\
 
 \begin{equation}
 \label{ModelProdu}
@@ -239,11 +294,6 @@ RMSE             & 39992.79        & 2.96         \\
 \end{table}
 
 
-
-\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
-
-How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
-
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 \section{Outline}
 Descriptive statistics\\
@@ -285,14 +335,26 @@ Outlook for CHILDREN/variable selection\\
 
 \section{Introduction}
 
+the introduction should include: motivation, precise research questions, very short literature review, most important results, further proceedings
+
 CHILDREN's aims for data analysis\\ 
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
+\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
+
+How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
+
+
+
 \section{Summary Statistics}
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Tue Feb 25 21:40:28 2020
+<<<<<<< HEAD
+% Wed Feb 26 00:00:05 2020
+=======
+% Tue Feb 25 23:58:46 2020
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \begin{table}[ht]
 \centering
 \begin{tabular}{mmmmm}
@@ -370,6 +432,15 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 
 \section{Regressions}
 
+\begin{equation}
+\label{Meals Grants Regression Model}
+  y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
+\end{equation}
+
+Where: 
+y_{it}: Number of meals, number of trips
+x_{it}: Real Lunch grant, real Trips grant
+
 
 \begin{table}
 \begin{center}
@@ -377,17 +448,17 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 \hline
  & MealsNo & Trips No & Meals No & Trips No & Meals No & Trips No \\
 \hline
-(Intercept)      & $-12089.14^{*}$ & $3.70^{***}$ & $-12089.14^{***}$ & $3.70^{***}$ & $-12250.60^{***}$ & $3.62^{***}$ \\
-                 & $(5192.86)$     & $(0.33)$     & $(2919.15)$       & $(0.25)$     & $(2500.33)$       & $(0.25)$     \\
-realSubsidy      & $2.61^{***}$    &              & $2.61^{***}$      &              & $2.72^{***}$      &              \\
-                 & $(0.57)$        &              & $(0.17)$          &              & $(0.14)$          &              \\
-realTripsSubsidy &                 & $0.00^{*}$   &                   & $0.00^{***}$ &                   & $0.00^{***}$ \\
-                 &                 & $(0.00)$     &                   & $(0.00)$     &                   & $(0.00)$     \\
+(Intercept)      & $-12089.14^{*}$ & $3.70^{***}$ & $-12089.14^{*}$ & $3.70^{***}$ & $-12250.60^{**}$ & $3.62^{***}$ \\
+                 & $(5192.86)$     & $(0.33)$     & $(5192.86)$     & $(0.33)$     & $(4524.09)$      & $(0.33)$     \\
+realSubsidy      & $2.61^{***}$    &              & $2.61^{***}$    &              & $2.72^{***}$     &              \\
+                 & $(0.57)$        &              & $(0.57)$        &              & $(0.51)$         &              \\
+realTripsSubsidy &                 & $0.00^{*}$   &                 & $0.00^{*}$   &                  & $0.00^{*}$   \\
+                 &                 & $(0.00)$     &                 & $(0.00)$     &                  & $(0.00)$     \\
 \hline
-R$^2$            & 0.43            & 0.05         & 0.43              & 0.05         & 0.45              & 0.05         \\
-Adj. R$^2$       & 0.43            & 0.04         & 0.43              & 0.04         & 0.45              & 0.05         \\
-Num. obs.        & 329             & 322          & 329               & 322          & 440               & 334          \\
-RMSE             & 39992.79        & 2.96         & 39992.79          & 2.96         & 39601.41          & 2.93         \\
+R$^2$            & 0.43            & 0.05         & 0.43            & 0.05         & 0.45             & 0.05         \\
+Adj. R$^2$       & 0.43            & 0.04         & 0.43            & 0.04         & 0.45             & 0.05         \\
+Num. obs.        & 329             & 322          & 329             & 322          & 440              & 334          \\
+RMSE             & 39992.79        & 2.96         & 39992.79        & 2.96         & 39601.41         & 2.93         \\
 \hline
 \multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
@@ -415,42 +486,60 @@ Table 3: The first two columns are simple OLS models, in column 3 and 4 outliers
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
-<<<<<<< HEAD
-
 
 \begin{kframe}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:1:1: Unerwartete(s) '>'\\\#\# 1: >\\\#\#\ \ \ \  \textasciicircum{}}}\end{kframe}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): cannot open compressed file './ANALYSIS/Tables/Expand\_LessIll\_IM\_scaled.Rds', probable reason 'No such file or directory'}}
+
+<<<<<<< HEAD
+\begin{kframe}
+
+=======
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): cannot open the connection}}\end{kframe}
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c c c }
+\hline
+ & LessIll & DietaryKnowledge & AppreciateHealthy & LessIll & DietaryKnowledge & AppreciateHealthy \\
+\hline
+(Intercept)         & $0.02$       & $0.02$   & $-0.03$      & $0.09$       & $0.02$     & $0.02$       \\
+                    & $(0.08)$     & $(0.07)$ & $(0.07)$     & $(0.07)$     & $(0.06)$   & $(0.06)$     \\
+DGECriteriaNoScaled & $0.33^{***}$ & $0.11$   & $0.27^{***}$ & $0.25^{***}$ & $0.12^{*}$ & $0.25^{***}$ \\
+                    & $(0.08)$     & $(0.07)$ & $(0.07)$     & $(0.07)$     & $(0.06)$   & $(0.06)$     \\
+\hline
+R$^2$               & 0.12         & 0.01     & 0.06         & 0.07         & 0.02       & 0.06         \\
+Adj. R$^2$          & 0.11         & 0.01     & 0.06         & 0.07         & 0.01       & 0.06         \\
+Num. obs.           & 121          & 214      & 213          & 177          & 275        & 274          \\
+RMSE                & 0.91         & 0.98     & 1.02         & 0.94         & 0.96       & 1.01         \\
+\hline
+\multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Health Outcome Regressions}
+\label{table:coefficients}
+\end{center}
+\end{table}
 
 
-% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Di, Feb 25, 2020 - 21:40:33
-% Requires LaTeX packages: dcolumn 
-\begin{table}[!htbp] \centering 
-  \caption{Regression outcome: Chance Equality} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
-\cline{2-5} 
-\\[-1.8ex] & \multicolumn{4}{c}{ } \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)}\\ 
-\hline \\[-1.8ex] 
- realSubsidy & 0.003^{***} & 0.003^{***} & 0.00000 & 0.00001^{***} \\ 
-  & (0.001) & (0.001) & (0.00000) & (0.00000) \\ 
-  & & & & \\ 
- Constant & -13.419^{**} & -13.481^{**} & -0.056 & -0.158^{***} \\ 
-  & (5.715) & (5.727) & (0.063) & (0.060) \\ 
-  & & & & \\ 
-\hline \\[-1.8ex] 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table} 
+\begin{kframe}
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): kann komprimierte Datei './ANALYSIS/Tables/selfworthTrips\_scaled.lm.Rds' nicht öffnen. Grund evtl. 'No such file or directory'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in "{}list"{} \%in\% class(l)[1]: Objekt 'tss' nicht gefunden}}\end{kframe}
+
+\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): kann komprimierte Datei './ANALYSIS/Tables/selfworth\_IM\_scaled.Rds' nicht öffnen. Grund evtl. 'No such file or directory'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in "{}list"{} \%in\% class(l)[1]: Objekt 'ssI' nicht gefunden}}\end{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in l[[i]]: subscript out of bounds}}\end{kframe}
 
 
 
@@ -499,7 +588,11 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Di, Feb 25, 2020 - 21:40:33
+<<<<<<< HEAD
+% Date and time: Mi, Feb 26, 2020 - 00:00:10
+=======
+% Date and time: Tue, Feb 25, 2020 - 11:58:54 PM
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -535,16 +628,19 @@ F Statistic & \multicolumn{1}{c}{11.417$^{***}$ (df = 1; 428)} & \multicolumn{1}
 
 \section{Factor Analysis}
 
+\section{Conclusion}
+
+\printbibliography
+
 \section{Appendix}
 
-A1\\ 
-Cumulative Odds Regression 
+\subsection{A1: Cumulative Odds Regression} 
+ 
 Outliers? 
 
 
 
-A2\\
-Partition 
+\subsection{A2: Partition}
 
 In addition to the factor analysis described in section 6, we would like to introduce to a another dimensionality reduction method called partition. 
 
@@ -553,7 +649,11 @@ QUOTES FROM PAPER, describe method
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Tue Feb 25 21:40:33 2020
+<<<<<<< HEAD
+% Wed Feb 26 00:00:10 2020
+=======
+% Tue Feb 25 23:58:54 2020
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -594,7 +694,11 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \caption{Partition of outcomes, Meals} 
 \end{table}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Tue Feb 25 21:40:33 2020
+<<<<<<< HEAD
+% Wed Feb 26 00:00:10 2020
+=======
+% Tue Feb 25 23:58:54 2020
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -627,7 +731,13 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \end{table}
 \begin{kframe}
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): invalid 'digits' argument}}\end{kframe}
 
-\printbibliography
+\{Ehrenwörtliche Erklärung aller Teilnehmer}
+
+<<<<<<< HEAD
+\{Ehrenwörtliche Erklärung aller Teilnehmer}
+
+=======
+>>>>>>> 3302a0d8f93c9facbd3e488ca60f60251f503546
 \end{document}

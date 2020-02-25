@@ -65,4 +65,4 @@ mergedDataImputeInterpolation$lessIll_scaled<-scale(mergedDataImputeInterpolatio
 mergedDataImputeInterpolation$regionalProducts_scaled<-scale(mergedDataImputeInterpolation$regionalProducts)
 # mergedDataImputeMode$dietaryKnowledge_scaled<-scale(mergedDataImputeMode$dietaryKnowledge)
 # mergedDataImputeMode$selfworth_scaled<-scale(mergedDataImputeMode$selfworth)
-# mergedDataImputeMode$dayToDaySkills_scaled<-scale(mergedDataImputeMode$dayToDaySkills)
+mergedDataImputeInterpolation$dayToDaySkills_scaled<-scale(mergedDataImputeInterpolation$dayToDaySkills)
