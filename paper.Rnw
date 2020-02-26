@@ -332,7 +332,7 @@ Table \ref{fundamentalDynamics} shows that, at the beginning of the time series 
   \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
 
-<<Grant Trend, echo=FALSE, message=FALSE>>=
+<<GrantTrend, echo=FALSE, message=FALSE>>=
 totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
 print(totalGrantsDyn)
 @
@@ -355,7 +355,7 @@ In its yearly surveys, CHILDREN asks about three variables closley related to a 
 \begin{figure}
   \caption{Health outcome over time}
   \label{Health_timeplots}
-<<Health time plots, echo=FALSE, message=FALSE>>=
+<<HealthTimePlots, echo=FALSE, message=FALSE>>=
 Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
 print(Health_timeplots)
 @
@@ -377,7 +377,7 @@ In its yearly surveys CHILDREN has always asked about two variables closley rela
 \begin{figure}
   \caption{Equality of opportunities over time}
   \label{Equality_timeplots}
-<<Equality time plots, echo=FALSE, message=FALSE>>=
+<<EqualityTimePlots, echo=FALSE, message=FALSE>>=
 Equality_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Equality_Year.Rds")
 print(Equality_timeplots)
 @
@@ -741,13 +741,13 @@ tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
 tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
 @
 
-<<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-#expanded model less ill 
-
-lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
-lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
-elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
-@
+% <<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+% #expanded model less ill 
+% 
+% lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+% lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
+% elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
+% @
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
 
