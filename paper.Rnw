@@ -237,11 +237,11 @@ Regressions\\
 
 Questions:\\
 effect of\\
-- healthy meals (DGE criterion) on healthy characteristics\\
+- healthy meals (DGE criterion) standardized on healthy characteristics standardized, with eatersPerMeal as weights\\
 - real meals subsidy on number of meals\\
 - real trips subsidy on number of trips\\
-- real meals subsidy on self-worth and day-to-day skills\\
-- real trips subsidy on self-worth and day-to-day skills\\
+- real meals subsidy per beneficiary on standardized self-worth and standardized day-to-day skills\\
+- real trips subsidy per beneficiary on standardized self-worth and standardized day-to-day skills\\
 
 Methods:\\
 - simple, metric\\
@@ -534,6 +534,6 @@ xtable(partition_trips,
 print(partition_meals, partition_trips, include.rownames = FALSE)
 @
 
-\{Ehrenwörtliche Erklärung aller Teilnehmer}
+\section{Ehrenwörtliche Erklärung aller Teilnehmer}
 
 \end{document}
