@@ -87,6 +87,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 \usepackage{floatrow}
+\usepackage{booktabs}
 \usepackage[hidelinks]{hyperref}
 \usepackage{rotating}
 % \usepackage[authoryear]{natbib}
@@ -157,6 +158,9 @@ Ludwig-Maximilians-Universität Munich
 
 \tableofcontents
 \listoftables
+
+% note below table
+% https://stackoverflow.com/questions/44549464/table-spacing-issue-converting-to-pdf-via-latex-with-pandoc/44797387#44797387
 \listoffigures
 
 \begin{abstract} 
@@ -203,6 +207,9 @@ print(figureLineDisp)
 \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
 \end{figure}
 
+
+Figure \ref{LineDisp}
+
 % <<results='asis', echo=FALSE>>=
 % tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
 % colnames(tableCyclicDisp) <- c("Lead in years", "All", "p-value", "Non-Durables", "p-value", "Durables", "p-value")
@@ -222,6 +229,7 @@ tripsNo_sub.lm = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 texreg(list(mealsNo_sub.lm, tripsNo_sub.lm))
 @
 
+Table \ref{mealsTripsSubsidyRegressions}
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 \section{Outline}
 Descriptive statistics\\
@@ -282,7 +290,19 @@ The final dataset we worked with is structured as follows: Each row represents o
 
 How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
 
+Figure\\
 
+\begin{figure}
+  \caption{Trend in everyday expertise and selfworth}
+  \label{LineDisp}
+
+<<echo=FALSE>>=
+figureDaytodayskillsSelfworth = readRDS("./ANALYSIS/GRAPHS/PAPER/plot_dayToDaySkills_selfworth.Rds")
+print(figureDaytodayskillsSelfworth)
+@
+
+\floatfoot{The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to selfworth (graph x) and everyday expertise (graph y). The time trend of the average answers from the organizations in the treatment group is characterised by the solid line, the answers from the control group by the dotted line. Additionally, the linear trends of both groups are included as the straight lines.}
+\end{figure}
 
 \section{Summary Statistics}
 \subsection{Fundamental Dynamics} 
@@ -361,21 +381,29 @@ In this section we use a standard OLS equation, as described in equation 1. Wher
 
 As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
 
-<<GrantsRegressions Lunch, echo=FALSE, results='asis', message=FALSE>>=
+<<GrantsRegressionsLunch, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 lm_ms_o = readRDS("./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds") #outlier meals
 lm_ms_i = readRDS("./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")#impute meals
 
-texreg(list(lm_ms, lm_ms_o,lm_ms_i), caption = "Regression Results: Number of meals", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8)
+texreg(list(lm_ms, lm_ms_o,lm_ms_i), caption = "Regression Results: Number of meals", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt}Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+aliquyam. \\\\ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+aliquyam. \\\\ %stars.}", caption.above = TRUE, 
+    label = "GrantsRegressionsLunch", booktabs = TRUE)
 @
 
-<<GrantsRegressions Trips, echo=FALSE, results='asis', message=FALSE>>=
+Table \ref{GrantsRegressionsLunch}
+
+<<GrantsRegressionsTrips, echo=FALSE, results='asis', message=FALSE>>=
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds") #outlier trips
 lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
 
-texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8)
+texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, label = 'GrantsRegressionsTrips')
 
 @
 \subsection{Variables of interest: Health variables} 
@@ -395,7 +423,7 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
-<<HealthRegressions_LessIll, echo=FALSE, results='asis', message=FALSE>>=
+<<HealthRegressions-LessIll, echo=FALSE, results='asis', message=FALSE>>=
 
 lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
 #extraweighted
@@ -405,25 +433,25 @@ lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds")
 #extraweighted
 lDGE_iw = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled_weighted.lm.Rds")
 
-texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw), caption = "Regression Results: Less Ill", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw), caption = "Regression Results: Less Ill", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8, label = "HealthRegressions-LessIll")
 @
 
-<<HealthRegressions_DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
+<<HealthRegressions-DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
 dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 dDGEw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled_weighted.Rds")
 dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
 dDGE_iw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled_weighted.lm.Rds")
 
-texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw), caption = "Regression Results: Dietary Knowledge", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw), caption = "Regression Results: Dietary Knowledge", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8, label = 'HealthRegressions-DietaryKnowledge')
 @
 
-<<HealthRegressions_AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
+<<HealthRegressions-AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
 aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
 aDGEw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled_weighted.Rds")
 aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
 aDGE_iw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled_weighted.lm.Rds")
 
-texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Appreciate Healthy", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Appreciate Healthy", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8, label = 'HealthRegressions-AppreciateHealthy')
 @
 
 \subsection{Variables of interest: selfworth and everyday expertise as proxies for equality of opportunities} 
@@ -436,7 +464,7 @@ tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")#sw
 ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
 tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds") 
 
-texreg(list(ss, tss, ssI, tssI ), caption = "Regression Results: Selfworth", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8)
+texreg(list(ss, tss, ssI, tssI ), caption = "Regression Results: Selfworth", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'SelfworthRegressions')
 @
 
 <<DayToDaySkillsRegressions, echo=FALSE, results='asis', message=FALSE>>=
@@ -445,7 +473,7 @@ tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
 dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") 
 tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
 
-texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8)
+texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'DayToDaySkillsRegressions')
 @
 
 Empirical Approach\\
