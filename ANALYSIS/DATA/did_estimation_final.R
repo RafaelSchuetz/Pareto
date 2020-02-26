@@ -194,15 +194,19 @@ screenreg(
   override.se = list(RSE_1, RSE_2, RSE_3, RSE_4),
   override.pvalues = list(RpValue_1, RpValue_2, RpValue_3, RpValue_4),
   #groups = list('first' = 3:67, 'second' = 68:75),
-  custom.model.names = c('Model 1', 'Model 2', 'Model 3', 'Model 4'),
-  #custom.coef.names = c('Intercept', 'treatEF', 'totalCost', 'weeklyCooks'),
+  custom.model.names = c('(1)', '(2)', '(3)', '(4)'),
+  custom.coef.names = c('treatEF','subsidy', 'totalCost', 'weeklyCooks'),
   stars = c(0.01, 0.05, 0.1),
-  omit.coef = 'id|year',
+  omit.coef = 'id|year|Intercept',
   digits = 3,
-  #dann noch die Observations manuell hinzufügen, dann kann ich den Namen zu observations ändern
-  custom.gof.rows = list('ID FE' = c('yes', 'yes', 'yes', 'yes'), 'Year FE' = c('yes', 'yes', 'yes', 'yes')),
-  #reorder.gof = c(3, 1, 2, 4, 5, 6, 7),
-  include.adjrs = FALSE
+  #dann noch die Observations manuell hinzufügen, dann kann ich den Namen zu Number of observations ändern
+  custom.gof.rows = list('ID fixed effects' = c('yes', 'yes', 'yes', 'yes'), 'Year fixed effects' = c('yes', 'yes', 'yes', 'yes'),
+                         'Number of observations' = c('428', '410', '428', '410'),
+                         'R$^2$' = c('0.475', '0.490', '0.476', '0.491')),
+  include.adjrs = FALSE,
+  #entferne das, damit ich selber manuell erstellen kann (schönere Formulierung dann) 
+  include.nobs = FALSE,
+  reorder.gof = c(3,1,2,4,5, 6)
 )
 
 
@@ -213,7 +217,7 @@ screenreg(
   override.se = list(RSE_selfworth_1, RSE_selfworth_2, RSE_selfworth_3, RSE_selfworth_4),
   override.pvalues = list(RpValue_selfworth_1, RpValue_selfworth_2, RpValue_selfworth_3, RpValue_selfworth_4),
   #groups = list('first' = 3:67, 'second' = 68:75),
-  custom.model.names = c('Model 1', 'Model 2', 'Model 3', 'Model 4'),
+  custom.model.names = c('(1)', '(2)', '(3)', '(4)'),
   #custom.coef.names = c('Intercept', 'treatEF', 'totalCost', 'weeklyCooks'),
   stars = c(0.01, 0.05, 0.1),
   omit.coef = 'id|year',
