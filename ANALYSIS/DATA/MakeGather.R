@@ -39,13 +39,13 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/Impute.R")
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/Exclude Outliers Regression.R")
 
-# specialVariables has to be after Impute
-
-source(encoding = "UTF8", "./ANALYSIS/DATA/specialVariables.R")
-
 # Recode categorical variables falsely coded as numerical
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/categoricalData.R")
+
+# specialVariables has to be after cateogricalData
+
+source(encoding = "UTF8", "./ANALYSIS/DATA/specialVariables.R")
 
 # source(encoding = "UTF8", "./ANALYSIS/DATA/Standardized Coefficents.R")
 

@@ -87,6 +87,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 \usepackage{floatrow}
+\usepackage{booktabs}
 \usepackage[hidelinks]{hyperref}
 \usepackage{rotating}
 % \usepackage[authoryear]{natbib}
@@ -157,6 +158,9 @@ Ludwig-Maximilians-Universität Munich
 
 \tableofcontents
 \listoftables
+
+% note below table
+% https://stackoverflow.com/questions/44549464/table-spacing-issue-converting-to-pdf-via-latex-with-pandoc/44797387#44797387
 \listoffigures
 
 \begin{abstract} 
@@ -203,6 +207,9 @@ print(figureLineDisp)
 \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
 \end{figure}
 
+
+Figure \ref{LineDisp}
+
 % <<results='asis', echo=FALSE>>=
 % tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
 % colnames(tableCyclicDisp) <- c("Lead in years", "All", "p-value", "Non-Durables", "p-value", "Durables", "p-value")
@@ -222,6 +229,7 @@ tripsNo_sub.lm = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 texreg(list(mealsNo_sub.lm, tripsNo_sub.lm))
 @
 
+Table \ref{mealsTripsSubsidyRegressions}
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 \section{Outline}
 Descriptive statistics\\
@@ -271,21 +279,31 @@ Unless otherwise specified, we consider all variables to be metric, even if they
 
 \section{Data}
 
-To measure the effect of CHILDREN´s engagement on the organizations we use the data they collected from 2012 to 2020. In each year they send a survey to the organizations with several questions about the previous year. The number of organizations varies among the years and increases over time, from 52 in the 2012 survey to 73 in the survey from 2020. In some organizations one employee fills in the survey and in others they do it as a team. Since the children and adolescents are not questioned directly, all responses are documented through the perception of the employees. The number of variables varies over time as well. Included are numbers like the average eaters per meal or the amount of money they provide to the organizations but also general questions. For instance, CHILDREN asks the average amount of kids with a better confidence or an improved dietary knowledge in the specific organization. This part of the survey must be answered on a scale from zero (no kids) to four (all kids). If an organization do not answer a question, this is documented as a “99”. We worked with the statistical program “R” and therefore changed the format from 99s to NA´s (not available) to avoid distortions. The surveyed variables change over the years, but some of them are included every year. 
-However, we did several steps to get a full dataset we could work with. The data was divided into one dataset for each survey from 2012 to 2020, but we only use the surveys till 2019 since in 2020 some organization-ID´s occurred several times and the data for 2020 were incomplete. Since each survey includes data about the year before, we changed the names of the dataset to the corresponding year and finally used the years from 2011 to 2018. Moreover, we outlined a hierarchical file structure, enabling us to use relative file paths throughout. This makes a quick work with R possible since we only use paths relative to the working directory. Afterwards we made sure that variables with names containing non-standard characters like German “Umlaute” are correctly read in and established naming conventions. We created a file reading the excel sheets and we reviewed and aligned new English-language variable names across the years. Moreover, we systematically compared variable names between years by creating a correspondence table, ordered first by variables of 2019, then of 2018 and so on. To ensure the comparability between the years, we gave all variables from the different years that equal each other the same name. As a next step, we merged the different datasets to one dataset, including all years and variables CHILDREN collected. For an efficient and clear data structure, we created a function that automatically changed the data type of all variables from "character" to "ordinal" and added several versions for each initially metric encoded variable afterwards. The three variants are ordinal, standardized and weighted (FUßNOTE: The variables regarding the Mittagstisch are weighted as variable*0.25*eaterspermeal, the variables that are assigned to the Entdeckerfonds as variable*0.25*tripskidsno). 
+To measure the effect of CHILDREN´s engagement on the organizations we use the data they collected from 2011 to 2018. In each year they send a survey to the organizations with several questions about the previous year. The number of organizations varies among the years and increases over time, from 52 in the 2012 survey to 73 in the survey from 2020. In some organizations one employee fills in the survey and in others they do it as a team. Since the children and adolescents are not questioned directly, all responses are documented through the perception of the employees. The number of variables varies over time as well. Included are numbers like the average eaters per meal or the amount of money they provide to the organizations but also general questions. For instance, CHILDREN asks the average amount of kids with a better confidence or an improved dietary knowledge in the specific organization. This part of the survey must be answered on a scale from zero (no kids) to four (all kids). If an organization do not answer a question, this is documented as a “99”. We worked with the statistical program “R” and therefore changed the format from 99s to NA´s (not available) to avoid distortions. The surveyed variables change over the years, but some of them are included every year. 
+However, we did several steps to get a full dataset we could work with. The data was divided into one dataset for each survey from 2011 to 2019, but we only use the surveys till 2018 since in 2019 some organization-ID´s occurred several times and the data for 2019 were incomplete. Since each survey includes data about the year before, we changed the names of the dataset to the corresponding year and finally used the years from 2011 to 2018. Moreover, we outlined a hierarchical file structure, enabling us to use relative file paths throughout. This makes a quick work with R possible since we only use paths relative to the working directory. Afterwards we made sure that variables with names containing non-standard characters like German “Umlaute” are correctly read in and established naming conventions. We created a file reading the excel sheets and we reviewed and aligned new English-language variable names across the years. Moreover, we systematically compared variable names between years by creating a correspondence table, ordered first by variables of 2019, then of 2018 and so on. To ensure the comparability between the years, we gave all variables from the different years that equal each other the same name. As a next step, we merged the different datasets to one dataset, including all years and variables CHILDREN collected. For an efficient and clear data structure, we created a function that automatically changed the data type of all variables from "character" to "ordinal" and added several versions for each initially metric encoded variable afterwards. The three variants are ordinal, standardized and weighted (FUßNOTE: The variables regarding the Mittagstisch are weighted as variable*0.25*eaterspermeal, the variables that are assigned to the Entdeckerfonds as variable*0.25*tripskidsno). 
 Furthermore, we created more new variables: We used the information CHILDREN gave us in another excel-sheet to assign the German states to the corresponding organization-ID and created dummy-variables for each ID, every year and a treatment dummy that will be explained in a later section. 
 The final dataset we worked with is structured as follows: Each row represents one organization-ID with the answers the organization gave in the specific year. The questions are divided in two categories: the variables regarding to the Mittagstisch, answered by all organizations since they are all part of this program and the Entdeckerfonds variables, answered by the organizations that take part on the Entdeckerfonds program in the respective year. Including the years from 2011 to 2018 and all variables we created, the final dataset has X observations of Y variables.
-=======
 
+Many organizations do not answer all questions CHILDREN poses. We create a seperate data set, in which we impute missing values with an organization-specific linear trend. CHILDREN supports some very large organizations that give out hundreds of meals a day or conduct dozens of trips per year. We fit our models with outliers excluded to see if they are driving results. We define an outlier as a value that is at least 1.5 interquartile ranges below the 25th percentile or equally far above the 75th percentile. Once we exclude outliers in terms of numbers of meals and once in terms of number of trips.
 
-\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
+Figure\\
 
-How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
+\begin{figure}
+  \caption{Trend in everyday expertise and selfworth}
+  \label{LineDisp}
 
+<<echo=FALSE>>=
+figureDaytodayskillsSelfworth = readRDS("./ANALYSIS/GRAPHS/PAPER/plot_dayToDaySkills_selfworth.Rds")
+print(figureDaytodayskillsSelfworth)
+@
 
+\floatfoot{Note: The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to selfworth (graph x) and everyday expertise (graph y). The time trend of the average answers from the organizations in the treatment group is characterised by the solid line, the answers from the control group by the dotted line. Additionally, the linear trends of both groups are included as the straight lines.}
+\end{figure}
 
 \section{Summary Statistics}
 \subsection{Fundamental Dynamics} 
+
+In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries in both programs, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.
 
 <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
@@ -298,13 +316,15 @@ colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiari
 fundamental_dynamics <- xtable(fundamental_dynamics,
                                digits = c(0, 0, 1, 1, 0, 0),
           caption = "Summary Statistics",
-          align = "lmmmmm"
+          align = "lmmmmm", 
+          label = "fundamentalDynamics"
           )
 print(fundamental_dynamics, include.rownames = FALSE)
 @
 % look up official names of price indices in English 
 
-At the beginning of the time series in 2011, they supported in x institutions. In 2018, this number had increased to y. In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.    
+
+Table \ref{fundamentalDynamics} shows that, at the beginning of the time series in 2011, in the Lunch program they supported in 52 organizations. In 2018, this number has increased to 68. In 2011, CHILDREN financed meals for 3748 beneficiaries, and for 5103 in 2018. In the trips program, which launched in 2012, the number of supported organizations amounted to 44 in 2012 and grew to 49 until 2018. In 2012, their grant allowed 2803 beneficiaries to go on trips, and 6911 in 2018.
 
 \subsection{Trend of grants} 
 
@@ -317,10 +337,20 @@ totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds"
 print(totalGrantsDyn)
 @
 
-\floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median and the median grant per beneficiary. From left to right: Meals, Trips, from top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals progam and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+\floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
 \end{figure}
 
-\subsection{Heatlh relevant variables over time} 
+For the dynamics of figure \ref{totalGrantsDyn} we visualze the dynamics of CHILDRENs' grants by distinguishing between the sum of grants in one year, the median and the median grant per beneficiary. We also compare the grants of the Lunch and the Trips Program.
+
+Figure \ref{totalGrantsDyn} shows no exact trend for the total real grant for the Lunch program. Between 2013 and 2015 the grant increased from about 600000 EUR to 680000 EUR, but falls behind in the following year. Since 2017 an increase is again visible. In comparison to this, there is a clearer negative trend in median Meals subsidy, falling from about 8000 EUR in 2012 to about 6500 EUR in 2018. In accordance, the median Meals grant per beneficiary shrinks from about 250 EUR to about 200 EUR. 
+
+In the total Trips grant, a slightly negative trend is visible, after the subsidy increased to approximately 200000 EUR in 2014, but decreased to about 130000 EUR in 2016, and is connstand eversince. The Trips median grant therefore also decreased from 3000 EUR to 2000 EUR over the time period, as well as the median grant per beneficiary decreased from about 60 EUR to about 30 EUR.
+
+These results visualize, for the Lunch as well as for the Trips program, together with the fundamental dynamics of table \ref{fundamentalDynamics}, that children was able to increase the number of organizations they support, but had to distribute the available subsidy among them. 
+
+\subsection{Health relevant variables over time} 
+
+In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier, have a growing appreciation for a healthier diet, and have increased their knowledge about what constitutes a healthy diet. Figure \ref{Health_timeplots} displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For this figure, we use the original ordinal varibles which result from the survey structure.  
 
 \begin{figure}
   \caption{Health outcome over time}
@@ -333,7 +363,16 @@ print(Health_timeplots)
 The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
+In Figure \ref{Health_timeplots}, for the variable 'lessIll', there is much non available data. In all years, most organizations say that most beneficiaries are more healthy (3). The least stated category is, that all beneficiaries are less ill(4). That few are less ill (1), appears sometimes and the leftover category,none (0), which is only coded for the variable 'lessIll', appears as good as never.
+
+In the second plot of figure \ref{Health_timeplots} (variable 'dietaryKnowledge') mostorganizations state, that predominantely most or all beneficiaries increased their knowledge about what constitutes a healthy diet. The least stated category is that some beneficiaries increased their dietary knowledge (2). The leftover category, few (1), does not appear.
+
+The the bottom plot of figure \ref{Health_timeplots}, which visualizes the variable 'appreciateHealthy'. Again most organizations state, that most beneficiaries have a growing appreciation for a healthier diet (3). The second most stated answer is that all beneficiaries have a growing appreciation for a healthier diet (4). The least stated category by the organizations is, as well as in the second plot, that some have a growing appreciation for a healthier diet (2). The leftover category, few, also does not appear.
+
+
 \subsection{Equality of opportunities releveant variables over time} 
+
+In its yearly surveys CHILDREN has always asked about two variables closley related to increasing the beneficiaries' equality of opportunities. These are the degree to which beneficiaries: have more selfworth and have a growing understanding for everyday expertise. Figure 4 displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). As well as in the last figure (figure 3), we use the original ordinal varibles which result from the survey structure.
 
 \begin{figure}
   \caption{Equality of opportunities over time}
@@ -346,36 +385,64 @@ print(Equality_timeplots)
 The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries have more selfowrth, then this would be coded as 3.}
 \end{figure}
 
+Figure 4 shows in its upper plot the development of the answered categories for the variable selfworth. Mostly, the answer is that most beneficiaries in most organizations have more selfworth (3). The second most stated category is that all beneficiaries gained in selfworth (4) and the least stated is that some have more selfworth (2). The leftover category, few, does not appear.
+
+In the bottom plot of figure 4 the development of everyday expertise of the beneficiaries over time is visible. The results are about similar to the previous results of selfworth: Most beneficiaries in most organisations have a growing understanding for everyday expertise (3). 
+
 \section{Regressions}
 
 \subsection{Empirical Approach} 
 
 \begin{equation}
-\label{Equation 1}
+\label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
 
-In this section we use a standard OLS equation, as described in equation 1. Where needed, we modified the given data, by using weights, excluding outliers and by scaling relevant variables. We also compared the results with the actual dataset to the results we gained by using a dataset in which we imputed necessary data. (DESCRIBE METHODS EXACT) 
 
-\subsection{Variables of interest: Number of trips and number of meals} 
+In this section we use a simple linear model, as described in equation \ref{SimpleLinear Model}. We look at the association between: 
 
-As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
+\begin{itemize}
+  \item{the subsidy (in 2015 EUR) an organization receives through CHILDREN's Meals program and the number of meals it dispenses}
+  \item{the subsidy (in 2015 EUR) an organization receives through CHILDREN's Trips program and the number of trips it conducts}
+  \item{the subsidy per beneficiary (in 2015 EUR) an organization receives through CHILDREN's Meals program and the standardized measure of beneficiaries' self-worth}
+  \item{the subsidy per beneficiary (in 2015 EUR) an organization receives through CHILDREN's Meals program and the standardized measure of beneficiaries' everyday expertise}
+   \item{a standardized measure of the healthiness of the meals an organization dispenses and various standardized health-related outcomes of beneficiaries} 
+\end{itemize}
 
-<<GrantsRegressions Lunch, echo=FALSE, results='asis', message=FALSE>>=
+We discuss all these models in turn.
+
+\subsection{Direct effects of CHILDREN's grants} 
+
+If CHILDREN's grants are to have an effect on beneficiaries, they should first influence the output of organizations in terms of meals dispensed and trips conducted. 
+
+As table \ref{GrantsRegressionsLunch} shows, this is emphatically true. Whether we look at the original data set, the one without outliers and the one with imputed values, a strong association becomes evident. 
+The estimated coefficents are very similar when we use the original dataset and the one with imputed values. In the case of the original data set, increasing the subsidy to an organization by one EUR is associated with 2.6 additional meals dispensed. This estimate is highly statistically significant. When we exclude outliers, i.e. those organizations that give out very many menus or very few menus,
+the estimated coefficent decreases by about one order of magnitude. Still, spending not much more than three EUR more goes hand in hand with one extra meal. The estimate is also highly statistically significant.  
+
+<<GrantsRegressionsLunch, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 lm_ms_o = readRDS("./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds") #outlier meals
 lm_ms_i = readRDS("./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")#impute meals
 
-texreg(list(lm_ms, lm_ms_o,lm_ms_i), caption = "Regression Results: Number of meals", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8)
+texreg(list(lm_ms, lm_ms_o,lm_ms_i), caption = "Regression Results: Number of meals", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt}Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+aliquyam. \\\\ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+aliquyam. \\\\ %stars.}", caption.above = TRUE, 
+    label = "GrantsRegressionsLunch", booktabs = TRUE)
 @
+In the remit of the Trips program, the picture looks much different. 
 
-<<GrantsRegressions Trips, echo=FALSE, results='asis', message=FALSE>>=
+<<GrantsRegressionsTrips, echo=FALSE, results='asis', message=FALSE>>=
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds") #outlier trips
 lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
 
-texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8)
+texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, label = 'GrantsRegressionsTrips', digits = 4)
+
+
 
 @
 \subsection{Variables of interest: Health variables} 
@@ -395,7 +462,7 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
-<<HealthRegressions_LessIll, echo=FALSE, results='asis', message=FALSE>>=
+<<HealthRegressions-LessIll, echo=FALSE, results='asis', message=FALSE>>=
 
 lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
 #extraweighted
@@ -405,25 +472,25 @@ lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds")
 #extraweighted
 lDGE_iw = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled_weighted.lm.Rds")
 
-texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw), caption = "Regression Results: Less Ill", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw), caption = "Regression Results: Less Ill", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8, label = "HealthRegressions-LessIll")
 @
 
-<<HealthRegressions_DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
+<<HealthRegressions-DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
 dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 dDGEw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled_weighted.Rds")
 dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
 dDGE_iw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled_weighted.lm.Rds")
 
-texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw), caption = "Regression Results: Dietary Knowledge", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw), caption = "Regression Results: Dietary Knowledge", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8, label = 'HealthRegressions-DietaryKnowledge')
 @
 
-<<HealthRegressions_AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
+<<HealthRegressions-AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
 aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
 aDGEw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled_weighted.Rds")
 aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
 aDGE_iw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled_weighted.lm.Rds")
 
-texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Appreciate Healthy", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Appreciate Healthy", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8, label = 'HealthRegressions-AppreciateHealthy')
 @
 
 \subsection{Variables of interest: selfworth and everyday expertise as proxies for equality of opportunities} 
@@ -436,7 +503,7 @@ tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")#sw
 ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
 tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds") 
 
-texreg(list(ss, tss, ssI, tssI ), caption = "Regression Results: Selfworth", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8)
+texreg(list(ss, tss, ssI, tssI ), caption = "Regression Results: Selfworth", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'SelfworthRegressions')
 @
 
 <<DayToDaySkillsRegressions, echo=FALSE, results='asis', message=FALSE>>=
@@ -445,8 +512,18 @@ tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
 dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") 
 tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
 
-texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8)
+texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'DayToDaySkillsRegressions')
 @
+
+\section{Feature Selection}
+
+\subsection{Factor Analysis}
+
+\subsection{Double Selection}
+
+\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
+
+How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
 
 Empirical Approach\\
 
@@ -546,7 +623,7 @@ table1_selfworth <- stargazer(lm1_selfworth,
           float.env = "sidewaystable")
 @
 
-\section{Factor Analysis}
+
 
 \section{Conclusion}
 
@@ -555,8 +632,15 @@ table1_selfworth <- stargazer(lm1_selfworth,
 \section{Appendix}
 
 \subsection{A1: Cumulative Odds Regression} 
+
+As an option to run an regression on the original ordinal variables, we use the vglm function from the VGAM package... 
+
+Use from zwichenpräsentation
  
-Outliers? 
+\begin{equation}
+\label{ModelProdu}
+\ln y_{it} = \frac{}{}  \sum
+\end{equation}
 
 <<echo=FALSE, results='asis', message=FALSE>>=
 
