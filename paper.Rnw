@@ -736,11 +736,17 @@ stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Everyday expe
 
 \subsection{A3: Partition}
 
-In addition to the factor analysis described in section 6, we would like to introduce to a another dimensionality reduction method called partition. 
+In addition to the factor analysis which is described in section 6, we would like to introduce to a another dimensionality reduction method called partition. This method was developped by Millenstein et. al in the context of genome analysis. 
 
-QUOTES FROM PAPER, describe method 
+According to the researchers, potential benefits of reducing dimensionality are reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{} (p.677).
 
-In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
+The partition approach partitions data into subsets of related features. It then  summarizes each subset into one new feature. By that, it defines a surjective mapping \cite{} (p.676). A function g is implemented using the arithmetic mean. In contrast to methods like the factor analysis, if a feature is identified as related to a response of interest, the exact subset of features that are implicated to the surjective mapping is known without ambiguity. What is as well different is the information loss constraint. It lets the extent of dependences among features on a local level guide the extent to which the number of features is reduced.\cite{}(p.677)  
+
+In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the featured variables in a reduced variable (or a summarizing one) for future surveys to avoid redundancy.
+
+Table \ref{partitionmeals} shows the obtained results of the dimensionality reduction for the variables of the Lunch program. It displays 10 variables which haven't been reduced, and 5 reduced variables with a number of featured variables.
+
+Table \ref{partitiontrips} shows the partitioned results for the variables of the Trips program. Here, 12 variables haven't been reduced, and a number of featured variables are summarized to 3 reduced variables. 
 
 <<Partition, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
@@ -754,7 +760,8 @@ colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information
 
 xtable(partition_meals,
                                #digits = c(0, 0, 1, 1, 0, 0),
-          caption = "Partition of outcomes, Meals"
+          caption = "Partition of outcomes, Meals", 
+          label = 'partitionmeals'
           #align = "lmmm"
           )
 #print(partition_meals, include.rownames = FALSE)
@@ -762,7 +769,8 @@ xtable(partition_meals,
 
 xtable(partition_trips,
                                #digits = c(0, 0, 1, 1, 0, 0),
-          caption = "Partition of outcomes, Trips"
+          caption = "Partition of outcomes, Trips",
+          label = 'partitiontrips'
           #align = "lmmm"
           )
 print(partition_meals, partition_trips, include.rownames = FALSE)
