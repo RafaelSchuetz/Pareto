@@ -168,6 +168,7 @@ abstract on separate page
 all important information on title page, maybe use template\\
 always name sources of tables and graphs\\
 have to cite data sets\\
+latin number pages\\
 
 
 \section{Examples}
@@ -353,20 +354,23 @@ In this section we use a standard OLS equation, as described in equation 1. Wher
 
 As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
 
-<<GrantsRegressions, echo=FALSE, results='asis', message=FALSE>>=
+<<GrantsRegressions Lunch, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
-lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 lm_ms_o = readRDS("./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds") #outlier meals
-lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds")#outlier trips 
 lm_ms_i = readRDS("./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")#impute meals
-lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds")#imputetrips
 
-texreg(list(lm_ms, lm_ts, lm_ms_o, lm_ts_o, lm_ms_i, lm_ts_i), caption = "Grants Regressions", custom.model.names = c("MealsNo", "Trips No", "Meals No", "Trips No", "Meals No", "Trips No"))
+texreg(list(lm_ms, lm_ms_o,lm_ms_i), caption = "Regression Results: Number of meals", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8)
 @
-The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed. 
-(DESCRIBE RESULTS) (COMPARE TO SUMMARY STATISTICS)
 
+<<GrantsRegressions Trips, echo=FALSE, results='asis', message=FALSE>>=
+lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
+lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds") #outlier trips
+lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
+
+texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8)
+
+@
 \subsection{Variables of interest: Health variables} 
 
 In the next section, we want to explore the influence of the DGE Criterion on relevant health outcomes.
@@ -384,59 +388,58 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
-<<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
+<<HealthRegressions_LessIll, echo=FALSE, results='asis', message=FALSE>>=
 
-
-#scaled regressions
-
-lm_lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
-lm_dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
-lm_aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
+lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
+#extraweighted
+lDGEw = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled_weighted.lm.Rds")
+#standardized
 lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds")
+#extraweighted
+lDGE_iw = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled_weighted.lm.Rds")
+
+texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw), caption = "Regression Results: Less Ill", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+@
+
+<<HealthRegressions_DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
+dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
+dDGEw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled_weighted.Rds")
 dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
+dDGE_iw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled_weighted.lm.Rds")
+
+texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw), caption = "Regression Results: Dietary Knowledge", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+@
+
+<<HealthRegressions_AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
+aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
+aDGEw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled_weighted.Rds")
 aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
+aDGE_iw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled_weighted.lm.Rds")
 
-#expanded model less ill 
-
-lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
-elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.Rds")
-
-texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Health Outcome Regressions", custom.model.names = c("LessIll", "DietaryKnowledge", "AppreciateHealthy","LessIll", "DietaryKnowledge", "AppreciateHealthy"))
+texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Appreciate Healthy", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
 @
 
 \subsection{Variables of interest: selfworth and everyday expertise as proxies for equality of opportunities} 
 
-<<ChanceEqualityRegressions, echo=FALSE, results='asis', message=FALSE>>=
+<<SelfworthRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
-lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
-lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
-ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
-td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
-lm_ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") #standardized
-lm_ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardized 
-tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")
-tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
 
-texreg(list(lm_s, lm_d, ts, td, lm_ss, lm_ds, tss, tds), caption = "Equal Opportunities Regressions", custom.model.names = c("selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills" ))
+ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") #standardizedweighted
+tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")#sw
+ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
+tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds") 
+
+texreg(list(ss, tss, ssI, tssI ), caption = "Regression Results: Selfworth", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8)
 @
 
-<<ChanceEqualityRegressionsImpute, echo=FALSE, results='asis', message=FALSE>>=
-
-sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
-dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
-tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
-tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
-ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
-dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") #standardized 
-tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds")
+<<DayToDaySkillsRegressions, echo=FALSE, results='asis', message=FALSE>>=
+ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardizedweigh
+tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
+dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") 
 tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
 
-texreg(list(sI, dI, tsI, tdI, ssI, dsI, tssI, tdsI), caption = "Equal Opportunities Regressions, imputed data", custom.model.names = c("selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills" ))
+texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8)
 @
-
-
-
-
 
 Empirical Approach\\
 
@@ -591,7 +594,30 @@ xtable(partition_trips,
           )
 print(partition_meals, partition_trips, include.rownames = FALSE)
 @
+\subsection{A3: OLS Regressions}
+
+#normal weights selfworth& subsidiy
+<<eqaulity_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
+lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
+ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
+td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
+sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
+dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
+tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
+tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
+@
+
+<<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+#expanded model less ill 
+
+lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
+elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
+@
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
+
 
 \end{document}

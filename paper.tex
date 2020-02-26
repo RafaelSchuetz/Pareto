@@ -298,11 +298,11 @@ Regressions\\
 
 Questions:\\
 effect of\\
-- healthy meals (DGE criterion) on healthy characteristics\\
+- healthy meals (DGE criterion) standardized on healthy characteristics standardized, with eatersPerMeal as weights\\
 - real meals subsidy on number of meals\\
 - real trips subsidy on number of trips\\
-- real meals subsidy on self-worth and day-to-day skills\\
-- real trips subsidy on self-worth and day-to-day skills\\
+- real meals subsidy per beneficiary on standardized self-worth and standardized day-to-day skills\\
+- real trips subsidy per beneficiary on standardized self-worth and standardized day-to-day skills\\
 
 Methods:\\
 - simple, metric\\
@@ -341,7 +341,7 @@ How do children benefit from visiting social institutions that CHILDREN supports
 \subsection{Fundamental Dynamics} 
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 09:24:41 2020
+% Wed Feb 26 12:29:41 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{mmmmm}
@@ -441,31 +441,55 @@ As the first variables of interest we consider the number of meals the organizat
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c c c c c }
+\scalebox{0.8}{
+\begin{tabular}{l c c c }
 \hline
- & MealsNo & Trips No & Meals No & Trips No & Meals No & Trips No \\
+ & OLS & OLS without Outliers & OLS Impute \\
 \hline
-(Intercept)      & $-12089.14^{*}$ & $3.70^{***}$ & $-12089.14^{*}$ & $3.70^{***}$ & $-12250.60^{**}$ & $3.62^{***}$ \\
-                 & $(5192.86)$     & $(0.33)$     & $(5192.86)$     & $(0.33)$     & $(4524.09)$      & $(0.33)$     \\
-realSubsidy      & $2.61^{***}$    &              & $2.61^{***}$    &              & $2.72^{***}$     &              \\
-                 & $(0.57)$        &              & $(0.57)$        &              & $(0.51)$         &              \\
-realTripsSubsidy &                 & $0.00^{*}$   &                 & $0.00^{*}$   &                  & $0.00^{*}$   \\
-                 &                 & $(0.00)$     &                 & $(0.00)$     &                  & $(0.00)$     \\
+(Intercept) & $-12089.14^{*}$ & $-12089.14^{*}$ & $-12250.60^{**}$ \\
+            & $(5192.86)$     & $(5192.86)$     & $(4524.09)$      \\
+realSubsidy & $2.61^{***}$    & $2.61^{***}$    & $2.72^{***}$     \\
+            & $(0.57)$        & $(0.57)$        & $(0.51)$         \\
 \hline
-R$^2$            & 0.43            & 0.05         & 0.43            & 0.05         & 0.45             & 0.05         \\
-Adj. R$^2$       & 0.43            & 0.04         & 0.43            & 0.04         & 0.45             & 0.05         \\
-Num. obs.        & 329             & 322          & 329             & 322          & 440              & 334          \\
-RMSE             & 39992.79        & 2.96         & 39992.79        & 2.96         & 39601.41         & 2.93         \\
+R$^2$       & 0.43            & 0.43            & 0.45             \\
+Adj. R$^2$  & 0.43            & 0.43            & 0.45             \\
+Num. obs.   & 329             & 329             & 440              \\
+RMSE        & 39992.79        & 39992.79        & 39601.41         \\
 \hline
-\multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Grants Regressions}
+}
+\caption{Regression Results: Number of meals}
 \label{table:coefficients}
 \end{center}
 \end{table}
 
-The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed. 
-(DESCRIBE RESULTS) (COMPARE TO SUMMARY STATISTICS)
+
+
+\begin{table}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{l c c c }
+\hline
+ & OLS & OLS without Outliers & OLS Impute \\
+\hline
+(Intercept)      & $3.70^{***}$ & $3.70^{***}$ & $3.62^{***}$ \\
+                 & $(0.33)$     & $(0.33)$     & $(0.33)$     \\
+realTripsSubsidy & $0.00^{*}$   & $0.00^{*}$   & $0.00^{*}$   \\
+                 & $(0.00)$     & $(0.00)$     & $(0.00)$     \\
+\hline
+R$^2$            & 0.05         & 0.05         & 0.05         \\
+Adj. R$^2$       & 0.04         & 0.04         & 0.05         \\
+Num. obs.        & 322          & 322          & 334          \\
+RMSE             & 2.96         & 2.96         & 2.93         \\
+\hline
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+}
+\caption{Regression Results: Number of trips}
+\label{table:coefficients}
+\end{center}
+\end{table}
 
 \subsection{Variables of interest: Health variables} 
 
@@ -490,31 +514,82 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
-\begin{kframe}
 
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): kann komprimierte Datei './ANALYSIS/Tables/Expand\_LessIll\_IM\_scaled.Rds' nicht öffnen. Grund evtl. 'No such file or directory'}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}\end{kframe}
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c c c c c }
+\scalebox{0.8}{
+\begin{tabular}{l c c c c }
 \hline
- & LessIll & DietaryKnowledge & AppreciateHealthy & LessIll & DietaryKnowledge & AppreciateHealthy \\
+ & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
-(Intercept)         & $0.02$       & $0.02$   & $-0.03$      & $0.09$       & $0.02$     & $0.02$       \\
-                    & $(0.08)$     & $(0.07)$ & $(0.07)$     & $(0.07)$     & $(0.06)$   & $(0.06)$     \\
-DGECriteriaNoScaled & $0.33^{***}$ & $0.11$   & $0.27^{***}$ & $0.25^{***}$ & $0.12^{*}$ & $0.25^{***}$ \\
-                    & $(0.08)$     & $(0.06)$ & $(0.07)$     & $(0.07)$     & $(0.05)$   & $(0.06)$     \\
+(Intercept)         & $0.02$       & $0.46^{**}$ & $0.09$       & $0.39^{***}$ \\
+                    & $(0.08)$     & $(0.16)$    & $(0.07)$     & $(0.12)$     \\
+DGECriteriaNoScaled & $0.33^{***}$ & $0.35^{*}$  & $0.25^{***}$ & $0.24$       \\
+                    & $(0.08)$     & $(0.16)$    & $(0.07)$     & $(0.14)$     \\
 \hline
-R$^2$               & 0.12         & 0.01     & 0.06         & 0.07         & 0.02       & 0.06         \\
-Adj. R$^2$          & 0.11         & 0.01     & 0.06         & 0.07         & 0.01       & 0.06         \\
-Num. obs.           & 121          & 214      & 213          & 177          & 275        & 274          \\
-RMSE                & 0.91         & 0.98     & 1.02         & 0.94         & 0.96       & 1.01         \\
+R$^2$               & 0.12         & 0.29        & 0.07         & 0.16         \\
+Adj. R$^2$          & 0.11         & 0.29        & 0.07         & 0.16         \\
+Num. obs.           & 121          & 120         & 177          & 177          \\
+RMSE                & 0.91         & 7.83        & 0.94         & 7.95         \\
 \hline
-\multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Health Outcome Regressions}
+}
+\caption{Regression Results: Less Ill}
+\label{table:coefficients}
+\end{center}
+\end{table}
+
+
+
+\begin{table}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{l c c c c }
+\hline
+ & OLS & WLS & OLS Impute & WLS Impute \\
+\hline
+(Intercept)         & $0.02$   & $0.08$   & $0.02$     & $0.21$   \\
+                    & $(0.07)$ & $(0.19)$ & $(0.06)$   & $(0.18)$ \\
+DGECriteriaNoScaled & $0.11$   & $-0.02$  & $0.12^{*}$ & $0.10$   \\
+                    & $(0.06)$ & $(0.12)$ & $(0.05)$   & $(0.14)$ \\
+\hline
+R$^2$               & 0.01     & 0.00     & 0.02       & 0.01     \\
+Adj. R$^2$          & 0.01     & -0.00    & 0.01       & 0.01     \\
+Num. obs.           & 214      & 212      & 275        & 275      \\
+RMSE                & 0.98     & 8.49     & 0.96       & 9.45     \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+}
+\caption{Regression Results: Dietary Knowledge}
+\label{table:coefficients}
+\end{center}
+\end{table}
+
+
+
+\begin{table}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{l c c c c }
+\hline
+ & OLS & WLS & OLS Impute & WLS Impute \\
+\hline
+(Intercept)         & $-0.03$      & $0.26$   & $0.02$       & $0.37^{*}$ \\
+                    & $(0.07)$     & $(0.18)$ & $(0.06)$     & $(0.17)$   \\
+DGECriteriaNoScaled & $0.27^{***}$ & $-0.02$  & $0.25^{***}$ & $0.01$     \\
+                    & $(0.07)$     & $(0.15)$ & $(0.06)$     & $(0.13)$   \\
+\hline
+R$^2$               & 0.06         & 0.00     & 0.06         & 0.00       \\
+Adj. R$^2$          & 0.06         & -0.00    & 0.06         & -0.00      \\
+Num. obs.           & 213          & 211      & 274          & 274        \\
+RMSE                & 1.02         & 8.61     & 1.01         & 9.00       \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+}
+\caption{Regression Results: Appreciate Healthy}
 \label{table:coefficients}
 \end{center}
 \end{table}
@@ -525,25 +600,27 @@ RMSE                & 0.91         & 0.98     & 1.02         & 0.94         & 0.
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c c c c c c c }
+\scalebox{0.8}{
+\begin{tabular}{l c c c c }
 \hline
- & selfworth & dayToDaySkills & selfworth & dayToDaySkills & selfworth & dayToDaySkills & selfworth & dayToDaySkills \\
+ & OLS Lunch & OLS Trips & OLS Lunch Impute & OLS Trips Impute \\
 \hline
-(Intercept)      & $-13.42^{*}$ & $-13.48^{*}$ & $9.20^{***}$ & $8.25^{***}$ & $-0.06$  & $-0.16^{**}$ & $0.10$   & $0.12$   \\
-                 & $(5.88)$     & $(5.89)$     & $(1.84)$     & $(1.78)$     & $(0.06)$ & $(0.06)$     & $(0.10)$ & $(0.11)$ \\
-realSubsidy      & $0.00^{***}$ & $0.00^{***}$ &              &              & $0.00$   & $0.00^{***}$ &          &          \\
-                 & $(0.00)$     & $(0.00)$     &              &              & $(0.00)$ & $(0.00)$     &          &          \\
-realTripsSubsidy &              &              & $0.00^{***}$ & $0.01^{***}$ &          &              & $-0.00$  & $-0.00$  \\
-                 &              &              & $(0.00)$     & $(0.00)$     &          &              & $(0.00)$ & $(0.00)$ \\
+(Intercept)                    & $0.08$   & $0.12$   & $0.09$   & $0.12$   \\
+                               & $(0.09)$ & $(0.12)$ & $(0.09)$ & $(0.11)$ \\
+realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          \\
+                               & $(0.00)$ &          & $(0.00)$ &          \\
+realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  \\
+                               &          & $(0.00)$ &          & $(0.00)$ \\
 \hline
-R$^2$            & 0.46         & 0.46         & 0.32         & 0.34         & 0.00     & 0.03         & 0.01     & 0.01     \\
-Adj. R$^2$       & 0.45         & 0.45         & 0.31         & 0.34         & 0.00     & 0.03         & 0.00     & 0.01     \\
-Num. obs.        & 428          & 426          & 184          & 177          & 430      & 428          & 186      & 178      \\
-RMSE             & 41.50        & 41.59        & 21.93        & 21.36        & 1.00     & 0.98         & 1.00     & 0.98     \\
+R$^2$                          & 0.00     & 0.01     & 0.00     & 0.01     \\
+Adj. R$^2$                     & 0.00     & 0.01     & 0.00     & 0.01     \\
+Num. obs.                      & 428      & 184      & 430      & 187      \\
+RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     \\
 \hline
-\multicolumn{9}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Equal Opportunities Regressions}
+}
+\caption{Regression Results: Selfworth}
 \label{table:coefficients}
 \end{center}
 \end{table}
@@ -552,32 +629,30 @@ RMSE             & 41.50        & 41.59        & 21.93        & 21.36        & 1
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c c c c c c c }
+\scalebox{0.8}{
+\begin{tabular}{l c c c c }
 \hline
- & selfworth & dayToDaySkills & selfworth & dayToDaySkills & selfworth & dayToDaySkills & selfworth & dayToDaySkills \\
+ & OLS Lunch & OLS Trips & OLS Lunch Impute & OLS Trips Impute \\
 \hline
-(Intercept)      & $-13.42^{*}$ & $-13.47^{*}$ & $9.25^{***}$ & $8.33^{***}$ & $-0.06$  & $-0.16^{**}$ & $0.11$   & $0.13$   \\
-                 & $(5.88)$     & $(5.89)$     & $(1.82)$     & $(1.74)$     & $(0.06)$ & $(0.06)$     & $(0.10)$ & $(0.11)$ \\
-realSubsidy      & $0.00^{***}$ & $0.00^{***}$ &              &              & $0.00$   & $0.00^{***}$ &          &          \\
-                 & $(0.00)$     & $(0.00)$     &              &              & $(0.00)$ & $(0.00)$     &          &          \\
-realTripsSubsidy &              &              & $0.00^{***}$ & $0.00^{***}$ &          &              & $-0.00$  & $-0.00$  \\
-                 &              &              & $(0.00)$     & $(0.00)$     &          &              & $(0.00)$ & $(0.00)$ \\
+(Intercept)                    & $0.15$   & $0.13$   & $0.14$   & $0.11$   \\
+                               & $(0.09)$ & $(0.10)$ & $(0.09)$ & $(0.10)$ \\
+realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          \\
+                               & $(0.00)$ &          & $(0.00)$ &          \\
+realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  \\
+                               &          & $(0.00)$ &          & $(0.00)$ \\
 \hline
-R$^2$            & 0.46         & 0.46         & 0.32         & 0.34         & 0.00     & 0.03         & 0.01     & 0.02     \\
-Adj. R$^2$       & 0.45         & 0.45         & 0.31         & 0.34         & 0.00     & 0.03         & 0.01     & 0.01     \\
-Num. obs.        & 428          & 427          & 186          & 180          & 430      & 429          & 189      & 182      \\
-RMSE             & 41.50        & 41.54        & 21.83        & 21.21        & 1.00     & 0.98         & 1.00     & 0.99     \\
+R$^2$                          & 0.01     & 0.01     & 0.01     & 0.01     \\
+Adj. R$^2$                     & 0.01     & 0.01     & 0.01     & 0.01     \\
+Num. obs.                      & 426      & 177      & 429      & 181      \\
+RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     \\
 \hline
-\multicolumn{9}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Equal Opportunities Regressions, imputed data}
+}
+\caption{Regression Results: dayToDaySkills}
 \label{table:coefficients}
 \end{center}
 \end{table}
-
-
-
-
 
 
 Empirical Approach\\
@@ -623,7 +698,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Date and time: Mi, Feb 26, 2020 - 12:29:46
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -671,7 +746,7 @@ Outliers?
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Date and time: Mi, Feb 26, 2020 - 12:29:47
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Less Ill} 
@@ -691,7 +766,7 @@ Outliers?
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Date and time: Mi, Feb 26, 2020 - 12:29:47
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Dietary Knowledge} 
@@ -711,7 +786,7 @@ Outliers?
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Date and time: Mi, Feb 26, 2020 - 12:29:47
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Appreciate Healthy} 
@@ -732,7 +807,7 @@ Outliers?
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Date and time: Mi, Feb 26, 2020 - 12:29:47
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Equality of opportunities, selfworth} 
@@ -753,7 +828,7 @@ Outliers?
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Date and time: Mi, Feb 26, 2020 - 12:29:47
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Equality of opportunities, everyday expertise} 
@@ -781,7 +856,7 @@ QUOTES FROM PAPER, describe method
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 09:24:46 2020
+% Wed Feb 26 12:29:47 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -822,7 +897,7 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \caption{Partition of outcomes, Meals} 
 \end{table}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 09:24:46 2020
+% Wed Feb 26 12:29:47 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -856,7 +931,17 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \begin{kframe}
 
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
+\subsection{A3: OLS Regressions}
 
-\{Ehrenwörtliche Erklärung aller Teilnehmer}
+#normal weights selfworth& subsidiy
+
+
+\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}\end{kframe}
+
+\section{Ehrenwörtliche Erklärung aller Teilnehmer}
+
 
 \end{document}
