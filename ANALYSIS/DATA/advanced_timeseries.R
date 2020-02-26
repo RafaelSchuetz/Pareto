@@ -14,6 +14,8 @@ library(tidyselect)
 library(tseries)
 library(graphics)
 library(estimatr)
+library(gridGraphics)
+library(cowplot)
 
 # Erstellung von Datensätzen, in denen jeweils nur die Beobachtungen aus der Kontroll- oder
 # Treatmentgruppe eines bestimmten Jahres aufgeführt werden, für jedes Jahr von 2012 bis 2018
@@ -358,6 +360,9 @@ grid(nx = NA, ny = NULL, col = "grey70", lty = "dotted",
 lines(linearTrend_fit_treat2, col = "grey0", lwd = 1)
 lines(linearTrend_fit_control2, col = "grey40", lwd = 1)
 
+#record the plot in R
+
+graph_dayToDaySkills <- recordPlot()
 
 ####2. selfworth ---------------------------------------------------------
 
@@ -384,6 +389,9 @@ grid(nx = NA, ny = NULL, col = "grey70", lty = "dotted",
 lines(linearTrend_fit_treat, col = "grey0", lwd = 1)
 lines(linearTrend_fit_control, col = "grey40", lwd = 1)
 
+#record the plot in R
+
+graph_selfworth <- recordPlot()
 
 ####3. weeklyCooks -------------------------------------------------------
 
@@ -410,7 +418,9 @@ grid(nx = NA, ny = NULL, col = "grey70", lty = "dotted",
 lines(linearTrend_fit_treat3, col = "grey0", lwd = 1)
 lines(linearTrend_fit_control3, col = "grey40", lwd = 1)
 
+#record the plot in R
 
+graph_weeklyCooks <- recordPlot()
 
 ####4. monthlyCooks ------------------------------------------------------
 
@@ -436,3 +446,27 @@ grid(nx = NA, ny = NULL, col = "grey70", lty = "dotted",
 
 lines(linearTrend_fit_treat5, col = "grey0", lwd = 1)
 lines(linearTrend_fit_control5, col = "grey40", lwd = 1)
+
+#record the plot in R
+
+graph_monthlyCooks <- recordPlot()
+
+
+
+### Save the plots for the paper --------------------------------------------
+
+##reminder: the plots are: graph_dayToDaySkills, graph_selfworth, graph_weeklyCooks, graph_monthlyCooks
+
+##save dayToDaySkills and selfworth as one plot
+
+plot_dayToDaySkills_selfworth <- plot_grid(graph_dayToDaySkills, graph_selfworth, 
+                                           align = "h", ncol = 2, nrow = 1)
+
+saveRDS(plot_dayToDaySkills_selfworth, "./ANALYSIS/GRAPHS/PAPER/plot_dayToDaySkills_selfworth.Rds")
+
+##save monthlyCooks and weeklyCooks as one plot
+
+plot_placebos <- plot_grid(graph_weeklyCooks, graph_monthlyCooks, 
+                                           align = "h", ncol = 2, nrow = 1)
+
+saveRDS(plot_placebos, "./ANALYSIS/GRAPHS/PAPER/plot_placebos.Rds")
