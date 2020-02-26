@@ -168,6 +168,7 @@ abstract on separate page
 all important information on title page, maybe use template\\
 always name sources of tables and graphs\\
 have to cite data sets\\
+latin number pages\\
 
 
 \section{Examples}
@@ -270,6 +271,13 @@ Unless otherwise specified, we consider all variables to be metric, even if they
 
 \section{Data}
 
+To measure the effect of CHILDREN´s engagement on the organizations we use the data they collected from 2012 to 2020. In each year they send a survey to the organizations with several questions about the previous year. The number of organizations varies among the years and increases over time, from 52 in the 2012 survey to 73 in the survey from 2020. In some organizations one employee fills in the survey and in others they do it as a team. Since the children and adolescents are not questioned directly, all responses are documented through the perception of the employees. The number of variables varies over time as well. Included are numbers like the average eaters per meal or the amount of money they provide to the organizations but also general questions. For instance, CHILDREN asks the average amount of kids with a better confidence or an improved dietary knowledge in the specific organization. This part of the survey must be answered on a scale from zero (no kids) to four (all kids). If an organization do not answer a question, this is documented as a “99”. We worked with the statistical program “R” and therefore changed the format from 99s to NA´s (not available) to avoid distortions. The surveyed variables change over the years, but some of them are included every year. 
+However, we did several steps to get a full dataset we could work with. The data was divided into one dataset for each survey from 2012 to 2020, but we only use the surveys till 2019 since in 2020 some organization-ID´s occurred several times and the data for 2020 were incomplete. Since each survey includes data about the year before, we changed the names of the dataset to the corresponding year and finally used the years from 2011 to 2018. Moreover, we outlined a hierarchical file structure, enabling us to use relative file paths throughout. This makes a quick work with R possible since we only use paths relative to the working directory. Afterwards we made sure that variables with names containing non-standard characters like German “Umlaute” are correctly read in and established naming conventions. We created a file reading the excel sheets and we reviewed and aligned new English-language variable names across the years. Moreover, we systematically compared variable names between years by creating a correspondence table, ordered first by variables of 2019, then of 2018 and so on. To ensure the comparability between the years, we gave all variables from the different years that equal each other the same name. As a next step, we merged the different datasets to one dataset, including all years and variables CHILDREN collected. For an efficient and clear data structure, we created a function that automatically changed the data type of all variables from "character" to "ordinal" and added several versions for each initially metric encoded variable afterwards. The three variants are ordinal, standardized and weighted (FUßNOTE: The variables regarding the Mittagstisch are weighted as variable*0.25*eaterspermeal, the variables that are assigned to the Entdeckerfonds as variable*0.25*tripskidsno). 
+Furthermore, we created more new variables: We used the information CHILDREN gave us in another excel-sheet to assign the German states to the corresponding organization-ID and created dummy-variables for each ID, every year and a treatment dummy that will be explained in a later section. 
+The final dataset we worked with is structured as follows: Each row represents one organization-ID with the answers the organization gave in the specific year. The questions are divided in two categories: the variables regarding to the Mittagstisch, answered by all organizations since they are all part of this program and the Entdeckerfonds variables, answered by the organizations that take part on the Entdeckerfonds program in the respective year. Including the years from 2011 to 2018 and all variables we created, the final dataset has X observations of Y variables.
+=======
+
+
 \section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
 
 How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
@@ -353,20 +361,23 @@ In this section we use a standard OLS equation, as described in equation 1. Wher
 
 As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
 
-<<GrantsRegressions, echo=FALSE, results='asis', message=FALSE>>=
+<<GrantsRegressions Lunch, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_ms = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
-lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 lm_ms_o = readRDS("./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds") #outlier meals
-lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds")#outlier trips 
 lm_ms_i = readRDS("./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")#impute meals
-lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds")#imputetrips
 
-texreg(list(lm_ms, lm_ts, lm_ms_o, lm_ts_o, lm_ms_i, lm_ts_i), caption = "Grants Regressions", custom.model.names = c("MealsNo", "Trips No", "Meals No", "Trips No", "Meals No", "Trips No"))
+texreg(list(lm_ms, lm_ms_o,lm_ms_i), caption = "Regression Results: Number of meals", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8)
 @
-The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed. 
-(DESCRIBE RESULTS) (COMPARE TO SUMMARY STATISTICS)
 
+<<GrantsRegressions Trips, echo=FALSE, results='asis', message=FALSE>>=
+lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
+lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds") #outlier trips
+lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
+
+texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8)
+
+@
 \subsection{Variables of interest: Health variables} 
 
 In the next section, we want to explore the influence of the DGE Criterion on relevant health outcomes.
@@ -384,59 +395,58 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 
 In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
-<<HealthRegressions, echo=FALSE, results='asis', message=FALSE>>=
+<<HealthRegressions_LessIll, echo=FALSE, results='asis', message=FALSE>>=
 
-
-#scaled regressions
-
-lm_lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
-lm_dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
-lm_aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
+lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
+#extraweighted
+lDGEw = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled_weighted.lm.Rds")
+#standardized
 lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds")
+#extraweighted
+lDGE_iw = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled_weighted.lm.Rds")
+
+texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw), caption = "Regression Results: Less Ill", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+@
+
+<<HealthRegressions_DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
+dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
+dDGEw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled_weighted.Rds")
 dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
+dDGE_iw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled_weighted.lm.Rds")
+
+texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw), caption = "Regression Results: Dietary Knowledge", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
+@
+
+<<HealthRegressions_AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
+aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
+aDGEw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled_weighted.Rds")
 aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
+aDGE_iw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled_weighted.lm.Rds")
 
-#expanded model less ill 
-
-lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
-elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.Rds")
-
-texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Health Outcome Regressions", custom.model.names = c("LessIll", "DietaryKnowledge", "AppreciateHealthy","LessIll", "DietaryKnowledge", "AppreciateHealthy"))
+texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Appreciate Healthy", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8)
 @
 
 \subsection{Variables of interest: selfworth and everyday expertise as proxies for equality of opportunities} 
 
-<<ChanceEqualityRegressions, echo=FALSE, results='asis', message=FALSE>>=
+<<SelfworthRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
-lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
-lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
-ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
-td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
-lm_ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") #standardized
-lm_ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardized 
-tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")
-tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
 
-texreg(list(lm_s, lm_d, ts, td, lm_ss, lm_ds, tss, tds), caption = "Equal Opportunities Regressions", custom.model.names = c("selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills" ))
+ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") #standardizedweighted
+tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")#sw
+ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
+tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds") 
+
+texreg(list(ss, tss, ssI, tssI ), caption = "Regression Results: Selfworth", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8)
 @
 
-<<ChanceEqualityRegressionsImpute, echo=FALSE, results='asis', message=FALSE>>=
-
-sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
-dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
-tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
-tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
-ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
-dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") #standardized 
-tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds")
+<<DayToDaySkillsRegressions, echo=FALSE, results='asis', message=FALSE>>=
+ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardizedweigh
+tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
+dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") 
 tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
 
-texreg(list(sI, dI, tsI, tdI, ssI, dsI, tssI, tdsI), caption = "Equal Opportunities Regressions, imputed data", custom.model.names = c("selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills" ))
+texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8)
 @
-
-
-
-
 
 Empirical Approach\\
 
@@ -615,7 +625,30 @@ xtable(partition_trips,
           )
 print(partition_meals, partition_trips, include.rownames = FALSE)
 @
+\subsection{A3: OLS Regressions}
+
+#normal weights selfworth& subsidiy
+<<eqaulity_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
+lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
+ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
+td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
+sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
+dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
+tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
+tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
+@
+
+<<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+#expanded model less ill 
+
+lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
+elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
+@
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
+
 
 \end{document}
