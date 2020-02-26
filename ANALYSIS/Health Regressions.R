@@ -34,7 +34,7 @@ saveRDS(lessIll_DGE_scaled_weighted.lm,"./ANALYSIS/Tables/lessIll_DGE_scaled_wei
 # 
 # saveRDS(Expand_LessIll.lm,"./ANALYSIS/Tables/Expand_LessIll.lm.Rds")
 
-Expand_LessIll_scaled.lm = lm_robust(lessIll_scaled ~ DGECriteriaNoScaled + regionalProducts_scaled + yearsSupportSince + realSubsidyPerBeneficiary + state, data = mergedData)%>%
+Expand_LessIll_scaled.lm = lm_robust(lessIll_scaled ~ DGECriteriaNoScaled + regionalProducts_scaled + yearsSupportSince + realSubsidyPerBeneficiary + state,  data = mergedData)%>%
   extract.lm_robust(include.ci = FALSE)
 summary(Expand_LessIll_scaled.lm) #standardized
 
@@ -123,7 +123,7 @@ saveRDS(lessIll_DGE_IM_scaled_weighted.lm,"./ANALYSIS/Tables/lessIll_DGE_IM_scal
 # 
 # saveRDS(Expand_LessIll_IM.lm,"./ANALYSIS/Tables/Expand_LessIll_IM.lm.Rds")
 # 
-Expand_LessIll_IM_scaled.lm = lm_robust(lessIll_scaled ~ DGECriteriaNoScaled + regionalProducts_scaled + yearsSupportSince + realSubsidy, data = mergedDataImputeInterpolation)%>%
+Expand_LessIll_IM_scaled.lm = lm_robust(lessIll_scaled ~ DGECriteriaNoScaled + regionalProducts_scaled + yearsSupportSince + realSubsidyPerBeneficiary, data = mergedDataImputeInterpolation)%>%
   extract.lm_robust(include.ci = FALSE)
 summary(Expand_LessIll_IM_scaled.lm) #standardized
 
