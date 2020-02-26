@@ -282,7 +282,19 @@ The final dataset we worked with is structured as follows: Each row represents o
 
 How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
 
+Figure\\
 
+\begin{figure}
+  \caption{Trend in everyday expertise and selfworth}
+  \label{LineDisp}
+
+<<echo=FALSE>>=
+figureDaytodayskillsSelfworth = readRDS("./ANALYSIS/GRAPHS/PAPER/plot_dayToDaySkills_selfworth.Rds")
+print(figureDaytodayskillsSelfworth)
+@
+
+\floatfoot{The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to selfworth (graph x) and everyday expertise (graph y). The time trend of the average answers from the organizations in the treatment group is characterised by the solid line, the answers from the control group by the dotted line. Additionally, the linear trends of both groups are included as the straight lines.}
+\end{figure}
 
 \section{Summary Statistics}
 \subsection{Fundamental Dynamics} 
