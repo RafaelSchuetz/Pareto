@@ -277,8 +277,7 @@ However, we did several steps to get a full dataset we could work with. The data
 Furthermore, we created more new variables: We used the information CHILDREN gave us in another excel-sheet to assign the German states to the corresponding organization-ID and created dummy-variables for each ID, every year and a treatment dummy that will be explained in a later section. 
 The final dataset we worked with is structured as follows: Each row represents one organization-ID with the answers the organization gave in the specific year. The questions are divided in two categories: the variables regarding to the Mittagstisch, answered by all organizations since they are all part of this program and the Entdeckerfonds variables, answered by the organizations that take part on the Entdeckerfonds program in the respective year. Including the years from 2011 to 2018 and all variables we created, the final dataset has X observations of Y variables.
 =======
-\section{Data}
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+
 
 \section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
 
