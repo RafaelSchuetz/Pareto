@@ -296,7 +296,7 @@ Figure\\
 figureDaytodayskillsSelfworth = readRDS("./ANALYSIS/GRAPHS/PAPER/plot_dayToDaySkills_selfworth.Rds")
 print(figureDaytodayskillsSelfworth)
 @
->>>>>>> e374c897fa430f39f38663dd2617ee94ca47e4bb
+
 
 \floatfoot{The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to selfworth (graph x) and everyday expertise (graph y). The time trend of the average answers from the organizations in the treatment group is characterised by the solid line, the answers from the control group by the dotted line. Additionally, the linear trends of both groups are included as the straight lines.}
 \end{figure}
@@ -399,7 +399,7 @@ In the bottom plot of figure 4 the development of everyday expertise of the bene
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
 
-In this section we use a simple linear model, as described in equation \ref{SimpleLinear Model}. We look at the association between: 
+In this section we use a simple linear model with, as described in equation \ref{SimpleLinear Model}. We look at the association between: 
 
 \begin{itemize}
   \item{the subsidy (in 2015 EUR) an organization receives through CHILDREN's Meals program and the number of meals it dispenses}
@@ -409,15 +409,15 @@ In this section we use a simple linear model, as described in equation \ref{Simp
    \item{a standardized measure of the healthiness of the meals an organization dispenses and various standardized health-related outcomes of beneficiaries} 
 \end{itemize}
 
-We discuss all these models in turn.
+We discuss all these models in turn. 
 
 \subsection{Direct effects of CHILDREN's grants} 
 
 If CHILDREN's grants are to have an effect on beneficiaries, they should first influence the output of organizations in terms of meals dispensed and trips conducted. 
 
-As table \ref{}
-
-As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
+As table \ref{GrantsRegressionsLunch} shows, this is emphatically true. Whether we look at the original data set, the one without outliers and the one with imputed values, a strong association becomes evident. 
+The estimated coefficents are very similar when we use the original dataset and the one with imputed values. In the case of the original data set, increasing the subsidy to an organization by one EUR is associated with 2.6 additional meals dispensed. This estimate is highly statistically significant. When we exclude outliers, i.e. those organizations that give out very many menus or very few menus,
+the estimated coefficent decreases by about one order of magnitude. Still, spending not much more than three EUR more goes hand in hand with one extra meal. The estimate is also highly statistically significant.  
 
 <<GrantsRegressionsLunch, echo=FALSE, results='asis', message=FALSE>>=
 
@@ -432,17 +432,15 @@ aliquyam. \\\\ Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
 aliquyam. \\\\ %stars.}", caption.above = TRUE, 
     label = "GrantsRegressionsLunch", booktabs = TRUE)
->>>>>>> e374c897fa430f39f38663dd2617ee94ca47e4bb
 @
-
-Table \ref{GrantsRegressionsLunch}
+In the remit of the Trips program, the picture looks much different. 
 
 <<GrantsRegressionsTrips, echo=FALSE, results='asis', message=FALSE>>=
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds") #outlier trips
 lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
 
-texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, label = 'GrantsRegressionsTrips')
+texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, label = 'GrantsRegressionsTrips', digits = 4)
 
 
 @
@@ -633,8 +631,15 @@ table1_selfworth <- stargazer(lm1_selfworth,
 \section{Appendix}
 
 \subsection{A1: Cumulative Odds Regression} 
+
+As an option to run an regression on the original ordinal variables, we use the vglm function from the VGAM package... 
+
+Use from zwichenpräsentation
  
-Outliers? 
+\begin{equation}
+\label{ModelProdu}
+\ln y_{it} = \frac{}{}  \sum
+\end{equation}
 
 <<echo=FALSE, results='asis', message=FALSE>>=
 
