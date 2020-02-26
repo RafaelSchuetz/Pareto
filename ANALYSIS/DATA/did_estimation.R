@@ -395,11 +395,14 @@ summary(lmdid3_test, robust = TRUE)
 RSE1 = coef(summary(lmdid3_test, robust = TRUE))[, "Robust s.e"]
 RpValue1 = coef(summary(lmdid3_test, robust = TRUE))[, "Pr(>|t|)"]
 
+x <- list('x' = 'treatEF')
 
+custom.name <- c('Intercept', 'Treat EF')
 screenreg(lmdid3_test, override.se = list(RSE1), override.pvalues = list(RpValue1),
           caption = "linear regression",
-          custom.model.names = "Selfworth", 
-          custom.coef.map = list('TreatEF' = 'dfcEF2$treatEF'))
+          custom.model.names = "Selfworth",
+          omit.coef = 'id|year')
+
 
 scre
 
