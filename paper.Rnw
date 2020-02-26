@@ -476,6 +476,30 @@ which control variables we use
 how we determined which controls
 
 
+\begin{table}
+\begin{center}
+\begin{tabular}{l c}
+\hline
+ & Selfworth \\
+\hline
+(Intercept)             & $-1.13^{***}$ \\
+                        & $(0.32)$      \\
+dfcEF2$treatEF          & $-0.47$       \\
+                        & $(0.31)$      \\
+\hline
+Num. obs.               & $430$         \\
+R$^2$ (full model)      & $0.47$        \\
+R$^2$ (proj model)      & $0.47$        \\
+Adj. R$^2$ (full model) & $0.36$        \\
+Adj. R$^2$ (proj model) & $0.36$        \\
+\hline
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\end{tabular}
+\caption{linear regression}
+\label{table:coefficients}
+\end{center}
+\end{table}
+
 
 
 

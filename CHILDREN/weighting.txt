@@ -1,0 +1,28 @@
+Hallo Julian,
+
+nach weiterem Nachdenken stellt sich die Sache für uns so dar:
+
+Wir haben zwei Arten von Modellen: 
+
+1. Wir regressieren eine standardisierte, metrisch interpretierte, ordinale Variable auf eine gewichtete metrische, z. B. lessIll_scaled regressiert auf realSubsidyPerBeneficiary
+
+In diesem Fall ergibt es für uns keinen Sinn, stattdessen mit relativen Gewichten zu arbeiten. Hier gibt es nämlich folgendes Problem, wenn wir die relativen Gewichte jahrspezifisch machen: Beobachtungen von Einrichtungen mit wenigen eatersPerMeal in einem Jahr mit wenigen eatersPerMeal insgesamt würden höher gewichtet als Beobachtungen von Einrichtungen mit vielen (aber relativ wenigen) eatersPerMeal in einem Jahr mit vielen eatersPerMeal insgesamt. 
+Z. B. würde eine Einrichtung mit 10 eatersPerMeal in einem Jahr mit insgesamt 1000 eatersPerMeal höher gewichtet als eine Einrichtung mit 20 eatersPerMeal in einem Jahr mit insgesamt 4000 eatersPerMeal.
+Ist das wirklich das, was Professor Kosse sehen möchte? 
+Wenn wir relative, aber nicht jahrspezifische Gewichte verwenden, unterscheiden sich die geschätzten Koeffizienten bis auf den Intercept natürlich nicht von der ursprünglichen Variante, lessIll_scaled auf realSubsidyPerBeneficiary zu regressieren.
+
+2. Wir regressieren eine standardisierte, metrisch interpretierte, ordinale Variable auf eine standardisierte, metrisch interpretierte, ordinale, z. B. lessIll_scaled regressiert auf DGECriteriaNo_scaled
+
+Gestern hatten wir geschrieben, dass wir in diesem Fall zuerst beide Variablen gewichten, dann beide standardisieren und dann das Modell schätzen.
+
+Du hattest dann gemeint: "Aus meiner Sicht würde das Sinn machen was ihr zuerst im letzten Absatz beschreibt. Also die Gewichtung für das Standardtisieren und dann noch einmal in der Estimation."
+
+In der Estimation haben wir nicht noch einmal zusätzlich gewichtet. Es sollte doch genügen, einmal zu gewichten? 
+Wahrscheinlich wäre es aber hier tatsächlich besser, erst in der Schätzung die Beobachtungen zu gewichten und dann folgendes Modell mit weighted least squares zu schätzen: lessIll_scaled regressiert auf DGECriteriaNo_scaled
+Als Gewichte für die Schätzung mit weighted least squares würden wir eatersPerMeal verwenden. 
+Alternativ könnten wir natürlich auch die relativen Gewichte verwenden. Dann gibt es aber dasselbe Problem wie bei 1.
+
+Wenn die Beantwortung telefonisch einfacher geht, wir sind unter 0162 2557588 zu erreichen. 
+
+Vielen Danke und viele Grüße
+Laura und Rafael
