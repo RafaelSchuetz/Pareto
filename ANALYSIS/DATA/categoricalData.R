@@ -46,6 +46,10 @@ mergedData <- mergedData %>%
 mergedData <- mergedData %>% 
   mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
 
+mergedData <- mergedData %>% 
+  mutate_at(vars(contains('ordered')), funs(recode(., '0' = 'none', '1'= 'few', '2'= 'some', '3' = 'most', '4' = 'all')))
+
+
 # do the same for mergedDataImputeInterpolation
 
 mergedDataImputeInterpolation <- mergedDataImputeInterpolation %>% 

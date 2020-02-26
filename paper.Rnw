@@ -332,7 +332,7 @@ Table \ref{fundamentalDynamics} shows that, at the beginning of the time series 
   \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
 
-<<Grant Trend, echo=FALSE, message=FALSE>>=
+<<GrantTrend, echo=FALSE, message=FALSE>>=
 totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
 print(totalGrantsDyn)
 @
@@ -355,7 +355,7 @@ In its yearly surveys, CHILDREN asks about three variables closley related to a 
 \begin{figure}
   \caption{Health outcome over time}
   \label{Health_timeplots}
-<<Health time plots, echo=FALSE, message=FALSE>>=
+<<HealthTimePlots, echo=FALSE, message=FALSE>>=
 Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
 print(Health_timeplots)
 @
@@ -372,12 +372,12 @@ The the bottom plot of figure \ref{Health_timeplots}, which visualizes the varia
 
 \subsection{Equality of opportunities releveant variables over time} 
 
-In its yearly surveys CHILDREN has always asked about two variables closley related to increasing the beneficiaries' equality of opportunities. These are the degree to which beneficiaries: have more selfworth and have a growing understanding for everyday expertise. Figure 4 displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). As well as in the last figure (figure 3), we use the original ordinal varibles which result from the survey structure.
+In its yearly surveys, CHILDREN has always asked about two variables closley related to increasing the beneficiaries' equality of opportunities. These are the degree to which beneficiaries: have more selfworth and have a growing understanding for everyday expertise. Figure 4 displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). As well as in the last figure (figure 3), we use the original ordinal varibles which result from the survey structure.
 
 \begin{figure}
   \caption{Equality of opportunities over time}
   \label{Equality_timeplots}
-<<Equality time plots, echo=FALSE, message=FALSE>>=
+<<EqualityTimePlots, echo=FALSE, message=FALSE>>=
 Equality_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Equality_Year.Rds")
 print(Equality_timeplots)
 @
@@ -416,8 +416,8 @@ We discuss all these models in turn.
 If CHILDREN's grants are to have an effect on beneficiaries, they should first influence the output of organizations in terms of meals dispensed and trips conducted. 
 
 As table \ref{GrantsRegressionsLunch} shows, this is emphatically true. Whether we look at the original data set, the one without outliers and the one with imputed values, a strong association becomes evident. 
-The estimated coefficents are very similar when we use the original dataset and the one with imputed values. In the case of the original data set, increasing the subsidy to an organization by one EUR is associated with 2.6 additional meals dispensed. This estimate is highly statistically significant. When we exclude outliers, i.e. those organizations that give out very many menus or very few menus,
-the estimated coefficent decreases by about one order of magnitude. Still, spending not much more than three EUR more goes hand in hand with one extra meal. The estimate is also highly statistically significant.  
+The estimated coefficients are very similar when we use the original dataset and the one with imputed values. In the case of the original data set, increasing the subsidy to an organization by one EUR is associated with 2.6 additional meals dispensed. This estimate is highly statistically significant. When we exclude outliers, i.e. those organizations that give out very many menus or very few menus,
+the estimated coefficient decreases by about one order of magnitude. Still, spending not much more than three EUR more goes hand in hand with one extra meal. The estimate is also highly statistically significant.  
 
 <<GrantsRegressionsLunch, echo=FALSE, results='asis', message=FALSE>>=
 
@@ -468,11 +468,11 @@ tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
 dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") 
 tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
 
-<<<<<<< HEAD
-texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'DayToDaySkillsRegressions')
-=======
 
->>>>>>> cf8bef545c3d4b59b7f5417227f24d2112b22b18
+texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'DayToDaySkillsRegressions')
+
+
+
 @
 
 \subsection{Variables of interest: Health variables} 
@@ -767,6 +767,31 @@ xtable(partition_trips,
           )
 print(partition_meals, partition_trips, include.rownames = FALSE)
 @
+<<<<<<< HEAD
+=======
+\subsection{A3: OLS Regressions}
+
+#normal weights selfworth& subsidiy
+<<eqaulity_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
+lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
+ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
+td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
+sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
+dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
+tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
+tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
+@
+
+% <<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+% #expanded model less ill 
+% 
+% lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+% lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
+% elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
+% @
+>>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
 
