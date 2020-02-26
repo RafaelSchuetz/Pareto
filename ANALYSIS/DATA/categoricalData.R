@@ -5,10 +5,7 @@
 # How does map from package purrr work: https://r4ds.had.co.nz/iteration.html
 # How to mutate columns selectively with automatic new names: https://dplyr.tidyverse.org/reference/mutate_all.html
 
-# load packages
-library(purrr)
-library(tidyselect)
-library(stringr)
+
 
 categories <- c(NA, 0, 1, 2, 3, 4, 1/2, 3/2, 5/2, 7/2, 1/3, 2/3, 4/3, 5/3, 7/3, 8/3, 10/3, 11/3, 1/4, 3/4, 5/4, 7/4, 9/4, 11/4, 13/4, 15/4, 7/6, 8/6, 10/6, 11/6)
 
@@ -23,6 +20,16 @@ weight <- function(expr) {
     }
   else {
     return(mergedData$eatersPerMealNo*0.25*expr)
+  }
+}
+
+weightOutliers <- function(expr) {
+  name <- quo_name(enquo(expr))
+  if(stringr::str_detect(name, "trips")) {
+    return(mealsNoOutliers$tripsKidsNo*0.25*expr)
+  }
+  else {
+    return(mealsNoOutliers$eatersPerMealNo*0.25*expr)
   }
 }
 
@@ -46,6 +53,10 @@ mergedData <- mergedData %>%
 mergedData <- mergedData %>% 
   mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
 
+mergedData <- mergedData %>% 
+  mutate_at(vars(contains('ordered')), funs(recode(., '0' = 'none', '1'= 'few', '2'= 'some', '3' = 'most', '4' = 'all')))
+
+
 # do the same for mergedDataImputeInterpolation
 
 mergedDataImputeInterpolation <- mergedDataImputeInterpolation %>% 
@@ -59,18 +70,18 @@ mergedDataImputeInterpolation <- mergedDataImputeInterpolation %>%
 # do the same for mealsNoOutliers
 
 mealsNoOutliers <- mealsNoOutliers %>% 
-  mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weight))
+  mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weightOutliers))
 
 mealsNoOutliers <- mealsNoOutliers %>% 
-  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
+  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weightOutliers(mealsNoOutliers$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
 
 # do the same for tripsNoOutliers
 
 tripsNoOutliers <- tripsNoOutliers %>% 
-  mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weight))
+  mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weightOutliers))
 
 tripsNoOutliers <- tripsNoOutliers %>% 
-  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
+  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weightOutliers(tripsNoOutliers$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
 
 # pretendsToBeMetric(mergedData$eatersPerMealNo)
 # 

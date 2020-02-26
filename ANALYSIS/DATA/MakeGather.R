@@ -1,5 +1,6 @@
 # read packages
 
+
 library(texreg)
 library(readxl)
 library(tidyverse)
@@ -10,7 +11,10 @@ library(lattice)
 library(survival)
 library(Formula)
 library(tidyimpute)
-
+library(tidyselect)
+library(imputeMissings)
+library(zoo)
+library(rlang)
 
 # Gather and cleanup raw data files
 
@@ -32,7 +36,6 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/DataPriceIndices.R")
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/Merge.R")
 
-
 source(encoding = "UTF8", "./ANALYSIS/DATA/MakeReal.R")
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/Impute.R")
@@ -43,9 +46,11 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/Exclude Outliers Regression.R")
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/categoricalData.R")
 
-# specialVariables has to be after cateogricalData
+# specialVariables has to be after categoricalData
 
 source(encoding = "UTF8", "./ANALYSIS/DATA/specialVariables.R")
+
+
 
 # source(encoding = "UTF8", "./ANALYSIS/DATA/Standardized Coefficents.R")
 

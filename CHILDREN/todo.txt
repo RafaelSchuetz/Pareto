@@ -1,0 +1,9 @@
+Why are there no effects?
+Very small standard deviations, make table with average, median, standard deviation and mean absolute deviation for eatersPerMeal, tripsKidsNo, realSubsidyPerBeneficiary, realTripsSubsidyPerBeneficiary
+
+Direct Effects of CHILDREN's programs
+REVERSE CAUSALITY --> control for total budget, eatersPerMeal, tripsKidsNo
+
+estimate model with log of realSubsidyPerBeneficiary
+
+in all regressions with extract, conflict tidyr texreg
