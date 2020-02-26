@@ -1,7 +1,4 @@
-library(tidyverse)
-library(dplyr)
-library(readxl)
-library(tidyr)
+
 
 df_2017 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2018")
 

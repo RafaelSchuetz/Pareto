@@ -1,10 +1,5 @@
 # This file gathers and cleans CHILDREN survey data for the year 2019, collected with the applications for grants in 2020
 
-# Load packages
-
-library(tidyverse)
-library(readxl)
-
 # read in data
 
 ## read in headers
