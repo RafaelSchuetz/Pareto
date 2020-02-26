@@ -1,13 +1,6 @@
 #Datens?tze 2012 und 2013 in R importieren und bearbeiten
 
 
-# Packages Laden ----------------------------------------------------------
-
-library(readxl)
-library(tidyverse)
-library(dplyr)
-
-
 # Datensaetze aus Excel in R ziehen ----------------------------------------
 
 headers2011 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = 11, n_max = 0) %>% 

@@ -1,9 +1,3 @@
-library(tidyverse)
-library(readxl)
-library(dplyr)
-library(rlang)
-
-
 df_2018 <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx", sheet = "2019")
 
 df_2018 <- as_tibble(df_2018)
