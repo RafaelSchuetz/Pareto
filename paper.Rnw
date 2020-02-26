@@ -332,7 +332,7 @@ Table \ref{fundamentalDynamics} shows that, at the beginning of the time series 
   \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
 
-<<Grant Trend, echo=FALSE, message=FALSE>>=
+<<GrantTrend, echo=FALSE, message=FALSE>>=
 totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
 print(totalGrantsDyn)
 @
@@ -350,16 +350,16 @@ These results visualize, for the Lunch as well as for the Trips program, togethe
 
 \subsection{Health relevant variables over time} 
 
-In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier, have a growing appreciation for a healthier diet, and have increased their knowledge about what constitutes a healthy diet. Figure \ref{Health_timeplots} displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For this figure, we use the original ordinal varibles which result from the survey structure.  
+In its yearly surveys, CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet. Figure \ref{Health_timeplots} displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For this figure, we use the original ordinal varibles which result from the survey structure.  
 
 \begin{figure}
   \caption{Health outcome over time}
   \label{Health_timeplots}
-<<Health time plots, echo=FALSE, message=FALSE>>=
+<<HealthTimePlots, echo=FALSE, message=FALSE>>=
 Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
 print(Health_timeplots)
 @
-\floatfoot{In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
+\floatfoot{In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier (lessIll\_ordered), have a growing appreciation for a healthy diet (dietaryKnowledge\_ordered), or have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
 The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
@@ -377,7 +377,7 @@ In its yearly surveys CHILDREN has always asked about two variables closley rela
 \begin{figure}
   \caption{Equality of opportunities over time}
   \label{Equality_timeplots}
-<<Equality time plots, echo=FALSE, message=FALSE>>=
+<<EqualityTimePlots, echo=FALSE, message=FALSE>>=
 Equality_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Equality_Year.Rds")
 print(Equality_timeplots)
 @
@@ -433,7 +433,9 @@ sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
 aliquyam. \\\\ %stars.}", caption.above = TRUE, 
     label = "GrantsRegressionsLunch", booktabs = TRUE)
 @
-In the remit of the Trips program, the picture looks much different. 
+
+In the remit of the Trips program, the picture looks much different. In the case of the original data set and the data set with imputed variables, an increase in the trips subsidy by 5000 EUR is needed for an extra trip. The coefficent of 0.0002 is statistically significant at the 5\% level. As soon as outliers are excluded, the coefficent changes to 0.0003, which is highly statistically significant. This means that, according to this model, at least 3000 EUR are needed for an additional trip.
+In sum, there seems to be no clear connection between how much money CHILDREN gives to an organization and the number of trips it organizes. 
 
 <<GrantsRegressionsTrips, echo=FALSE, results='asis', message=FALSE>>=
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
@@ -441,13 +443,50 @@ lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds") #outlier trips
 lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
 
 texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, label = 'GrantsRegressionsTrips', digits = 4)
-
-
-
 @
+
+\subsection{Variables of interest: selfworth and everyday expertise} 
+
+In their surveys, CHILDREN asks about two variables in both programs. These are the share of beneficiaries that are believed to have increased their self-worth and to have ehanced their everyday expertise. This feature could potentially allow us to compare the two programs regarding their realtive effectiveness. Like always, we standardize the two outcome variables. As before, we can only make associational claims. We invariably find no clear-cut relationship between the subsidy per beneficiary and the two outcomes. In fact, no coefficent is statistically significantly differnent from zero at any of the usual levels. 
+
+Tables \ref{SelfworthRegressions} and \ref{DayToDaySkillsRegressions} present the null results. 
+
+<<SelfworthRegressions, echo=FALSE, results='asis', message=FALSE>>=
+
+
+ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") 
+tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")#sw
+ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
+tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds") 
+
+texreg(list(ss, tss, ssI, tssI ), caption = "Regression Results: Selfworth", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'SelfworthRegressions')
+@
+
+<<DayToDaySkillsRegressions, echo=FALSE, results='asis', message=FALSE>>=
+ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardizedweigh
+tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
+dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") 
+tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
+
+<<<<<<< HEAD
+texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'DayToDaySkillsRegressions')
+=======
+
+>>>>>>> cf8bef545c3d4b59b7f5417227f24d2112b22b18
+@
+
 \subsection{Variables of interest: Health variables} 
 
-In the next section, we want to explore the influence of the DGE Criterion on relevant health outcomes.
+Now, we turn to a predictor that CHILDREN does not directly influence until now, but that it easily could. In 2014, 2016, 2017 and 2018 the organizations had to send CHILDREN a sample of their menus. An ecotrophologist collaborating with CHILDREN assessed those menus with regards to how healthy they were. This assessment was based on criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung).
+
+In its yearly surveys, CHILDREN asks about three variables closely related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet.
+
+Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.
+
+We use standardized versions of these variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
+If we estimated these models with ordinary least squares, we would ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we fit the models with weighted least squares, using the number of beneficiaries as weights. 
+
+
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -456,7 +495,7 @@ In the next section, we want to explore the influence of the DGE Criterion on re
 Health_percentageplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_percentageplots.Rds")
 print(Health_percentageplots)
 @
-\floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on the criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them their menus. An ecotrophologist collaborating with CHILDREN assesed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
+\floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them a sample of their menus. An ecotrophologist collaborating with CHILDREN assessed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier (lessIll\_ordered), have a growing appreciation for a healthy diet (dietaryKnowledge\_ordered), or have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
@@ -491,28 +530,6 @@ aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
 aDGE_iw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled_weighted.lm.Rds")
 
 texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Appreciate Healthy", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8, label = 'HealthRegressions-AppreciateHealthy')
-@
-
-\subsection{Variables of interest: selfworth and everyday expertise as proxies for equality of opportunities} 
-
-<<SelfworthRegressions, echo=FALSE, results='asis', message=FALSE>>=
-
-
-ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") #standardizedweighted
-tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")#sw
-ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
-tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds") 
-
-texreg(list(ss, tss, ssI, tssI ), caption = "Regression Results: Selfworth", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'SelfworthRegressions')
-@
-
-<<DayToDaySkillsRegressions, echo=FALSE, results='asis', message=FALSE>>=
-ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardizedweigh
-tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
-dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") 
-tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
-
-texreg(list(ds, tds, dsI, tdsI ), caption = "Regression Results: dayToDaySkills", custom.model.names = c("OLS Lunch", "OLS Trips", "OLS Lunch Impute", "OLS Trips Impute" ), scalebox = 0.8, label = 'DayToDaySkillsRegressions')
 @
 
 \section{Feature Selection}
@@ -724,13 +741,13 @@ tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
 tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
 @
 
-<<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-#expanded model less ill 
-
-lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
-lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
-elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
-@
+% <<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+% #expanded model less ill 
+% 
+% lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+% lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
+% elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
+% @
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
 
