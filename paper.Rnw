@@ -484,7 +484,7 @@ In its yearly surveys, CHILDREN asks about three variables closely related to a 
 Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.
 
 We use standardized versions of these variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
-If we estimated these models with ordinary least squares, we would ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we fit the models with weighted least squares, using the number of beneficiaries as weights. 
+By estimating these models with ordinary least squares, we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares, using the number of beneficiaries as weights. 
 
 
 
@@ -648,52 +648,93 @@ table1_selfworth <- stargazer(lm1_selfworth,
 
 \section{Appendix}
 
-\subsection{A1: Cumulative Odds Regression} 
+\subsection{A1: Expanded Health Regression}
 
-As an option to run an regression on the original ordinal variables, we use the vglm function from the VGAM package... 
+In addition to table \ref{HealthRegressions-LessIll} table \ref{expandLessIll} presents the results of an OLS approach with scaled outcomes as well as a WLS approach with scaled outcomes with following control variables: to which extent an organization uses regional products, since when an organization is part of the Lunch program, the real subsidy per beneficiary and the state an organization is located. 
 
-Use from zwichenpräsentation
+% #normal weights selfworth& subsidiy
+% <<eqaulity_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+% 
+% lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
+% lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
+% ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
+% td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
+% sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
+% dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
+% tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
+% tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
+% @
+
+<<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+#expanded model less ill 
+
+lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
+lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
+elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.lm.Rds")
+elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.lm.Rds")
+
+texreg(list(lm_elDGE, lm_elDGEw, elDGE_i, elDGE_iw), caption = "Regression Results: Less ill expanded model", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), scalebox = 0.8, label = 'expandLessIll')
+@
+
+\subsection{A2: Cumulative Odds Regression} 
+
+As an option to run a regression on the original ordinal variables, we use the proportional odds version of the cumulative logit from the VGAM package. Equation \ref{PropoddsModel} describes the model setup: 
+
  
 \begin{equation}
-\label{ModelProdu}
-\ln y_{it} = \frac{}{}  \sum
+\label{PropoddsModel}
+  P(Y_i \leq \ r) = \frac{exp(y_0_r + x_i^Ty)}{1+exp(y_0_r + x_i^Ty)}    
 \end{equation}
+
+
+To demonstrate the results of this method, we show in the tables \ref{lessIllOdds}, \ref{dietaryOdds}, \ref{appreciateOdds} the regressions of the health related variables on the healthy meals criterion and in the tables \ref{selfworthOdds} and \ref{dayToDayOdds} the regressions of the real meals subsidy on selfworth and everyday expertise. 
+
+As an example of interpreting such models, we consider the model of table \ref{lessIllOdds}: An increase of the healthy meals criterion by 1 is associated with an increase in chances, that a proportion of a maximum of r beneficiaries is healthier in relation to that a proportion of more than r beneficiaries are healthier, by the factor of exp(-0.29127) = 0.75.
+
+A summary of the remaining models:
+
+\begin{itemize}
+  \item{Dietary Knowledge: exp(-0.089) = 0.91}
+  \item{Appreciate Healthy: exp(-0199) = 0.82}
+  \item{Selfworth: exp(-0.00001) = 1}
+  \item{Everyday Expertise: (-0.00003) = 1} 
+\end{itemize}
 
 <<echo=FALSE, results='asis', message=FALSE>>=
 
 lessIllOdds <- readRDS("./ANALYSIS/Tables/lessIllProp.Rds")
 
-stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Less Ill", align = TRUE)
+stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Less Ill", align = TRUE, label = "lessIllOdds")
 
 @
 <<echo=FALSE, results='asis', message=FALSE>>=
 
 dietaryOdds <- readRDS("./ANALYSIS/Tables/DietaryProp.Rds")
 
-stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Dietary Knowledge", align = TRUE)
+stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Dietary Knowledge", align = TRUE, label = "dietaryOdds")
 @
 <<echo=FALSE, results='asis', message=FALSE>>=
 
 appreciateOdds <- readRDS("./ANALYSIS/Tables/AppreciateProp.Rds")
 
-stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Appreciate Healthy", align = TRUE)
+stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Appreciate Healthy", align = TRUE, label = "appreciateOdds")
 @
 
 <<echo=FALSE, results='asis', message=FALSE>>=
 
 selfworthOdds <- readRDS("./ANALYSIS/Tables/selfworthProp.Rds")
 
-stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Equality of opportunities, selfworth", align = TRUE)
+stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Selfworth", align = TRUE, label = "selfworthOdds")
 @
 
 <<echo=FALSE, results='asis', message=FALSE>>=
 
 dayToDayOdds <- readRDS("./ANALYSIS/Tables/dayToDayProb.Rds")
 
-stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Equality of opportunities, everyday expertise", align = TRUE)
+stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Everyday expertise", align = TRUE, label = "dayToDayOdds")
 @
 
-\subsection{A2: Partition}
+\subsection{A3: Partition}
 
 In addition to the factor analysis described in section 6, we would like to introduce to a another dimensionality reduction method called partition. 
 
@@ -725,28 +766,6 @@ xtable(partition_trips,
           #align = "lmmm"
           )
 print(partition_meals, partition_trips, include.rownames = FALSE)
-@
-\subsection{A3: OLS Regressions}
-
-#normal weights selfworth& subsidiy
-<<eqaulity_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-
-lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
-lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
-ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
-td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
-sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
-dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
-tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
-tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
-@
-
-<<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-#expanded model less ill 
-
-lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
-lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
-elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
 @
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
