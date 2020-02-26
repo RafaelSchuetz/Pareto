@@ -19,10 +19,10 @@ pretendsToBeMetric <- function(x) {
 weight <- function(expr) {
   name <- quo_name(enquo(expr))
   if(stringr::str_detect(name, "trips")) {
-    return(mergedData$tripsKidsNo*0.25*(!! expr))
+    return(mergedData$tripsKidsNo*0.25*expr)
     }
   else {
-    return(mergedData$eatersPerMealNo*0.25*(!! expr))
+    return(mergedData$eatersPerMealNo*0.25*expr)
   }
 }
 
@@ -30,7 +30,7 @@ scale_this <- function(x){
   (x - mean(x, na.rm=TRUE)) / sd(x, na.rm=TRUE)
 }
 
-weight(mergedData$DGECriteriaNo)
+# weight(mergedData$DGECriteriaNo)
 # enquo(mergedData$ownIdeas)
 # 
 # weight(mergedData$ownIdeas)

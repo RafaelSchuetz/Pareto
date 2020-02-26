@@ -47,4 +47,24 @@ source(encoding = "UTF8", "./ANALYSIS/DATA/categoricalData.R")
 
 # source(encoding = "UTF8", "./ANALYSIS/DATA/Standardized Coefficents.R")
 
+# mergedData$realSubsidy*mergedData$lessIll*0.25
+# 
+# mergedData$realSubsidyPerBeneficiary*mergedData$lessIll_weighted
+# 
+# mergedData$realSubsidy/mergedData$eatersPerMealNo
+# 
+# mergedData$realSubsidyPerBeneficiary
+# 
+# mergedData$lessIll*0.25*mergedData$eatersPerMealNo
+# 
+# mergedData$lessIll*0.25*mergedData$tripsKidsNo
+# 
+# mergedData$lessIll_weighted
+# 
+# weight(mergedData$lessIll)
 
+# name <- quo_name(enquo(expr))
+# if(stringr::str_detect(name, "trips"))
+
+# lm(lessIll_scaled ~ realSubsidy, mergedData)
+# lm(lessIll ~ realSubsidyPerBeneficiary, mergedData)
