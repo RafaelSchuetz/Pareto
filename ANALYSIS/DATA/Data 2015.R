@@ -2,12 +2,6 @@
 
 # 1. Herunterladen der Daten ----------------------------------------------
 
-#rm(list = ls())
-
-library(readxl)
-library(dplyr)
-library(tidyverse)
-
 ### Daten 2016
 
 Wirkungsdaten_2015unbereinigt <- read_excel("./ANALYSIS/DATA/CHILDREN Wirkungsdaten_VERTRAULICH_final.xlsx",

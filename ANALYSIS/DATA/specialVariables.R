@@ -66,4 +66,5 @@ availableVariables <- function(dataSet, variableName) {
   return(names(comparisonAvailableYears))
 }
 
-alwaysRecordedVariables <- availableVariables(mergedData, "subsidy")
+alwaysRecordedVariablesMeals <- availableVariables(mergedData, "subsidy")
+alwaysRecordedVariablesTrips <- availableVariables(mergedData, 'realSubsidy')

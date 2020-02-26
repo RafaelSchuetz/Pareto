@@ -448,7 +448,7 @@ texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of tr
 \subsection{Variables of interest: selfworth and everyday expertise} 
 
 In their surveys, CHILDREN asks about two variables in both programs. These are the share of beneficiaries that are believed to have increased their self-worth and to have ehanced their everyday expertise. This feature could potentially allow us to compare the two programs regarding their realtive effectiveness. Like always, we standardize the two outcome variables. As before, we can only make associational claims. We invariably find no clear-cut relationship between the subsidy per beneficiary and the two outcomes. In fact, no coefficent is statistically significantly differnent from zero at any of the usual levels. 
-
+The four variables are recorded for each year in which the program was operative.
 Tables \ref{SelfworthRegressions} and \ref{DayToDaySkillsRegressions} present the null results. 
 
 <<SelfworthRegressions, echo=FALSE, results='asis', message=FALSE>>=
@@ -535,6 +535,12 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Apprec
 \section{Feature Selection}
 
 \subsection{Factor Analysis}
+
+We use imputed data set.
+
+we use the orthogonal rotation technique Varimax, which is recommended in Price (2017, p. 307) when the goal of analysis is to "minimize complexity of factors by maximizing variance of loadings on each factor" 
+We estimate factor scores with the Bartlett method, which is similar to a Maximum Likekelihood estimation, and presented as the most convential one in Eid and Schmidt (2010, p. 291)
+We use maximum likelihood as factoring method
 
 \subsection{Double Selection}
 

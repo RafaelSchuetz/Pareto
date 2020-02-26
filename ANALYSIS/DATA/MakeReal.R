@@ -1,5 +1,3 @@
-library(dplyr)
-
 #calculating real values as well as differences in subsidy/request and the amount of years in programme
 
 mergedData <- mergedData %>% 
