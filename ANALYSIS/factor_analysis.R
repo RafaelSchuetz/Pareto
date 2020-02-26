@@ -13,18 +13,19 @@ library(polycor)
 library(psych)
 library(lavaan)
 
+drop.cols <- c('DGECriteriaNoScaled', 'lessIll_scaled')
 
 ordinalVariablesMeals <- mergedDataImputeInterpolation %>% 
-  dplyr::select(-generalOutcomes_scaled) %>% 
-  dplyr::select(c(any_of(alwaysRecordedVariables), 'DGECriteriaNoScaled')) %>% 
-  dplyr::select(c(tidyselect::contains('_scaled') & !tidyselect::contains('trips'), 'DGECriteriaNoScaled')) %>%
+  dplyr::select(-any_of(generalOutcomes_scaled)) %>% 
+  dplyr::select(c(any_of(alwaysRecordedVariables), drop.cols)) %>% 
+  dplyr::select(c(tidyselect::contains('_scaled') & !tidyselect::contains('trips'), drop.cols)) %>%
   drop_na
          
 ordinalVariablesMealsFA <- ordinalVariablesMeals %>% 
-  dplyr::select(-DGECriteriaNoScaled)
+  dplyr::select(-drop.cols)
 
 lessIll_DGECriteriaNo <- ordinalVariablesMeals %>% 
-  dplyr::select(DGECriteriaNoScaled, lessIll_scaled) %>% 
+  dplyr::select(drop.cols) %>% 
   data.frame()
 
 # with ML=TRUE, hetcor() takes very long to compute
