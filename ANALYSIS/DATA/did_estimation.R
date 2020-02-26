@@ -378,6 +378,63 @@ saveRDS(lmdid3_dayToDaySkills_controls, file = "./ANALYSIS/Tables/lmdid3_dayToDa
 lmdid3_selfworth <- lm(dfcEF2$selfworth_scaled ~ dfcEF2$treatEF + dfcEF2$id + dfcEF2$year)
 summary(lmdid3_selfworth)
 
+class(dfcEF2$year)
+
+#install.packages("lfe")
+#install.packages("Matrix")
+#install.packages("texreg")
+library(lfe)
+library(Matrix)
+library(texreg)
+
+lmdid3_test <-  felm(dfcEF2$selfworth_scaled ~ dfcEF2$treatEF + dfcEF2$id + dfcEF2$year)
+
+summary(lmdid3_test)
+summary(lmdid3_test, robust = TRUE)
+
+RSE1 = coef(summary(lmdid3_test, robust = TRUE))[, "Robust s.e"]
+RpValue1 = coef(summary(lmdid3_test, robust = TRUE))[, "Pr(>|t|)"]
+
+x <- list('x' = 'treatEF')
+
+custom.name <- c('Intercept', 'Treat EF')
+texreg(lmdid3_test, override.se = list(RSE1), override.pvalues = list(RpValue1),
+          caption = "linear regression",
+          custom.model.names = "Selfworth",
+          omit.coef = 'id|year')
+
+
+scre
+
+lmdid3_selfworth <- lm(dfcEF2$selfworth_scaled ~ dfcEF2$treatEF + dfcEF2$id + dfcEF2$year)
+summary(lmdid3_selfworth)
+
+lmdid3_selfworth <-lm_robust(dfcEF2$selfworth_scaled ~ dfcEF2$treatEF + dfcEF2$dummy_2012
+                             + dfcEF2$dummy_2013 + dfcEF2$dummy_2014 + dfcEF2$dummy_2015 + dfcEF2$dummy_2016
+                             + dfcEF2$dummy_2017 + dfcEF2$dummy_2018 + dfcEF2$dummy103 + dfcEF2$dummy104 + dfcEF2$dummy105 + 
+                               dfcEF2$dummy106 + dfcEF2$dummy108 + dfcEF2$dummy109 + dfcEF2$dummy111 + 
+                               dfcEF2$dummy112 + dfcEF2$dummy113 + dfcEF2$dummy114 + dfcEF2$dummy118 +
+                               dfcEF2$dummy122 + dfcEF2$dummy123 + dfcEF2$dummy124 + dfcEF2$dummy125 +
+                               dfcEF2$dummy130 + dfcEF2$dummy131 + dfcEF2$dummy132 + dfcEF2$dummy133 +
+                               dfcEF2$dummy136 + dfcEF2$dummy139 + dfcEF2$dummy141 +
+                               dfcEF2$dummy142 + dfcEF2$dummy165 + dfcEF2$dummy186 + dfcEF2$dummy187 + 
+                               dfcEF2$dummy188 + dfcEF2$dummy189 + dfcEF2$dummy190 + dfcEF2$dummy191 + 
+                               dfcEF2$dummy192 + dfcEF2$dummy193 + dfcEF2$dummy194 + dfcEF2$dummy209 + 
+                               dfcEF2$dummy213 + dfcEF2$dummy214 + dfcEF2$dummy215 + dfcEF2$dummy216 + 
+                               dfcEF2$dummy217 + dfcEF2$dummy218 + dfcEF2$dummy219 + dfcEF2$dummy220 + 
+                               dfcEF2$dummy221 + dfcEF2$dummy226 + dfcEF2$dummy233 + dfcEF2$dummy249 +
+                               dfcEF2$dummy255 + dfcEF2$dummy269 + dfcEF2$dummy270 + dfcEF2$dummy281 + 
+                               dfcEF2$dummy282 + dfcEF2$dummy403 + dfcEF2$dummy404 + dfcEF2$dummy417 + 
+                               dfcEF2$dummy418 + dfcEF2$dummy437 + dfcEF2$dummy482 + dfcEF2$dummy483 +
+                               dfcEF2$dummy599 + dfcEF2$dummy600 + dfcEF2$dummy601 + dfcEF2$dummy602 + 
+                               dfcEF2$dummy623 + dfcEF2$dummy663)
+summary(lmdid3_selfworth)
+
+class(dfcEF2$dummy1)
+
+?lm_robust
+?fixed_effects
+
 # Mit Kontrollvariablen 
 lmdid3_selfworth_controls <- lm(dfcEF2$selfworth_scaled ~ dfcEF2$treatEF + dfcEF2$id + dfcEF2$year
                                 + dfcEF2$subsidy + dfcEF2$totalCost)
@@ -394,7 +451,7 @@ lmdid3_selfworth_controls <- coeftest(lmdid3_selfworth_controls,
 summary(lmdid3_selfworth_controls)
 
 # Erstellen des Regression-Tables mit der Funktion stargazer()
-table_did3_selfworth <- stargazer(lmdid3_selfworth,
+table_did3_selfworth <- stargazer(lmdid3_test,
                                  omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
                                           'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
                                           'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
@@ -406,6 +463,8 @@ table_did3_selfworth <- stargazer(lmdid3_selfworth,
                                  add.lines = list(c('ID fixed effects', 'Yes'),
                                                   c('Year fixed effects', 'Yes')),
                                  type = 'text')
+
+?stargazer
 
 table_did3_selfworth_controls <- stargazer(lmdid3_selfworth_controls,
                                   omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
