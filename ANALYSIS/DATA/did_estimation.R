@@ -380,9 +380,9 @@ summary(lmdid3_selfworth)
 
 class(dfcEF2$year)
 
-install.packages("lfe")
-install.packages("Matrix")
-install.packages("texreg")
+#install.packages("lfe")
+#install.packages("Matrix")
+#install.packages("texreg")
 library(lfe)
 library(Matrix)
 library(texreg)
@@ -398,7 +398,7 @@ RpValue1 = coef(summary(lmdid3_test, robust = TRUE))[, "Pr(>|t|)"]
 x <- list('x' = 'treatEF')
 
 custom.name <- c('Intercept', 'Treat EF')
-screenreg(lmdid3_test, override.se = list(RSE1), override.pvalues = list(RpValue1),
+texreg(lmdid3_test, override.se = list(RSE1), override.pvalues = list(RpValue1),
           caption = "linear regression",
           custom.model.names = "Selfworth",
           omit.coef = 'id|year')
