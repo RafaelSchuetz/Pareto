@@ -101,6 +101,10 @@ print(readRDS('./ANALYSIS/Tables/lmdidtest.Rds'))
 
 
 
+### erstellen der Regressions Tabellen ####
 
+lmdid_daytodayskills_test <- screenreg(
+  
+)
 
 
