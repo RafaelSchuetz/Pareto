@@ -198,20 +198,36 @@ RpValue_selfworth_2 = coef(summary(lmdid_selfworth_2, robust = TRUE))[, "Pr(>|t|
 ### DaytoDayskills ####
 
 screenreg(
-  list(lmdid_dayToDaySkills_1, lmdid_dayToDaySkills_2),
-  override.se = list(RSE_1, RSE_2),
-  override.pvalues = list(RpValue_1, RpValue_2),
+  list(lmdid_dayToDaySkills_1, lmdid_dayToDaySkills_2, lmdid_dayToDaySkills_3, lmdid_dayToDaySkills_4),
+  override.se = list(RSE_1, RSE_2, RSE_3, RSE_4),
+  override.pvalues = list(RpValue_1, RpValue_2, RpValue_3, RpValue_4),
   #groups = list('first' = 3:67, 'second' = 68:75),
-  custom.model.names = c('Model 1', 'Model 2'),
+  custom.model.names = c('Model 1', 'Model 2', 'Model 3', 'Model 4'),
   #custom.coef.names = c('Intercept', 'treatEF', 'totalCost', 'weeklyCooks'),
   stars = c(0.01, 0.05, 0.1),
   omit.coef = 'id|year',
   digits = 3,
   #dann noch die Observations manuell hinzufügen, dann kann ich den Namen zu observations ändern
-  custom.gof.rows = list('ID FE' = c('yes', 'yes'), 'Year FE' = c('yes', 'yes')),
+  custom.gof.rows = list('ID FE' = c('yes', 'yes', 'yes', 'yes'), 'Year FE' = c('yes', 'yes', 'yes', 'yes')),
   #reorder.gof = c(3, 1, 2, 4, 5, 6, 7),
   include.adjrs = FALSE
 )
 
 
 ### selfworth ####
+
+screenreg(
+  list(lmdid_selfworth_1, lmdid_selfworth_2, lmdid_selfworth_3, lmdid_selfworth_4),
+  override.se = list(RSE_selfworth_1, RSE_selfworth_2, RSE_selfworth_3, RSE_selfworth_4),
+  override.pvalues = list(RpValue_selfworth_1, RpValue_selfworth_2, RpValue_selfworth_3, RpValue_selfworth_4),
+  #groups = list('first' = 3:67, 'second' = 68:75),
+  custom.model.names = c('Model 1', 'Model 2', 'Model 3', 'Model 4'),
+  #custom.coef.names = c('Intercept', 'treatEF', 'totalCost', 'weeklyCooks'),
+  stars = c(0.01, 0.05, 0.1),
+  omit.coef = 'id|year',
+  digits = 3,
+  #dann noch die Observations manuell hinzufügen, dann kann ich den Namen zu observations ändern
+  custom.gof.rows = list('ID FE' = c('yes', 'yes', 'yes', 'yes'), 'Year FE' = c('yes', 'yes', 'yes', 'yes')),
+  #reorder.gof = c(3, 1, 2, 4, 5, 6, 7),
+  include.adjrs = FALSE
+)
