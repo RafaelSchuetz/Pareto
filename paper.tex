@@ -331,7 +331,7 @@ CHILDREN supports organizations working with children and youth across Germany (
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
 <<<<<<< HEAD
-\section{The Data}
+\section{Data}
 
 To measure the effect of CHILDREN´s engagement on the organizations we use the data they collected from 2012 to 2020. In each year they send a survey to the organizations with several questions about the previous year. The number of organizations varies among the years and increases over time, from 52 in the 2012 survey to 73 in the survey from 2020. In some organizations one employee fills in the survey and in others they do it as a team. Since the children and adolescents are not questioned directly, all responses are documented through the perception of the employees. The number of variables varies over time as well. Included are numbers like the average eaters per meal or the amount of money they provide to the organizations but also general questions. For instance, CHILDREN asks the average amount of kids with a better confidence or an improved dietary knowledge in the specific organization. This part of the survey must be answered on a scale from zero (no kids) to four (all kids). If an organization do not answer a question, this is documented as a “99”. We worked with the statistical program “R” and therefore changed the format from 99s to NA´s (not available) to avoid distortions. The surveyed variables change over the years, but some of them are included every year. 
 However, we did several steps to get a full dataset we could work with. The data was divided into one dataset for each survey from 2012 to 2020, but we only use the surveys till 2019 since in 2020 some organization-ID´s occurred several times and the data for 2020 were incomplete. Since each survey includes data about the year before, we changed the names of the dataset to the corresponding year and finally used the years from 2011 to 2018. Moreover, we outlined a hierarchical file structure, enabling us to use relative file paths throughout. This makes a quick work with R possible since we only use paths relative to the working directory. Afterwards we made sure that variables with names containing non-standard characters like German “Umlaute” are correctly read in and established naming conventions. We created a file reading the excel sheets and we reviewed and aligned new English-language variable names across the years. Moreover, we systematically compared variable names between years by creating a correspondence table, ordered first by variables of 2019, then of 2018 and so on. To ensure the comparability between the years, we gave all variables from the different years that equal each other the same name. As a next step, we merged the different datasets to one dataset, including all years and variables CHILDREN collected. For an efficient and clear data structure, we created a function that automatically changed the data type of all variables from "character" to "ordinal" and added several versions for each initially metric encoded variable afterwards. The three variants are ordinal, standardized and weighted (FUßNOTE: The variables regarding the Mittagstisch are weighted as variable*0.25*eaterspermeal, the variables that are assigned to the Entdeckerfonds as variable*0.25*tripskidsno). 
@@ -350,13 +350,8 @@ How do children benefit from visiting social institutions that CHILDREN supports
 \section{Summary Statistics}
 \subsection{Fundamental Dynamics} 
 
-<<<<<<< HEAD
 % latex table generated in R 3.5.1 by xtable 1.8-4 package
-% Wed Feb 26 13:07:44 2020
-=======
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 13:04:14 2020
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+% Wed Feb 26 13:27:46 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{mmmmm}
@@ -454,14 +449,12 @@ In this section we use a standard OLS equation, as described in equation 1. Wher
 As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
 
 
+\usepackage{graphicx}
+
 \begin{table}
 \begin{center}
-<<<<<<< HEAD
-\begin{tabular}{l c c c c c c}
-=======
 \scalebox{0.8}{
-\begin{tabular}{l c c c }
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+\begin{tabular}{l c c c}
 \hline
  & OLS & OLS without Outliers & OLS Impute \\
 \hline
@@ -470,21 +463,12 @@ As the first variables of interest we consider the number of meals the organizat
 realSubsidy & $2.61^{***}$    & $0.29^{***}$    & $2.72^{***}$     \\
             & $(0.57)$        & $(0.05)$        & $(0.51)$         \\
 \hline
-<<<<<<< HEAD
-R$^2$            & $0.43$          & $0.05$       & $0.43$          & $0.05$       & $0.45$           & $0.05$       \\
-Adj. R$^2$       & $0.43$          & $0.04$       & $0.43$          & $0.04$       & $0.45$           & $0.05$       \\
-Num. obs.        & $329$           & $322$        & $329$           & $322$        & $440$            & $334$        \\
-RMSE             & $39992.79$      & $2.96$       & $39992.79$      & $2.96$       & $39601.41$       & $2.93$       \\
+R$^2$       & $0.43$          & $0.13$          & $0.45$           \\
+Adj. R$^2$  & $0.43$          & $0.12$          & $0.45$           \\
+Num. obs.   & $329$           & $250$           & $440$            \\
+RMSE        & $39992.79$      & $3629.72$       & $39601.41$       \\
 \hline
-\multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
-=======
-R$^2$       & 0.43            & 0.13            & 0.45             \\
-Adj. R$^2$  & 0.43            & 0.12            & 0.45             \\
-Num. obs.   & 329             & 250             & 440              \\
-RMSE        & 39992.79        & 3629.72         & 39601.41         \\
-\hline
-\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Number of meals}
@@ -494,10 +478,12 @@ RMSE        & 39992.79        & 3629.72         & 39601.41         \\
 
 
 
+\usepackage{graphicx}
+
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c }
+\begin{tabular}{l c c c}
 \hline
  & OLS & OLS without Outliers & OLS Impute \\
 \hline
@@ -506,12 +492,12 @@ RMSE        & 39992.79        & 3629.72         & 39601.41         \\
 realTripsSubsidy & $0.00^{*}$   & $0.00^{***}$ & $0.00^{*}$   \\
                  & $(0.00)$     & $(0.00)$     & $(0.00)$     \\
 \hline
-R$^2$            & 0.05         & 0.09         & 0.05         \\
-Adj. R$^2$       & 0.04         & 0.08         & 0.05         \\
-Num. obs.        & 322          & 257          & 334          \\
-RMSE             & 2.96         & 1.70         & 2.93         \\
+R$^2$            & $0.05$       & $0.09$       & $0.05$       \\
+Adj. R$^2$       & $0.04$       & $0.08$       & $0.05$       \\
+Num. obs.        & $322$        & $257$        & $334$        \\
+RMSE             & $2.96$       & $1.70$       & $2.93$       \\
 \hline
-\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Number of trips}
@@ -543,14 +529,12 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
 
+\usepackage{graphicx}
+
 \begin{table}
 \begin{center}
-<<<<<<< HEAD
-\begin{tabular}{l c c c c c c}
-=======
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+\begin{tabular}{l c c c c}
 \hline
  & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
@@ -559,21 +543,12 @@ In the following equation we use standardized variables in a standard OLS approa
 DGECriteriaNoScaled & $0.33^{***}$ & $0.35^{*}$  & $0.25^{***}$ & $0.24$       \\
                     & $(0.08)$     & $(0.16)$    & $(0.07)$     & $(0.14)$     \\
 \hline
-<<<<<<< HEAD
-R$^2$               & $0.12$       & $0.01$   & $0.06$       & $0.07$       & $0.02$     & $0.06$       \\
-Adj. R$^2$          & $0.11$       & $0.01$   & $0.06$       & $0.07$       & $0.01$     & $0.06$       \\
-Num. obs.           & $121$        & $214$    & $213$        & $177$        & $275$      & $274$        \\
-RMSE                & $0.91$       & $0.98$   & $1.02$       & $0.94$       & $0.96$     & $1.01$       \\
+R$^2$               & $0.12$       & $0.29$      & $0.07$       & $0.16$       \\
+Adj. R$^2$          & $0.11$       & $0.29$      & $0.07$       & $0.16$       \\
+Num. obs.           & $121$        & $120$       & $177$        & $177$        \\
+RMSE                & $0.91$       & $7.83$      & $0.94$       & $7.95$       \\
 \hline
-\multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
-=======
-R$^2$               & 0.12         & 0.29        & 0.07         & 0.16         \\
-Adj. R$^2$          & 0.11         & 0.29        & 0.07         & 0.16         \\
-Num. obs.           & 121          & 120         & 177          & 177          \\
-RMSE                & 0.91         & 7.83        & 0.94         & 7.95         \\
-\hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Less Ill}
@@ -583,10 +558,12 @@ RMSE                & 0.91         & 7.83        & 0.94         & 7.95         \
 
 
 
+\usepackage{graphicx}
+
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
  & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
@@ -595,12 +572,12 @@ RMSE                & 0.91         & 7.83        & 0.94         & 7.95         \
 DGECriteriaNoScaled & $0.11$   & $-0.02$  & $0.12^{*}$ & $0.10$   \\
                     & $(0.06)$ & $(0.12)$ & $(0.05)$   & $(0.14)$ \\
 \hline
-R$^2$               & 0.01     & 0.00     & 0.02       & 0.01     \\
-Adj. R$^2$          & 0.01     & -0.00    & 0.01       & 0.01     \\
-Num. obs.           & 214      & 212      & 275        & 275      \\
-RMSE                & 0.98     & 8.49     & 0.96       & 9.45     \\
+R$^2$               & $0.01$   & $0.00$   & $0.02$     & $0.01$   \\
+Adj. R$^2$          & $0.01$   & $-0.00$  & $0.01$     & $0.01$   \\
+Num. obs.           & $214$    & $212$    & $275$      & $275$    \\
+RMSE                & $0.98$   & $8.49$   & $0.96$     & $9.45$   \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Dietary Knowledge}
@@ -610,10 +587,12 @@ RMSE                & 0.98     & 8.49     & 0.96       & 9.45     \\
 
 
 
+\usepackage{graphicx}
+
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
  & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
@@ -622,12 +601,12 @@ RMSE                & 0.98     & 8.49     & 0.96       & 9.45     \\
 DGECriteriaNoScaled & $0.27^{***}$ & $-0.02$  & $0.25^{***}$ & $0.01$     \\
                     & $(0.07)$     & $(0.15)$ & $(0.06)$     & $(0.13)$   \\
 \hline
-R$^2$               & 0.06         & 0.00     & 0.06         & 0.00       \\
-Adj. R$^2$          & 0.06         & -0.00    & 0.06         & -0.00      \\
-Num. obs.           & 213          & 211      & 274          & 274        \\
-RMSE                & 1.02         & 8.61     & 1.01         & 9.00       \\
+R$^2$               & $0.06$       & $0.00$   & $0.06$       & $0.00$     \\
+Adj. R$^2$          & $0.06$       & $-0.00$  & $0.06$       & $-0.00$    \\
+Num. obs.           & $213$        & $211$    & $274$        & $274$      \\
+RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Appreciate Healthy}
@@ -639,10 +618,12 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       \\
 \subsection{Variables of interest: selfworth and everyday expertise as proxies for equality of opportunities} 
 
 
+\usepackage{graphicx}
+
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
  & OLS Lunch & OLS Trips & OLS Lunch Impute & OLS Trips Impute \\
 \hline
@@ -653,12 +634,12 @@ realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          \\
 realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  \\
                                &          & $(0.00)$ &          & $(0.00)$ \\
 \hline
-R$^2$                          & 0.00     & 0.01     & 0.00     & 0.01     \\
-Adj. R$^2$                     & 0.00     & 0.01     & 0.00     & 0.01     \\
-Num. obs.                      & 428      & 184      & 430      & 187      \\
-RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     \\
+R$^2$                          & $0.00$   & $0.01$   & $0.00$   & $0.01$   \\
+Adj. R$^2$                     & $0.00$   & $0.01$   & $0.00$   & $0.01$   \\
+Num. obs.                      & $428$    & $184$    & $430$    & $187$    \\
+RMSE                           & $1.00$   & $1.00$   & $1.00$   & $1.00$   \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Selfworth}
@@ -668,10 +649,12 @@ RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     \\
 
 
 
+\usepackage{graphicx}
+
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
  & OLS Lunch & OLS Trips & OLS Lunch Impute & OLS Trips Impute \\
 \hline
@@ -682,12 +665,12 @@ realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          \\
 realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  \\
                                &          & $(0.00)$ &          & $(0.00)$ \\
 \hline
-R$^2$                          & 0.01     & 0.01     & 0.01     & 0.01     \\
-Adj. R$^2$                     & 0.01     & 0.01     & 0.01     & 0.01     \\
-Num. obs.                      & 426      & 177      & 429      & 181      \\
-RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     \\
+R$^2$                          & $0.01$   & $0.01$   & $0.01$   & $0.01$   \\
+Adj. R$^2$                     & $0.01$   & $0.01$   & $0.01$   & $0.01$   \\
+Num. obs.                      & $426$    & $177$    & $429$    & $181$    \\
+RMSE                           & $1.00$   & $0.98$   & $1.00$   & $0.99$   \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: dayToDaySkills}
@@ -763,11 +746,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mi, Feb 26, 2020 - 13:07:50
-=======
-% Date and time: Mi, Feb 26, 2020 - 13:04:19
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+% Date and time: Mi, Feb 26, 2020 - 13:27:51
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -813,9 +792,12 @@ F Statistic & \multicolumn{1}{c}{11.417$^{***}$ (df = 1; 428)} & \multicolumn{1}
  
 Outliers? 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 13:04:19
+% Date and time: Mi, Feb 26, 2020 - 13:27:51
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Less Ill} 
@@ -833,9 +815,12 @@ Outliers?
 \end{tabular} 
 \end{table} 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 13:04:19
+% Date and time: Mi, Feb 26, 2020 - 13:27:51
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Dietary Knowledge} 
@@ -853,9 +838,12 @@ Outliers?
 \end{tabular} 
 \end{table} 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 13:04:19
+% Date and time: Mi, Feb 26, 2020 - 13:27:51
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Appreciate Healthy} 
@@ -874,9 +862,12 @@ Outliers?
 \end{table} 
 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 13:04:19
+% Date and time: Mi, Feb 26, 2020 - 13:27:51
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Equality of opportunities, selfworth} 
@@ -895,9 +886,12 @@ Outliers?
 \end{table} 
 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 13:04:19
+% Date and time: Mi, Feb 26, 2020 - 13:27:51
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Equality of opportunities, everyday expertise} 
@@ -924,13 +918,8 @@ QUOTES FROM PAPER, describe method
 
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
 
-<<<<<<< HEAD
 % latex table generated in R 3.5.1 by xtable 1.8-4 package
-% Wed Feb 26 13:07:50 2020
-=======
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 13:04:19 2020
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+% Wed Feb 26 13:27:51 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -970,13 +959,8 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \end{tabular}
 \caption{Partition of outcomes, Meals} 
 \end{table}
-<<<<<<< HEAD
 % latex table generated in R 3.5.1 by xtable 1.8-4 package
-% Wed Feb 26 13:07:50 2020
-=======
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 13:04:19 2020
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
+% Wed Feb 26 13:27:51 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -1009,10 +993,7 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \end{table}
 \begin{kframe}
 
-<<<<<<< HEAD
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right): ungültiges 'digits' Argument}}\end{kframe}
-=======
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
 \subsection{A3: OLS Regressions}
 
 #normal weights selfworth& subsidiy
@@ -1024,7 +1005,6 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}\end{kframe}
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
->>>>>>> 30bc373c357942eb8fd341aac32c4179ea2507ce
 
 
 \end{document}
