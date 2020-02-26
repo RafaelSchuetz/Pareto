@@ -74,7 +74,7 @@ RSE_4 = coef(summary(lmdid_dayToDaySkills_4, robust = TRUE))[, "Robust s.e"]
 RpValue_4 = coef(summary(lmdid_dayToDaySkills_4, robust = TRUE))[, "Pr(>|t|)"]
 
 
-
+# Hallo Laura
 
 
 
