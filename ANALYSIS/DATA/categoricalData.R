@@ -52,7 +52,9 @@ mergedDataImputeInterpolation <- mergedDataImputeInterpolation %>%
   mutate_if(pretendsToBeMetric, list(scaled = scale_this, ordered = as.ordered, weighted = weight))
 
 mergedDataImputeInterpolation <- mergedDataImputeInterpolation %>% 
-  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo))
+  mutate(DGECriteriaNoScaled = scale_this(DGECriteriaNo), DGECriteriaNoWeighted = weight(mergedData$DGECriteriaNo), DGECriteriaNoOrdered = as.ordered(DGECriteriaNo),
+         lessIll_scaled = scale_this(lessIll), lessIll_weighted = weight(mergedData$lessIll), lessIll_ordered = as.ordered(lessIll),
+         influenceHome_scaled = scale_this(influenceHome), influenceHome_weighted = weight(mergedData$influenceHome), influenceHome_ordered = as.ordered(influenceHome))
 
 # do the same for mealsNoOutliers
 
