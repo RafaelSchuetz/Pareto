@@ -166,7 +166,7 @@ Laura Huber\\
 \texttt{11111111}
 \and
 Laura Jepsen\\
-\texttt{11111111}
+\texttt{11567799}
 \and
 Jonathan Kirschner\\
 \texttt{11724530}
@@ -329,6 +329,8 @@ CHILDREN's aims for data analysis\\
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
+\section{Data}
+
 \section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
 
 How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
@@ -336,9 +338,10 @@ How do children benefit from visiting social institutions that CHILDREN supports
 
 
 \section{Summary Statistics}
+\subsection{Fundamental Dynamics} 
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 00:35:31 2020
+% Wed Feb 26 09:24:41 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{mmmmm}
@@ -362,6 +365,8 @@ Year & Beneficiaries, Meals & Beneficiaries, Trips & Organizations, Meals & Orga
 
 At the beginning of the time series in 2011, they supported in x institutions. In 2018, this number had increased to y. In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.    
 
+\subsection{Trend of grants} 
+
 \begin{figure}
   \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
@@ -380,6 +385,8 @@ At the beginning of the time series in 2011, they supported in x institutions. I
 \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median and the median grant per beneficiary. From left to right: Meals, Trips, from top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals progam and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
 \end{figure}
 
+\subsection{Heatlh relevant variables over time} 
+
 \begin{figure}
   \caption{Health outcome over time}
   \label{Health_timeplots}
@@ -396,6 +403,8 @@ At the beginning of the time series in 2011, they supported in x institutions. I
 \floatfoot{In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
 The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
+
+\subsection{Equality of opportunities releveant variables over time} 
 
 \begin{figure}
   \caption{Equality of opportunities over time}
@@ -416,6 +425,8 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 
 \section{Regressions}
 
+\subsection{Empirical Approach} 
+
 \begin{equation}
 \label{Equation 1}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
@@ -423,7 +434,7 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 
 In this section we use a standard OLS equation, as described in equation 1. Where needed, we modified the given data, by using weights, excluding outliers and by scaling relevant variables. We also compared the results with the actual dataset to the results we gained by using a dataset in which we imputed necessary data. (DESCRIBE METHODS EXACT) 
 
-\\Number of Meals and Number of Trips
+\subsection{Variables of interest: Number of trips and number of meals} 
 
 As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
 
@@ -456,6 +467,8 @@ RMSE             & 39992.79        & 2.96         & 39992.79        & 2.96      
 The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed. 
 (DESCRIBE RESULTS) (COMPARE TO SUMMARY STATISTICS)
 
+\subsection{Variables of interest: Health variables} 
+
 In the next section, we want to explore the influence of the DGE Criterion on relevant health outcomes.
 
 \begin{figure}
@@ -474,8 +487,6 @@ In the next section, we want to explore the influence of the DGE Criterion on re
 \floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on the criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them their menus. An ecotrophologist collaborating with CHILDREN assesed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
-
-
 
 In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
@@ -509,23 +520,61 @@ RMSE                & 0.91         & 0.98     & 1.02         & 0.94         & 0.
 \end{table}
 
 
-\begin{kframe}
+\subsection{Variables of interest: selfworth and everyday expertise as proxies for equality of opportunities} 
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): kann komprimierte Datei './ANALYSIS/Tables/selfworthTrips\_scaled.lm.Rds' nicht öffnen. Grund evtl. 'No such file or directory'}}
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c c c c c }
+\hline
+ & selfworth & dayToDaySkills & selfworth & dayToDaySkills & selfworth & dayToDaySkills & selfworth & dayToDaySkills \\
+\hline
+(Intercept)      & $-13.42^{*}$ & $-13.48^{*}$ & $9.20^{***}$ & $8.25^{***}$ & $-0.06$  & $-0.16^{**}$ & $0.10$   & $0.12$   \\
+                 & $(5.88)$     & $(5.89)$     & $(1.84)$     & $(1.78)$     & $(0.06)$ & $(0.06)$     & $(0.10)$ & $(0.11)$ \\
+realSubsidy      & $0.00^{***}$ & $0.00^{***}$ &              &              & $0.00$   & $0.00^{***}$ &          &          \\
+                 & $(0.00)$     & $(0.00)$     &              &              & $(0.00)$ & $(0.00)$     &          &          \\
+realTripsSubsidy &              &              & $0.00^{***}$ & $0.01^{***}$ &          &              & $-0.00$  & $-0.00$  \\
+                 &              &              & $(0.00)$     & $(0.00)$     &          &              & $(0.00)$ & $(0.00)$ \\
+\hline
+R$^2$            & 0.46         & 0.46         & 0.32         & 0.34         & 0.00     & 0.03         & 0.01     & 0.01     \\
+Adj. R$^2$       & 0.45         & 0.45         & 0.31         & 0.34         & 0.00     & 0.03         & 0.00     & 0.01     \\
+Num. obs.        & 428          & 426          & 184          & 177          & 430      & 428          & 186      & 178      \\
+RMSE             & 41.50        & 41.59        & 21.93        & 21.36        & 1.00     & 0.98         & 1.00     & 0.98     \\
+\hline
+\multicolumn{9}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Equal Opportunities Regressions}
+\label{table:coefficients}
+\end{center}
+\end{table}
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in "{}list"{} \%in\% class(l)[1]: Objekt 'tss' nicht gefunden}}\end{kframe}
-
-\begin{kframe}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): kann komprimierte Datei './ANALYSIS/Tables/selfworth\_IM\_scaled.Rds' nicht öffnen. Grund evtl. 'No such file or directory'}}
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c c c c c }
+\hline
+ & selfworth & dayToDaySkills & selfworth & dayToDaySkills & selfworth & dayToDaySkills & selfworth & dayToDaySkills \\
+\hline
+(Intercept)      & $-13.42^{*}$ & $-13.47^{*}$ & $9.25^{***}$ & $8.33^{***}$ & $-0.06$  & $-0.16^{**}$ & $0.11$   & $0.13$   \\
+                 & $(5.88)$     & $(5.89)$     & $(1.82)$     & $(1.74)$     & $(0.06)$ & $(0.06)$     & $(0.10)$ & $(0.11)$ \\
+realSubsidy      & $0.00^{***}$ & $0.00^{***}$ &              &              & $0.00$   & $0.00^{***}$ &          &          \\
+                 & $(0.00)$     & $(0.00)$     &              &              & $(0.00)$ & $(0.00)$     &          &          \\
+realTripsSubsidy &              &              & $0.00^{***}$ & $0.00^{***}$ &          &              & $-0.00$  & $-0.00$  \\
+                 &              &              & $(0.00)$     & $(0.00)$     &          &              & $(0.00)$ & $(0.00)$ \\
+\hline
+R$^2$            & 0.46         & 0.46         & 0.32         & 0.34         & 0.00     & 0.03         & 0.01     & 0.02     \\
+Adj. R$^2$       & 0.45         & 0.45         & 0.31         & 0.34         & 0.00     & 0.03         & 0.01     & 0.01     \\
+Num. obs.        & 428          & 427          & 186          & 180          & 430      & 429          & 189      & 182      \\
+RMSE             & 41.50        & 41.54        & 21.83        & 21.21        & 1.00     & 0.98         & 1.00     & 0.99     \\
+\hline
+\multicolumn{9}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Equal Opportunities Regressions, imputed data}
+\label{table:coefficients}
+\end{center}
+\end{table}
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in "{}list"{} \%in\% class(l)[1]: Objekt 'ssI' nicht gefunden}}\end{kframe}
 
 
 
@@ -574,7 +623,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi, Feb 26, 2020 - 00:35:36
+% Date and time: Mi, Feb 26, 2020 - 09:24:46
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -621,6 +670,107 @@ F Statistic & \multicolumn{1}{c}{11.417$^{***}$ (df = 1; 428)} & \multicolumn{1}
 Outliers? 
 
 
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Propodss Regression Results: Less Ill} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Estimate} & \multicolumn{1}{c}{Std. Error} & \multicolumn{1}{c}{z value} & \multicolumn{1}{c}{Pr(\textgreater \textbar z\textbar )} \\ 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{(Intercept):1} & -2.799 & 1.109 & -2.523 & 0.012 \\ 
+\multicolumn{1}{c}{(Intercept):2} & 1.653 & 0.582 & 2.841 & 0.004 \\ 
+\multicolumn{1}{c}{(Intercept):3} & 4.667 & 0.738 & 6.322 & 0 \\ 
+\multicolumn{1}{c}{DGECriteriaNo} & -0.291 & 0.075 & -3.883 & 0.0001 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Propodss Regression Results: Dietary Knowledge} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Estimate} & \multicolumn{1}{c}{Std. Error} & \multicolumn{1}{c}{z value} & \multicolumn{1}{c}{Pr(\textgreater \textbar z\textbar )} \\ 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{(Intercept):1} & -4.009 & 0.803 & -4.996 & 0.00000 \\ 
+\multicolumn{1}{c}{(Intercept):2} & -1.047 & 0.425 & -2.465 & 0.014 \\ 
+\multicolumn{1}{c}{(Intercept):3} & 1.445 & 0.430 & 3.365 & 0.001 \\ 
+\multicolumn{1}{c}{DGECriteriaNo} & -0.089 & 0.052 & -1.712 & 0.087 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Propodss Regression Results: Appreciate Healthy} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Estimate} & \multicolumn{1}{c}{Std. Error} & \multicolumn{1}{c}{z value} & \multicolumn{1}{c}{Pr(\textgreater \textbar z\textbar )} \\ 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{(Intercept):1} & -1.603 & 0.486 & -3.298 & 0.001 \\ 
+\multicolumn{1}{c}{(Intercept):2} & 0.586 & 0.413 & 1.419 & 0.156 \\ 
+\multicolumn{1}{c}{(Intercept):3} & 3.052 & 0.471 & 6.483 & 0 \\ 
+\multicolumn{1}{c}{DGECriteriaNo} & -0.199 & 0.053 & -3.744 & 0.0002 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Propodss Regression Results: Equality of opportunities, selfworth} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Estimate} & \multicolumn{1}{c}{Std. Error} & \multicolumn{1}{c}{z value} & \multicolumn{1}{c}{Pr(\textgreater \textbar z\textbar )} \\ 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{(Intercept):1} & -4.855 & 0.584 & -8.315 & 0 \\ 
+\multicolumn{1}{c}{(Intercept):2} & -1.268 & 0.143 & -8.893 & 0 \\ 
+\multicolumn{1}{c}{(Intercept):3} & 1.514 & 0.150 & 10.109 & 0 \\ 
+\multicolumn{1}{c}{realSubsidy} & -0.00001 & 0.00001 & -1.332 & 0.183 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Mi, Feb 26, 2020 - 09:24:46
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Propodss Regression Results: Equality of opportunities, everyday expertise} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Estimate} & \multicolumn{1}{c}{Std. Error} & \multicolumn{1}{c}{z value} & \multicolumn{1}{c}{Pr(\textgreater \textbar z\textbar )} \\ 
+\hline \\[-1.8ex] 
+\multicolumn{1}{c}{(Intercept):1} & -3.543 & 0.343 & -10.330 & 0 \\ 
+\multicolumn{1}{c}{(Intercept):2} & -0.736 & 0.132 & -5.563 & 0.00000 \\ 
+\multicolumn{1}{c}{(Intercept):3} & 1.764 & 0.157 & 11.249 & 0 \\ 
+\multicolumn{1}{c}{realSubsidy} & -0.00003 & 0.00001 & -4.070 & 0.00005 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
 
 \subsection{A2: Partition}
 
@@ -631,7 +781,7 @@ QUOTES FROM PAPER, describe method
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 00:35:36 2020
+% Wed Feb 26 09:24:46 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}
@@ -672,7 +822,7 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 \caption{Partition of outcomes, Meals} 
 \end{table}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Wed Feb 26 00:35:36 2020
+% Wed Feb 26 09:24:46 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllr}

@@ -128,7 +128,7 @@ Laura Huber\\
 \texttt{11111111}
 \and
 Laura Jepsen\\
-\texttt{11111111}
+\texttt{11567799}
 \and
 Jonathan Kirschner\\
 \texttt{11724530}
@@ -268,6 +268,8 @@ CHILDREN's aims for data analysis\\
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
+\section{Data}
+
 \section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
 
 How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
@@ -275,6 +277,7 @@ How do children benefit from visiting social institutions that CHILDREN supports
 
 
 \section{Summary Statistics}
+\subsection{Fundamental Dynamics} 
 
 <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
@@ -295,6 +298,8 @@ print(fundamental_dynamics, include.rownames = FALSE)
 
 At the beginning of the time series in 2011, they supported in x institutions. In 2018, this number had increased to y. In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.    
 
+\subsection{Trend of grants} 
+
 \begin{figure}
   \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
@@ -307,6 +312,8 @@ print(totalGrantsDyn)
 \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median and the median grant per beneficiary. From left to right: Meals, Trips, from top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals progam and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
 \end{figure}
 
+\subsection{Heatlh relevant variables over time} 
+
 \begin{figure}
   \caption{Health outcome over time}
   \label{Health_timeplots}
@@ -317,6 +324,8 @@ print(Health_timeplots)
 \floatfoot{In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
 The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
+
+\subsection{Equality of opportunities releveant variables over time} 
 
 \begin{figure}
   \caption{Equality of opportunities over time}
@@ -331,6 +340,8 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 
 \section{Regressions}
 
+\subsection{Empirical Approach} 
+
 \begin{equation}
 \label{Equation 1}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
@@ -338,7 +349,7 @@ The x-axis plots the year. The y-axis displays the share of organizarions in eac
 
 In this section we use a standard OLS equation, as described in equation 1. Where needed, we modified the given data, by using weights, excluding outliers and by scaling relevant variables. We also compared the results with the actual dataset to the results we gained by using a dataset in which we imputed necessary data. (DESCRIBE METHODS EXACT) 
 
-\\Number of Meals and Number of Trips
+\subsection{Variables of interest: Number of trips and number of meals} 
 
 As the first variables of interest we consider the number of meals the organizations recorded and the number of trips the organizations made together with the beneficiaries. In this case, we use standard OLS in a first equation, exclude outliers from the variables 'mealsNo' and 'tripsNo' to obtain a believable value and compare to the imputed dataset. TableX shows the regression results.
 
@@ -356,6 +367,8 @@ texreg(list(lm_ms, lm_ts, lm_ms_o, lm_ts_o, lm_ms_i, lm_ts_i), caption = "Grants
 The first two columns are simple OLS models, in column 3 and 4 outliers are excluded and in column 5 and 6 data is imputed. 
 (DESCRIBE RESULTS) (COMPARE TO SUMMARY STATISTICS)
 
+\subsection{Variables of interest: Health variables} 
+
 In the next section, we want to explore the influence of the DGE Criterion on relevant health outcomes.
 
 \begin{figure}
@@ -368,8 +381,6 @@ print(Health_percentageplots)
 \floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on the criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them their menus. An ecotrophologist collaborating with CHILDREN assesed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the degree to which beneficiaries: are healthier (lessIll\_ordered), have a growing appreciation for a healthier diet (dietaryKnowledge\_ordered), and have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
-
-
 
 In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
 
@@ -393,6 +404,8 @@ elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.Rds")
 texreg(list(lm_lDGE, lm_dDGE, lm_aDGE, lDGE_i, dDGE_i, aDGE_i), caption = "Health Outcome Regressions", custom.model.names = c("LessIll", "DietaryKnowledge", "AppreciateHealthy","LessIll", "DietaryKnowledge", "AppreciateHealthy"))
 @
 
+\subsection{Variables of interest: selfworth and everyday expertise as proxies for equality of opportunities} 
+
 <<ChanceEqualityRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
 lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
@@ -401,7 +414,7 @@ ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
 td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
 lm_ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds") #standardized
 lm_ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardized 
-tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.lm.Rds")
+tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")
 tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
 
 texreg(list(lm_s, lm_d, ts, td, lm_ss, lm_ds, tss, tds), caption = "Equal Opportunities Regressions", custom.model.names = c("selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills", "selfworth", "dayToDaySkills" ))
@@ -413,7 +426,7 @@ sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
 dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
 tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
 tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
-ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.Rds") #standardized
+ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
 dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") #standardized 
 tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds")
 tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
@@ -513,8 +526,36 @@ Outliers?
 
 <<echo=FALSE, results='asis', message=FALSE>>=
 
-#read in data from vglm models
+lessIllOdds <- readRDS("./ANALYSIS/Tables/lessIllProp.Rds")
 
+stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Less Ill", align = TRUE)
+
+@
+<<echo=FALSE, results='asis', message=FALSE>>=
+
+dietaryOdds <- readRDS("./ANALYSIS/Tables/DietaryProp.Rds")
+
+stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Dietary Knowledge", align = TRUE)
+@
+<<echo=FALSE, results='asis', message=FALSE>>=
+
+appreciateOdds <- readRDS("./ANALYSIS/Tables/AppreciateProp.Rds")
+
+stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Appreciate Healthy", align = TRUE)
+@
+
+<<echo=FALSE, results='asis', message=FALSE>>=
+
+selfworthOdds <- readRDS("./ANALYSIS/Tables/selfworthProp.Rds")
+
+stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Equality of opportunities, selfworth", align = TRUE)
+@
+
+<<echo=FALSE, results='asis', message=FALSE>>=
+
+dayToDayOdds <- readRDS("./ANALYSIS/Tables/dayToDayProb.Rds")
+
+stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Equality of opportunities, everyday expertise", align = TRUE)
 @
 
 \subsection{A2: Partition}
