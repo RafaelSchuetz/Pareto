@@ -77,7 +77,7 @@ RpValue_selfworth_3 = coef(summary(lmdid_selfworth_3, robust = TRUE))[, "Pr(>|t|
 
 # Mit organization-specific Kontrollvariablen
 lmdid_selfworth_4 <-  felm(dfcEF$selfworth_scaled ~ dfcEF$treatEF + dfcEF$id + dfcEF$year
-                           + dfcEF$funding + dfcEF$totalCost + dfc$weeklyCooks_scaled)
+                           + dfcEF$funding + dfcEF$totalCost + dfcEF$weeklyCooks_scaled)
 
 summary(lmdid_selfworth_4)
 summary(lmdid_selfworth_4, robust = TRUE)
@@ -168,14 +168,6 @@ summary(lmdid_selfworth_2, robust = TRUE)
 
 RSE_selfworth_2 = coef(summary(lmdid_selfworth_2, robust = TRUE))[, "Robust s.e"]
 RpValue_selfworth_2 = coef(summary(lmdid_selfworth_2, robust = TRUE))[, "Pr(>|t|)"]
-
-
-
-
-
-
-
-
 
 
 
