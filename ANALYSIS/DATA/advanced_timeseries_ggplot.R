@@ -60,33 +60,115 @@ ggplot(df_monthlyCooks_control, aes(Year, EverydayExpertise)) + geom_line()
 #erstellen der ggplots
 library(ggpubr)
 
-#dayToDaySkills
+###dayToDaySkills
 
 ggplot(df_dayToDaySkills_treat, aes(Year, EverydayExpertise)) + 
-  geom_point() + geom_line(color = "grey0") + 
-  geom_point(data = df_dayToDaySkills_control, color = "grey") + 
-   geom_line(data = df_dayToDaySkills_control, linetype = "dotted", color = "grey10") +
+  geom_point(color="red") + geom_line(color = "red") + 
+  geom_point(data = df_dayToDaySkills_control, color = "blue") + 
+  geom_line(data = df_dayToDaySkills_control, linetype = "dotted", color = "blue") +
   grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
-  geom_smooth(method = "lm", se = FALSE, color = "grey0") +
-  geom_smooth(data =df_dayToDaySkills_control, method="lm", se = FALSE, color = "grey") +
-  ggtitle("Trend of everyday expertise") + ylab("Everyday Expertise") 
-
-
-
-
-
-
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data =df_dayToDaySkills_control, method="lm", se = FALSE, color = "blue") +
+  ggtitle("Trend Of Everyday Expertise") +
+  theme(plot.title = element_text(hjust = 0.5)) + ylab("Everyday Expertise")
   
+##speichern
+
+plot_dtds <- ggplot(df_dayToDaySkills_treat, aes(Year, EverydayExpertise)) + 
+  geom_point(color="red") + geom_line(color = "red") + 
+  geom_point(data = df_dayToDaySkills_control, color = "blue") + 
+  geom_line(data = df_dayToDaySkills_control, linetype = "dotted", color = "blue") +
+  grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data =df_dayToDaySkills_control, method="lm", se = FALSE, color = "blue") +
+  ggtitle("Trend Of Everyday Expertise") +
+  theme(plot.title = element_text(hjust = 0.5)) + ylab("Everyday Expertise")
+
+###selfworth
+
+
+ggplot(df_selfworth_treat, aes(Year, EverydayExpertise)) + 
+  geom_point(color="red") + geom_line(color = "red") + 
+  geom_point(data = df_selfworth_control, color = "blue") + 
+  geom_line(data = df_selfworth_control, linetype = "dotted", color = "blue") +
+  grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data =df_selfworth_control, method="lm", se = FALSE, color = "blue") +
+  ggtitle("Trend Of Selfworth") +
+  theme(plot.title = element_text(hjust = 0.5)) + ylab("Selfworth")
+
+##save
+
+plot_selfworth <- ggplot(df_selfworth_treat, aes(Year, EverydayExpertise)) + 
+  geom_point(color="red") + geom_line(color = "red") + 
+  geom_point(data = df_selfworth_control, color = "blue") + 
+  geom_line(data = df_selfworth_control, linetype = "dotted", color = "blue") +
+  grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data =df_selfworth_control, method="lm", se = FALSE, color = "blue") +
+  ggtitle("Trend Of Selfworth") +
+  theme(plot.title = element_text(hjust = 0.5)) + ylab("Selfworth")
 
 
 
+###weeklycooks
+
+ggplot(df_weeklyCooks_treat, aes(Year, EverydayExpertise)) + 
+  geom_point(color="red") + geom_line(color = "red") + 
+  geom_point(data = df_weeklyCooks_control, color = "blue") + 
+  geom_line(data = df_weeklyCooks_control, linetype = "dotted", color = "blue") +
+  grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data =df_weeklyCooks_control, method="lm", se = FALSE, color = "blue") +
+  ggtitle("Trend Of Weekly Cooks") +
+  theme(plot.title = element_text(hjust = 0.5)) + ylab("Weekly Cooks")
 
 
 
+##save
+
+plot_weeklyCooks <- ggplot(df_weeklyCooks_treat, aes(Year, EverydayExpertise)) + 
+  geom_point(color="red") + geom_line(color = "red") + 
+  geom_point(data = df_weeklyCooks_control, color = "blue") + 
+  geom_line(data = df_weeklyCooks_control, linetype = "dotted", color = "blue") +
+  grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data =df_weeklyCooks_control, method="lm", se = FALSE, color = "blue") +
+  ggtitle("Trend Of Weekly Cooks") +
+  theme(plot.title = element_text(hjust = 0.5)) + ylab("Weekly Cooks")
 
 
+###monthlycooks
 
 
+ggplot(df_monthlyCooks_treat, aes(Year, EverydayExpertise)) + 
+  geom_point(color="red") + geom_line(color = "red") + 
+  geom_point(data = df_monthlyCooks_control, color = "blue") + 
+  geom_line(data = df_monthlyCooks_control, linetype = "dotted", color = "blue") +
+  grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data =df_monthlyCooks_control, method="lm", se = FALSE, color = "blue") +
+  ggtitle("Trend Of Monthly Cooks") +
+  theme(plot.title = element_text(hjust = 0.5)) + ylab("Monthly Cooks")
 
+##save
 
+plot_monthlyCooks <- ggplot(df_monthlyCooks_treat, aes(Year, EverydayExpertise)) + 
+  geom_point(color="red") + geom_line(color = "red") + 
+  geom_point(data = df_monthlyCooks_control, color = "blue") + 
+  geom_line(data = df_monthlyCooks_control, linetype = "dotted", color = "blue") +
+  grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data =df_monthlyCooks_control, method="lm", se = FALSE, color = "blue") +
+  ggtitle("Trend Of Monthly Cooks") +
+  theme(plot.title = element_text(hjust = 0.5)) + ylab("Monthly Cooks")
 
+plot_dtds
+plot_selfworth
+plot_weeklyCooks
+plot_monthlyCooks
+
+saveRDS(plot_dtds, "./ANALYSIS/GRAPHS/plot_dtds.Rds")
+saveRDS(plot_selfworth, "./ANALYSIS/GRAPHS/plot_selfworth.Rds")
+saveRDS(plot_weeklyCooks, "./ANALYSIS/GRAPHS/plot_weeklyCooks.Rds")
+saveRDS(plot_monthlyCooks, "./ANALYSIS/GRAPHS/plot_monthlyCooks.Rds")
