@@ -6,4 +6,6 @@ REVERSE CAUSALITY --> control for total budget, eatersPerMeal, tripsKidsNo
 
 estimate model with log of realSubsidyPerBeneficiary
 
-in all regressions with extract, conflict tidyr texreg
+in all regressions with extract, conflict tidyr texreg magrittr
+
+regress tripsOutcomes on tripsKidsNo

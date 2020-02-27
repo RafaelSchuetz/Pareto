@@ -24,6 +24,10 @@
  
 % If there is no error while knitting from Rnw to tex, but an error while compiling from tex to pdf, have a look at the pdf file. It might still have worked.
 
+% instead of Compile PDF, go into Terminal and enter 
+% Rscript -e "library(knitr); knit('paper.Rnw')"
+% latexmk -pdf paper
+
 
 
 % Julian's suggestions from February 24
@@ -66,8 +70,6 @@
 
 % working with knitR and LaTeX
 % https://kbroman.org/knitr_knutshell/pages/latex.html
-% Command line
-% R -e 'library(knitr);knit("knitr_example.Rnw")'
 
 % rotate tables in knitr
 % https://stackoverflow.com/questions/21840878/rotate-a-table-from-r-markdown-in-pdf
@@ -138,13 +140,14 @@
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 \usepackage{floatrow}
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
+% \usepackage{bookmark}
 \usepackage{rotating}
 % \usepackage[authoryear]{natbib}
 % \bibliographystyle{apalike}
 \usepackage{mathtools}
-\usepackage[onehalfspacing]{setspace}
+% \usepackage[onehalfspacing]{setspace}
 \usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
+\usepackage[hidelinks]{hyperref}
 
 % 1.5 spacing in Word is about this in LaTeX
 % https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
@@ -214,6 +217,12 @@ latin number pages\\
 
 \section{Examples}
 
+Citing\\
+
+If you want to cite \textcite{Millenstein.2020} inline, use this.
+If you want to cite \parencite[p.4]{Millenstein.2020} inline with a page number, use this.
+If you want to cite \citeauthor{Millenstein.2020} only as authors, use this.
+
 Equation with double index\\
 
 \begin{equation}
@@ -230,28 +239,22 @@ List\\
 \end{itemize}
 
 
-Figure\\
-
-\begin{figure}
-  \caption{Dispersion in productivity levels}
-  \label{LineDisp}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-1-1} 
-
-}
-
-
-
-\end{knitrout}
-
-\floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
-\end{figure}
+% Figure\\
+% 
+% \begin{figure}
+%   \caption{Dispersion in productivity levels}
+%   \label{LineDisp}
+% 
+% <<echo=FALSE>>=
+% figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
+% print(figureLineDisp)
+% @
+% 
+% \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
+% \end{figure}
 
 
-Figure \ref{LineDisp}
+% Figure \ref{LineDisp}
 
 % <<results='asis', echo=FALSE>>=
 % tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
@@ -284,7 +287,7 @@ RMSE             & 39992.79        & 2.96         \\
 \multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 \caption{Statistical models}
-\label{table:coefficients}
+\label{mealsTripsSubsidyRegressions}
 \end{center}
 \end{table}
 
@@ -359,7 +362,7 @@ Figure\\
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-2-1} 
+{\centering \includegraphics[width=0.8\textwidth]{figure/DaytodayskillsSelfworth-1} 
 
 }
 
@@ -375,6 +378,7 @@ Figure\\
 
 In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries in both programs, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.
 
+<<<<<<< HEAD
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
 % Thu Feb 27 16:11:22 2020
 \begin{table}[ht]
@@ -396,6 +400,76 @@ Year & Beneficiaries, Meals & Beneficiaries, Trips & Organizations, Meals & Orga
 \caption{Summary Statistics} 
 \label{fundamentalDynamics}
 \end{table}
+=======
+
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 2:46:58 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{fundamentalDynamics} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+$2,011$ & $3,748$ & $$ & $52$ & $$ \\ 
+$2,012$ & $3,556$ & $2,803$ & $51$ & $44$ \\ 
+$2,013$ & $4,015$ & $2,823$ & $55$ & $42$ \\ 
+$2,014$ & $4,685$ & $2,752$ & $55$ & $43$ \\ 
+$2,015$ & $5,857$ & $3,823$ & $55$ & $49$ \\ 
+$2,016$ & $3,075$ & $3,819$ & $59$ & $48$ \\ 
+$2,017$ & $4,895$ & $4,150$ & $64$ & $48$ \\ 
+$2,018$ & $5,102.500$ & $6,911$ & $68$ & $49$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 2:46:58 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{fundamentalDynamics} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Summary Statistics \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+ [1] ""                                                                                                           
+ [2] "% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu"
+ [3] "% Date and time: Thu, Feb 27, 2020 - 2:46:58 PM"                                                            
+ [4] "\\begin{table}[!htbp] \\centering "                                                                         
+ [5] "  \\caption{} "                                                                                             
+ [6] "  \\label{fundamentalDynamics} "                                                                            
+ [7] "\\begin{tabular}{@{\\extracolsep{5pt}} ccccc} "                                                             
+ [8] "\\\\[-1.8ex]\\hline "                                                                                       
+ [9] "\\hline \\\\[-1.8ex] "                                                                                      
+[10] "$2,011$ & $3,748$ & $$ & $52$ & $$ \\\\ "                                                                   
+[11] "$2,012$ & $3,556$ & $2,803$ & $51$ & $44$ \\\\ "                                                            
+[12] "$2,013$ & $4,015$ & $2,823$ & $55$ & $42$ \\\\ "                                                            
+[13] "$2,014$ & $4,685$ & $2,752$ & $55$ & $43$ \\\\ "                                                            
+[14] "$2,015$ & $5,857$ & $3,823$ & $55$ & $49$ \\\\ "                                                            
+[15] "$2,016$ & $3,075$ & $3,819$ & $59$ & $48$ \\\\ "                                                            
+[16] "$2,017$ & $4,895$ & $4,150$ & $64$ & $48$ \\\\ "                                                            
+[17] "$2,018$ & $5,102.500$ & $6,911$ & $68$ & $49$ \\\\ "                                                        
+[18] "\\hline \\\\[-1.8ex] "                                                                                      
+[19] "\\end{tabular} "                                                                                            
+[20] "\\end{table} "                                                                                              
+[21] ""                                                                                                           
+[22] "% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu"
+[23] "% Date and time: Thu, Feb 27, 2020 - 2:46:58 PM"                                                            
+[24] "\\begin{table}[!htbp] \\centering "                                                                         
+[25] "  \\caption{} "                                                                                             
+[26] "  \\label{fundamentalDynamics} "                                                                            
+[27] "\\begin{tabular}{@{\\extracolsep{5pt}} c} "                                                                 
+[28] "\\\\[-1.8ex]\\hline "                                                                                       
+[29] "\\hline \\\\[-1.8ex] "                                                                                      
+[30] "Summary Statistics \\\\ "                                                                                   
+[31] "\\hline \\\\[-1.8ex] "                                                                                      
+[32] "\\end{tabular} "                                                                                            
+[33] "\\end{table} "                                                                                              
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 
 % look up official names of price indices in English 
 
@@ -834,7 +908,11 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Do, Feb 27, 2020 - 16:11:27
+=======
+% Date and time: Thu, Feb 27, 2020 - 2:47:06 PM
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -943,8 +1021,12 @@ Adj. R$^2$                & 0.39          & 0.66         & 0.07         & 0.20  
 Num. obs.                 & 88            & 88           & 175          & 175        \\
 RMSE                      & 0.73          & 5.62         & 0.94         & 7.77       \\
 \hline
+<<<<<<< HEAD
 \multicolumn{5}{l}{\scriptsize{\parbox{\linewidth}
 {\vspace{2pt} Dependent variable is less ill \\ Model (1): original data set, simple linear model with controls, estimated with OLS \\ Model (2): original data set, simple linear model with controls, estimated with WLS \\ Model (3): imputed data set, simple linear model, estimated with OLS \\ Model (4): imputed data set, simple linear model, estimated with WLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
+=======
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 \end{tabular}
 }
 \caption{Regression Results: Less ill expanded model}
@@ -979,7 +1061,11 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Do, Feb 27, 2020 - 16:11:27
+=======
+% Date and time: Thu, Feb 27, 2020 - 2:47:07 PM
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Less Ill} 
@@ -998,8 +1084,13 @@ A summary of the remaining models:
 \end{table} 
 
 
+
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Do, Feb 27, 2020 - 16:11:27
+=======
+% Date and time: Thu, Feb 27, 2020 - 2:47:07 PM
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Dietary Knowledge} 
@@ -1018,8 +1109,13 @@ A summary of the remaining models:
 \end{table} 
 
 
+
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Do, Feb 27, 2020 - 16:11:27
+=======
+% Date and time: Thu, Feb 27, 2020 - 2:47:07 PM
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Appreciate Healthy} 
@@ -1040,7 +1136,11 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Do, Feb 27, 2020 - 16:11:28
+=======
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Selfworth} 
@@ -1061,7 +1161,11 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Do, Feb 27, 2020 - 16:11:28
+=======
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Everyday expertise} 
@@ -1092,6 +1196,7 @@ Table \ref{partitionmeals} shows the obtained results of the dimensionality redu
 
 Table \ref{partitiontrips} shows the partitioned results for the variables of the Trips program. Here, 12 variables haven't been reduced, and a number of featured variables are summarized to 3 reduced variables. 
 
+<<<<<<< HEAD
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
 % Thu Feb 27 16:11:28 2020
 \begin{table}[ht]
@@ -1173,6 +1278,69 @@ Table \ref{partitiontrips} shows the partitioned results for the variables of th
 <<<<<<< HEAD
 =======
 \subsection{A3: OLS Regressions}
+=======
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitionmeals} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{Max} \\ 
+\hline \\[-1.8ex] 
+Information, Meals & 29 & 0.670 & 0.270 & 0 & 0.4 & 1 & 1 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitionmeals} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Partition of outcomes, Meals \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitiontrips} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{Max} \\ 
+\hline \\[-1.8ex] 
+Information, Trips & 20 & 0.834 & 0.215 & 0 & 0.6 & 1 & 1 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitiontrips} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Partition of outcomes, Trips \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): invalid 'digits' argument}}\end{kframe}
+
+\subsection{A4: OLS Regressions}
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 
 #normal weights selfworth& subsidiy
 
@@ -1184,7 +1352,7 @@ Table \ref{partitiontrips} shows the partitioned results for the variables of th
 % lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
 % elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
 % @
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
+
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
 

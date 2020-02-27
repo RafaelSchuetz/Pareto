@@ -1,8 +1,3 @@
-library(ggplot2)
-library(cowplot)
-library(purrr)
-library(dplyr)
-
 #https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/
 
 #createdataset
@@ -18,7 +13,7 @@ expl= names(HealthRelVar)[4]
 response = purrr::set_names(response)
 response
 
-expl = set_names(expl)
+expl = purrr::set_names(expl)
 expl
 
 #createfunctionHEREGGPLOT

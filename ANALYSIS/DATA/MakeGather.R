@@ -15,7 +15,18 @@ library(tidyselect)
 library(imputeMissings)
 library(zoo)
 library(rlang)
+<<<<<<< HEAD
 library(estimatr)
+=======
+library(stargazer)
+library(estimatr)
+library(ggplot2)
+library(stats)
+library(cowplot)
+library(ggpubr)
+library(polycor)
+library(lavaan)
+>>>>>>> 41da369c57191ecf523c646f814e7a008599ac94
 
 # Gather and cleanup raw data files
 
