@@ -24,6 +24,7 @@ library(ggpubr)
 library(polycor)
 library(lavaan)
 
+
 # Gather and cleanup raw data files
 
 # encoding = "UTF8" to avoid error caused by German Umlauts

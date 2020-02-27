@@ -168,7 +168,7 @@
 \title{Effects of CHILDREN's programs}
 \author{
 Laura Huber\\
-\texttt{11111111}
+\texttt{11709507}
 \and
 Laura Jepsen\\
 \texttt{11567799}
@@ -180,7 +180,7 @@ Rafael Schütz\\
 \texttt{11574909} 
 \and 
 Yannick Zurl\\
-\texttt{11111111}
+\texttt{11701793}
 \and
 Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
 \and
@@ -221,9 +221,85 @@ latin number pages\\
 Citing\\
 
 If you want to cite \textcite{Millstein.2020} inline, use this.
+<<<<<<< HEAD
 If you want to cite \parencite[p.4]{Millstein.2020} inline with a page number, use this.
 If you want to cite \citeauthor{Millstein.2020} only as authors, use this.
 
+=======
+If you want to cite \parencite[p.4]{Millenstein.2020} inline with a page number, use this.
+If you want to cite \citeauthor{Millstein.2020} only as authors, use this.
+
+Equation with double index\\
+
+\begin{equation}
+\label{ModelProdu}
+\ln y_{it}^{n} = \beta_0 + \beta_k \ln k_{it-1}^{n} + \beta_n \ln n_{it} + \beta_m \ln m_{it} + \beta_t D_t + \beta_i D_i + \epsilon_{it}
+\end{equation}
+
+List\\
+
+\begin{itemize}
+  \item{The firm is not incorporated in the U.S. (FIC is not equal to USA.)}
+  \item{The company is from the financial or utilities sector. This is the case when the SIC code lies between 4900 and 4999 or between 6000 and 6999.}
+  \item{A firm's acquisitions are larger than five percent of the value of its total assets. This is the case when AQC over AT is larger than 0.05.} 
+\end{itemize}
+
+
+% Figure\\
+% 
+% \begin{figure}
+%   \caption{Dispersion in productivity levels}
+%   \label{LineDisp}
+% 
+% <<echo=FALSE>>=
+% figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
+% print(figureLineDisp)
+% @
+% 
+% \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
+% \end{figure}
+
+
+% Figure \ref{LineDisp}
+
+% <<results='asis', echo=FALSE>>=
+% tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
+% colnames(tableCyclicDisp) <- c("Lead in years", "All", "p-value", "Non-Durables", "p-value", "Durables", "p-value")
+% tableCyclicDisp <- xtable(tableCyclicDisp, caption = "Cyclicality of productivity dispersion", digits = c(0, 0, 3, 2, 3, 2, 3, 2))
+% print(tableCyclicDisp, include.rownames = FALSE)
+% @
+
+Regression fit output with texreg\\
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c}
+\hline
+ & Model 1 & Model 2 \\
+\hline
+(Intercept)      & $-12089.14^{*}$ & $3.70^{***}$ \\
+                 & $(5192.86)$     & $(0.33)$     \\
+realSubsidy      & $2.61^{***}$    &              \\
+                 & $(0.57)$        &              \\
+realTripsSubsidy &                 & $0.00^{*}$   \\
+                 &                 & $(0.00)$     \\
+\hline
+R$^2$            & $0.43$          & $0.05$       \\
+Adj. R$^2$       & $0.43$          & $0.04$       \\
+Num. obs.        & $329$           & $322$        \\
+RMSE             & $39992.79$      & $2.96$       \\
+\hline
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{mealsTripsSubsidyRegressions}
+\end{center}
+\end{table}
+
+
+Table \ref{mealsTripsSubsidyRegressions}
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 
 \section{Introduction}
@@ -234,9 +310,9 @@ CHILDREN's aims for data analysis\\
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
-\subsection{Previous research}
+\subsection{Literature overview}
 
-The previous research shows, that the childhood and youth is central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Heckmann and Carneiro (2003) show that especially early family factors determine the most of gaps in highschool attendance. Moreover, Deckers et. al. (2015) found by experiments in Germany, that children of higher educated parents are signficantly more patient. Children from parents with lower income and lower educational attainment typically have a lower weight at birth and are born in a later week of gestation, which are indicators for good initial conditions (Deckers et. al. 2015, Case et. al. 2002). Children that grow up in families with a low socio-economic status are often less mobile and more likely to keep to themselves. This could have a negative influence on their character development. For example, Chetty et. al (2012) investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of Deckers et. al. (2020) provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could have a significant and persistant increase of elementary school children´s prosociality, in response to prosocial role models and intense social interactions. As investigated by Heckmann et. al. (2010) for a preschool education program in the US, investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.  
+Previous research shows, that the childhood and youth is central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Heckmann and Carneiro (2003) show that especially early family factors determine the most of gaps in highschool attendance. Moreover, Deckers et. al. (2015) found by experiments in Germany, that children of higher educated parents are significantly more patient. Children from parents with lower income and lower educational attainment have typically a lower weight at birth and are born in a later week of gestation, which are indicators for bad initial conditions (Deckers et. al. 2015, Case et. al. 2002). Children which grow up in families with a low socio-economic status are often less mobile and more likely to stay amongst themselves. This could have a negative influence on their character development. For example, Chetty et. al (2012) investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of Deckers et. al. (2020) provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could result in a significant and persistent increase in the prosociality of elementary school children, with regard to prosocial role models and intense social interactions. Heckmann et. al. (2010) investigated a preschool education program in the US. He shows that an investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.   
 
 \section{Data}
 
@@ -247,6 +323,7 @@ The final dataset we worked with is structured as follows: Each row represents o
 
 Many organizations do not answer all questions CHILDREN poses. We create a seperate data set, in which we impute missing values with an organization-specific linear trend. CHILDREN supports some very large organizations that give out hundreds of meals a day or conduct dozens of trips per year. We fit our models with outliers excluded to see if they are driving results. We define an outlier as a value that is at least 1.5 interquartile ranges below the 25th percentile or equally far above the 75th percentile. Once we exclude outliers in terms of numbers of meals and once in terms of number of trips.
 
+<<<<<<< HEAD
 
 \begin{figure}
   \caption{Trend in everyday expertise and selfworth}
@@ -265,6 +342,8 @@ Many organizations do not answer all questions CHILDREN poses. We create a seper
 
 \floatfoot{Note: The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to selfworth (graph x) and everyday expertise (graph y). The time trend of the average answers from the organizations in the treatment group is characterised by the solid line, the answers from the control group by the dotted line. Additionally, the linear trends of both groups are included as the straight lines.}
 \end{figure}
+=======
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 
 \section{Summary Statistics}
 \subsection{Fundamental Dynamics} 
@@ -273,6 +352,7 @@ In this section, we give an overview of the dynamics of CHILDREN's two flagship 
 
 
 
+<<<<<<< HEAD
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
 % Thu Feb 27 19:35:27 2020
 \begin{table}[ht]
@@ -294,6 +374,90 @@ In this section, we give an overview of the dynamics of CHILDREN's two flagship 
 \caption{Summary Statistics} 
 \label{fundamentalDynamics}
 \end{table}
+=======
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:46
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:06
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{fundamentalDynamics} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+$2,011$ & $3,748$ & $$ & $52$ & $$ \\ 
+$2,012$ & $3,556$ & $2,803$ & $51$ & $44$ \\ 
+$2,013$ & $4,015$ & $2,823$ & $55$ & $42$ \\ 
+$2,014$ & $4,685$ & $2,752$ & $55$ & $43$ \\ 
+$2,015$ & $5,857$ & $3,823$ & $55$ & $49$ \\ 
+$2,016$ & $3,075$ & $3,819$ & $59$ & $48$ \\ 
+$2,017$ & $4,895$ & $4,150$ & $64$ & $48$ \\ 
+$2,018$ & $5,102.500$ & $6,911$ & $68$ & $49$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:47
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:06
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{fundamentalDynamics} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Summary Statistics \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+ [1] ""                                                                                                           
+ [2] "% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu"
+<<<<<<< HEAD
+ [3] "% Date and time: Do, Feb 27, 2020 - 16:52:47"                                                               
+=======
+ [3] "% Date and time: Do, Feb 27, 2020 - 19:25:06"                                                               
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+ [4] "\\begin{table}[!htbp] \\centering "                                                                         
+ [5] "  \\caption{} "                                                                                             
+ [6] "  \\label{fundamentalDynamics} "                                                                            
+ [7] "\\begin{tabular}{@{\\extracolsep{5pt}} ccccc} "                                                             
+ [8] "\\\\[-1.8ex]\\hline "                                                                                       
+ [9] "\\hline \\\\[-1.8ex] "                                                                                      
+[10] "$2,011$ & $3,748$ & $$ & $52$ & $$ \\\\ "                                                                   
+[11] "$2,012$ & $3,556$ & $2,803$ & $51$ & $44$ \\\\ "                                                            
+[12] "$2,013$ & $4,015$ & $2,823$ & $55$ & $42$ \\\\ "                                                            
+[13] "$2,014$ & $4,685$ & $2,752$ & $55$ & $43$ \\\\ "                                                            
+[14] "$2,015$ & $5,857$ & $3,823$ & $55$ & $49$ \\\\ "                                                            
+[15] "$2,016$ & $3,075$ & $3,819$ & $59$ & $48$ \\\\ "                                                            
+[16] "$2,017$ & $4,895$ & $4,150$ & $64$ & $48$ \\\\ "                                                            
+[17] "$2,018$ & $5,102.500$ & $6,911$ & $68$ & $49$ \\\\ "                                                        
+[18] "\\hline \\\\[-1.8ex] "                                                                                      
+[19] "\\end{tabular} "                                                                                            
+[20] "\\end{table} "                                                                                              
+[21] ""                                                                                                           
+[22] "% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu"
+<<<<<<< HEAD
+[23] "% Date and time: Do, Feb 27, 2020 - 16:52:47"                                                               
+=======
+[23] "% Date and time: Do, Feb 27, 2020 - 19:25:06"                                                               
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+[24] "\\begin{table}[!htbp] \\centering "                                                                         
+[25] "  \\caption{} "                                                                                             
+[26] "  \\label{fundamentalDynamics} "                                                                            
+[27] "\\begin{tabular}{@{\\extracolsep{5pt}} c} "                                                                 
+[28] "\\\\[-1.8ex]\\hline "                                                                                       
+[29] "\\hline \\\\[-1.8ex] "                                                                                      
+[30] "Summary Statistics \\\\ "                                                                                   
+[31] "\\hline \\\\[-1.8ex] "                                                                                      
+[32] "\\end{tabular} "                                                                                            
+[33] "\\end{table} "                                                                                              
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 
 % look up official names of price indices in English 
 
@@ -330,7 +494,7 @@ These results visualize, for the Lunch as well as for the Trips program, togethe
 
 \subsection{Health relevant variables over time} 
 
-In its yearly surveys, CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet. Figure \ref{Health_timeplots} displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For this figure, we use the original ordinal varibles which result from the survey structure.  
+In its yearly surveys, CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet. Figure \ref{Health_timeplots} displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all, most, some, few, and none. For this figure, we use the original ordinal varibles which result from the survey structure.  
 
 \begin{figure}
   \caption{Health outcome over time}
@@ -345,23 +509,23 @@ In its yearly surveys, CHILDREN asks about three variables closley related to a 
 
 
 \end{knitrout}
-\floatfoot{In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier (lessIll\_ordered), have a growing appreciation for a healthy diet (dietaryKnowledge\_ordered), or have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
-The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
+\floatfoot{In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are less frequently ill (lessIll\_ordered), with expanded dietary knowledge (dietaryKnowledge\_ordered), or with increased appreciation for a healthy diet (appreciateHealthy\_ordered).
+The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none.}
 \end{figure}
 
-In Figure \ref{Health_timeplots}, for the variable 'lessIll', there is much non available data. In all years, most organizations say that most beneficiaries are more healthy (3). The least stated category is, that all beneficiaries are less ill(4). That few are less ill (1), appears sometimes and the leftover category,none (0), which is only coded for the variable 'lessIll', appears as good as never.
+In Figure \ref{Health_timeplots}, for the variable 'lessIll_ordered', there is much non available data (lessIll_ordered refers to the share of beneficiaries who are less frequently ill). In all years, most organizations say that most beneficiaries are more healthy. The least stated category is, that all beneficiaries are less ill. That few are less ill, appears sometimes and the leftover category, none, which is only coded for the variable 'lessIll_ordered', appears as good as never.
 
-In the second plot of figure \ref{Health_timeplots} (variable 'dietaryKnowledge') mostorganizations state, that predominantely most or all beneficiaries increased their knowledge about what constitutes a healthy diet. The least stated category is that some beneficiaries increased their dietary knowledge (2). The leftover category, few (1), does not appear.
+In the second plot of figure \ref{Health_timeplots} (variable 'dietaryKnowledge_ordered', refers to the share of beneficiaries with expanded dietary knowledge) most organizations state, that predominantely most or all beneficiaries increased their knowledge about what constitutes a healthy diet. The least stated category is that some beneficiaries increased their dietary knowledge. The leftover category, few, does not appear.
 
-The the bottom plot of figure \ref{Health_timeplots}, which visualizes the variable 'appreciateHealthy'. Again most organizations state, that most beneficiaries have a growing appreciation for a healthier diet (3). The second most stated answer is that all beneficiaries have a growing appreciation for a healthier diet (4). The least stated category by the organizations is, as well as in the second plot, that some have a growing appreciation for a healthier diet (2). The leftover category, few, also does not appear.
+The the bottom plot of figure \ref{Health_timeplots}, which visualizes the variable 'appreciateHealthy_ordered' (refers to the share of beneficiaries with increased appreciation for a healthy diet). Again most organizations state, that most beneficiaries have a growing appreciation for a healthier diet. The second most stated answer is that all beneficiaries have a growing appreciation for a healthier diet. The least stated category by the organizations is, as well as in the second plot, that some have a growing appreciation for a healthier diet. The leftover category, few, also does not appear.
 
 
-\subsection{Equality of opportunities releveant variables over time} 
+\subsection{Selfworth and everyday expertise} 
 
-In its yearly surveys, CHILDREN has always asked about two variables closley related to increasing the beneficiaries' equality of opportunities. These are the degree to which beneficiaries: have more selfworth and have a growing understanding for everyday expertise. Figure 4 displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). As well as in the last figure (figure 3), we use the original ordinal varibles which result from the survey structure.
+In its yearly surveys, CHILDREN has always asked about the following two variables. These are the shares of beneficiaries with improved self-worth and with broadened everyday expertise. Figure 4 displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all, most, some, few, and none. As well as in the last figure (figure 3), we use the original ordinal varibles which result from the survey structure.
 
 \begin{figure}
-  \caption{Equality of opportunities over time}
+  \caption{Selfworth and everyday expertise over time}
   \label{Equality_timeplots}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -373,13 +537,13 @@ In its yearly surveys, CHILDREN has always asked about two variables closley rel
 
 
 \end{knitrout}
-\floatfoot{In its yearly surveys CHILDREN has always asked about two variables closley related to increasing the beneficiaries' equality of opportunities. These are the degree to which beneficiaries: have more selfworth (selfworth\_ordered) and have a growing understanding for everyday expertise (dayToDaySkills\_ordered).  
-The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries have more selfowrth, then this would be coded as 3.}
+\floatfoot{In its yearly surveys CHILDREN has always asked about following two variables. These are the shares of beneficiaries with improved self-worth (selfworth\_ordered) and with a broadened understanding for everyday expertise (dayToDaySkills\_ordered).
+The x-axis plots the year. The y-axis displays the share of organizations in each category of the health outcome. The possible values are: all, most, some, few, and none.}
 \end{figure}
 
-Figure 4 shows in its upper plot the development of the answered categories for the variable selfworth. Mostly, the answer is that most beneficiaries in most organizations have more selfworth (3). The second most stated category is that all beneficiaries gained in selfworth (4) and the least stated is that some have more selfworth (2). The leftover category, few, does not appear.
+Figure \ref{Equality_timeplots} shows in its upper plot the development of the answered categories for the variable selfworth_ordered (refers to the share of beneficiaries with improved self-worth). Mostly, the answer is that most beneficiaries in most organizations have more selfworth. The second most stated category is that all beneficiaries gained in selfworth and the least stated is that some have more selfworth. The leftover category, few, does not appear.
 
-In the bottom plot of figure 4 the development of everyday expertise of the beneficiaries over time is visible. The results are about similar to the previous results of selfworth: Most beneficiaries in most organisations have a growing understanding for everyday expertise (3). 
+In the bottom plot of figure \ref{Equality_timeplots} the development of the share of beneficiaries with a broadened understanding for everyday expertise over time is visible. The results are about similar to the previous results of selfworth: Most beneficiaries in most organisations have a growing understanding for everyday expertise. 
 
 \section{Regressions}
 
@@ -390,14 +554,17 @@ In the bottom plot of figure 4 the development of everyday expertise of the bene
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 In this section we use a simple linear model, as described in equation \ref{SimpleLinearModel}. We look at the association between: 
 
 \begin{itemize}
   \item{the subsidy (in 2015 EUR) an organization receives through CHILDREN's Meals program and the number of meals it dispenses}
   \item{the subsidy (in 2015 EUR) an organization receives through CHILDREN's Trips program and the number of trips it conducts}
-  \item{the subsidy per beneficiary (in 2015 EUR) an organization receives through CHILDREN's Meals program and the standardized measure of beneficiaries' self-worth}
-  \item{the subsidy per beneficiary (in 2015 EUR) an organization receives through CHILDREN's Meals program and the standardized measure of beneficiaries' everyday expertise}
+  \item{the subsidy per beneficiary (in 2015 EUR) an organization receives through CHILDREN's Meals program and the standardized share of beneficiaries with improved self-worth}
+  \item{the subsidy per beneficiary (in 2015 EUR) an organization receives through CHILDREN's Meals program and the standardized share of beneficiaries with broadened everyday expertise}
    \item{a standardized measure of the healthiness of the meals an organization dispenses and various standardized health-related outcomes of beneficiaries} 
 \end{itemize}
 
@@ -410,10 +577,20 @@ If CHILDREN's grants are to have an effect on beneficiaries, they should first i
   
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+\usepackage{graphicx}
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+\usepackage{booktabs}
+
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 \begin{table}
-\caption{Regression Results: Number of meals}
+\caption{Association between number of meals and real subsidy}
 \begin{center}
 \scalebox{0.8}{
+<<<<<<< HEAD
 \begin{tabular}{l c c c }
 \hline
  & OLS & OLS without Outliers & OLS Impute \\
@@ -434,6 +611,40 @@ sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
 aliquyam. \\ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
 aliquyam. \\ $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
+=======
+<<<<<<< HEAD
+\begin{tabular}{l c c c c c }
+=======
+\begin{tabular}{l c c c c c}
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+\toprule
+ & (1) & (2) & (3) & (4) & (5) \\
+\midrule
+(Intercept)     & $-12089.14^{*}$ & $-1814.16$     & $3535.39^{***}$ & $3107.70^{***}$ & $-12250.60^{**}$ \\
+                & $(5192.86)$     & $(1765.93)$    & $(498.99)$      & $(508.94)$      & $(4524.09)$      \\
+realSubsidy     & $2.61^{***}$    & $0.50^{**}$    & $0.29^{***}$    & $0.25^{***}$    & $2.72^{***}$     \\
+                & $(0.57)$        & $(0.18)$       & $(0.05)$        & $(0.05)$        & $(0.51)$         \\
+eatersPerMealNo &                 & $172.83^{***}$ &                 & $19.00^{*}$     &                  \\
+                &                 & $(14.92)$      &                 & $(8.45)$        &                  \\
+\midrule
+<<<<<<< HEAD
+R$^2$           & 0.43            & 0.73           & 0.13            & 0.21            & 0.45             \\
+Adj. R$^2$      & 0.43            & 0.73           & 0.12            & 0.20            & 0.45             \\
+Num. obs.       & 329             & 329            & 250             & 250             & 440              \\
+RMSE            & 39992.79        & 27390.90       & 3629.72         & 3463.66         & 39601.41         \\
+\bottomrule
+\multicolumn{6}{l}{\scriptsize{\parbox{\linewidth}
+{\vspace{2pt} Dependent variable: number of meals \\ realSubsidy: subsidy for Meals program in 2015 EUR \\ eatersPerMeal: number of beneficiaries of Lunch program \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, linear model with controls, estimated with OLS \\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\ Model (5): imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
+=======
+R$^2$           & $0.43$          & $0.73$         & $0.13$          & $0.21$          & $0.45$           \\
+Adj. R$^2$      & $0.43$          & $0.73$         & $0.12$          & $0.20$          & $0.45$           \\
+Num. obs.       & $329$           & $329$          & $250$           & $250$           & $440$            \\
+RMSE            & $39992.79$      & $27390.90$     & $3629.72$       & $3463.66$       & $39601.41$       \\
+\bottomrule
+\multicolumn{6}{l}{\scriptsize{\parbox{\linewidth}
+{\vspace{2pt} Dependent variable: number of meals \\ realSubsidy: subsidy for Meals program in 2015 EUR \\ eatersPerMeal: number of beneficiaries of Lunch program \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, linear model with controls, estimated with OLS \\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\ Model (5): imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 \end{tabular}
 }
 \label{GrantsRegressionsLunch}
@@ -449,9 +660,14 @@ In the remit of the Trips program, the picture looks much different. In the case
 In sum, there seems to be no clear connection between how much money CHILDREN gives to an organization and the number of trips it organizes. 
 
 
+\usepackage{graphicx}
+\usepackage{booktabs}
+
 \begin{table}
+\caption{Association between number of trips and real subsidy}
 \begin{center}
 \scalebox{0.8}{
+<<<<<<< HEAD
 \begin{tabular}{l c c c }
 \hline
  & OLS & OLS without Outliers & OLS Impute \\
@@ -467,9 +683,32 @@ Num. obs.        & 322               & 257               & 334               \\
 RMSE             & 2.9564942         & 1.6980825         & 2.9310458         \\
 \hline
 \multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+=======
+\begin{tabular}{l c c c c c}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) \\
+\midrule
+(Intercept)      & $3.7049^{***}$ & $3.4394^{***}$ & $2.6236^{***}$ & $2.3660^{***}$ & $3.6237^{***}$ \\
+                 & $(0.3313)$     & $(0.3359)$     & $(0.2300)$     & $(0.2609)$     & $(0.3253)$     \\
+realTripsSubsidy & $0.0002^{*}$   & $0.0001$       & $0.0003^{***}$ & $0.0003^{***}$ & $0.0002^{*}$   \\
+                 & $(0.0001)$     & $(0.0001)$     & $(0.0001)$     & $(0.0001)$     & $(0.0001)$     \\
+tripsKidsNo      &                & $0.0059$       &                & $0.0043$       &                \\
+                 &                & $(0.0032)$     &                & $(0.0027)$     &                \\
+\midrule
+R$^2$            & $0.0474$       & $0.0729$       & $0.0880$       & $0.1241$       & $0.0504$       \\
+Adj. R$^2$       & $0.0444$       & $0.0671$       & $0.0844$       & $0.1172$       & $0.0476$       \\
+Num. obs.        & $322$          & $319$          & $257$          & $256$          & $334$          \\
+RMSE             & $2.9565$       & $2.8967$       & $1.6981$       & $1.6579$       & $2.9310$       \\
+\bottomrule
+\multicolumn{6}{l}{\scriptsize{\parbox{\linewidth}
+<<<<<<< HEAD
+{\vspace{2pt} Dependent variable: number of trips \\ realTripsSubsidy: subsidy for Trips program in 2015 EUR \\ tripsKidsNo: number of beneficiaries of Trips program \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, linear model with controls, estimated with OLS \\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\ Model (5): imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
+=======
+{\vspace{2pt} Dependent variable: number of trips \\ realTripsSubsidy: subsidy for Trips program in 2015 EUR \\ tripsKidsNo: number of beneficiaries of Trips program \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, linear model with controls, estimated with OLS \\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\ Model (5): imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 \end{tabular}
 }
-\caption{Regression Results: Number of trips}
 \label{GrantsRegressionsTrips}
 \end{center}
 \end{table}
@@ -477,17 +716,20 @@ RMSE             & 2.9564942         & 1.6980825         & 2.9310458         \\
 
 \subsection{Variables of interest: selfworth and everyday expertise} 
 
-In their surveys, CHILDREN asks about two variables in both programs. These are the share of beneficiaries that are believed to have increased their self-worth and to have ehanced their everyday expertise. This feature could potentially allow us to compare the two programs regarding their realtive effectiveness. Like always, we standardize the two outcome variables. As before, we can only make associational claims. We invariably find no clear-cut relationship between the subsidy per beneficiary and the two outcomes. In fact, no coefficent is statistically significantly differnent from zero at any of the usual levels. 
+In their surveys, CHILDREN asks about two variables in both programs. These are the share of beneficiaries with improved self-worth and share of beneficiaries with broadened everyday expertise. This feature could potentially allow us to compare the two programs regarding their realtive effectiveness. Like always, we standardize the two outcome variables. As before, we can only make associational claims. We invariably find no clear-cut relationship between the subsidy per beneficiary and the two outcomes. In fact, no coefficent is statistically significantly differnent from zero at any of the usual levels. 
 The four variables are recorded for each year in which the program was operative.
 Tables \ref{SelfworthRegressions} and \ref{DayToDaySkillsRegressions} present the null results. 
 
 
+\usepackage{graphicx}
+
 \begin{table}
+\caption{Association between selfworth and subsidy per beneficiary}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
- & OLS Lunch & OLS Trips & OLS Lunch Impute & OLS Trips Impute \\
+ & (1) & (2) & (3) & (4) \\
 \hline
 (Intercept)                    & $0.08$   & $0.12$   & $0.09$   & $0.12$   \\
                                & $(0.09)$ & $(0.12)$ & $(0.09)$ & $(0.11)$ \\
@@ -496,27 +738,30 @@ realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          \\
 realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  \\
                                &          & $(0.00)$ &          & $(0.00)$ \\
 \hline
-R$^2$                          & 0.00     & 0.01     & 0.00     & 0.01     \\
-Adj. R$^2$                     & 0.00     & 0.01     & 0.00     & 0.01     \\
-Num. obs.                      & 428      & 184      & 430      & 187      \\
-RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     \\
+R$^2$                          & $0.00$   & $0.01$   & $0.00$   & $0.01$   \\
+Adj. R$^2$                     & $0.00$   & $0.01$   & $0.00$   & $0.01$   \\
+Num. obs.                      & $428$    & $184$    & $430$    & $187$    \\
+RMSE                           & $1.00$   & $1.00$   & $1.00$   & $1.00$   \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{\parbox{\linewidth}
+{\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\Model (1): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, original data set, simple linear model, estimated with OLS \\ Model (2): dependent variable: share of beneficiaries with improved self-worth in the Trips program, original data set, simple linear model, estimated with OLS \\ Model (3): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, simple linear model, estimated with OLS \\ Model (4): dependent variable: share of beneficiaries with improved self-worth in the Trips program, imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
 \end{tabular}
 }
-\caption{Regression Results: Selfworth}
 \label{SelfworthRegressions}
 \end{center}
 \end{table}
 
 
 
+\usepackage{graphicx}
+
 \begin{table}
+\caption{Association between everyday expertise and subsidy per beneficiary}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
- & OLS Lunch & OLS Trips & OLS Lunch Impute & OLS Trips Impute \\
+ & (1) & (2) & (3) & (4) \\
 \hline
 (Intercept)                    & $0.15$   & $0.13$   & $0.14$   & $0.11$   \\
                                & $(0.09)$ & $(0.10)$ & $(0.09)$ & $(0.10)$ \\
@@ -525,15 +770,15 @@ realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          \\
 realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  \\
                                &          & $(0.00)$ &          & $(0.00)$ \\
 \hline
-R$^2$                          & 0.01     & 0.01     & 0.01     & 0.01     \\
-Adj. R$^2$                     & 0.01     & 0.01     & 0.01     & 0.01     \\
-Num. obs.                      & 426      & 177      & 429      & 181      \\
-RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     \\
+R$^2$                          & $0.01$   & $0.01$   & $0.01$   & $0.01$   \\
+Adj. R$^2$                     & $0.01$   & $0.01$   & $0.01$   & $0.01$   \\
+Num. obs.                      & $426$    & $177$    & $429$    & $181$    \\
+RMSE                           & $1.00$   & $0.98$   & $1.00$   & $0.99$   \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{\parbox{\linewidth}
+{\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\ Model (1): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, original data set, simple linear model, estimated with OLS \\ Model (2): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, original data set, simple linear model, estimated with OLS \\ Model (3): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, simple linear model, estimated with OLS \\ Model (4): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, simple linear model, estimated with OLS\\ All regressions are estimated with robust standard errors $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
 \end{tabular}
 }
-\caption{Regression Results: dayToDaySkills}
 \label{DayToDaySkillsRegressions}
 \end{center}
 \end{table}
@@ -541,13 +786,13 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     \\
 
 \subsection{Variables of interest: Health variables} 
 
-Now, we turn to a predictor that CHILDREN does not directly influence until now, but that it easily could. In 2014, 2016, 2017 and 2018 the organizations had to send CHILDREN a sample of their menus. An ecotrophologist collaborating with CHILDREN assessed those menus with regards to how healthy they were. This assessment was based on criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung).
+Now, we turn to a predictor that CHILDREN does not directly influence until now, but that it easily could. In 2014, 2016, 2017 and 2018 the organizations had to send CHILDREN a sample of their menus. An ecotrophologist collaborating with CHILDREN assessed those menus with regards to how healthy they were. This assessment was based on criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). https://www.schuleplusessen.de/startseite/
 
-In its yearly surveys, CHILDREN asks about three variables closely related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet.
+In its yearly surveys, CHILDREN asks about three variables closely related to a healthy diet. These are the shares of beneficiaries who are less frequently ill, with expanded dietary knowledge and with increased appreciation for a healthy diet. 
 
-Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis displays the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none. For example, if an organization says that most beneficiaries are healthier, then this would be coded as most. The highest amount of healthy criteria to be fulfilled is x. 
+Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion (DGECriteriaNo, index of healthy diet criteria fulfilled in organization's menu) and each of the three health-related variables. For these results, we use their ordinal values. The x-axis displays the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none. For example, if an organization says that most beneficiaries are healthier, then this would be coded as most. In the last reporting period, there are 13 healthy diet criteria. In previous years there were up to 15. The ecotrophologist assessed each criterion individually and decided wether it was fulfilled or not. The healthy food incex is calculated as the number of fulfilled criteria. Examples for criteria are daily carbohydrates or daily vegetables.  
 
-All plots of Figure \ref{Health_Plots} show that most organizations suffice about 5 to 10 healthy food criteria. The largest part of criterion values are associated with most beneficiaries being less Ill, having a growing appreciation for a healthy diet or having increased their knowledge about what constituted a healthy diet. It secondly becomes visible that the healthy criterion only exchanges with a growing appreciation for a healthy diet or an increasing dietary knowlege for all beneficiaries (which is the second most stated criterion in the two bottom plots), but not with all beneficaries being more healthy. However, for the variable less ill, the least data is availabe. Overall, the criteria, even a few, seem to have a positive relationship with beneficiaries health relevant variables. This connection is empiricaly examined in regressions \ref{HealthRegressions-LessIll}, \ref{HealthRegressions-DietaryKnowledge} and \ref{HealthRegressions-AppreciateHealthy}.
+All plots of Figure \ref{Health_Plots} show that most organizations suffice about 5 to 10 healthy food criteria. The largest part of criterion values are associated with most beneficiaries being less Ill, having a growing appreciation for a healthy diet or having increased their knowledge about what constitutes a healthy diet. It secondly becomes visible that the healthy criterion only exchanges with a growing appreciation for a healthy diet or an increasing dietary knowlege for all beneficiaries (which is the second most stated criterion in the two bottom plots), but not with all beneficaries being more healthy. However, for the variable less ill, the least data is availabe. Overall, the criteria, even a few, seem to have a positive relationship with beneficiaries health relevant variables. This connection is empiricaly examined in regressions \ref{HealthRegressions-LessIll}, \ref{HealthRegressions-DietaryKnowledge} and \ref{HealthRegressions-AppreciateHealthy}.
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -562,99 +807,121 @@ All plots of Figure \ref{Health_Plots} show that most organizations suffice abou
 
 
 \end{knitrout}
-\floatfoot{DGECriteriaNo is an index that captures how healthy the meals in an organization are. It is based on criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them a sample of their menus. An ecotrophologist collaborating with CHILDREN assessed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier (lessIll\_ordered), have a growing appreciation for a healthy diet (dietaryKnowledge\_ordered), or have increased their knowledge about what constitutes a healthy diet (appreciateHealthy\_ordered).
-The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
+\floatfoot{DGECriteriaNo is an index of healthy diet criteria fulfilled in organization's menu. It is based on criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). According to information from CHILDREN, they ask the organizations to send them a sample of their menus. An ecotrophologist collaborating with CHILDREN assessed the menus. In its yearly surveys CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are less frequently ill (lessIll\_ordered), with expanded dietary knowledge (dietaryKnowledge\_ordered), or with increased appreciation for a healthy diet (appreciateHealthy\_ordered).
+The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few, and none}
 \end{figure}
 
 We use standardized versions of the health related variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
-By estimating these models with ordinary least squares, we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares, using the number of beneficiaries as weights.
+By estimating these models with ordinary least squares (OLS), we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares (WLS), using the number of beneficiaries as weights.
 
-In Table \ref{HealthRegressions-LessIll}, after weighting the regression for the original data set, the coefficent rises slightly but is becoming less statistically significant. An increase of the healthy food criterion by one standard deviation is associated with an increase in beneficiaris being more healthy by 0.35 standard deviations. Regressing with the imputed dataset, results decrease by about 0.1. Using weighted least squares additionaly results in a slighty decreased coefficent, which is not significant anymore.    
+In Table \ref{HealthRegressions-LessIll}, after weighting the regression for the original data set, the coefficent rises slightly but is becoming less statistically significant. An increase of the healthy food criterion by one standard deviation is associated with an increase in beneficiaris being less frequently ill by 0.35 standard deviations. Regressing with the imputed dataset, results decrease by about 0.1. Using weighted least squares additionaly results in a slighty decreased coefficent, which is not significant anymore. 
 
+An expanded model with the dependent variable less Ill is presented in Appendix 1 in table \ref{expandLessIll}. 
+
+In Table \ref{HealthRegressions-DietaryKnowledge} weighted least squares constanly leads to smaller coefficents which are not statistically significant. For the original data set, the coeffiecent is slightly negative. Using the imputed data set, an increase in the healthy meals criterion by one standard deviation is associated with an increase in beneficiaries dietary knowledge by 0.l standard deviations. This coefficent is as well insignifacant. 
+
+In the regressions presented in table \ref{HealthRegressions-AppreciateHealthy}, the changes between ordinary and weíghted least squares are much stronger. For the original data set, the OLS coefficent amounts to 0.27, which is highly significant. When using WLS, we find a slightly negative association. A one standard deviation increase in the healthy meals criterion is associated with a decrease in the appreciation of a healthy diet by 0.02. This coefficent is not significant. For the imputed dataset we find a similar picture. 
+
+The regressions with WLS suggest that the results obtained using OLS, are driven by large oraganizations.
+
+
+\usepackage{graphicx}
 
 \begin{table}
+\caption{Association between healthy meals criterion and beneficiaries being less ill}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
- & OLS & WLS & OLS Impute & WLS Impute \\
+ & (1) & (2) & (3) & (4) \\
 \hline
 (Intercept)         & $0.02$       & $0.46^{**}$ & $0.09$       & $0.39^{***}$ \\
                     & $(0.08)$     & $(0.16)$    & $(0.07)$     & $(0.12)$     \\
 DGECriteriaNoScaled & $0.33^{***}$ & $0.35^{*}$  & $0.25^{***}$ & $0.24$       \\
                     & $(0.08)$     & $(0.16)$    & $(0.07)$     & $(0.14)$     \\
 \hline
-R$^2$               & 0.12         & 0.29        & 0.07         & 0.16         \\
-Adj. R$^2$          & 0.11         & 0.29        & 0.07         & 0.16         \\
-Num. obs.           & 121          & 120         & 177          & 177          \\
-RMSE                & 0.91         & 7.83        & 0.94         & 7.95         \\
+R$^2$               & $0.12$       & $0.29$      & $0.07$       & $0.16$       \\
+Adj. R$^2$          & $0.11$       & $0.29$      & $0.07$       & $0.16$       \\
+Num. obs.           & $121$        & $120$       & $177$        & $177$        \\
+RMSE                & $0.91$       & $7.83$      & $0.94$       & $7.95$       \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{\parbox{\linewidth}
+{\vspace{2pt} Dependent variable: share of beneficiaries who are less frequently ill \\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, simple linear model, estimated with WLS \\ Model (3): imputed data set, simple linear model, estimated with OLS \\ Model (4): imputed data set, simple linear model, estimated with WLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
 \end{tabular}
 }
-\caption{Regression Results: Less Ill}
 \label{HealthRegressions-LessIll}
 \end{center}
 \end{table}
 
 
 
+\usepackage{graphicx}
+
 \begin{table}
+\caption{Association between healthy meals criterion and beneficiaries dietary knowledge}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
- & OLS & WLS & OLS Impute & WLS Impute \\
+ & (1) & (2) & (3) & (4) \\
 \hline
 (Intercept)         & $0.02$   & $0.08$   & $0.02$     & $0.21$   \\
                     & $(0.07)$ & $(0.19)$ & $(0.06)$   & $(0.18)$ \\
 DGECriteriaNoScaled & $0.11$   & $-0.02$  & $0.12^{*}$ & $0.10$   \\
                     & $(0.06)$ & $(0.12)$ & $(0.05)$   & $(0.14)$ \\
 \hline
-R$^2$               & 0.01     & 0.00     & 0.02       & 0.01     \\
-Adj. R$^2$          & 0.01     & -0.00    & 0.01       & 0.01     \\
-Num. obs.           & 214      & 212      & 275        & 275      \\
-RMSE                & 0.98     & 8.49     & 0.96       & 9.45     \\
+R$^2$               & $0.01$   & $0.00$   & $0.02$     & $0.01$   \\
+Adj. R$^2$          & $0.01$   & $-0.00$  & $0.01$     & $0.01$   \\
+Num. obs.           & $214$    & $212$    & $275$      & $275$    \\
+RMSE                & $0.98$   & $8.49$   & $0.96$     & $9.45$   \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{\parbox{\linewidth}
+{\vspace{2pt} Dependent variable: share of beneficiaries with expanded dietary knowledge \\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, simple linear model, estimated with WLS \\ Model (3): imputed data set, simple linear model, estimated with OLS \\ Model (4): imputed data set, simple linear model, estimated with WLS  \\ All regressions are estimated with robust standard errors $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
 \end{tabular}
 }
-\caption{Regression Results: Dietary Knowledge}
 \label{HealthRegressions-DietaryKnowledge}
 \end{center}
 \end{table}
 
 
 
+\usepackage{graphicx}
+
 \begin{table}
+\caption{Association between healthy meals criterion and  beneficiaries appreciation of a healthy diet}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
- & OLS & WLS & OLS Impute & WLS Impute \\
+ & (1) & (2) & (3) & (4) \\
 \hline
 (Intercept)         & $-0.03$      & $0.26$   & $0.02$       & $0.37^{*}$ \\
                     & $(0.07)$     & $(0.18)$ & $(0.06)$     & $(0.17)$   \\
 DGECriteriaNoScaled & $0.27^{***}$ & $-0.02$  & $0.25^{***}$ & $0.01$     \\
                     & $(0.07)$     & $(0.15)$ & $(0.06)$     & $(0.13)$   \\
 \hline
-R$^2$               & 0.06         & 0.00     & 0.06         & 0.00       \\
-Adj. R$^2$          & 0.06         & -0.00    & 0.06         & -0.00      \\
-Num. obs.           & 213          & 211      & 274          & 274        \\
-RMSE                & 1.02         & 8.61     & 1.01         & 9.00       \\
+R$^2$               & $0.06$       & $0.00$   & $0.06$       & $0.00$     \\
+Adj. R$^2$          & $0.06$       & $-0.00$  & $0.06$       & $-0.00$    \\
+Num. obs.           & $213$        & $211$    & $274$        & $274$      \\
+RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{\parbox{\linewidth}
+{\vspace{2pt} Dependent variable: share of beneficiaries with increased appreciation for a healthy diet \\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, simple linear model, estimated with WLS \\ Model (3): imputed data set, simple linear model, estimated with OLS \\ Model (4): imputed data set, simple linear model, estimated with WLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
 \end{tabular}
 }
-\caption{Regression Results: Appreciate Healthy}
 \label{HealthRegressions-AppreciateHealthy}
 \end{center}
 \end{table}
 
 
+The previous simple linear models are regressed with metric versions of the survey varibales. Originally, variables which range from none to all are ordinal. To account for this, we present a method to regress those variables according to their original traits. Therefore, we use a cumulative logit model. Selected results for the Meals program are presented in appendix 2 in the tables\ref{lessIllOdds}, \ref{dietaryOdds}, \ref{appreciateOdds}, \ref{selfworthOdds} and \ref{dayToDayOdds}.
+
+
 \section{Feature Selection}
 
 \subsection{Factor Analysis}
+
+Benefits of reducing dimensionality can be reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{Millenstein.2020, p.677}.
 
 We use imputed data set.
 
@@ -664,45 +931,146 @@ We use maximum likelihood as factoring method
 
 \subsection{Double Selection}
 
-\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
+\section{The effects of the trips program on participating beneficiaries}
 
-How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
+How do children and adolescents benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of our biggest challenges was determining a possible solution for measuring potential causal effects of the supported programs on the participating beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with their meals program. However, not all organizations receive additional funding to provide the trips program. This fact could be used for applying an empirical approach which determines the effects of the trips program by comparing a treatment with a control group. The aim of this analysis is to test whether the activities offered by the trips program have a positive effect on the participating children, measured through a change in selfworth and everyday expertise. 
 
-Empirical Approach\\
+\subsection{Empirical Approach}
 
-The baseline of the empirical approach is the determination of the treatment and control group. Using the data provided by children we specify the treatment group as all organizations that receive funding for both the Entdeckerfonds and the Mittagstisch program. On the other hand, the control group represents all organizations that do not receive funding from CHILDREN to provide the Entdeckerfonds.
+The basis of the empirical approach is the specification of the treatment and the control group. Using the data provided by children we determine the treatment group as all organizations that receive funding for both the trips and the meals program. On the other hand, the control group represents all organizations that only receive funding for the meals program. Therefore, the social institutions in the control group do not participate in the trips program.
 
-Determining the treatment and control group this way, however, was a problem.
+\subsubsection{Specification of the Treatment Group}
 
-THerefore we used the cleaned data set and only determined the control group - all organizations that have no values/answers for the questions of the Entdeckerfonds. We assume that these organizations did not receive the funding for the Entdeckerfonds and therefore are the control group in our analysis. All organizations that gave answers to at least one question of the survey part regarding the entdeckerfonds are considered the treatment group. 
-Our analysis is based on this very strong definition of the treatment and control group.
+When analyzing the available dataset, it was not certain which organizations actually received funding for the trips program. As previously mentioned, the CHILDREN survey consists of two parts. The first part contains questions that are specific to the meals program and the second part includes all questions which are relevant for organizations that receive funding for the trips program. The dataset shows that there are several organizations that did not provide information regarding the trips program. In consultation with Wiltrud de Haan, she informed us that these specific organizations did not receive funding to offer trips and activities. Hence, we assumed that all organizations that did not provide information regarding the trips program in a given year, did not receive funding for the program and would be part of the control group. When analyzing the possible treatment group, we realized that some organizations did not completely answer the trips program survey. There are organizations, for example organization 103 in 2015, that did not provide information about the funding amount but answered the Entdeckerfonds survey questions such as the number of trips in a given year. Wiltrud de Haan informed us, that one possible explanation for this occurrence is that these organizations did not completely use the funding in the previous year. Therefore, they did not receive additional funding in the following year but were able to organize trips for the children as part of the trips program with the remaining funding of the year before.
 
-Because we do not have data for the entdeckerfonds survey for the control group as this group is not observed we use the answers of the mittagstisch survey for our analysis. THerefore our possible dependent variables are limited as most of the questions are specific to the meals program. 
+Due to these uncertainties we determine the treatment group in two different ways. Firstly, the treatment variable is specified as follows:
+\begin{equation}
+TreatEF_{it} =
+\begin{cases}
+1, & \text{if organization \begin{itshape}{i}\end{itshape} participates in the trips program in year \begin{itshape}{t}\end{itshape} or any year before}\\
+0, & \text{otherwise}
+\end{cases}
+\end{equation}
 
-As the dataset does not include the variables for the Entdeckerfonds survey for the control group, the potential outcomes regarding the Entdeckerfonds are not observed. Therefore we have to use the survey answers from the Mittagstisch survey.
+In this setting, once an organization receives funding for the trips program, we consider this organization as treated in the year of the first funding and all proceeding years. This implies that an organization remains in the control group as long as it does not receive funding for the trips program. Due to this definition, an organization cannot change from the treatment into the control group.
 
-Generally our data set contains variables from the years 2011 until 2018. 
+In general, the constellation of the treatment and control group varies across years. As the number of organizations supported by CHILDREN increased over time, both the treatment and control group increased as well. At first, new organizations are generally funded to provide the meals program and might receive funding for the trips program during later funding periods. In this case, organizations change from the control group into the treatment group resulting in an overall adjustment of the constellation of both groups. However, the dataset also includes organizations that switch from the treatment to the control group. The first definition of the treatment variable does not take this case into account. Therefore, we additionally construct a second treatment indicator which is defined as follows:
+\begin{equation}
+TreatEF_{it} =
+\begin{cases}
+1, & \text{if organization \begin{itshape}{i}\end{itshape} participates in the trips program in year \begin{itshape}{t}\end{itshape}}\\
+0, & \text{otherwise}
+\end{cases}
+\end{equation}
 
-The constellation of the treatment and control group varies from year to year. 
-Assumption: erhalten der treatment gleichbedeutend wie ein verlust
+Using this alternative treatment variable, the actual funding for the trips program in a given year determines the treatment. Therefore, the treatment status could change every year.
+With both definitions of the treatment variable, the number of observations units in the control group is substantially lower than in the treatment group. Consequently, the estimates cannot be very robust. Therefore, the results should not be overstated.
 
-Possible variables as dependent variables
-how we determined that:
-The used variables should not be specific to the mittagstisch but more general and should also apply to the context of the Entdeckerfonds
-possible variables selfworth, day to day skills
-used these variables because these variables could be influenced both by the mittagstisch and entdeckerfonds and are not specific to the entdeckerfonds
+\subsubsection{Dependent Variables}
 
-looked at the general trends of these two variables with the difference of the treatment and control group to look at whether our idea makes sense
+The fact that all organizations within the control group did not answer the trips program survey questions was helpful to categorize the control and the treatment group. However, the impact of the trips program cannot be measured with variables that are specific to the trips program as these were only observed for the treatment group. Therefore, we have to use variables of the meals program as outcome variables in our analysis. For this purpose, we identified selfworth and everyday expertise as appropriate dependent variables. Firstly, both variables are applicable to the trips program as well as the meals program. In addition, the chosen variables are observed in every year throughout the whole observation period and seem to be influenced by the fact that an organization receives funding to provide trips and other activities.
 
-linear regression just to look at whether there are effects
+\subsubsection{Graphical Evidence}
 
-add controls and fixed effects time and id fixedeffects --> explain why (id: specific effects of being in Bayern for example or the subsidy amount)
-how fixed effects are implemented
+\begin{figure}
+  \caption{Trend in share of beneficiaries with improved self-worth and with broadened everyday expertise}
+  \label{LineDisp}
 
-which control variables we use
-how we determined which controls
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=0.8\textwidth]{figure/Selfworth-1} 
+
+}
 
 
+
+\end{knitrout}
+
+\floatfoot{Note: The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to selfworth. The time trend of the average answers of the organizations in the treatment group is characterised by the solid red line, the answers of the control group by the dotted blue line. Additionally, the linear trends of both groups are included as the straight lines.}
+\end{figure}
+
+\begin{figure}
+  \caption{Trend in share of beneficiaries with improved self-worth and with broadened everyday expertise}
+  \label{LineDisp}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=0.8\textwidth]{figure/Daytodayskills-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\floatfoot{Note: The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to everyday expertise. The time trend of the average answers of the organizations in the treatment group is characterised by the solid red line, the answers of the control group by the dotted blue line. Additionally, the linear trends of both groups are included as the straight lines.}
+\end{figure}
+
+To check for differences in treatment and control group, we created descriptive statistics regarding to the variables of interest.
+Figure 5 and Figure 6 represent the development of average selfworth and average everyday expertise over time for both the treatment and control group. The two graphs illustrate a difference in levels as well as in trends between the treatment and control group in either average selfworth or average everyday expertise. In the treatment group the average selfworth increased over time  while it decreased in the control group (Figure 5). Moreover, average everyday expertise declines in the control group over time while it remains constant in the treatment group (Figure 6). The divergence shown in both graphs suggests that funding for the trips program might positively influence the selfworth and everyday expertise of participating children and adolescents. This evidence could support the hypothesis that the trips program positively influences the beneficiaries. However, this graphical analysis is only descriptive and therefore cannot be interpreted as a causal relationship.
+
+\subsubsection{Differences-in-Differences Estimation}
+
+For the empirical analysis, we implement a differences-in-differences (DID) strategy to test whether the trips program has a positive influence on the selfworth and everyday expertise of the supported children. The DID estimator measures the effect of participating in the trips program by comparing the changes in dependent variables over time between the treatment and control group. The key identifying assumption for the DID strategy is the common trend assumption. The assumption states that, in the absence of the trips program, both the treatment and control group would have evolved with the same trend meaning that the difference between the groups would have stayed the same. In case of a violation of the parallel trend assumption, the estimated treatment effect would be biased. As the dataset contains 2011 as the only year in the pre-period, we are not able to observe a pre-trend. Therefore, we cannot argue that the common trend assumption is fulfilled.
+
+Using the panel structure of the dataset we implement the DID estimation with the following regression equation:
+\begin{equation}
+\label{didregression}
+  Y_{it} = \alpha + \beta \cdot TreatEF_{it} + \gamma_{i} + \delta_{t} + \epsilon_{it}
+\end{equation}
+
+where \begin{itshape}{i}\end{itshape} indexes the identification number of each organization supported by CHILDREN and \begin{itshape}{t}\end{itshape} indexes the year of observation. The outcome variable, denoted by \begin{itshape}Y_{it}\end{itshape}, is either selfworth or everyday expertise. As mentioned in the previous section, \begin{itshape}TreatEF_{it}\end{itshape} represents the treatment status of organization \begin{itshape}{i}\end{itshape} in year \begin{itshape}{t}\end{itshape}. The corresponding regression coefficient \begin{itshape}\beta\end{itshape} represents the DiD estimator, which measures the average treatment effect of participating in the trips program.
+
+The panel data set allows us to implement fixed effects. In our analysis we introduce individual fixed effects and time fixed effects. The ID fixed effects \begin{itshape}\gamma_{i}\end{itshape} control for organization specific observable and unobservable characteristics that are constant over time but differ across social institutions. For example, the state of an organization does not vary over time but might differ across supported social institutions. Additionally, the year fixed effects \begin{itshape}\delta_{t}\end{itshape} capture all variables that change across years but are the same for all organizations and within a specific year. For all following regression estimations, we use robust standard errors to take potential heteroscedasticity into account.
+
+One concern with our empirical approach is that the allocation to treatment and control group might not be perfectly randomized because the selection into the treatment could be driven by time-variant characteristics. Therefore, we include a set of control variables to deal with potential selection bias. For this, we select variables of the available dataset that might influence both the treatment status and either of the outcome variables. Furthermore, we control for organization specific characteristics which include the subsidy received for the meals program, the corresponding total costs of providing meals and the number of days in a week on which children cook in a specific social institution.
+
+\subsection{Results}
+
+\subsubsection{Everyday Expertise}
+
+The estimated coefficients of equation XX are represented in Table \ref{table:coefficients1} with everyday expertise as the dependent variable. Columns (1)-(2) report estimates using the first definition of the treatment variable, while columns (3)-(4) apply the second treatment specification. Columns (1) and (3) only include ID fixed effects and year fixed effects without any controls. Columns (2) and (4) expand the regression equation by adding the organization specific control variables: Subsidy, total costs and the number of days in a week on which children cook in a social institution.
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c}
+\\[-1.8ex]\hline
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Everyday Expertise} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF                & $-0.010$  & $-0.166$     & $0.247$   & $0.255$      \\
+                       & $(0.326)$ & $(0.405)$    & $(0.299)$ & $(0.310)$    \\
+subsidy                &           & $0.019$      &           & $0.016$      \\
+                       &           & $(0.014)$    &           & $(0.014)$    \\
+totalCost              &           & $0.001^{**}$ &           & $0.001^{*}$  \\
+                       &           & $(0.000)$    &           & $(0.000)$    \\
+weeklyCooks            &           & $0.166^{**}$ &           & $0.162^{**}$ \\
+                       &           & $(0.072)$    &           & $(0.073)$    \\
+\hline
+ID fixed effects       & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
+Year fixed effects     & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
+Number of observations & $428$     & $410$        & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.490$      & $0.476$   & $0.491$      \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$; $^{**}p<0.05$; $^{*}p<0.1$}}
+\end{tabular}
+\caption{DID Estimation: Results for Everyday Expertise}
+\label{table:coefficients1}
+\end{center}
+\end{table}
+=======
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 % \begin{table}
 % \begin{center}
 % \begin{tabular}{l c}
@@ -726,6 +1094,10 @@ how we determined which controls
 % \label{table:coefficients}
 % \end{center}
 % \end{table}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 
 
 
@@ -735,7 +1107,11 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Thu, Feb 27, 2020 - 7:35:48 PM
+=======
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -768,8 +1144,51 @@ F Statistic & \multicolumn{1}{c}{11.417$^{***}$ (df = 1; 428)} & \multicolumn{1}
 \end{tabular} 
 \end{sidewaystable} 
 
+=======
+>>>>>>> f611aad9f59cfe26b55bd40fd6b8a9484e9f10b8
 
+Using the first definition of the treatment variable, the average treatment effect of participating in the trips program on everyday expertise is negative, but not statistically significant. Therefore, the estimated coefficient in column (1) implies that the trips program would not have a significant effect on everyday expertise of the supported children and adolescents. However, this negative estimate could result from the fact that we consider several organizations as treated even though they did not receive funding for the trips program in a given year. As a result, the number of observation units in the control group is reduced so that the difference in size between the treatment and control group is considerably high. Therefore, this finding should not be overstated. On the other hand, using the alternative specification of the treatment indicator in column (3), the average treatment effect is positive, but remains insignificant. Thus, the sign of the estimated treatment effect changes if we use the alternative definition of the treatment variable. With the second treatment variable, the number of organizations in the control group increases, as the treatment status depends on actually receiving funding in a given year. Nevertheless, the difference in size of the treatment and control group remains relatively large. However, the estimate in Column (3) could provide evidence that the treatment effect might be positive and potentially turn significant if the sample size increases.
 
+Adding the organization specific control variables in Column (2) and Column (4) does not influence the size of both effects and the significance substantially.
+
+\subsubsection{Selfworth}
+
+Using selfworth as the outcome variable, the estimates of regression equation \ref{didregression} are reported in Table \ref{table:coefficients2}, whose structure is equal to Table \ref{table:coefficients1}.
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c}
+\\[-1.8ex]\hline
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Selfworth} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF                & $-0.474$  & $-0.481$  & $-0.328$  & $-0.442^{*}$ \\
+                       & $(0.309)$ & $(0.312)$ & $(0.247)$ & $(0.256)$    \\
+subsidy                &           & $0.011$   &           & $0.014$      \\
+                       &           & $(0.018)$ &           & $(0.017)$    \\
+totalCost              &           & $0.000$   &           & $0.000$      \\
+                       &           & $(0.001)$ &           & $(0.001)$    \\
+weeklyCooks            &           & $0.036$   &           & $0.037$      \\
+                       &           & $(0.069)$ &           & $(0.069)$    \\
+\hline
+ID fixed effects       & $Yes$     & $Yes$     & $Yes$     & $Yes$        \\
+Year fixed effects     & $Yes$     & $Yes$     & $Yes$     & $Yes$        \\
+Number of observations & $428$     & $410$     & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$; $^{**}p<0.05$; $^{*}p<0.1$}}
+\end{tabular}
+\caption{DID Estimation: Results for Selfworth}
+\label{table:coefficients2}
+\end{center}
+\end{table}
+
+Strinkinlgy, all columns of Table \ref{table:coefficients2} report a negative treatment effect, regardless of the definition of the treatment variable or the inclusion of organization specific controls. In column (1)-(3), the average treatment effect is insignificant. However, the estimated effect is significant if we use the second specification of the treatment status and include controls in column (4). This indicates that participating in the trips program would negatively influence the selfworth of the children and adolescents. This surprising result contradicts our hypothesis that the participation in the trips program positively influences the selfworth of the beneficiaries. As previously mentioned, the number of observation units in both treatment and control group is relatively small. Therefore, this unexpected negative effect of the trips program on selfworth should not be overstated. Moreover, another possible explanation for the observed results could be that the survey questions are answered by employees of an organization and not by the children and adolescents themselves. It might be difficult for the respondents of the survey to assess children specific characteristics, such as selfworth. During our visit in Augsburg, the employees confirmed that it is challenging to evaluate the variables asked in the survey for all participants in the entire social institution, especially with a lot of variation in attendance. One potential solution for this problem could be to directly ask the children and adolescents. Data on the individual level might be more precise because the children could assess themselves better. When using variables on the level of beneficiaries, we might observe a positive effect of the trips program on selfworth.
+As reported in the summary statistics, the outcome variable shows a low variation. This results from the fact that, most of the time, organizations give the answer “all children” and “most children” when asked about the improvement of children’s selfworth. In general, it is more unlikely to find significant effects if the variation of the dependent variable is low. In the survey of the year 2019, CHILDREN already implemented a wider scale by asking for the percentage of beneficiaries that increased their selfworth. As this alternative measuring method is more precise, it might result in a higher variation of answers. Therefore, finding significant effects of the trips program on selfworth might be more likely.
 
 \section{Conclusion}
 
@@ -795,10 +1214,12 @@ In addition to table \ref{HealthRegressions-LessIll} table \ref{expandLessIll} p
 % @
 
 
+\usepackage{graphicx}
+
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c }
+\begin{tabular}{l c c c c}
 \hline
  & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
@@ -839,12 +1260,17 @@ stateSchleswig-Holstein   & $1.33^{***}$  & $1.63^{***}$ &              &       
 stateThüringen            & $0.99$        & $1.29^{*}$   &              &            \\
                           & $(0.59)$      & $(0.55)$     &              &            \\
 \hline
-R$^2$                     & 0.51          & 0.73         & 0.09         & 0.22       \\
-Adj. R$^2$                & 0.39          & 0.66         & 0.07         & 0.20       \\
-Num. obs.                 & 88            & 88           & 175          & 175        \\
-RMSE                      & 0.73          & 5.62         & 0.94         & 7.77       \\
+R$^2$                     & $0.51$        & $0.73$       & $0.09$       & $0.22$     \\
+Adj. R$^2$                & $0.39$        & $0.66$       & $0.07$       & $0.20$     \\
+Num. obs.                 & $88$          & $88$         & $175$        & $175$      \\
+RMSE                      & $0.73$        & $5.62$       & $0.94$       & $7.77$     \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{\parbox{\linewidth}
+<<<<<<< HEAD
+{\vspace{2pt} Dependent variable: share of beneficiaries who are less frequently ill \\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\ regionalProducts: wether the organization offers meals with local ingredients or not \\ yearsSupportSince: the number of years an organization is already part of the Meals program \\ realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\ state: german 'Bundeland' \\ Model (1): original data set, simple linear model with controls, estimated with OLS \\ Model (2): original data set, simple linear model with controls, estimated with WLS \\ Model (3): imputed data set, simple linear model with controls, estimated with OLS \\ Model (4): imputed data set, simple linear model with controls, estimated with WLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
+=======
+{\vspace{2pt} Dependent variable is less ill \\ Model (1): original data set, simple linear model with controls, estimated with OLS \\ Model (2): original data set, simple linear model with controls, estimated with WLS \\ Model (3): imputed data set, simple linear model, estimated with OLS \\ Model (4): imputed data set, simple linear model, estimated with WLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
 \end{tabular}
 }
 \caption{Regression Results: Less ill expanded model}
@@ -877,11 +1303,23 @@ A summary of the remaining models:
   \item{Everyday Expertise: (-0.00003) = 1} 
 \end{itemize}
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Thu, Feb 27, 2020 - 7:35:50 PM
+=======
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+% Requires LaTeX packages: dcolumn 
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 \begin{table}[!htbp] \centering 
-  \caption{Propodss Regression Results: Less Ill} 
+  \caption{Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries who are less frequently ill} 
   \label{lessIllOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} ccccc} 
 \\[-1.8ex]\hline 
@@ -897,12 +1335,23 @@ DGECriteriaNo & $$-$0.291$ & $0.075$ & $$-$3.883$ & $0.0001$ \\
 \end{table} 
 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Thu, Feb 27, 2020 - 7:35:51 PM
+=======
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
-  \caption{Propodss Regression Results: Dietary Knowledge} 
+  \caption{Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and share of beneficiaries with expanded dietary knowledge} 
   \label{dietaryOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -918,12 +1367,23 @@ DGECriteriaNo & $$-$0.291$ & $0.075$ & $$-$3.883$ & $0.0001$ \\
 \end{table} 
 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Thu, Feb 27, 2020 - 7:35:51 PM
+=======
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
-  \caption{Propodss Regression Results: Appreciate Healthy} 
+  \caption{Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries with increased appreciation for a healthy diet} 
   \label{appreciateOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -939,12 +1399,23 @@ DGECriteriaNo & $$-$0.291$ & $0.075$ & $$-$3.883$ & $0.0001$ \\
 \end{table} 
 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Thu, Feb 27, 2020 - 7:35:52 PM
+=======
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
-  \caption{Propodss Regression Results: Selfworth} 
+  \caption{Propodss Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with improved self-worth} 
   \label{selfworthOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -960,12 +1431,23 @@ DGECriteriaNo & $$-$0.291$ & $0.075$ & $$-$3.883$ & $0.0001$ \\
 \end{table} 
 
 
+\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
 % Date and time: Thu, Feb 27, 2020 - 7:35:52 PM
+=======
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
-  \caption{Propodss Regression Results: Everyday expertise} 
+  \caption{Propodss Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with broadened everyday expertise} 
   \label{dayToDayOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -985,9 +1467,7 @@ DGECriteriaNo & $$-$0.291$ & $0.075$ & $$-$3.883$ & $0.0001$ \\
 
 In addition to the factor analysis which is described in section 6, we would like to introduce to a another dimensionality reduction method called partition. This method was developped by Millstein et. al in the context of genome analysis. 
 
-According to the researchers, potential benefits of reducing dimensionality are reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{} (p.677).
-
-The partition approach partitions data into subsets of related features. It then  summarizes each subset into one new feature. By that, it defines a surjective mapping \cite{} (p.676). A function g is implemented using the arithmetic mean. In contrast to methods like the factor analysis, if a feature is identified as related to a response of interest, the exact subset of features that are implicated to the surjective mapping is known without ambiguity. What is as well different is the information loss constraint. It lets the extent of dependences among features on a local level guide the extent to which the number of features is reduced.\cite{}(p.677)  
+The partition approach partitions data into subsets of related features. It then  summarizes each subset into one new feature. By that, it defines a surjective mapping \parencite[p.676]{Millstein.2020}. A function g is implemented using the arithmetic mean. In contrast to methods like the factor analysis, if a feature is identified as related to a response of interest, the exact subset of features that are implicated to the surjective mapping is known without ambiguity. What is as well different is the information loss constraint. It lets the extent of dependences among features on a local level guide the extent to which the number of features is reduced \parencite[p.677]{Millstein.2020}. 
 
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the featured variables in a reduced variable (or a summarizing one) for future surveys to avoid redundancy.
 
@@ -1071,9 +1551,94 @@ Table \ref{partitiontrips} shows the partitioned results for the variables of th
 \label{partitiontrips}
 \end{table}
 
+<<<<<<< HEAD
 
 \subsection{A4: OLS Regressions}
 
+=======
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitionmeals} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{Max} \\ 
+\hline \\[-1.8ex] 
+Information, Meals & 29 & 0.670 & 0.270 & 0 & 0.4 & 1 & 1 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitionmeals} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Partition of outcomes, Meals \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitiontrips} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{Max} \\ 
+\hline \\[-1.8ex] 
+Information, Trips & 20 & 0.834 & 0.215 & 0 & 0.6 & 1 & 1 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Do, Feb 27, 2020 - 16:52:52
+=======
+% Date and time: Do, Feb 27, 2020 - 19:25:12
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitiontrips} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Partition of outcomes, Trips \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+\begin{kframe}
+
+<<<<<<< HEAD
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
+=======
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right): ungültiges 'digits' Argument}}\end{kframe}
+>>>>>>> 94c6c09ba2c7d060a00625053f4a7455e8958a9a
+
+\subsection{A4: OLS Regressions}
+
+
+>>>>>>> 94b94f1553088b66a68d229b9d293c748e2cdbb4
 
 % # <<equality_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 % # 
@@ -1094,6 +1659,70 @@ Table \ref{partitiontrips} shows the partitioned results for the variables of th
 % lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
 % elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
 % @
+
+\subsection{A5: DID Regression Results}
+
+The estimated coefficients of equation \ref{didregression} are represented in Table \ref{table:coefficients3} with everyday expertise as the dependent variable and in Table \ref{table:coefficients4} with selfworth as the dependent variable. P-values are in parentheses. We observe decreasing p-values when using the second definition of the treatment variable.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c}
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Everyday Expertise} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF                & $-0.010$  & $-0.166$     & $0.247$   & $0.255$      \\
+                       & $(0.975)$ & $(0.681)$    & $(0.409)$ & $(0.410)$    \\
+subsidy                &           & $0.019$      &           & $0.016$      \\
+                       &           & $(0.181)$    &           & $(0.258)$    \\
+totalCost              &           & $0.001^{**}$ &           & $0.001^{*}$  \\
+                       &           & $(0.048)$    &           & $(0.060)$    \\
+weeklyCooks            &           & $0.166^{**}$ &           & $0.162^{**}$ \\
+                       &           & $(0.022)$    &           & $(0.027)$    \\
+\hline
+ID fixed effects       & $YES$     & $YES$        & $YES$     & $YES$        \\
+Year fixed effects     & $YES$     & $YES$        & $YES$     & $YES$        \\
+Number of observations & $428$     & $410$        & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.490$      & $0.476$   & $0.491$      \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$; $^{**}p<0.05$; $^{*}p<0.1$}}
+\end{tabular}
+\caption{DID Estimation 1}
+\label{table:coefficients3}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c}
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Selfworth} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF                & $-0.474$  & $-0.481$  & $-0.328$  & $-0.442^{*}$ \\
+                       & $(0.126)$ & $(0.125)$ & $(0.185)$ & $(0.085)$    \\
+subsidy                &           & $0.011$   &           & $0.014$      \\
+                       &           & $(0.540)$ &           & $(0.422)$    \\
+totalCost              &           & $0.000$   &           & $0.000$      \\
+                       &           & $(0.575)$ &           & $(0.446)$    \\
+weeklyCooks            &           & $0.036$   &           & $0.037$      \\
+                       &           & $(0.609)$ &           & $(0.591)$    \\
+\hline
+ID fixed effects       & $YES$     & $YES$     & $YES$     & $YES$        \\
+Year fixed effects     & $YES$     & $YES$     & $YES$     & $YES$        \\
+Number of observations & $428$     & $410$     & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$; $^{**}p<0.05$; $^{*}p<0.1$}}
+\end{tabular}
+\caption{DID Estimation 2}
+\label{table:coefficients4}
+\end{center}
+\end{table}
 
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
