@@ -30,34 +30,6 @@
 
 
 
-% Julian's suggestions from February 24
-
-% Freitag: 
-% - CD mit Daten, do-files
-% - Codebook in Anhang 
-% 
-% soll nicht nach Evaluation durch LMU klingen
-% 
-% Seitenbegrenzung egal
-% 
-% Cronbach's alpha
-% 
-% immer robuste Standardfehler
-% 
-% i.year i.id
-% 
-% leading trailing - abdiskontieren
-% 
-% thematisch gegliederter Appendix
-
-
-
-
-
-
-% Load graphicx package in your document's preamble
-% Gandrud (2016), p.192
-
 % turn page 90 degrees with lscape Gandrud (2016), p.185
 
 % Create clickable hyperlinks with hyperref package, Gandrud (2016), p. 218
@@ -170,25 +142,6 @@ Ludwig-Maximilians-Universität Munich
 abstract on separate page
 100 - 150 words
 \end{abstract}
-
-\section{Formal requirements}
-all important information on title page, maybe use template\\
-always name sources of tables and graphs\\
-have to cite data sets\\
-latin number pages\\
-
-
-\section{Examples}
-
-Citing\\
-
-If you want to cite \textcite{Millstein.2020} inline, use this.
-
-If you want to cite \parencite[p.4]{Millstein.2020} inline with a page number, use this.
-
-If you want to cite \citeauthor{Millstein.2020} only as authors, use this.
-
-% To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
 
 \section{Introduction}
 
@@ -309,29 +262,32 @@ In the bottom plot of figure \ref{EqualityTimeplots} the development of the shar
 
 \section{Feature Selection}
 
-\subsection{Factor Analysis}
+CHILDREN survey many variables, some of which seem closely related to each other. We use exploratory factor analysis for dimensionality reduction and employ extracted factors as controls in the models we estimate. In the appendix, we use the partition method suggested by \textcite{Millstein.2020} to establish a one-to-one correspondence between apparent and underlying variables.
 
-Benefits of reducing dimensionality can be reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{Millenstein.2020, p.677}.
+\subsection{Exploratory Factor Analysis}
 
-We use imputed data set.
+The fundamental theorem of factor analysis posits that each observable variable can be expressed as a linear combination of a smaller number of underlying factors as well as an error term. The coefficients of the factors are called loadings. \parencite[p.310]{Moosbrugger.2008} 
 
-we use the orthogonal rotation technique Varimax, which is recommended in Price (2017, p. 307) when the goal of analysis is to "minimize complexity of factors by maximizing variance of loadings on each factor" 
-We estimate factor scores with the Bartlett method, which is similar to a Maximum Likekelihood estimation, and presented as the most convential one in Eid and Schmidt (2010, p. 291)
-We use maximum likelihood as factoring method
+For factor analysis, we work with the imputed data set. We conduct a separate factor analysis for each model that we want to fit. Each time, we include all variables that were recorded in all years the Meals and the Trips program have been run respectively, but exclude those that we want to use as response and predictor in the corresponding model. 
 
+First, we determine the optimum number of factors via the stochastic approach of parallel analysis, following the advice of \textcite[p.313]{Moosbrugger.2008}.
+We estimate factor scores and loadings with the Bartlett method, which is similar to a Maximum Likekelihood estimation, and presented as the most convential one in \textcite[p.291]{Eid.2014}.
+As the fundamental theorem of factor analysis has no unique solution, we have to decide on how to rotate the factors. As we want them to be orthogonal to each other, we use the rotation technique Varimax, which is recommended for this purpose in \textcite[p.317]{Price.2017}. 
 
-\subsection{Double Selection}
+% \subsection{Double Selection}
 
-\section{Regressions}
+\section{Associations between CHILDREN's grants and selected outcomes}
 
-\subsection{Empirical Approach} 
+\subsection{Empirical approach} 
+
+In this section, we use a simple linear model, as described in equation \ref{SimpleLinearModel}. We estimate each model with the original data set, the one with imputed variables, and the one with excluded outliers. When appropriate, we include the relevant extracted factors as controls. 
 
 \begin{equation}
 \label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
 
-In this section we use a simple linear model, as described in equation \ref{SimpleLinearModel}. We look at the association between: 
+ We look at the association between: 
 
 \begin{itemize}
   \item{the subsidy (in 2015 EUR) an organization receives through CHILDREN's Meals program and the number of meals it dispenses}
@@ -346,8 +302,6 @@ We discuss all these models in turn.
 \subsection{Direct effects of CHILDREN's grants} 
 
 If CHILDREN's grants are to have an effect on beneficiaries, they should first influence the output of organizations in terms of meals dispensed and trips conducted. 
-
-  
 
 <<GrantsRegressionsLunch, echo=FALSE, results='asis', message=FALSE>>=
 
