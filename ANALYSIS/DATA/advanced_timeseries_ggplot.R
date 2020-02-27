@@ -172,3 +172,18 @@ saveRDS(plot_dtds, "./ANALYSIS/GRAPHS/plot_dtds.Rds")
 saveRDS(plot_selfworth, "./ANALYSIS/GRAPHS/plot_selfworth.Rds")
 saveRDS(plot_weeklyCooks, "./ANALYSIS/GRAPHS/plot_weeklyCooks.Rds")
 saveRDS(plot_monthlyCooks, "./ANALYSIS/GRAPHS/plot_monthlyCooks.Rds")
+
+###plots zusammenfügen und speichern
+
+plot_dayToDaySkills_selfworth <- plot_grid(plot_selfworth, plot_dtds, 
+                          ncol = 2, nrow = 1, align = "h")
+
+plot_placebos <- plot_grid(plot_weeklyCooks, plot_monthlyCooks,
+                           ncol=2, nrow=1, align = "h")
+
+
+saveRDS(plot_dayToDaySkills_selfworth, "./ANALYSIS/GRAPHS/PAPER/plot_dayToDaySkills_selfworth.Rds")
+saveRDS(plot_placebos, "./ANALYSIS/GRAPHS/PAPER/plot_placebos.Rds")
+
+plot_dayToDaySkills_selfworth
+plot_placebos
