@@ -81,4 +81,5 @@ availableVariables <- function(dataSet, variableName) {
 }
 
 alwaysRecordedVariablesMeals <- availableVariables(mergedData, "subsidy")
-alwaysRecordedVariablesTrips <- availableVariables(mergedData, 'realSubsidy')
+alwaysRecordedVariablesTrips <- availableVariables(mergedData, 'tripsDayToDaySkills_scaled')
+

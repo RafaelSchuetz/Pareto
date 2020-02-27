@@ -64,7 +64,7 @@ saveRDS(mealsNo_sub_ex.lm,"./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds")
 
 #outliers meals with control
 
-mealsNo_sub_ex_control.lm <- lm_robust(mealsNo ~ realSubsidy + eatersPerMeal, data = mealsNoOutliers)%>%
+mealsNo_sub_ex_control.lm <- lm_robust(mealsNo ~ realSubsidy + eatersPerMealNo, data = mealsNoOutliers)%>%
   extract.lm_robust(include.ci = FALSE)
 summary(mealsNo_sub_ex_control.lm)
 

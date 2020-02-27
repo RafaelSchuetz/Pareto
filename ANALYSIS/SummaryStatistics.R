@@ -1,11 +1,5 @@
 #Real Subsidy Time Trend Total &Median
 
-library(dplyr)
-library(estimatr)
-library(tidyverse)
-library(ggplot2)
-library(stats)
-library(cowplot)
 
 # Inititial summary statistics about 
 
@@ -110,5 +104,7 @@ organisationsbeneficaries <- organisations_beneficiaries %>%
 
 organisationsbeneficaries[1,3] <- NA
 
-fundamental_dynamics = saveRDS(organisationsbeneficaries,"./ANALYSIS/Tables/fundamental_dynamics.Rds")
+organisationsbeneficaries <- data.frame(organisationsbeneficaries)
+
+saveRDS(organisationsbeneficaries,"./ANALYSIS/Tables/fundamental_dynamics.Rds")
 
