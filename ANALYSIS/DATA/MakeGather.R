@@ -15,6 +15,14 @@ library(tidyselect)
 library(imputeMissings)
 library(zoo)
 library(rlang)
+library(stargazer)
+library(estimatr)
+library(ggplot2)
+library(stats)
+library(cowplot)
+library(ggpubr)
+library(polycor)
+library(lavaan)
 
 # Gather and cleanup raw data files
 

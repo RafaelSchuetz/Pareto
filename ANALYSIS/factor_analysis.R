@@ -7,12 +7,6 @@
 #z.B. kann ID der Einrichtung nicht verwendet werden 
 #deshalb muss ich nur die relevanten Variablen auswählen
 
-#relevante packages laden
-library(tidyverse)
-library(polycor)
-library(psych)
-library(lavaan)
-
 # --- create two data sets for factor analysis: one for Meals, one for Trips
 
 additionalVariablesMeals <- c('DGECriteriaNoScaled', 'realSubsidyPerBeneficiary')
@@ -36,7 +30,7 @@ nobsFA <- nrow(dfFAMeals)
 # pairwise.complete.obs. considered dangerous
 # https://www.r-bloggers.com/pairwise-complete-correlation-considered-dangerous/
 
-correlationMatrixMeals <- hetcor(ordinalVariablesMealsFA, ML=FALSE, use = "pairwise.complete.obs")
+correlationMatrixMeals <- hetcor(dfFAMeals, ML=FALSE, use = "pairwise.complete.obs")
 
 # hetcor() creates many warnings, either "In log(P) : NaNs wurden erzeugt" or "In polychor(x, y, ML = ML, std.err = std.err) : 1 column with zero marginal removed"
 
@@ -77,7 +71,7 @@ DGECriteriaNolessIll <- c('DGECriteriaNoScaled', 'lessIll_scaled')
 ordinalVariablesDGECriteriaNolessIll <- dfFAMeals %>% 
   dplyr::select(-DGECriteriaNolessIll)
 
-lessIll_DGECriteriaNo <- ordinalVariablesMeals %>% 
+lessIll_DGECriteriaNo <- dfFAMeals %>% 
   dplyr::select(DGECriteriaNolessIll) %>% 
   data.frame()
 
@@ -87,7 +81,7 @@ lessIll_DGECriteriaNo <- ordinalVariablesMeals %>%
 # pairwise.complete.obs. considered dangerous
 # https://www.r-bloggers.com/pairwise-complete-correlation-considered-dangerous/
 
-correlationMatrixMeals <- hetcor(ordinalVariablesMealsFA, ML=FALSE, use = "pairwise.complete.obs")
+correlationMatrixMeals <- hetcor(dfFAMeals, ML=FALSE, use = "pairwise.complete.obs")
 
 # hetcor() creates many warnings, either "In log(P) : NaNs wurden erzeugt" or "In polychor(x, y, ML = ML, std.err = std.err) : 1 column with zero marginal removed"
 
@@ -105,17 +99,17 @@ highCorrelationsMeals <- correlationMatrixMealsLong %>%  arrange(desc(correlatio
 # use fa.parallel to estimate optimal number of factors
 # https://www.promptcloud.com/blog/exploratory-factor-analysis-in-r/
 
-numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = nrow(ordinalVariablesMealsFA))
+numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = nrow(dfFAMeals))
 
 # fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  9
 
 # perform exploratory factor analysis on these variables 
 
-names(ordinalVariablesMealsFA)
+names(dfFAMeals)
 
 # this is the factor analysis
 
-factorAnalysisMeals <- fa(ordinalVariablesMealsFA, nfactors = numberFactorsMeals$nfact, scores = "regression", n.obs = nrow(ordinalVariablesMealsFA), rotate = "varimax", fm = "ml")
+factorAnalysisMeals <- fa(dfFAMeals, nfactors = numberFactorsMeals$nfact, scores = "regression", n.obs = nrow(dfFAMeals), rotate = "varimax", fm = "ml")
 
 # show factor loadings
 
@@ -161,44 +155,44 @@ summary(lm_lessIll_DGECriteriaNo_scoresMeals)
 
 # only select variables that were have at least one year of collection in common with all other variables
 
-ordinalVariablesTrips <- mergedData %>% 
-  select(tripsSuggestions,
-         tripsDecisions,
-         tripsOrganization,
-         tripsCostCalculation, # only collected for 2018
-         tripsBudget,
-         tripsMoney, # only collected for 2018
-         tripsReview,
-         tripsPublicTransport,
-         tripsMobility,
-         tripsNewPlaces,
-         tripsNewCommunities,
-         tripsNewIdeas,
-         tripsAdditionalActivities,
-         tripsSpecificSkills,
-         tripsDayToDaySkills,
-         tripsSuccess, # only collected for 2018
-         tripsSelfEfficacy, # only collected for 2018
-         tripsSelfworth,
-         tripsSocialSkills,
-         tripsFrustrationTolerance, # only collected for 2018
-         tripsCHILDRENSuggestions)
-  #        tripsReached,
-  #        tripsKnowledge,
-  #        tripsBehavior,
-  #        claimBTP,
-  #        benefitBTP)
-
-correlationMatrixTrips <- hetcor(ordinalVariablesTrips, use = "pairwise.complete.obs")
-
-correlationMatrixTripsLong <- data.frame(variable1=rownames(correlationMatrixTrips$correlations)[row(correlationMatrixTrips$correlations)[upper.tri(correlationMatrixTrips$correlations)]], 
-                                         variable2=colnames(correlationMatrixTrips$correlations)[col(correlationMatrixTrips$correlations)[upper.tri(correlationMatrixTrips$correlations)]], 
-                                         correlation=correlationMatrixTrips$correlations[upper.tri(correlationMatrixTrips$correlations)])
-highCorrelationsTrips <- correlationMatrixTripsLong %>%  arrange(desc(correlation)) %>% filter(abs(correlation)>0.5)
-
-numberFactorsTrips <- fa.parallel(correlationMatrixTrips$correlations, fm = 'ml', fa = 'fa', n.obs = 200)
-
-factorAnalysisTrips <- fa(correlationMatrixTrips$correlations, nfactors = 4, scores="tenBerge", n.obs = 200, rotate = "varimax", fm = "ml")
+# ordinalVariablesTrips <- mergedData %>% 
+#   select(tripsSuggestions,
+#          tripsDecisions,
+#          tripsOrganization,
+#          tripsCostCalculation, # only collected for 2018
+#          tripsBudget,
+#          tripsMoney, # only collected for 2018
+#          tripsReview,
+#          tripsPublicTransport,
+#          tripsMobility,
+#          tripsNewPlaces,
+#          tripsNewCommunities,
+#          tripsNewIdeas,
+#          tripsAdditionalActivities,
+#          tripsSpecificSkills,
+#          tripsDayToDaySkills,
+#          tripsSuccess, # only collected for 2018
+#          tripsSelfEfficacy, # only collected for 2018
+#          tripsSelfworth,
+#          tripsSocialSkills,
+#          tripsFrustrationTolerance, # only collected for 2018
+#          tripsCHILDRENSuggestions)
+#   #        tripsReached,
+#   #        tripsKnowledge,
+#   #        tripsBehavior,
+#   #        claimBTP,
+#   #        benefitBTP)
+# 
+# correlationMatrixTrips <- hetcor(ordinalVariablesTrips, use = "pairwise.complete.obs")
+# 
+# correlationMatrixTripsLong <- data.frame(variable1=rownames(correlationMatrixTrips$correlations)[row(correlationMatrixTrips$correlations)[upper.tri(correlationMatrixTrips$correlations)]], 
+#                                          variable2=colnames(correlationMatrixTrips$correlations)[col(correlationMatrixTrips$correlations)[upper.tri(correlationMatrixTrips$correlations)]], 
+#                                          correlation=correlationMatrixTrips$correlations[upper.tri(correlationMatrixTrips$correlations)])
+# highCorrelationsTrips <- correlationMatrixTripsLong %>%  arrange(desc(correlation)) %>% filter(abs(correlation)>0.5)
+# 
+# numberFactorsTrips <- fa.parallel(correlationMatrixTrips$correlations, fm = 'ml', fa = 'fa', n.obs = 200)
+# 
+# factorAnalysisTrips <- fa(correlationMatrixTrips$correlations, nfactors = 4, scores="tenBerge", n.obs = 200, rotate = "varimax", fm = "ml")
 
 
 # factor analysis assuming variables are metric, standardized

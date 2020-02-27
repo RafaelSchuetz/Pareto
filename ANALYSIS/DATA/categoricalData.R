@@ -67,6 +67,14 @@ mergedDataImputeInterpolation <- mergedDataImputeInterpolation %>%
          lessIll_scaled = scale_this(lessIll), lessIll_weighted = weight(mergedData$lessIll), lessIll_ordered = as.ordered(lessIll),
          influenceHome_scaled = scale_this(influenceHome), influenceHome_weighted = weight(mergedData$influenceHome), influenceHome_ordered = as.ordered(influenceHome))
 
+# append lost categorical variable state (number of rows hasn't changed)
+
+stateDF <- data.frame(mergedData$state)
+
+stateDF <- rename(stateDF, state = mergedData.state)
+
+mergedDataImputeInterpolation <- cbind.data.frame(stateDF, mergedDataImputeInterpolation)
+
 # do the same for mealsNoOutliers
 
 mealsNoOutliers <- mealsNoOutliers %>% 

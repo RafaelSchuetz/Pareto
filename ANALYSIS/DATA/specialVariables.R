@@ -1,3 +1,17 @@
+# Names of variables used in models
+
+modelVariablesNames <- c('lessIll',
+                    'appreciateHealthy',
+                    'dietaryKnowledge',
+                    'DGECriteriaNo',
+                    'selfworth',
+                    'dayToDaySkills',
+                    'tripsSelfworth',
+                    'tripsDayToDaySkills',
+                    'realSubsidyPerBeneficiary',
+                    'realTripsSubsidyPerBeneficiary'
+                    )
+
 # outcomes not directly related to beneficiaries 
 
 generalOutcomes <- c(
