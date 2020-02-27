@@ -6,9 +6,9 @@ library(tidyselect)
 
 # select rows with year in which DGECriteriaNo was recorded
 
-datasetMode <- mergedDataImputeMode %>% 
-  filter(year %in% c(2018, 2017, 2016, 2014)) %>%
-  dplyr::select(!tidyselect::contains('scaled'))
+# datasetMode <- mergedDataImputeMode %>% 
+#   filter(year %in% c(2018, 2017, 2016, 2014)) %>%
+#   dplyr::select(!tidyselect::contains('scaled'))
 
 datasetInterpolation <- mergedDataImputeInterpolation %>% 
   filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
@@ -27,7 +27,10 @@ flexibleRegression <- function(response, predictor, dataset) {
   rlassoEffect(x, y, d)
 }
 
-DSSelfworthRealSubsidy <- flexibleRegression("selfworth", "realSubsidy", mergedDataImputeAll)
+DF_DS <- mergedDataImputeInterpolation %>% 
+  drop_na()
+
+DSSelfworthRealSubsidy <- flexibleRegression("selfworth", "realSubsidy", mergedDataImputeInterpolation)
 
 DSDayToDaySkillsRealSubsidy <- flexibleRegression("dayToDaySkills", "realSubsidy", mergedDataImputeAll)
 

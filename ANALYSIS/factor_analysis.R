@@ -36,7 +36,7 @@ nobsFA <- nrow(dfFAMeals)
 # pairwise.complete.obs. considered dangerous
 # https://www.r-bloggers.com/pairwise-complete-correlation-considered-dangerous/
 
-correlationMatrixMeals <- hetcor(ordinalVariablesMealsFA, ML=FALSE, use = "pairwise.complete.obs")
+correlationMatrixMeals <- hetcor(dfFAMeals, ML=FALSE, use = "pairwise.complete.obs")
 
 # hetcor() creates many warnings, either "In log(P) : NaNs wurden erzeugt" or "In polychor(x, y, ML = ML, std.err = std.err) : 1 column with zero marginal removed"
 
@@ -87,7 +87,7 @@ lessIll_DGECriteriaNo <- ordinalVariablesMeals %>%
 # pairwise.complete.obs. considered dangerous
 # https://www.r-bloggers.com/pairwise-complete-correlation-considered-dangerous/
 
-correlationMatrixMeals <- hetcor(ordinalVariablesMealsFA, ML=FALSE, use = "pairwise.complete.obs")
+correlationMatrixMeals <- hetcor(dfFAMeals, ML=FALSE, use = "pairwise.complete.obs")
 
 # hetcor() creates many warnings, either "In log(P) : NaNs wurden erzeugt" or "In polychor(x, y, ML = ML, std.err = std.err) : 1 column with zero marginal removed"
 
@@ -105,17 +105,17 @@ highCorrelationsMeals <- correlationMatrixMealsLong %>%  arrange(desc(correlatio
 # use fa.parallel to estimate optimal number of factors
 # https://www.promptcloud.com/blog/exploratory-factor-analysis-in-r/
 
-numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = nrow(ordinalVariablesMealsFA))
+numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = nrow(dfFAMeals))
 
 # fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  9
 
 # perform exploratory factor analysis on these variables 
 
-names(ordinalVariablesMealsFA)
+names(dfFAMeals)
 
 # this is the factor analysis
 
-factorAnalysisMeals <- fa(ordinalVariablesMealsFA, nfactors = numberFactorsMeals$nfact, scores = "regression", n.obs = nrow(ordinalVariablesMealsFA), rotate = "varimax", fm = "ml")
+factorAnalysisMeals <- fa(dfFAMeals, nfactors = numberFactorsMeals$nfact, scores = "regression", n.obs = nrow(dfFAMeals), rotate = "varimax", fm = "ml")
 
 # show factor loadings
 
