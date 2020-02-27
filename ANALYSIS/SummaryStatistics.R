@@ -7,6 +7,16 @@ library(ggplot2)
 library(stats)
 library(cowplot)
 
+# Inititial summary statistics about 
+
+modelVariables <- mergedData %>% 
+  dplyr::select(all_of(modelVariablesNames)) %>% 
+  data.frame()
+
+modelVariablesSummary <- stargazer(modelVariables)
+
+saveRDS(modelVariablesSummary, './ANALYSIS/Tables/modelVariablesSummary.Rds')
+
 ###total trips subsidy real 
 
 realTripsSubTotal <- mergedData %>% 

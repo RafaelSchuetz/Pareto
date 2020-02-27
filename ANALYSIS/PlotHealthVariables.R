@@ -18,7 +18,7 @@ expl= names(HealthRelVar)[4]
 response = purrr::set_names(response)
 response
 
-expl = set_names(expl)
+expl = purrr::set_names(expl)
 expl
 
 #createfunctionHEREGGPLOT
