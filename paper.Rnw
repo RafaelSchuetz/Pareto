@@ -139,8 +139,7 @@ Ludwig-Maximilians-Universität Munich
 \listoffigures
 
 \begin{abstract} 
-abstract on separate page
-100 - 150 words
+This study presents the results of the analysis of the data of effects of the non-profit organisation 'CHILDREN for a better world ev'. We obtain null-results associated to the subsidy CHILDREN provides for its two flagship programs, Meals and Trips, and selected outcome variables. We find a strong but only partially robust connection between health relevant outcomes and the index of healthy diet criteria fulfilled in organization's menus. 
 \end{abstract}
 
 \section{Introduction}
@@ -395,13 +394,13 @@ The x-axis plots the index for a healthy diet. The y-axis displays the share of 
 We use standardized versions of the health related variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
 By estimating these models with ordinary least squares (OLS), we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares (WLS), using the number of beneficiaries as weights.
 
-In Table \ref{HealthRegressions-LessIll}, after weighting the regression for the original data set, the coefficent rises slightly but is becoming less statistically significant. An increase of the healthy food criterion by one standard deviation is associated with an increase in beneficiaris being less frequently ill by 0.35 standard deviations. Regressing with the imputed dataset, results decrease by about 0.1. Using weighted least squares additionaly results in a slighty decreased coefficent, which is not significant anymore. 
+In Table \ref{HealthRegressions-LessIll}, after weighting the regression for the original data set, the coefficent rises slightly but is becoming less statistically significant. An increase of the healthy food criterion by one standard deviation is associated with an increase in beneficiaris being less frequently ill by 0.35 standard deviations. Regressing with the imputed dataset, results decrease by about 0.1. Using weighted least squares additionaly results in a slighty decreased coefficent, which is not significant anymore. Regressing with the imputed data set with extracted factor scores as controls, we still obtain a slightly postive significant coefficent: An increase of the healthy food criterion by one standard deviation is associated with an increase in beneficiaris being less frequently ill by 0.18 standard deviations. Overall, there is a positive association between the two variables.    
 
 An expanded model with the dependent variable less Ill is presented in Appendix 1 in table \ref{expandLessIll}. 
 
-In Table \ref{HealthRegressions-DietaryKnowledge} weighted least squares constanly leads to smaller coefficents which are not statistically significant. For the original data set, the coeffiecent is slightly negative. Using the imputed data set, an increase in the healthy meals criterion by one standard deviation is associated with an increase in beneficiaries dietary knowledge by 0.l standard deviations. This coefficent is as well insignifacant. 
+In Table \ref{HealthRegressions-DietaryKnowledge} weighted least squares constanly leads to smaller coefficents which are not statistically significant. For the original data set, the coeffiecent is slightly negative. Using the imputed data set, an increase in the healthy meals criterion by one standard deviation is associated with an increase in beneficiaries dietary knowledge by 0.l standard deviations. This coefficent is as well insignifacant. Also, regressing with the imputed data set with extracted factor scores as controls, does not display a profound connection between beneficiaries dietary knowledge and the healthy meals index.  
 
-In the regressions presented in table \ref{HealthRegressions-AppreciateHealthy}, the changes between ordinary and weíghted least squares are much stronger. For the original data set, the OLS coefficent amounts to 0.27, which is highly significant. When using WLS, we find a slightly negative association. A one standard deviation increase in the healthy meals criterion is associated with a decrease in the appreciation of a healthy diet by 0.02. This coefficent is not significant. For the imputed dataset we find a similar picture. 
+In the regressions presented in table \ref{HealthRegressions-AppreciateHealthy}, the changes between ordinary and weíghted least squares are much stronger. For the original data set, the OLS coefficent amounts to 0.27, which is highly significant. When using WLS, we find a slightly negative association. A one standard deviation increase in the healthy meals criterion is associated with a decrease in the appreciation of a healthy diet by 0.02. This coefficent is not significant. For the imputed dataset we find a similar picture. Similary to the previous regression, the imputed data set with extracted factor scores as controls, does not show any association between the appreciation of a healthy diet and the healthy meals index. 
 
 The regressions with WLS suggest that the results obtained using OLS, are driven by large oraganizations.
 
