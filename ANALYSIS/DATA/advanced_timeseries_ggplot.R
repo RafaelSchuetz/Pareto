@@ -1,35 +1,54 @@
 library(ggfortify)
 
+#use fortify to convert ts to ggplot
+
 df_dayToDaySkills_treat <- fortify(ts_dayToDaySkills_treat)
-# ts to data.frame --------------------------------------------------------
 
-#für dayToDaySkills:
+#look if it works
 
-# ts_reshape(ts_dayToDaySkills_treat, type = "wide", frequency = NULL)
+ggplot(df_dayToDaySkills_treat, aes(Index, Data)) + geom_line()
 
-#Error in ts_reshape(ts_dayToDaySkills_treat, type = "wide", frequency = NULL) : 
-#The frequency of the series is invalid, the function support only 'weekly', 'monthly' or 'quarterly' frequencies
+df_dayToDaySkills_control <- fortify(ts_dayToDaySkills_control) 
+ggplot(df_dayToDaySkills_control, aes(Index, Data)) + geom_line()
 
-# df_dayToDaySkills_treat <- data.frame(Y=as.matrix(ts_dayToDaySkills_treat), date=time(ts_dayToDaySkills_treat))
+#selfworth
 
-# class(df_dayToDaySkills_treat)
+df_selfworth_treat <- fortify(ts_selfworth_treat) 
+ggplot(df_dayToDaySkills_treat, aes(Index, Data)) + geom_line()
 
-#immernoch ts
+df_selfworth_control <- fortify(ts_selfworth_control) 
+ggplot(df_selfworth_control, aes(Index, Data)) + geom_line()
+
+#weeklycooks
+
+df_weeklyCooks_treat <- fortify(ts_weeklyCooks_treat) 
+ggplot(df_weeklyCooks_treat, aes(Index, Data)) + geom_line()
+
+df_weeklyCooks_control <- fortify(ts_weeklyCooks_control) 
+ggplot(df_weeklyCooks_control, aes(Index, Data)) + geom_line()
+
+#monthlyCooks
+
+df_monthlyCooks_treat <- fortify(ts_monthlyCooks_treat) 
+ggplot(df_dayToDaySkills_treat, aes(Index, Data)) + geom_line()
+
+df_monthlyCooks_control <- fortify(ts_monthlyCooks_control) 
+ggplot(df_monthlyCooks_control, aes(Index, Data)) + geom_line()
+
+#rename the variables
 
 
-plot_dayToDaySkills_treat <- ggplot(df_dayToDaySkills_treat, aes(Index, Data)) + geom_line()
 
-# as.data.frame(ts_dayToDaySkills_treat, row.names = NULL)
-# 
-# class(ts_dayToDaySkills_treat)
-# 
-# #immernoch ts
-# 
-# data.frame(ts_dayToDaySkills_treat = c(ts_dayToDaySkills_treat), time = c(time(ts_dayToDaySkills_treat)))
-# 
-# class(ts_dayToDaySkills_treat)
 
-#immernoch ts
 
- 
+#erstellen der ggplots
+
+#dayToDaySkills
+
+ggplot(df_dayToDaySkills_treat, aes(Index, Data)) + geom_line() + geom_line(data = df_dayToDaySkills_control)
+
+
+
+
+
 
