@@ -3,7 +3,7 @@
 
 #setthevariables
 
-responset= names(mergedData)
+response= names(mergedData)
 # [5:213]
 # expl= names(mergedData)[4]
 

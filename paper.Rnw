@@ -92,6 +92,7 @@
 \usepackage{booktabs}
 % \usepackage{bookmark}
 \usepackage{rotating}
+\usepackage{dcolumn}
 % \usepackage[authoryear]{natbib}
 % \bibliographystyle{apalike}
 \usepackage{mathtools}
@@ -181,101 +182,11 @@ latin number pages\\
 
 Citing\\
 
-If you want to cite \textcite{Millenstein.2020} inline, use this.
-If you want to cite \parencite[p.4]{Millenstein.2020} inline with a page number, use this.
-If you want to cite \citeauthor{Millenstein.2020} only as authors, use this.
+If you want to cite \textcite{Millstein.2020} inline, use this.
+If you want to cite \parencite[p.4]{Millstein.2020} inline with a page number, use this.
+If you want to cite \citeauthor{Millstein.2020} only as authors, use this.
 
-Equation with double index\\
-
-\begin{equation}
-\label{ModelProdu}
-\ln y_{it}^{n} = \beta_0 + \beta_k \ln k_{it-1}^{n} + \beta_n \ln n_{it} + \beta_m \ln m_{it} + \beta_t D_t + \beta_i D_i + \epsilon_{it}
-\end{equation}
-
-List\\
-
-\begin{itemize}
-  \item{The firm is not incorporated in the U.S. (FIC is not equal to USA.)}
-  \item{The company is from the financial or utilities sector. This is the case when the SIC code lies between 4900 and 4999 or between 6000 and 6999.}
-  \item{A firm's acquisitions are larger than five percent of the value of its total assets. This is the case when AQC over AT is larger than 0.05.} 
-\end{itemize}
-
-
-% Figure\\
-% 
-% \begin{figure}
-%   \caption{Dispersion in productivity levels}
-%   \label{LineDisp}
-% 
-% <<echo=FALSE>>=
-% figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
-% print(figureLineDisp)
-% @
-% 
-% \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
-% \end{figure}
-
-
-% Figure \ref{LineDisp}
-
-% <<results='asis', echo=FALSE>>=
-% tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
-% colnames(tableCyclicDisp) <- c("Lead in years", "All", "p-value", "Non-Durables", "p-value", "Durables", "p-value")
-% tableCyclicDisp <- xtable(tableCyclicDisp, caption = "Cyclicality of productivity dispersion", digits = c(0, 0, 3, 2, 3, 2, 3, 2))
-% print(tableCyclicDisp, include.rownames = FALSE)
-% @
-
-Regression fit output with texreg\\
-
-<<mealsTripsSubsidyRegressions, echo=FALSE, results='asis'>>=
-# , message=FALSE, warning=FALSE
-# first, read in all Rds objects that you need
-# 
-mealsNo_sub.lm = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
-tripsNo_sub.lm = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
-#  
-texreg(list(mealsNo_sub.lm, tripsNo_sub.lm), label = "mealsTripsSubsidyRegressions")
-@
-
-Table \ref{mealsTripsSubsidyRegressions}
 % To have an unnumbered section, place an sterisk in it like this \*{Unnumbered Section}
-\section{Outline}
-Descriptive statistics\\
-dynamics of\\ 
-(- number of organizations)\\
-(- number of beneficiaries)\\
-- selected ordinal outcomes, stacked\\
-- real total subsidy\\
-- real median subsidy per institution\\
-- real median subsidy per beneficiary\\
-(- which variables have largest variance; also relevant for variable selection)\\
-
-Regressions\\
-
-Questions:\\
-effect of\\
-- healthy meals (DGE criterion) standardized on healthy characteristics standardized, with eatersPerMeal as weights\\
-- real meals subsidy on number of meals\\
-- real trips subsidy on number of trips\\
-- real meals subsidy per beneficiary on standardized self-worth and standardized day-to-day skills\\
-- real trips subsidy per beneficiary on standardized self-worth and standardized day-to-day skills\\
-
-Methods:\\
-- simple, metric\\
-- standardized, metric\\
-- cumulative logit\\
-- with control variables\\
-(- without outliers)\\
-(- imputed data)\\
-
-Diff in Diff\\
-
-Outlook for CHILDREN/variable selection\\
-- double selection \\
-- partition analysis\\
-(- correlation matrix)\\
-(- factor analysis)\\
-- general tips\\
 
 \section{Introduction}
 
@@ -298,14 +209,13 @@ The final dataset we worked with is structured as follows: Each row represents o
 
 Many organizations do not answer all questions CHILDREN poses. We create a seperate data set, in which we impute missing values with an organization-specific linear trend. CHILDREN supports some very large organizations that give out hundreds of meals a day or conduct dozens of trips per year. We fit our models with outliers excluded to see if they are driving results. We define an outlier as a value that is at least 1.5 interquartile ranges below the 25th percentile or equally far above the 75th percentile. Once we exclude outliers in terms of numbers of meals and once in terms of number of trips.
 
-Figure\\
 
 \begin{figure}
   \caption{Trend in everyday expertise and selfworth}
-  \label{LineDisp}
+  \label{DaytodayskillsSelfworth}
 
 <<DaytodayskillsSelfworth, echo=FALSE>>=
-figureDaytodayskillsSelfworth = readRDS("./ANALYSIS/GRAPHS/PAPER/plot_dayToDaySkills_selfworth.Rds")
+figureDaytodayskillsSelfworth = readRDS("./ANALYSIS/GRAPHS/PAPER/Equality_Year.Rds")
 print(figureDaytodayskillsSelfworth)
 @
 
@@ -317,22 +227,7 @@ print(figureDaytodayskillsSelfworth)
 
 In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries in both programs, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.
 
-<<FundamentalDynamicsTest, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-# 
-# # first, read in all Rds objects that you need
-# 
-# fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
-#  
-# colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
-# 
-# fundamental_dynamics <- xtable(fundamental_dynamics,
-#                                digits = c(0, 0, 1, 1, 0, 0),
-#           caption = "Summary Statistics",
-#           align = "lmmmmm", 
-#           label = "fundamentalDynamics"
-#           )
-# print(fundamental_dynamics, include.rownames = FALSE)
-@
+
 
 <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
@@ -342,14 +237,14 @@ fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
  
 colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
 
-fundamental_dynamics <- stargazer(fundamental_dynamics,
-                                  summary = FALSE,
-                               # digits = c(0, 0, 1, 1, 0, 0),
-          caption = "Summary Statistics",
-          # align = "lmmmmm", 
+xtable(fundamental_dynamics,
+                                  # summary = FALSE,
+                                digits = c(0, 0, 1, 1, 0, 0),
+           caption = "Summary Statistics",
+           align = "lccccc", 
           label = "fundamentalDynamics"
           )
-print(fundamental_dynamics, include.rownames = FALSE)
+
 @
 % look up official names of price indices in English 
 
@@ -429,7 +324,7 @@ In the bottom plot of figure 4 the development of everyday expertise of the bene
 \end{equation}
 
 
-In this section we use a simple linear model, as described in equation \ref{SimpleLinear Model}. We look at the association between: 
+In this section we use a simple linear model, as described in equation \ref{SimpleLinearModel}. We look at the association between: 
 
 \begin{itemize}
   \item{the subsidy (in 2015 EUR) an organization receives through CHILDREN's Meals program and the number of meals it dispenses}
@@ -445,9 +340,7 @@ We discuss all these models in turn.
 
 If CHILDREN's grants are to have an effect on beneficiaries, they should first influence the output of organizations in terms of meals dispensed and trips conducted. 
 
-As table \ref{GrantsRegressionsLunch} shows, this is emphatically true. Whether we look at the original data set, the one without outliers and the one with imputed values, a strong association becomes evident. 
-The estimated coefficients are very similar when we use the original dataset and the one with imputed values. In the case of the original data set, increasing the subsidy to an organization by one EUR is associated with 2.6 additional meals dispensed. This estimate is highly statistically significant. When we exclude outliers, i.e. those organizations that give out very many menus or very few menus,
-the estimated coefficient decreases by about one order of magnitude. Still, spending not much more than three EUR more goes hand in hand with one extra meal. The estimate is also highly statistically significant.  
+  
 
 <<GrantsRegressionsLunch, echo=FALSE, results='asis', message=FALSE>>=
 
@@ -461,8 +354,12 @@ sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
 aliquyam. \\\\ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
 aliquyam. \\\\ %stars.}", caption.above = TRUE, 
-    label = "GrantsRegressionsLunch", booktabs = TRUE)
+    label = "GrantsRegressionsLunch")
 @
+
+As table \ref{GrantsRegressionsLunch} shows, this is emphatically true. Whether we look at the original data set, the one without outliers and the one with imputed values, a strong association becomes evident. 
+The estimated coefficients are very similar when we use the original dataset and the one with imputed values. In the case of the original data set, increasing the subsidy to an organization by one EUR is associated with 2.6 additional meals dispensed. This estimate is highly statistically significant. When we exclude outliers, i.e. those organizations that give out very many menus or very few menus,
+the estimated coefficient decreases by about one order of magnitude. Still, spending not much more than three EUR more goes hand in hand with one extra meal. The estimate is also highly statistically significant.
 
 In the remit of the Trips program, the picture looks much different. In the case of the original data set and the data set with imputed variables, an increase in the trips subsidy by 5000 EUR is needed for an extra trip. The coefficent of 0.0002 is statistically significant at the 5\% level. As soon as outliers are excluded, the coefficent changes to 0.0003, which is highly statistically significant. This means that, according to this model, at least 3000 EUR are needed for an additional trip.
 In sum, there seems to be no clear connection between how much money CHILDREN gives to an organization and the number of trips it organizes. 
@@ -472,7 +369,7 @@ lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 lm_ts_o = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds") #outlier trips
 lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
 
-texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, label = 'GrantsRegressionsTrips', digits = 4)
+texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of trips", custom.model.names = c("OLS", "OLS without Outliers", "OLS Impute"), scalebox = 0.8, label = 'GrantsRegressionsTrips', digits = 7)
 @
 
 \subsection{Variables of interest: selfworth and everyday expertise} 
@@ -719,7 +616,7 @@ As an option to run a regression on the original ordinal variables, we use the p
  
 \begin{equation}
 \label{PropoddsModel}
-  P(Y_i \leq \ r) = \frac{exp(y_0_r + x_i^Ty)}{1+exp(y_0_r + x_i^Ty)}    
+  P(Y_i \leq \ r) = \frac{exp(y_{0r} + x_i^Ty)}{1+exp(y_{0r} + x_i^Ty)}    
 \end{equation}
 
 
@@ -740,7 +637,7 @@ A summary of the remaining models:
 
 lessIllOdds <- readRDS("./ANALYSIS/Tables/lessIllProp.Rds")
 
-stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Less Ill", align = TRUE, label = "lessIllOdds")
+stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Less Ill", label = "lessIllOdds")
 
 @
 
@@ -774,7 +671,7 @@ stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Everyday expe
 
 \subsection{A3: Partition}
 
-In addition to the factor analysis which is described in section 6, we would like to introduce to a another dimensionality reduction method called partition. This method was developped by Millenstein et. al in the context of genome analysis. 
+In addition to the factor analysis which is described in section 6, we would like to introduce to a another dimensionality reduction method called partition. This method was developped by Millstein et. al in the context of genome analysis. 
 
 According to the researchers, potential benefits of reducing dimensionality are reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{} (p.677).
 
@@ -796,38 +693,38 @@ partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.4.Rds")
 colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
 colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
 
-stargazer(partition_meals,
-                               #digits = c(0, 0, 1, 1, 0, 0),
+xtable(partition_meals,
+                               # digits = c(0, 0, 1, 1, 0, 0),
           caption = "Partition of outcomes, Meals", 
-          label = 'partitionmeals'
-          #align = "lmmm"
+          label = 'partitionmeals',
+          align = "lccc"
           )
 #print(partition_meals, include.rownames = FALSE)
 
 
-stargazer(partition_trips,
+xtable(partition_trips,
                                #digits = c(0, 0, 1, 1, 0, 0),
           caption = "Partition of outcomes, Trips",
-          label = 'partitiontrips'
-          #align = "lmmm"
+          label = 'partitiontrips',
+          align = "lccc"
           )
-print(partition_meals, partition_trips, include.rownames = FALSE)
+# print(partition_meals, partition_trips, include.rownames = FALSE)
 @
 
 \subsection{A4: OLS Regressions}
 
 
-<<equality_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-
-lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
-lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
-ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
-td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
-sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
-dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
-tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
-tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
-@
+% # <<equality_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+% # 
+% # lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
+% # lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
+% # ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
+% # td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
+% # sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
+% # dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
+% # tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
+% # tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
+% # @
 
 % <<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 % #expanded model less ill 
