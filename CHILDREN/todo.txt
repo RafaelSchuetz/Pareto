@@ -9,3 +9,8 @@ estimate model with log of realSubsidyPerBeneficiary
 in all regressions with extract, conflict tidyr texreg magrittr
 
 regress tripsOutcomes on tripsKidsNo
+
+all important information on title page, maybe use template\\
+always name sources of tables and graphs\\
+have to cite data sets\\
+latin number pages\\
