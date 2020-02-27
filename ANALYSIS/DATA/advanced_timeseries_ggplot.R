@@ -69,7 +69,11 @@ ggplot(df_dayToDaySkills_treat, aes(Year, EverydayExpertise)) +
   grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
   geom_smooth(method = "lm", se = FALSE, color = "grey0") +
   geom_smooth(data =df_dayToDaySkills_control, method="lm", se = FALSE, color = "grey") +
-  ggtitle("Trend of everyday expertise") + ylab("Everyday Expertise") +
+  ggtitle("Trend of everyday expertise") + ylab("Everyday Expertise") 
+
+
+
+
 
 
   
