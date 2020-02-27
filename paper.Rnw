@@ -129,7 +129,7 @@ opts_chunk$set(fig.align = "center",
 \title{Effects of CHILDREN's programs}
 \author{
 Laura Huber\\
-\texttt{11111111}
+\texttt{11709507}
 \and
 Laura Jepsen\\
 \texttt{11567799}
@@ -141,7 +141,7 @@ Rafael Schütz\\
 \texttt{11574909} 
 \and 
 Yannick Zurl\\
-\texttt{11111111}
+\texttt{11701793}
 \and
 Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
 \and
@@ -574,109 +574,143 @@ We use maximum likelihood as factoring method
 
 \subsection{Double Selection}
 
-\section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
+\section{The effects of the trips program on participating beneficiaries}
 
-How do children benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of the biggest challenges was determining a possible solution for measuring causal effects of the programs on the beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with the Mittagstisch program. However, not all organizations do receive addtitional funding to provide the Entdeckerfonds program. This fact could be used for applying an empirical approach which determines causal effects of the Entdeckerfonds program by comparing a treatment with a control group. The aim of this analysis is to show that the trips provided by Entdeckerfonds program funding have a positive effect on selfworth and everyday expertise of the participating children. 
+How do children and adolescents benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of our biggest challenges was determining a possible solution for measuring potential causal effects of the supported programs on the participating beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with their meals program. However, not all organizations receive additional funding to provide the trips program. This fact could be used for applying an empirical approach which determines the effects of the trips program by comparing a treatment with a control group. The aim of this analysis is to test whether the activities offered by the trips program have a positive effect on the participating children, measured through a change in selfworth and everyday expertise. 
 
-Empirical Approach\\
+\subsection{Empirical Approach}
 
-The baseline of the empirical approach is the determination of the treatment and control group. Using the data provided by children we specify the treatment group as all organizations that receive funding for both the Entdeckerfonds and the Mittagstisch program. On the other hand, the control group represents all organizations that do not receive funding from CHILDREN to provide the Entdeckerfonds.
+The basis of the empirical approach is the specification of the treatment and the control group. Using the data provided by children we determine the treatment group as all organizations that receive funding for both the trips and the meals program. On the other hand, the control group represents all organizations that only receive funding for the meals program. Therefore, the social institutions in the control group do not participate in the trips program.
 
-Determining the treatment and control group this way, however, was a problem.
+\subsubsection{Specification of the Treatment Group}
 
-THerefore we used the cleaned data set and only determined the control group - all organizations that have no values/answers for the questions of the Entdeckerfonds. We assume that these organizations did not receive the funding for the Entdeckerfonds and therefore are the control group in our analysis. All organizations that gave answers to at least one question of the survey part regarding the entdeckerfonds are considered the treatment group. 
-Our analysis is based on this very strong definition of the treatment and control group.
+When analyzing the available dataset, it was not certain which organizations actually received funding for the trips program. As previously mentioned, the CHILDREN survey consists of two parts. The first part contains questions that are specific to the meals program and the second part includes all questions which are relevant for organizations that receive funding for the trips program. The dataset shows that there are several organizations that did not provide information regarding the trips program. In consultation with Wiltrud de Haan, she informed us that these specific organizations did not receive funding to offer trips and activities. Hence, we assumed that all organizations that did not provide information regarding the trips program in a given year, did not receive funding for the program and would be part of the control group. When analyzing the possible treatment group, we realized that some organizations did not completely answer the trips program survey. There are organizations, for example organization 103 in 2015, that did not provide information about the funding amount but answered the Entdeckerfonds survey questions such as the number of trips in a given year. Wiltrud de Haan informed us, that one possible explanation for this occurrence is that these organizations did not completely use the funding in the previous year. Therefore, they did not receive additional funding in the following year but were able to organize trips for the children as part of the trips program with the remaining funding of the year before.
 
-Because we do not have data for the entdeckerfonds survey for the control group as this group is not observed we use the answers of the mittagstisch survey for our analysis. THerefore our possible dependent variables are limited as most of the questions are specific to the meals program. 
+Due to these uncertainties we determine the treatment group in two different ways. Firstly, the treatment variable is specified as follows:
+\begin{equation}
+TreatEF_{it} =
+\begin{cases}
+1, & \text{if organization \begin{itshape}{i}\end{itshape} participates in the trips program in year \begin{itshape}{t}\end{itshape} or any year before}\\
+0, & \text{otherwise}
+\end{cases}
+\end{equation}
 
-As the dataset does not include the variables for the Entdeckerfonds survey for the control group, the potential outcomes regarding the Entdeckerfonds are not observed. Therefore we have to use the survey answers from the Mittagstisch survey.
+In this setting, once an organization receives funding for the trips program, we consider this organization as treated in the year of the first funding and all proceeding years. This implies that an organization remains in the control group as long as it does not receive funding for the trips program. Due to this definition, an organization cannot change from the treatment into the control group.
 
-Generally our data set contains variables from the years 2011 until 2018. 
+In general, the constellation of the treatment and control group varies across years. As the number of organizations supported by CHILDREN increased over time, both the treatment and control group increased as well. At first, new organizations are generally funded to provide the meals program and might receive funding for the trips program during later funding periods. In this case, organizations change from the control group into the treatment group resulting in an overall adjustment of the constellation of both groups. However, the dataset also includes organizations that switch from the treatment to the control group. The first definition of the treatment variable does not take this case into account. Therefore, we additionally construct a second treatment indicator which is defined as follows:
+\begin{equation}
+TreatEF_{it} =
+\begin{cases}
+1, & \text{if organization \begin{itshape}{i}\end{itshape} participates in the trips program in year \begin{itshape}{t}\end{itshape}}\\
+0, & \text{otherwise}
+\end{cases}
+\end{equation}
 
-The constellation of the treatment and control group varies from year to year. 
-Assumption: erhalten der treatment gleichbedeutend wie ein verlust
+Using this alternative treatment variable, the actual funding for the trips program in a given year determines the treatment. Therefore, the treatment status could change every year.
+With both definitions of the treatment variable, the number of observations units in the control group is substantially lower than in the treatment group. Consequently, the estimates cannot be very robust. Therefore, the results should not be overstated.
 
-Possible variables as dependent variables
-how we determined that:
-The used variables should not be specific to the mittagstisch but more general and should also apply to the context of the Entdeckerfonds
-possible variables selfworth, day to day skills
-used these variables because these variables could be influenced both by the mittagstisch and entdeckerfonds and are not specific to the entdeckerfonds
+\subsubsection{Dependent Variables}
 
-looked at the general trends of these two variables with the difference of the treatment and control group to look at whether our idea makes sense
+The fact that all organizations within the control group did not answer the trips program survey questions was helpful to categorize the control and the treatment group. However, the impact of the trips program cannot be measured with variables that are specific to the trips program as these were only observed for the treatment group. Therefore, we have to use variables of the meals program as outcome variables in our analysis. For this purpose, we identified selfworth and everyday expertise as appropriate dependent variables. Firstly, both variables are applicable to the trips program as well as the meals program. In addition, the chosen variables are observed in every year throughout the whole observation period and seem to be influenced by the fact that an organization receives funding to provide trips and other activities.
 
-linear regression just to look at whether there are effects
+\subsubsection{Graphical Evidence}
 
-add controls and fixed effects time and id fixedeffects --> explain why (id: specific effects of being in Bayern for example or the subsidy amount)
-how fixed effects are implemented
+To check for differences in treatment and control group, we created the following graphs using descriptive statistics. The figures represent the development of average selfworth and average everyday expertise over time for both the treatment and control group. The two graphs illustrate a difference in levels as well as in trends between the treatment and control group in either average selfworth or average everyday expertise. In the treatment group the average selfworth increased over time while it decreased in the control group. Moreover, average everyday expertise declines in the control group over time while it remains constant in the treatment group. The divergence shown in both graphs suggests that funding for the trips program might positively influence the selfworth and everyday expertise of participating children and adolescents. This evidence could support the hypothesis that the trips program positively influences the beneficiaries. However, this graphical analysis is only descriptive and therefore cannot be interpreted as a causal relationship.
 
-which control variables we use
-how we determined which controls
+\subsubsection{Differences-in-Differences Estimation}
 
+For the empirical analysis, we implement a differences-in-differences (DID) strategy to test whether the trips program has a positive influence on the selfworth and everyday expertise of the supported children. The DID estimator measures the effect of participating in the trips program by comparing the changes in dependent variables over time between the treatment and control group. The key identifying assumption for the DID strategy is the common trend assumption. The assumption states that, in the absence of the trips program, both the treatment and control group would have evolved with the same trend meaning that the difference between the groups would have stayed the same. In case of a violation of the parallel trend assumption, the estimated treatment effect would be biased. As the dataset contains 2011 as the only year in the pre-period, we are not able to observe a pre-trend. Therefore, we cannot argue that the common trend assumption is fulfilled.
+
+Using the panel structure of the dataset we implement the DID estimation with the following regression equation:
+\begin{equation}
+\label{didregression}
+  Y_{it} = \alpha + \beta \cdot TreatEF_{it} + \gamma_{i} + \delta_{t} + \epsilon_{it}
+\end{equation}
+
+where \begin{itshape}{i}\end{itshape} indexes the identification number of each organization supported by CHILDREN and \begin{itshape}{t}\end{itshape} indexes the year of observation. The outcome variable, denoted by \begin{itshape}Y_{it}\end{itshape}, is either selfworth or everyday expertise. As mentioned in the previous section, \begin{itshape}TreatEF_{it}\end{itshape} represents the treatment status of organization \begin{itshape}{i}\end{itshape} in year \begin{itshape}{t}\end{itshape}. The corresponding regression coefficient \begin{itshape}\beta\end{itshape} represents the DiD estimator, which measures the average treatment effect of participating in the trips program.
+
+The panel data set allows us to implement fixed effects. In our analysis we introduce individual fixed effects and time fixed effects. The ID fixed effects \begin{itshape}\gamma_{i}\end{itshape} control for organization specific observable and unobservable characteristics that are constant over time but differ across social institutions. For example, the state of an organization does not vary over time but might differ across supported social institutions. Additionally, the year fixed effects \begin{itshape}\delta_{t}\end{itshape} capture all variables that change across years but are the same for all organizations and within a specific year. For all following regression estimations, we use robust standard errors to take potential heteroscedasticity into account.
+
+One concern with our empirical approach is that the allocation to treatment and control group might not be perfectly randomized because the selection into the treatment could be driven by time-variant characteristics. Therefore, we include a set of control variables to deal with potential selection bias. For this, we select variables of the available dataset that might influence both the treatment status and either of the outcome variables. Furthermore, we control for organization specific characteristics which include the subsidy received for the meals program, the corresponding total costs of providing meals and the number of days in a week on which children cook in a specific social institution.
+
+\subsection{Results}
+
+\subsubsection{Everyday Expertise}
+
+The estimated coefficients of equation XX are represented in Table \ref{table:coefficients1} with everyday expertise as the dependent variable. Columns (1)-(2) report estimates using the first definition of the treatment variable, while columns (3)-(4) apply the second treatment specification. Columns (1) and (3) only include ID fixed effects and year fixed effects without any controls. Columns (2) and (4) expand the regression equation by adding the organization specific control variables: Subsidy, total costs and the number of days in a week on which children cook in a social institution.
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c}
+\begin{tabular}{l c c c c}
+\\[-1.8ex]\hline
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Everyday Expertise} \\
 \hline
- & Selfworth \\
+ & (1) & (2) & (3) & (4) \\
 \hline
-(Intercept)             & $-1.13^{***}$ \\
-                        & $(0.32)$      \\
-dfcEF2$treatEF          & $-0.47$       \\
-                        & $(0.31)$      \\
+treatEF                & $-0.010$  & $-0.166$     & $0.247$   & $0.255$      \\
+                       & $(0.326)$ & $(0.405)$    & $(0.299)$ & $(0.310)$    \\
+subsidy                &           & $0.019$      &           & $0.016$      \\
+                       &           & $(0.014)$    &           & $(0.014)$    \\
+totalCost              &           & $0.001^{**}$ &           & $0.001^{*}$  \\
+                       &           & $(0.000)$    &           & $(0.000)$    \\
+weeklyCooks            &           & $0.166^{**}$ &           & $0.162^{**}$ \\
+                       &           & $(0.072)$    &           & $(0.073)$    \\
 \hline
-Num. obs.               & $430$         \\
-R$^2$ (full model)      & $0.47$        \\
-R$^2$ (proj model)      & $0.47$        \\
-Adj. R$^2$ (full model) & $0.36$        \\
-Adj. R$^2$ (proj model) & $0.36$        \\
+ID fixed effects       & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
+Year fixed effects     & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
+Number of observations & $428$     & $410$        & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.490$      & $0.476$   & $0.491$      \\
 \hline
-\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$; $^{**}p<0.05$; $^{*}p<0.1$}}
 \end{tabular}
-\caption{linear regression}
-\label{table:coefficients}
+\caption{DID Estimation: Results for Everyday Expertise}
+\label{table:coefficients1}
 \end{center}
 \end{table}
 
+Using the first definition of the treatment variable, the average treatment effect of participating in the trips program on everyday expertise is negative, but not statistically significant. Therefore, the estimated coefficient in column (1) implies that the trips program would not have a significant effect on everyday expertise of the supported children and adolescents. However, this negative estimate could result from the fact that we consider several organizations as treated even though they did not receive funding for the trips program in a given year. As a result, the number of observation units in the control group is reduced so that the difference in size between the treatment and control group is considerably high. Therefore, this finding should not be overstated. On the other hand, using the alternative specification of the treatment indicator in column (3), the average treatment effect is positive, but remains insignificant. Thus, the sign of the estimated treatment effect changes if we use the alternative definition of the treatment variable. With the second treatment variable, the number of organizations in the control group increases, as the treatment status depends on actually receiving funding in a given year. Nevertheless, the difference in size of the treatment and control group remains relatively large. However, the estimate in Column (3) could provide evidence that the treatment effect might be positive and potentially turn significant if the sample size increases.
 
+Adding the organization specific control variables in Column (2) and Column (4) does not influence the size of both effects and the significance substantially.
 
+\subsubsection{Selfworth}
 
-Ende??
-the dataset does not allow a channel analysis but these could be possible channels that might explain the effects we find
+Using selfworth as the outcome variable, the estimates of regression equation \ref{didregression} are reported in Table \ref{table:coefficients2}, whose structure is equal to Table \ref{table:coefficients1}.
 
-<<selfworth_tripsProgram, echo=FALSE, results='asis', message=FALSE>>=
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c}
+\\[-1.8ex]\hline
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Selfworth} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF                & $-0.474$  & $-0.481$  & $-0.328$  & $-0.442^{*}$ \\
+                       & $(0.309)$ & $(0.312)$ & $(0.247)$ & $(0.256)$    \\
+subsidy                &           & $0.011$   &           & $0.014$      \\
+                       &           & $(0.018)$ &           & $(0.017)$    \\
+totalCost              &           & $0.000$   &           & $0.000$      \\
+                       &           & $(0.001)$ &           & $(0.001)$    \\
+weeklyCooks            &           & $0.036$   &           & $0.037$      \\
+                       &           & $(0.069)$ &           & $(0.069)$    \\
+\hline
+ID fixed effects       & $Yes$     & $Yes$     & $Yes$     & $Yes$        \\
+Year fixed effects     & $Yes$     & $Yes$     & $Yes$     & $Yes$        \\
+Number of observations & $428$     & $410$     & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$; $^{**}p<0.05$; $^{*}p<0.1$}}
+\end{tabular}
+\caption{DID Estimation: Results for Selfworth}
+\label{table:coefficients2}
+\end{center}
+\end{table}
 
-# first, read in all Rds objects that you need
-
-lm1_selfworth = readRDS("./ANALYSIS/Tables/lm1_selfworth.Rds")
-lm2_selfworth = readRDS("./ANALYSIS/Tables/lm2_selfworth.Rds")
-lm3_selfworth = readRDS("./ANALYSIS/Tables/lm3_selfworth.Rds")
-lm4_selfworth = readRDS("./ANALYSIS/Tables/lm4_selfworth.Rds")
- 
-table1_selfworth <- stargazer(lm1_selfworth,
-                    lm2_selfworth,
-                    lm3_selfworth,
-                    lm4_selfworth,
-          title = "Regression Results",
-          order = c('Constant', 'treatEF'),
-          omit = c('id104','id105','id106','id108','id109','id111','id112','id113','id114','id118','id122',
-                   'id123','id124','id125','id130','id131','id132','id133','id136','id137','id139','id141',
-                   'id142','id165','id186','id187','id188','id189','id190','id191','id192','id193','id194',
-                   'id209','id213','id214','id215','id216','id217','id218','id219','id220','id221','id226',
-                   'id233','id249','id255','id269','id270','id281','id282','id403','id404','id417','id418',
-                   'id437','id482','id483','id599','id600','id601','id602','id623','id684','id685','id686',
-                   'id687','dummy_2012','dummy_2013','dummy_2014','dummy_2015','dummy_2016','dummy_2017',
-                   'dummy_2018', 'id'
-                  ),
-          add.lines = list(c("ID fixed effects", 'No', 'No', 'Yes', 'Yes'),
-                           c('Time fixed effects', 'No', 'Yes', 'No', 'Yes')),
-          align = TRUE,
-          
-          # this line of code rotates the table by 90 degrees counterclockwise
-          
-          float.env = "sidewaystable")
-@
-
-
+Strinkinlgy, all columns of Table \ref{table:coefficients2} report a negative treatment effect, regardless of the definition of the treatment variable or the inclusion of organization specific controls. In column (1)-(3), the average treatment effect is insignificant. However, the estimated effect is significant if we use the second specification of the treatment status and include controls in column (4). This indicates that participating in the trips program would negatively influence the selfworth of the children and adolescents. This surprising result contradicts our hypothesis that the participation in the trips program positively influences the selfworth of the beneficiaries. As previously mentioned, the number of observation units in both treatment and control group is relatively small. Therefore, this unexpected negative effect of the trips program on selfworth should not be overstated. Moreover, another possible explanation for the observed results could be that the survey questions are answered by employees of an organization and not by the children and adolescents themselves. It might be difficult for the respondents of the survey to assess children specific characteristics, such as selfworth. During our visit in Augsburg, the employees confirmed that it is challenging to evaluate the variables asked in the survey for all participants in the entire social institution, especially with a lot of variation in attendance. One potential solution for this problem could be to directly ask the children and adolescents. Data on the individual level might be more precise because the children could assess themselves better. When using variables on the level of beneficiaries, we might observe a positive effect of the trips program on selfworth.
+As reported in the summary statistics, the outcome variable shows a low variation. This results from the fact that, most of the time, organizations give the answer “all children” and “most children” when asked about the improvement of children’s selfworth. In general, it is more unlikely to find significant effects if the variation of the dependent variable is low. In the survey of the year 2019, CHILDREN already implemented a wider scale by asking for the percentage of beneficiaries that increased their selfworth. As this alternative measuring method is more precise, it might result in a higher variation of answers. Therefore, finding significant effects of the trips program on selfworth might be more likely.
 
 \section{Conclusion}
 
@@ -836,6 +870,70 @@ tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
 % lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
 % elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
 % @
+
+\subsection{A5: DID Regression Results}
+
+The estimated coefficients of equation \ref{didregression} are represented in Table \ref{table:coefficients3} with everyday expertise as the dependent variable and in Table \ref{table:coefficients4} with selfworth as the dependent variable. P-values are in parentheses. We observe decreasing p-values when using the second definition of the treatment variable.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c}
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Everyday Expertise} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF                & $-0.010$  & $-0.166$     & $0.247$   & $0.255$      \\
+                       & $(0.975)$ & $(0.681)$    & $(0.409)$ & $(0.410)$    \\
+subsidy                &           & $0.019$      &           & $0.016$      \\
+                       &           & $(0.181)$    &           & $(0.258)$    \\
+totalCost              &           & $0.001^{**}$ &           & $0.001^{*}$  \\
+                       &           & $(0.048)$    &           & $(0.060)$    \\
+weeklyCooks            &           & $0.166^{**}$ &           & $0.162^{**}$ \\
+                       &           & $(0.022)$    &           & $(0.027)$    \\
+\hline
+ID fixed effects       & $YES$     & $YES$        & $YES$     & $YES$        \\
+Year fixed effects     & $YES$     & $YES$        & $YES$     & $YES$        \\
+Number of observations & $428$     & $410$        & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.490$      & $0.476$   & $0.491$      \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$; $^{**}p<0.05$; $^{*}p<0.1$}}
+\end{tabular}
+\caption{DID Estimation 1}
+\label{table:coefficients3}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c}
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Selfworth} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF                & $-0.474$  & $-0.481$  & $-0.328$  & $-0.442^{*}$ \\
+                       & $(0.126)$ & $(0.125)$ & $(0.185)$ & $(0.085)$    \\
+subsidy                &           & $0.011$   &           & $0.014$      \\
+                       &           & $(0.540)$ &           & $(0.422)$    \\
+totalCost              &           & $0.000$   &           & $0.000$      \\
+                       &           & $(0.575)$ &           & $(0.446)$    \\
+weeklyCooks            &           & $0.036$   &           & $0.037$      \\
+                       &           & $(0.609)$ &           & $(0.591)$    \\
+\hline
+ID fixed effects       & $YES$     & $YES$     & $YES$     & $YES$        \\
+Year fixed effects     & $YES$     & $YES$     & $YES$     & $YES$        \\
+Number of observations & $428$     & $410$     & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$; $^{**}p<0.05$; $^{*}p<0.1$}}
+\end{tabular}
+\caption{DID Estimation 2}
+\label{table:coefficients4}
+\end{center}
+\end{table}
 
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
