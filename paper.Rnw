@@ -307,6 +307,21 @@ Figure \ref{EqualityTimeplots} shows in its upper plot the development of the an
 
 In the bottom plot of figure \ref{EqualityTimeplots} the development of the share of beneficiaries with a broadened understanding for everyday expertise over time is visible. The results are about similar to the previous results of selfworth: Most beneficiaries in most organisations have a growing understanding for everyday expertise. 
 
+\section{Feature Selection}
+
+\subsection{Factor Analysis}
+
+Benefits of reducing dimensionality can be reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{Millenstein.2020, p.677}.
+
+We use imputed data set.
+
+we use the orthogonal rotation technique Varimax, which is recommended in Price (2017, p. 307) when the goal of analysis is to "minimize complexity of factors by maximizing variance of loadings on each factor" 
+We estimate factor scores with the Bartlett method, which is similar to a Maximum Likekelihood estimation, and presented as the most convential one in Eid and Schmidt (2010, p. 291)
+We use maximum likelihood as factoring method
+
+
+\subsection{Double Selection}
+
 \section{Regressions}
 
 \subsection{Empirical Approach} 
@@ -380,9 +395,10 @@ ss = readRDS("./ANALYSIS/Tables/selfworth_scaled.Rds")
 tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")#sw
 ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
 tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds") 
+sfactor = readRDS("./ANALYSIS/Tables/factorselfworthmeals.Rds")
 
-texreg(list(ss, tss, ssI, tssI ), caption = "Association between selfworth and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)" ), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\Model (1): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with improved self-worth in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with improved self-worth in the Trips program, imputed data set, simple linear model, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'SelfworthRegressions', bookmarks = TRUE)
+texreg(list(ss, tss, ssI, tssI, sfactor), caption = "Association between selfworth and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)" ), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\Model (1): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with improved self-worth in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with improved self-worth in the Trips program, imputed data set, simple linear model, estimated with OLS \\\\ Model (5): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'SelfworthRegressions', bookmarks = TRUE)
 @
 
 <<DayToDaySkillsRegressions, echo=FALSE, results='asis', message=FALSE>>=
@@ -390,10 +406,12 @@ ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardizedweig
 tds = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_scaled.lm.Rds")
 dsI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM_scaled.lm.Rds") 
 tdsI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM_scaled.lm.Rds")
+dfactorm = readRDS("./ANALYSIS/Tables/factordaytodayskillsmeals.Rds")
+dfactort = readRDS("./ANALYSIS/Tables/factordaytodayskillstrips.Rds")
 
 
-texreg(list(ds, tds, dsI, tdsI ), caption = "Association between everyday expertise and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)" ), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\ Model (1): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, simple linear model, estimated with OLS\\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'DayToDaySkillsRegressions', bookmarks = TRUE)
+texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association between everyday expertise and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)", "(6)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\ Model (1): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, simple linear model, estimated with OLS\\\\ Model (5): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ Model (6): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'DayToDaySkillsRegressions', bookmarks = TRUE)
 
 
 
@@ -442,9 +460,10 @@ lDGEw = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled_weighted.lm.Rds")
 lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds")
 #extraweighted
 lDGE_iw = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled_weighted.lm.Rds")
+illfactor = readRDS("./ANALYSIS/Tables/lessIllfactor.Rds")
 
-texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw), caption = "Association between healthy meals criterion and beneficiaries being less ill", custom.model.names = c("(1)", "(2)", "(3)","(4)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} Dependent variable: share of beneficiaries who are less frequently ill \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = "HealthRegressions-LessIll", bookmarks = TRUE)
+texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw, illfactor), caption = "Association between healthy meals criterion and beneficiaries being less ill", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt} Dependent variable: share of beneficiaries who are less frequently ill \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ Model (5): imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = "HealthRegressions-LessIll", bookmarks = TRUE)
 @
 
 <<HealthRegressions-DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
@@ -452,9 +471,10 @@ dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 dDGEw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled_weighted.Rds")
 dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
 dDGE_iw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled_weighted.lm.Rds")
+dietaryf = readRDS("./ANALYSIS/Tables/dietaryknowledgefactor.Rds")
 
-texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw), caption = "Association between healthy meals criterion and beneficiaries dietary knowledge", custom.model.names = c("(1)", "(2)", "(3)","(4)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} Dependent variable: share of beneficiaries with expanded dietary knowledge \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS  \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'HealthRegressions-DietaryKnowledge', bookmarks = TRUE)
+texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw, dietaryf), caption = "Association between healthy meals criterion and beneficiaries dietary knowledge", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt} Dependent variable: share of beneficiaries with expanded dietary knowledge \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ Model (5): imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'HealthRegressions-DietaryKnowledge', bookmarks = TRUE)
 @
 
 <<HealthRegressions-AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
@@ -462,14 +482,17 @@ aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
 aDGEw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled_weighted.Rds")
 aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
 aDGE_iw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled_weighted.lm.Rds")
+appreciatef = readRDS("./ANALYSIS/Tables/appreciatehealthyfactor.Rds")
 
-texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Association between healthy meals criterion and  beneficiaries appreciation of a healthy diet", custom.model.names = c("(1)", "(2)", "(3)","(4)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} Dependent variable: share of beneficiaries with increased appreciation for a healthy diet \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'HealthRegressions-AppreciateHealthy')
+texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Association between healthy meals criterion and  beneficiaries appreciation of a healthy diet", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt} Dependent variable: share of beneficiaries with increased appreciation for a healthy diet \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ Model (5): imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'HealthRegressions-AppreciateHealthy')
 @
 
 The previous simple linear models are regressed with metric versions of the survey varibales. Originally, variables which range from none to all are ordinal. To account for this, we present a method to regress those variables according to their original traits. Therefore, we use a cumulative logit model. Selected results for the Meals program are presented in appendix 2 in the tables\ref{lessIllOdds}, \ref{dietaryOdds}, \ref{appreciateOdds}, \ref{selfworthOdds} and \ref{dayToDayOdds}.
 
 
+<<<<<<< HEAD
+=======
 \section{Feature Selection}
 
 \subsection{Factor Analysis}
@@ -486,6 +509,7 @@ We use maximum likelihood as factoring method
 
 \subsection{Double Selection}
 
+>>>>>>> af55806ca517c74fcdbf9b9542cb65743282f0b7
 \section{The Effects of the Trips Program on Participating Beneficiaries}
 
 How do children and adolescents benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of our biggest challenges was determining a possible solution for measuring potential causal effects of the supported programs on the participating beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with their meals program. However, not all organizations receive additional funding to provide the trips program. This fact could be used for applying an empirical approach which determines the effects of the trips program by comparing a treatment with a control group. The aim of this analysis is to test whether the activities offered by the trips program have a positive effect on the participating children, measured through a change in selfworth and everyday expertise. 
@@ -660,8 +684,7 @@ As reported in the summary statistics, the outcome variable shows a low variatio
 
 \subsection{A1: Expanded Health Regression}
 
-In addition to table \ref{HealthRegressions-LessIll} table \ref{expandLessIll} presents the results of an OLS approach with scaled outcomes as well as a WLS approach with scaled outcomes with following control variables: to which extent an organization uses regional products, since when an organization is part of the Lunch program, the real subsidy per beneficiary and the state an organization is located. 
-
+In addition to table \ref{HealthRegressions-LessIll} table \ref{expandLessIll} presents the results of an OLS approach with scaled outcomes as well as a WLS approach with scaled outcomes with following control variables: to which extent an organization uses regional products, since when an organization is part of the Lunch program, the real subsidy per beneficiary and the state an organization is located. In comparison to the simple linear model, there are only small changes in coefficents. 
 
 % <<eqaulity_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 % 
@@ -689,7 +712,7 @@ texreg(list(lm_elDGE, lm_elDGEw, elDGE_i, elDGE_iw), caption = "Regression Resul
 
 \subsection{A2: Cumulative Odds Regression} 
 
-As an option to run a regression on the original ordinal variables, we use the proportional odds version of the cumulative logit from the VGAM package. Equation \ref{PropoddsModel} describes the model setup: 
+As an option to run a regression on the original ordinal variables, we use the proportional odds version of the cumulative logit. Equation \ref{PropoddsModel} describes the model setup: 
 
  
 \begin{equation}
