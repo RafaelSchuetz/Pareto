@@ -1,3 +1,5 @@
+#davor durchlaufen lassen: makegather, control_group, advanced_timeseries
+
 library(ggfortify)
 
 #use fortify to convert ts to ggplot
@@ -57,15 +59,20 @@ ggplot(df_monthlyCooks_control, aes(Year, EverydayExpertise)) + geom_line()
 
 #erstellen der ggplots
 library(ggpubr)
+
 #dayToDaySkills
 
-ggplot(df_dayToDaySkills_treat, aes(Year, EverydayExpertise)) + geom_point() + geom_line(color = "grey0") + 
+ggplot(df_dayToDaySkills_treat, aes(Year, EverydayExpertise)) + 
+  geom_point() + geom_line(color = "grey0") + 
   geom_point(data = df_dayToDaySkills_control, color = "grey") + 
    geom_line(data = df_dayToDaySkills_control, linetype = "dotted", color = "grey10") +
   grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
   geom_smooth(method = "lm", se = FALSE, color = "grey0") +
-  geom_smooth(data =df_dayToDaySkills_control, method="lm", se = FALSE, color = "grey")
+  geom_smooth(data =df_dayToDaySkills_control, method="lm", se = FALSE, color = "grey") +
+  ggtitle("Trend of everyday expertise") + ylab("Everyday Expertise") +
 
+
+  
 
 
 
