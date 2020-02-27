@@ -378,26 +378,11 @@ Figure\\
 
 In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries in both programs, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.
 
-# <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-# 
-# # first, read in all Rds objects that you need
-# 
-# fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
-#  
-# colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
-# 
-# fundamental_dynamics <- xtable(fundamental_dynamics,
-#                                digits = c(0, 0, 1, 1, 0, 0),
-#           caption = "Summary Statistics",
-#           align = "lmmmmm", 
-#           label = "fundamentalDynamics"
-#           )
-# print(fundamental_dynamics, include.rownames = FALSE)
-# @
+
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:32 PM
+% Date and time: Thu, Feb 27, 2020 - 2:46:58 PM
 \begin{table}[!htbp] \centering 
   \caption{} 
   \label{fundamentalDynamics} 
@@ -417,7 +402,7 @@ $2,018$ & $5,102.500$ & $6,911$ & $68$ & $49$ \\
 \end{table} 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:32 PM
+% Date and time: Thu, Feb 27, 2020 - 2:46:58 PM
 \begin{table}[!htbp] \centering 
   \caption{} 
   \label{fundamentalDynamics} 
@@ -430,7 +415,7 @@ Summary Statistics \\
 \end{table} 
  [1] ""                                                                                                           
  [2] "% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu"
- [3] "% Date and time: Thu, Feb 27, 2020 - 1:16:32 PM"                                                            
+ [3] "% Date and time: Thu, Feb 27, 2020 - 2:46:58 PM"                                                            
  [4] "\\begin{table}[!htbp] \\centering "                                                                         
  [5] "  \\caption{} "                                                                                             
  [6] "  \\label{fundamentalDynamics} "                                                                            
@@ -450,7 +435,7 @@ Summary Statistics \\
 [20] "\\end{table} "                                                                                              
 [21] ""                                                                                                           
 [22] "% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu"
-[23] "% Date and time: Thu, Feb 27, 2020 - 1:16:32 PM"                                                            
+[23] "% Date and time: Thu, Feb 27, 2020 - 2:46:58 PM"                                                            
 [24] "\\begin{table}[!htbp] \\centering "                                                                         
 [25] "  \\caption{} "                                                                                             
 [26] "  \\label{fundamentalDynamics} "                                                                            
@@ -902,7 +887,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:40 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:06 PM
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -1046,7 +1031,7 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:40 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:07 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Less Ill} 
@@ -1067,7 +1052,7 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:40 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:07 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Dietary Knowledge} 
@@ -1088,7 +1073,7 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:40 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:07 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Appreciate Healthy} 
@@ -1109,7 +1094,7 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Selfworth} 
@@ -1130,7 +1115,7 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Everyday expertise} 
@@ -1165,7 +1150,7 @@ Table \ref{partitiontrips} shows the partitioned results for the variables of th
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
 \begin{table}[!htbp] \centering 
   \caption{} 
   \label{partitionmeals} 
@@ -1180,7 +1165,7 @@ Information, Meals & 29 & 0.670 & 0.270 & 0 & 0.4 & 1 & 1 \\
 \end{table} 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
 \begin{table}[!htbp] \centering 
   \caption{} 
   \label{partitionmeals} 
@@ -1193,7 +1178,7 @@ Partition of outcomes, Meals \\
 \end{table} 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
 \begin{table}[!htbp] \centering 
   \caption{} 
   \label{partitiontrips} 
@@ -1208,7 +1193,7 @@ Information, Trips & 20 & 0.834 & 0.215 & 0 & 0.6 & 1 & 1 \\
 \end{table} 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+% Date and time: Thu, Feb 27, 2020 - 2:47:08 PM
 \begin{table}[!htbp] \centering 
   \caption{} 
   \label{partitiontrips} 
