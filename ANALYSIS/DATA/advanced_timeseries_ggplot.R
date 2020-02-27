@@ -69,10 +69,24 @@ ggplot(df_dayToDaySkills_treat, aes(Year, EverydayExpertise)) +
   grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
   geom_smooth(method = "lm", se = FALSE, color = "grey0") +
   geom_smooth(data =df_dayToDaySkills_control, method="lm", se = FALSE, color = "grey") +
-  ggtitle("Trend of everyday expertise") + ylab("Everyday Expertise") 
+  ggtitle("Trend of everyday expertise") + ylab("Everyday Expertise")
+  
 
 
+#versuch, legende hinzuzufügen
 
+
+ggplot(df_dayToDaySkills_treat, aes(Year, EverydayExpertise)) + 
+  geom_point() + 
+  geom_line(color = "grey0", aes(x=Year, y=EverydayExpertise, color="Treatment")) + 
+  geom_point(data = df_dayToDaySkills_control, color = "grey") + 
+  geom_line(data = df_dayToDaySkills_control, 
+            linetype = "dotted", color = "grey10", aes(x=Year, y=EverydayExpertise, color="Control")) +
+  grids(axis = c("x"), color = "grey92", size = NULL, linetype = NULL) +
+  geom_smooth(method = "lm", se = FALSE, color = "grey0") +
+  geom_smooth(data =df_dayToDaySkills_control, method="lm", se = FALSE, color = "grey") +
+  ggtitle("Trend of everyday expertise") + ylab("Everyday Expertise") +
+  scale_color_discrete(name="legend")
 
 
 
