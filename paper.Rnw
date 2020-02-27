@@ -624,7 +624,7 @@ The dataset contains several helpful features that made our analysis easier. For
 
 \subsection{A1: Expanded Health Regression}
 
-In addition to table \ref{HealthRegressions-LessIll} table \ref{expandLessIll} presents the results of an OLS approach with scaled outcomes as well as a WLS approach with scaled outcomes with following control variables: to which extent an organization uses regional products, since when an organization is part of the Lunch program, the real subsidy per beneficiary and the state an organization is located. In comparison to the simple linear model, there are only small changes in coefficents. 
+In addition to table \ref{HealthRegressions-LessIll}, table \ref{expandLessIll} presents the results of an OLS approach with scaled outcomes as well as a WLS approach with scaled outcomes with following control variables: to which extent an organization uses regional products, since when an organization is part of the Lunch program, the real subsidy per beneficiary and the state an organization is located. In comparison to the simple linear model, there are only small changes in coefficents. 
 
 % <<eqaulity_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 % 
@@ -714,15 +714,17 @@ stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Association o
 
 \subsection{A3: Partition}
 
-In addition to the factor analysis which is described in section 6, we would like to introduce to a another dimensionality reduction method called partition. This method was developped by Millstein et. al in the context of genome analysis. 
+In addition to factor analysis, we have conducted another dimensionality reduction exercise called partition. This method is due to \textcite{Millstein.2020}. The authors propose it in the context of genome analysis, where high dimensionality is a perennnial statistical problem. 
 
-The partition approach partitions data into subsets of related features. It then  summarizes each subset into one new feature. By that, it defines a surjective mapping \parencite[p.676]{Millstein.2020}. The function is implemented using the arithmetic mean. In contrast to methods like the factor analysis, if a feature is identified to be related to a response of interest, the exact subset of features that are implicated to the surjective mapping is known without ambiguity. What is as well different is the information loss constraint. It lets the extent of dependences among features on a local level guide the extent to which the number of features is reduced \parencite[p.677]{Millstein.2020}. 
+Unlike exploratory factor analysis, the partition approach is deliberately designed to establish a one-to-one correspondence between the measured variables and presumed underlying variables. This means that the set of all variables is partitioned into subsets. A subset may contain only one variable. The deterministic partition algorithm is constructed in such a way as to ensure that there is a high correlation within subsets and a small correlation between. One can influence the number of subsets by manipulating a threshold limiting information loss. 
 
-In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the featured variables in a reduced variable (or a summarizing one) for future surveys to avoid redundancy.
+We use a threshold of 0.4, which means that the variables in each subset explain each other to at least 40 percent. It might be meaningful to decide to use only one of the featured variables in a reduced variable (or a summarizing one) for future surveys to avoid redundancy.
 
-Table \ref{partitionmeals} shows the obtained results of the dimensionality reduction for the variables of the Lunch program. It displays 10 variables which haven't been reduced, and 5 reduced variables with a number of featured variables.
+Table \ref{partitionmeals} shows the obtained results of the partition method for the variables of the Lunch program. It displays 10 variables which have not been reduced, and 5 reduced variables with a number of featured variables.
 
-Table \ref{partitiontrips} shows the partitioned results for the variables of the Trips program. Here, 12 variables haven't been reduced, and a number of featured variables are summarized to 3 reduced variables. 
+Table \ref{partitiontrips} does the same for the variables of the Trips program. Here, 12 variables have not been reduced, and a number of featured variables are summarized to 3 reduced variables. 
+
+It is our impression that the partition technique results in a highly intuitive dimensionality reduction.
 
 <<Partition, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
@@ -752,30 +754,9 @@ xtable(partition_trips,
 # print(partition_meals, partition_trips, include.rownames = FALSE)
 @
 
-\subsection{A4: OLS Regressions}
 
 
-% # <<equality_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-% # 
-% # lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
-% # lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
-% # ts = readRDS("./ANALYSIS/Tables/selfworthTrips.lm.Rds")
-% # td = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips.lm.Rds")
-% # sI = readRDS("./ANALYSIS/Tables/selfworth_IM.lm.Rds") #weighted
-% # dI = readRDS("./ANALYSIS/Tables/dayToDaySkills_IM.lm.Rds") #weighted
-% # tsI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM.lm.Rds")
-% # tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
-% # @
-
-% <<lessIll_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-% #expanded model less ill 
-% 
-% lm_elDGE = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled.Rds")
-% lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
-% elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
-% @
-
-\subsection{A5: DID Regression Results}
+\subsection{A4: DID Regression Results}
 
 The estimated coefficients of equation \ref{didregression} are represented in Table \ref{table:coefficients3} with everyday expertise as the dependent variable and in Table \ref{table:coefficients4} with selfworth as the dependent variable. P-values are in parentheses. We observe decreasing p-values when using the second definition of the treatment variable.
 
