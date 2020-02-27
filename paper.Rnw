@@ -678,6 +678,13 @@ As reported in the summary statistics, the outcome variable shows a low variatio
 
 \section{Conclusion}
 
+Until now CHILDREN only influences whether organizations are supported and how much funding they receive to provide both the trips and the meals program. However, we find a strong positive correlation between the healthiness of the meals that organizations serve and health related outcomes of children and adolescents. During our visit of an organization in Augsburg, the employees told us that both the children and adolescents appreciate the healthy food and demand even more healthier meals. This might be one possible way for CHILDREN to improve the beneficiaries’ health without the necessity of spending particularly more money. In the yearly meetings, they could point out our results and mention their appreciation of the provision of healthy food. Moreover, CHILDREN could request that the organizations fulfill the DGE criteria for the provided meals. Due to the good relationship between CHILDREN and the supported social institutions, we think that the organizations are open to implementing this proposal.
+
+On the basis of the processed dataset, we cannot measure the causal effect of the trips program on everyday expertise and selfworth of beneficiaries. However, measuring significant effects of CHILDREN’s trips program might be possible if the data structure will be adjusted. At this point, we recommend to directly ask the beneficiaries to answer the children specific questions of the survey. During our first meeting with CHILDREN we were informed that they already have collected data from children and adolescents directly, that caused additional workload. For instance, the organizations need to obtain the permission of the parents. Nevertheless, the individual level data are perhaps more precise.
+
+The dataset contains several helpful features that made our analysis easier. For example, CHILDREN has asked for many survey questions from the supported organizations in every year across the whole observation period. Furthermore, the dataset includes variables regarding increased selfworth and broadened everyday expertise for both programs allowing a comparison of the meals and the trips program. Hence, we recommend to continue asking the same questions in every year and selected variables for both programs. 
+
+
 \printbibliography
 
 \section{Appendix}
