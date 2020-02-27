@@ -15,6 +15,7 @@ library(tidyselect)
 library(imputeMissings)
 library(zoo)
 library(rlang)
+library(estimatr)
 
 # Gather and cleanup raw data files
 

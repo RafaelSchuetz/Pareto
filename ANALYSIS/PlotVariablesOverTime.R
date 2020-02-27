@@ -13,7 +13,7 @@ responset= names(mergedData)
 # [5:213]
 # expl= names(mergedData)[4]
 
-responset = purrr::set_names(response)
+responset = purrr::set_names(responset)
 responset
 
 explt = purrr::set_names("year")

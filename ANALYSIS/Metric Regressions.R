@@ -22,7 +22,17 @@ texreg(mealsNo_sub.lm)
 
 saveRDS(mealsNo_sub.lm,"./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 
+#mealsno with control 
 
+mealsNo_sub_control.lm <- lm_robust(mealsNo ~ realSubsidy + eatersPerMealNo, data = mergedData)%>%
+  extract.lm_robust(include.ci = FALSE)
+summary(mealsNo_sub_control.lm) 
+
+texreg(mealsNo_sub_control.lm)
+
+saveRDS(mealsNo_sub_control.lm,"./ANALYSIS/Tables/mealsNo_sub_control.lm.Rds")
+
+#trips without control
 tripsNo_sub.lm <- lm_robust(tripsNo ~ realTripsSubsidy, data = mergedData)%>%
   extract.lm_robust(include.ci = FALSE)
 summary(tripsNo_sub.lm)
@@ -30,6 +40,16 @@ summary(tripsNo_sub.lm)
 texreg(tripsNo_sub.lm)
 
 saveRDS(tripsNo_sub.lm,"./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
+
+#trips with control 
+
+tripsNo_sub_control.lm <- lm_robust(tripsNo ~ realTripsSubsidy + tripsKidsNo, data = mergedData)%>%
+  extract.lm_robust(include.ci = FALSE)
+summary(tripsNo_sub_control.lm)
+
+texreg(tripsNo_sub_control.lm)
+
+saveRDS(tripsNo_sub_control.lm,"./ANALYSIS/Tables/tripsNo_sub_control.lm.Rds")
 
 
 #dataset with excluded outliers: mealsNo / tripsNo
@@ -42,6 +62,17 @@ texreg(mealsNo_sub_ex.lm)
 
 saveRDS(mealsNo_sub_ex.lm,"./ANALYSIS/Tables/mealsNo_sub_ex.lm.Rds")
 
+#outliers meals with control
+
+mealsNo_sub_ex_control.lm <- lm_robust(mealsNo ~ realSubsidy + eatersPerMeal, data = mealsNoOutliers)%>%
+  extract.lm_robust(include.ci = FALSE)
+summary(mealsNo_sub_ex_control.lm)
+
+texreg(mealsNo_sub_ex_control.lm)
+
+saveRDS(mealsNo_sub_ex_control.lm,"./ANALYSIS/Tables/mealsNo_sub_ex_control.lm.Rds")
+
+#outlierstrips without control
 
 tripsNo_sub_ex.lm <- lm_robust(tripsNo ~ realTripsSubsidy, data = tripsNoOutliers)%>%
   extract.lm_robust(include.ci = FALSE)
@@ -51,7 +82,15 @@ texreg(tripsNo_sub_ex.lm)
 
 saveRDS(tripsNo_sub_ex.lm,"./ANALYSIS/Tables/tripsNo_sub_ex.lm.Rds")
 
+#outliers trips with control
 
+tripsNo_sub_ex_control.lm <- lm_robust(tripsNo ~ realTripsSubsidy + tripsKidsNo, data = tripsNoOutliers)%>%
+  extract.lm_robust(include.ci = FALSE)
+summary(tripsNo_sub_ex_control.lm)
+
+texreg(tripsNo_sub_ex_control.lm)
+
+saveRDS(tripsNo_sub_ex_control.lm,"./ANALYSIS/Tables/tripsNo_sub_ex_control.lm.Rds")
 
 #datset: mergedDataImputeInterpolation
 
