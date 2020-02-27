@@ -591,7 +591,7 @@ We use maximum likelihood as factoring method
 
 \subsection{Double Selection}
 
-\section{The effects of the trips program on participating beneficiaries}
+\section{The Effects of the Trips Program on Participating Beneficiaries}
 
 How do children and adolescents benefit from visiting social institutions that CHILDREN supports financially? So far this question could not be empirically validated. Hence, one of our biggest challenges was determining a possible solution for measuring potential causal effects of the supported programs on the participating beneficiaries. During the first meeting with CHILDREN, Wiltrud de Haan presented relevant information that CHILDREN supports all organizations with their meals program. However, not all organizations receive additional funding to provide the trips program. This fact could be used for applying an empirical approach which determines the effects of the trips program by comparing a treatment with a control group. The aim of this analysis is to test whether the activities offered by the trips program have a positive effect on the participating children, measured through a change in selfworth and everyday expertise. 
 
