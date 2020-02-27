@@ -20,7 +20,7 @@ dfFAMealsPlus <- mergedDataImputeInterpolation %>%
 dfFAMeals <- dfFAMealsPlus %>% 
   dplyr::select(-'realSubsidyPerBeneficiary')
 
-nobsFA <- nrow(dfFAMeals)
+nobsFAMeals <- nrow(dfFAMeals)
 
 # General correlation matrix Meals
 
@@ -50,152 +50,87 @@ highCorrelationsMeals <- correlationMatrixMealsLong %>%  arrange(desc(correlatio
 dfFA_Selfworth_RealSubsidyPerBeneficiary <- dfFAMeals %>% 
   dplyr::select(-'selfworth_scaled')
 
-selfWorth_RealSubsidyPerBeneficiary <- dfFAMealsPlus %>% 
+selfworth_RealSubsidyPerBeneficiary <- dfFAMealsPlus %>% 
   dplyr::select(c('selfworth_scaled', 'realSubsidyPerBeneficiary'))
 
 correlationMatrix_Selfworth_RealSubsidyPerBeneficiary <- hetcor(dfFA_Selfworth_RealSubsidyPerBeneficiary, ML=TRUE, use = "pairwise.complete.obs")
 
-numberFactors_Selfworth_RealSubsidyPerBeneficiary <- fa.parallel(correlationMatrix_Selfworth_RealSubsidyPerBeneficiary$correlations, fm = 'ml', fa = 'fa', n.obs = nobsFA)
+numberFactors_Selfworth_RealSubsidyPerBeneficiary <- fa.parallel(correlationMatrix_Selfworth_RealSubsidyPerBeneficiary$correlations, fm = 'ml', fa = 'fa', n.obs = nobsFAMeals)
 
-FA_Selfworth_RealSubsidyPerBeneficiary <- fa(dfFA_Selfworth_RealSubsidyPerBeneficiary, nfactors = numberFactors_Selfworth_RealSubsidyPerBeneficiary$nfact, scores = 'Bartlett', n.obs = nobsFA, rotate = "varimax", fm = "ml")
+FA_Selfworth_RealSubsidyPerBeneficiary <- fa(dfFA_Selfworth_RealSubsidyPerBeneficiary, nfactors = numberFactors_Selfworth_RealSubsidyPerBeneficiary$nfact, scores = 'Bartlett', n.obs = nobsFAMeals, rotate = "varimax", fm = "ml")
 
 scores_Selfworth_RealSubsidyPerBeneficiary <- data.frame(FA_Selfworth_RealSubsidyPerBeneficiary$scores)
 
-selfWorth_RealSubsidyPerBeneficiary_Factors <- cbind.data.frame(scores_Selfworth_RealSubsidyPerBeneficiary, selfWorth_RealSubsidyPerBeneficiary)
+selfworth_RealSubsidyPerBeneficiary_Factors <- cbind.data.frame(scores_Selfworth_RealSubsidyPerBeneficiary, selfworth_RealSubsidyPerBeneficiary)
 
-# --- Factor analysis for later regression: lessIll_scaled vs. DGECriteriaNoScaled
+# --- Factor analysis for later regression: dayToDaySkills_scaled vs. realSubsidyPerBeneficiary
 
-DGECriteriaNolessIll <- c('DGECriteriaNoScaled', 'lessIll_scaled')
+dfFA_dayToDaySkills_RealSubsidyPerBeneficiary <- dfFAMeals %>% 
+  dplyr::select(-'dayToDaySkills_scaled')
 
+dayToDaySkills_RealSubsidyPerBeneficiary <- dfFAMealsPlus %>% 
+  dplyr::select(c('dayToDaySkills_scaled', 'realSubsidyPerBeneficiary'))
 
-ordinalVariablesDGECriteriaNolessIll <- dfFAMeals %>% 
-  dplyr::select(-DGECriteriaNolessIll)
+correlationMatrix_dayToDaySkills_RealSubsidyPerBeneficiary <- hetcor(dfFA_dayToDaySkills_RealSubsidyPerBeneficiary, ML=TRUE, use = "pairwise.complete.obs")
 
-lessIll_DGECriteriaNo <- dfFAMeals %>% 
-  dplyr::select(DGECriteriaNolessIll) %>% 
-  data.frame()
+numberFactors_dayToDaySkills_RealSubsidyPerBeneficiary <- fa.parallel(correlationMatrix_dayToDaySkills_RealSubsidyPerBeneficiary$correlations, fm = 'ml', fa = 'fa', n.obs = nobsFAMeals)
 
-# with ML=TRUE, hetcor() takes very long to compute
-# https://john-uebersax.com/stat/tetra.htm
-# latent correlations better name than polychoric correlations
-# pairwise.complete.obs. considered dangerous
-# https://www.r-bloggers.com/pairwise-complete-correlation-considered-dangerous/
+FA_dayToDaySkills_RealSubsidyPerBeneficiary <- fa(dfFA_dayToDaySkills_RealSubsidyPerBeneficiary, nfactors = numberFactors_dayToDaySkills_RealSubsidyPerBeneficiary$nfact, scores = 'Bartlett', n.obs = nobsFAMeals, rotate = "varimax", fm = "ml")
 
-correlationMatrixMeals <- hetcor(dfFAMeals, ML=FALSE, use = "pairwise.complete.obs")
+scores_dayToDaySkills_RealSubsidyPerBeneficiary <- data.frame(FA_dayToDaySkills_RealSubsidyPerBeneficiary$scores)
 
-# hetcor() creates many warnings, either "In log(P) : NaNs wurden erzeugt" or "In polychor(x, y, ML = ML, std.err = std.err) : 1 column with zero marginal removed"
+dayToDaySkills_RealSubsidyPerBeneficiary_Factors <- cbind.data.frame(scores_dayToDaySkills_RealSubsidyPerBeneficiary, dayToDaySkills_RealSubsidyPerBeneficiary)
 
-# select all correlations above a threshold
-## transform correlation matrix
-## https://stackoverflow.com/questions/28035001/transform-correlation-matrix-into-dataframe-with-records-for-each-row-column-pai
-## print cases with correlations above a threshold
-## https://stackoverflow.com/questions/49510472/print-cases-with-correlations-above-a-threshold
+# Factor analysis: lessIll_scaled vs. DGECriteriaNoScaled
 
-correlationMatrixMealsLong <- data.frame(variable1=rownames(correlationMatrixMeals$correlations)[row(correlationMatrixMeals$correlations)[upper.tri(correlationMatrixMeals$correlations)]],
-                                         variable2=colnames(correlationMatrixMeals$correlations)[col(correlationMatrixMeals$correlations)[upper.tri(correlationMatrixMeals$correlations)]],
-                                         correlation=correlationMatrixMeals$correlations[upper.tri(correlationMatrixMeals$correlations)])
-highCorrelationsMeals <- correlationMatrixMealsLong %>%  arrange(desc(correlation)) %>% filter(abs(correlation)>0.5)
+dfFA_lessIll_DGECriteriaNo <- dfFAMeals %>% 
+  dplyr::select(-c('lessIll_scaled', 'DGECriteriaNoScaled'))
 
-# use fa.parallel to estimate optimal number of factors
-# https://www.promptcloud.com/blog/exploratory-factor-analysis-in-r/
+lessIll_DGECriteriaNo <- dfFAMealsPlus %>% 
+  dplyr::select(c('lessIll_scaled', 'DGECriteriaNoScaled'))
 
-numberFactorsMeals <- fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = nrow(dfFAMeals))
+correlationMatrix_lessIll_DGECriteriaNo <- hetcor(dfFA_lessIll_DGECriteriaNo, ML=TRUE, use = "pairwise.complete.obs")
 
-# fa.parallel(correlationMatrixMeals$correlations, fm = 'ml', fa = 'fa', n.obs = 300) suggests that the number of factors =  9
+numberFactors_lessIll_DGECriteriaNo <- fa.parallel(correlationMatrix_lessIll_DGECriteriaNo$correlations, fm = 'ml', fa = 'fa', n.obs = nobsFAMeals)
 
-# perform exploratory factor analysis on these variables 
+FA_lessIll_DGECriteriaNo <- fa(dfFA_lessIll_DGECriteriaNo, nfactors = numberFactors_lessIll_DGECriteriaNo$nfact, scores = 'Bartlett', n.obs = nobsFAMeals, rotate = "varimax", fm = "ml")
 
-names(dfFAMeals)
+scores_lessIll_DGECriteriaNo <- data.frame(FA_lessIll_DGECriteriaNo$scores)
 
-# this is the factor analysis
+lessIll_DGECriteriaNo_Factors <- cbind.data.frame(scores_lessIll_DGECriteriaNo, lessIll_DGECriteriaNo)
 
-factorAnalysisMeals <- fa(dfFAMeals, nfactors = numberFactorsMeals$nfact, scores = "regression", n.obs = nrow(dfFAMeals), rotate = "varimax", fm = "ml")
+#factor analysis dietary knowledge_scaled vs DGECriteriaNoScaled
 
-# show factor loadings
+dfFA_dietaryKnowledge_DGECriteriaNo <- dfFAMeals %>% 
+  dplyr::select(-c('dietaryKnowledge_scaled', 'DGECriteriaNoScaled'))
 
-loadings(factorAnalysisMeals)
+dietaryKnowledge_DGECriteriaNo <- dfFAMealsPlus %>% 
+  dplyr::select(c('dietaryKnowledge_scaled', 'DGECriteriaNoScaled'))
 
-# save factor scores
+correlationMatrix_dietaryKnowledge_DGECriteriaNo <- hetcor(dfFA_dietaryKnowledge_DGECriteriaNo, ML=TRUE, use = "pairwise.complete.obs")
 
-scoresMeals <- data.frame(factorAnalysisMeals$scores)
+numberFactors_dietaryKnowledge_DGECriteriaNo <- fa.parallel(correlationMatrix_dietaryKnowledge_DGECriteriaNo$correlations, fm = 'ml', fa = 'fa', n.obs = nobsFAMeals)
 
-# append variables lessIll_scaled and DGECriteria_scaled to matrix with factor scores
+FA_dietaryKnowledge_DGECriteriaNo <- fa(dfFA_dietaryKnowledge_DGECriteriaNo, nfactors = numberFactors_dietaryKnowledge_DGECriteriaNo$nfact, scores = 'Bartlett', n.obs = nobsFAMeals, rotate = "varimax", fm = "ml")
 
-lessIll_DGECriteriaNo_scoresMeals <- cbind.data.frame(scoresMeals, lessIll_DGECriteriaNo)
+scores_dietaryKnowledge_DGECriteriaNo <- data.frame(FA_dietaryKnowledge_DGECriteriaNo$scores)
 
-# show first couple of values of each variable
+dietaryKnowledge_DGECriteriaNo_Factors <- cbind.data.frame(scores_dietaryKnowledge_DGECriteriaNo, dietaryKnowledge_DGECriteriaNo)
 
-str(lessIll_DGECriteriaNo_scoresMeals)
+# factor analysis appreciateHealthy_scaled vs. DGECriteriaNoScaled
 
-# regress lessIll_scaled on DGECriteriaNoScaled, with factors as controls
+dfFA_appreciateHealthy_DGECriteriaNo <- dfFAMeals %>% 
+  dplyr::select(-c('appreciateHealthy_scaled', 'DGECriteriaNoScaled'))
 
-lm_lessIll_DGECriteriaNo_scoresMeals <- lm(lessIll_scaled ~ DGECriteriaNoScaled + ML1 + ML2 + ML3, lessIll_DGECriteriaNo_scoresMeals)
+appreciateHealthy_DGECriteriaNo <- dfFAMealsPlus %>% 
+  dplyr::select(c('appreciateHealthy_scaled', 'DGECriteriaNoScaled'))
 
-# show summary of linear model fit
+correlationMatrix_appreciateHealthy_DGECriteriaNo <- hetcor(dfFA_appreciateHealthy_DGECriteriaNo, ML=TRUE, use = "pairwise.complete.obs")
 
-summary(lm_lessIll_DGECriteriaNo_scoresMeals)
+numberFactors_appreciateHealthy_DGECriteriaNo <- fa.parallel(correlationMatrix_appreciateHealthy_DGECriteriaNo$correlations, fm = 'ml', fa = 'fa', n.obs = nobsFAMeals)
 
-# factorAnalysisMeals2 <- fa(ordinalVariablesMeals, nfactors = 2, scores="regression", n.obs = 48, rotate = "varimax", fm = "ml")
-# if you do not use fm = "ml", these warnings appear: 
-# Warnmeldungen:
-# 1: In fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs,  :
-# The estimated weights for the factor scores are probably incorrect.  Try a different factor score estimation method.
-# 2: In fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate,  :
-# An ultra-Heywood case was detected.  Examine the results carefully
+FA_appreciateHealthy_DGECriteriaNo <- fa(dfFA_appreciateHealthy_DGECriteriaNo, nfactors = numberFactors_appreciateHealthy_DGECriteriaNo$nfact, scores = 'Bartlett', n.obs = nobsFAMeals, rotate = "varimax", fm = "ml")
 
+scores_appreciateHealthy_DGECriteriaNo <- data.frame(FA_appreciateHealthy_DGECriteriaNo$scores)
 
-
-
-#ordinalVariablesMeals <- ordinalVariablesMeals[,all(is.na(ordinalVariablesMeals))]
-# %>% 
-#          select_if(all(!is.na(.))) %>% 
-#            data.matrix()
-
-#ordinalVariablesMeals <- ordinalVariablesMeals[,colSums(is.na(ordinalVariablesMeals)) == 0]
-
-# only select variables that were have at least one year of collection in common with all other variables
-
-# ordinalVariablesTrips <- mergedData %>% 
-#   select(tripsSuggestions,
-#          tripsDecisions,
-#          tripsOrganization,
-#          tripsCostCalculation, # only collected for 2018
-#          tripsBudget,
-#          tripsMoney, # only collected for 2018
-#          tripsReview,
-#          tripsPublicTransport,
-#          tripsMobility,
-#          tripsNewPlaces,
-#          tripsNewCommunities,
-#          tripsNewIdeas,
-#          tripsAdditionalActivities,
-#          tripsSpecificSkills,
-#          tripsDayToDaySkills,
-#          tripsSuccess, # only collected for 2018
-#          tripsSelfEfficacy, # only collected for 2018
-#          tripsSelfworth,
-#          tripsSocialSkills,
-#          tripsFrustrationTolerance, # only collected for 2018
-#          tripsCHILDRENSuggestions)
-#   #        tripsReached,
-#   #        tripsKnowledge,
-#   #        tripsBehavior,
-#   #        claimBTP,
-#   #        benefitBTP)
-# 
-# correlationMatrixTrips <- hetcor(ordinalVariablesTrips, use = "pairwise.complete.obs")
-# 
-# correlationMatrixTripsLong <- data.frame(variable1=rownames(correlationMatrixTrips$correlations)[row(correlationMatrixTrips$correlations)[upper.tri(correlationMatrixTrips$correlations)]], 
-#                                          variable2=colnames(correlationMatrixTrips$correlations)[col(correlationMatrixTrips$correlations)[upper.tri(correlationMatrixTrips$correlations)]], 
-#                                          correlation=correlationMatrixTrips$correlations[upper.tri(correlationMatrixTrips$correlations)])
-# highCorrelationsTrips <- correlationMatrixTripsLong %>%  arrange(desc(correlation)) %>% filter(abs(correlation)>0.5)
-# 
-# numberFactorsTrips <- fa.parallel(correlationMatrixTrips$correlations, fm = 'ml', fa = 'fa', n.obs = 200)
-# 
-# factorAnalysisTrips <- fa(correlationMatrixTrips$correlations, nfactors = 4, scores="tenBerge", n.obs = 200, rotate = "varimax", fm = "ml")
-
-
-# factor analysis assuming variables are metric, standardized
-
-
-
+appreciateHealthy_DGECriteriaNo_Factors <- cbind.data.frame(scores_appreciateHealthy_DGECriteriaNo, appreciateHealthy_DGECriteriaNo)

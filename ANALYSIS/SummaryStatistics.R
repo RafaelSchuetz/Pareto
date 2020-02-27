@@ -104,5 +104,7 @@ organisationsbeneficaries <- organisations_beneficiaries %>%
 
 organisationsbeneficaries[1,3] <- NA
 
-fundamental_dynamics = saveRDS(organisationsbeneficaries,"./ANALYSIS/Tables/fundamental_dynamics.Rds")
+organisationsbeneficaries <- data.frame(organisationsbeneficaries)
+
+saveRDS(organisationsbeneficaries,"./ANALYSIS/Tables/fundamental_dynamics.Rds")
 
