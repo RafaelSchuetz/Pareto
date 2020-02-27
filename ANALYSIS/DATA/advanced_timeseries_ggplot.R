@@ -17,7 +17,7 @@ df_dayToDaySkills_treat <- fortify(ts_dayToDaySkills_treat)
 #immernoch ts
 
 
-plot_dayToDaySkills_treat <- ggplot(df_dayToDaySkills_treat, aes(Index, Data)) + geom_line()
+plot_dayToDaySkills_treat <- ggplot(df_dayToDaySkills_treat, aes(Index, Data)) + geom_line() 
 
 # as.data.frame(ts_dayToDaySkills_treat, row.names = NULL)
 # 

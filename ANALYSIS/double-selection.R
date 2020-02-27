@@ -21,6 +21,7 @@ datasetInterpolation <- mergedDataImputeInterpolation %>%
 # loop for regressions with varying outcome and features
 
 flexibleRegression <- function(response, predictor, dataset) {
+  dataset <- dataset %>% 
   x <- as.matrix(dataset[, !(names(dataset) %in% response)])
   y <- as.matrix(dataset[, response])
   d <- as.matrix(dataset[, predictor])
@@ -30,7 +31,7 @@ flexibleRegression <- function(response, predictor, dataset) {
 DF_DS <- mergedDataImputeInterpolation %>% 
   drop_na()
 
-DSSelfworthRealSubsidy <- flexibleRegression("selfworth", "realSubsidy", mergedDataImputeInterpolation)
+DSSelfworthRealSubsidy <- flexibleRegression("selfworth", "realSubsidy", datasetInterpolation)
 
 DSDayToDaySkillsRealSubsidy <- flexibleRegression("dayToDaySkills", "realSubsidy", mergedDataImputeAll)
 

@@ -1,11 +1,5 @@
 #Real Subsidy Time Trend Total &Median
 
-library(dplyr)
-library(estimatr)
-library(tidyverse)
-library(ggplot2)
-library(stats)
-library(cowplot)
 
 # Inititial summary statistics about 
 

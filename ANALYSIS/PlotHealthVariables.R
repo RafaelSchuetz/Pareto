@@ -1,8 +1,3 @@
-library(ggplot2)
-library(cowplot)
-library(purrr)
-library(dplyr)
-
 #https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/
 
 #createdataset
