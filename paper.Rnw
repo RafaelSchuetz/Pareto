@@ -635,7 +635,6 @@ The fact that all organizations within the control group did not answer the trip
 
 \subsubsection{Graphical Evidence}
 
-<<<<<<< HEAD
 \begin{figure}
   \caption{Trend in share of beneficiaries with improved self-worth and with broadened everyday expertise}
   \label{LineDisp}
