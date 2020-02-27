@@ -139,7 +139,7 @@ Ludwig-Maximilians-Universität Munich
 \listoffigures
 
 \begin{abstract} 
-This study presents the results of the analysis of the data of effects of the non-profit organisation 'CHILDREN for a better world ev'. We obtain null-results associated to the subsidy CHILDREN provides for its two flagship programs, Meals and Trips, and selected outcome variables. We find a strong but only partially robust connection between health relevant outcomes and the index of healthy diet criteria fulfilled in organization's menus. 
+This study describes the analysis of the data from the non-profit organisation 'CHILDREN for a better world e.V.'. We obtain null-results associated to the subsidy CHILDREN provides for its two flagship programs, Meals and Trips, and selected outcome variables. We find a strong but only partially robust connection between health relevant outcomes and the index of healthy diet criteria fulfilled in organization's menus. Using a differences-in-differences strategy, we cannot show a significant effect of participating in the trips program on the everyday expertise and selfworth of the beneficiaries.
 \end{abstract}
 
 \section{Introduction}
