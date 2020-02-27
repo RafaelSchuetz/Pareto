@@ -484,12 +484,9 @@ Now, we turn to a predictor that CHILDREN does not directly influence until now,
 
 In its yearly surveys, CHILDREN asks about three variables closely related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet.
 
-Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.
+Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis displays the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none. For example, if an organization says that most beneficiaries are healthier, then this would be coded as most. The highest amount of healthy criteria to be fulfilled is x. 
 
-We use standardized versions of these variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
-By estimating these models with ordinary least squares, we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares, using the number of beneficiaries as weights. 
-
-
+All plots of Figure \ref{Health_Plots} show that most organizations suffice about 5 to 10 healthy food criteria. The largest part of criterion values are associated with most beneficiaries being less Ill, having a growing appreciation for a healthy diet or having increased their knowledge about what constituted a healthy diet. It secondly becomes visible that the healthy criterion only exchanges with a growing appreciation for a healthy diet or an increasing dietary knowlege for all beneficiaries (which is the second most stated criterion in the two bottom plots), but not with all beneficaries being more healthy. However, for the variable less ill, the least data is availabe. Overall, the criteria, even a few, seem to have a positive relationship with beneficiaries health relevant variables. This connection is empiricaly examined in regressions \ref{HealthRegressions-LessIll}, \ref{HealthRegressions-DietaryKnowledge} and \ref{HealthRegressions-AppreciateHealthy}.
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -502,7 +499,10 @@ print(Health_percentageplots)
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
-In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
+We use standardized versions of the health related variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
+By estimating these models with ordinary least squares, we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares, using the number of beneficiaries as weights.
+
+In Table \ref{HealthRegressions-LessIll}, after weighting the regression for the original data set, the coefficent rises slightly but is becoming less statistically significant. An increase of the healthy food criterion by one standard deviation is associated with an increase in beneficiaris being more healthy by 0.35 standard deviations. Regressing with the imputed dataset, results decrease by about 0.1. Using weighted least squares additionaly results in a slighty decreased coefficent, which is not significant anymore.    
 
 <<HealthRegressions-LessIll, echo=FALSE, results='asis', message=FALSE>>=
 
