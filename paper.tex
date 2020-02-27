@@ -24,6 +24,10 @@
  
 % If there is no error while knitting from Rnw to tex, but an error while compiling from tex to pdf, have a look at the pdf file. It might still have worked.
 
+% instead of Compile PDF, go into Terminal and enter 
+% Rscript -e "library(knitr); knit('paper.Rnw')"
+% latexmk -pdf paper
+
 
 
 % Julian's suggestions from February 24
@@ -66,8 +70,6 @@
 
 % working with knitR and LaTeX
 % https://kbroman.org/knitr_knutshell/pages/latex.html
-% Command line
-% R -e 'library(knitr);knit("knitr_example.Rnw")'
 
 % rotate tables in knitr
 % https://stackoverflow.com/questions/21840878/rotate-a-table-from-r-markdown-in-pdf
@@ -138,13 +140,14 @@
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 \usepackage{floatrow}
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
+% \usepackage{bookmark}
 \usepackage{rotating}
 % \usepackage[authoryear]{natbib}
 % \bibliographystyle{apalike}
 \usepackage{mathtools}
-\usepackage[onehalfspacing]{setspace}
+% \usepackage[onehalfspacing]{setspace}
 \usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
+\usepackage[hidelinks]{hyperref}
 
 % 1.5 spacing in Word is about this in LaTeX
 % https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
@@ -214,6 +217,12 @@ latin number pages\\
 
 \section{Examples}
 
+Citing\\
+
+If you want to cite \textcite{Millenstein.2020} inline, use this.
+If you want to cite \parencite[p.4]{Millenstein.2020} inline with a page number, use this.
+If you want to cite \citeauthor{Millenstein.2020} only as authors, use this.
+
 Equation with double index\\
 
 \begin{equation}
@@ -230,28 +239,22 @@ List\\
 \end{itemize}
 
 
-Figure\\
-
-\begin{figure}
-  \caption{Dispersion in productivity levels}
-  \label{LineDisp}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-1-1} 
-
-}
-
-
-
-\end{knitrout}
-
-\floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
-\end{figure}
+% Figure\\
+% 
+% \begin{figure}
+%   \caption{Dispersion in productivity levels}
+%   \label{LineDisp}
+% 
+% <<echo=FALSE>>=
+% figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
+% print(figureLineDisp)
+% @
+% 
+% \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
+% \end{figure}
 
 
-Figure \ref{LineDisp}
+% Figure \ref{LineDisp}
 
 % <<results='asis', echo=FALSE>>=
 % tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
@@ -265,7 +268,7 @@ Regression fit output with texreg\\
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c}
+\begin{tabular}{l c c }
 \hline
  & Model 1 & Model 2 \\
 \hline
@@ -276,15 +279,15 @@ realSubsidy      & $2.61^{***}$    &              \\
 realTripsSubsidy &                 & $0.00^{*}$   \\
                  &                 & $(0.00)$     \\
 \hline
-R$^2$            & $0.43$          & $0.05$       \\
-Adj. R$^2$       & $0.43$          & $0.04$       \\
-Num. obs.        & $329$           & $322$        \\
-RMSE             & $39992.79$      & $2.96$       \\
+R$^2$            & 0.43            & 0.05         \\
+Adj. R$^2$       & 0.43            & 0.04         \\
+Num. obs.        & 329             & 322          \\
+RMSE             & 39992.79        & 2.96         \\
 \hline
-\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 \caption{Statistical models}
-\label{table:coefficients}
+\label{mealsTripsSubsidyRegressions}
 \end{center}
 \end{table}
 
@@ -337,10 +340,14 @@ CHILDREN's aims for data analysis\\
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
+\subsection{Previous research}
+
+The previous research shows, that the childhood and youth is central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Heckmann and Carneiro (2003) show that especially early family factors determine the most of gaps in highschool attendance. Moreover, Deckers et. al. (2015) found by experiments in Germany, that children of higher educated parents are signficantly more patient. Children from parents with lower income and lower educational attainment typically have a lower weight at birth and are born in a later week of gestation, which are indicators for good initial conditions (Deckers et. al. 2015, Case et. al. 2002). Children that grow up in families with a low socio-economic status are often less mobile and more likely to keep to themselves. This could have a negative influence on their character development. For example, Chetty et. al (2012) investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of Deckers et. al. (2020) provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could have a significant and persistant increase of elementary school children´s prosociality, in response to prosocial role models and intense social interactions. As investigated by Heckmann et. al. (2010) for a preschool education program in the US, investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.  
+
 \section{Data}
 
-To measure the effect of CHILDREN´s engagement on the organizations we use the data they collected from 2011 to 2018. In each year they send a survey to the organizations with several questions about the previous year. The number of organizations varies among the years and increases over time, from 52 in the 2012 survey to 73 in the survey from 2020. In some organizations one employee fills in the survey and in others they do it as a team. Since the children and adolescents are not questioned directly, all responses are documented through the perception of the employees. The number of variables varies over time as well. Included are numbers like the average eaters per meal or the amount of money they provide to the organizations but also general questions. For instance, CHILDREN asks the average amount of kids with a better confidence or an improved dietary knowledge in the specific organization. This part of the survey must be answered on a scale from zero (no kids) to four (all kids). If an organization do not answer a question, this is documented as a “99”. We worked with the statistical program “R” and therefore changed the format from 99s to NA´s (not available) to avoid distortions. The surveyed variables change over the years, but some of them are included every year. 
-However, we did several steps to get a full dataset we could work with. The data was divided into one dataset for each survey from 2011 to 2019, but we only use the surveys till 2018 since in 2019 some organization-ID´s occurred several times and the data for 2019 were incomplete. Since each survey includes data about the year before, we changed the names of the dataset to the corresponding year and finally used the years from 2011 to 2018. Moreover, we outlined a hierarchical file structure, enabling us to use relative file paths throughout. This makes a quick work with R possible since we only use paths relative to the working directory. Afterwards we made sure that variables with names containing non-standard characters like German “Umlaute” are correctly read in and established naming conventions. We created a file reading the excel sheets and we reviewed and aligned new English-language variable names across the years. Moreover, we systematically compared variable names between years by creating a correspondence table, ordered first by variables of 2019, then of 2018 and so on. To ensure the comparability between the years, we gave all variables from the different years that equal each other the same name. As a next step, we merged the different datasets to one dataset, including all years and variables CHILDREN collected. For an efficient and clear data structure, we created a function that automatically changed the data type of all variables from "character" to "ordinal" and added several versions for each initially metric encoded variable afterwards. The three variants are ordinal, standardized and weighted (FUßNOTE: The variables regarding the Mittagstisch are weighted as variable*0.25*eaterspermeal, the variables that are assigned to the Entdeckerfonds as variable*0.25*tripskidsno). 
+To measure the effect of CHILDREN´s engagement on the funded organizations, we use the data CHILDREN collected from 2011 to 2018. In each year they send a survey to the organizations with several questions about the previous year. The number of organizations varies among the years and increases over time, from 52 in the 2012 survey to 73 in the survey from 2020. In some organizations one employee fills in the survey and in others they do it as a team. Since the children and adolescents are not questioned directly, all responses are documented through the perception of the employees. The number of variables varies over time as well. Included are numbers such as the average eaters per meal or the amount of money they provide to the organizations but also general questions. For instance, CHILDREN asks the average amount of kids with a better confidence or an improved dietary knowledge in the specific organization. This part of the survey must be answered on a scale from zero (no kids) to four (all kids). If an organization does not answer a question, this is documented as a “99”. We worked with the statistical program “R” and therefore changed the format from 99s to NA´s (not available) to avoid distortions. The surveyed variables change over the years, but some of them are included every year. 
+However, we did several steps to get a full dataset we could work with (we could use for our empirical analysis??). The data was divided into one dataset for each survey from 2011 to 2019, but we only use the surveys till 2018 since in 2019 some organization-ID´s occurred several times and the data for 2019 were incomplete. Since each survey includes data about the year before, we changed the names of the dataset to the corresponding year and finally used the years from 2011 to 2018. Moreover, we outlined a hierarchical file structure, enabling us to use relative file paths throughout. This makes a quick work with R possible since we only use paths relative to the working directory. Afterwards we made sure that variables with names containing non-standard characters like German “Umlaute” are correctly read in and established naming conventions. We created a file reading the excel sheets and we reviewed and aligned new English-language variable names across the years. Moreover, we systematically compared variable names between years by creating a correspondence table, ordered first by variables of 2019, then of 2018 and so on. To ensure the comparability between the years, we gave all variables from the different years that equal each other the same name. As a next step, we merged the different datasets to one dataset, including all years and variables CHILDREN collected. For an efficient and clear data structure, we created a function that automatically changed the data type of all variables from "character" to "ordinal" and added several versions for each initially metric encoded variable afterwards. The three variants are ordinal, standardized and weighted (FUßNOTE: The variables regarding the Mittagstisch are weighted as variable*0.25*eaterspermeal, the variables that are assigned to the Entdeckerfonds as variable*0.25*tripskidsno). 
 Furthermore, we created more new variables: We used the information CHILDREN gave us in another excel-sheet to assign the German states to the corresponding organization-ID and created dummy-variables for each ID, every year and a treatment dummy that will be explained in a later section. 
 The final dataset we worked with is structured as follows: Each row represents one organization-ID with the answers the organization gave in the specific year. The questions are divided in two categories: the variables regarding to the Mittagstisch, answered by all organizations since they are all part of this program and the Entdeckerfonds variables, answered by the organizations that take part on the Entdeckerfonds program in the respective year. Including the years from 2011 to 2018 and all variables we created, the final dataset has X observations of Y variables.
 
@@ -355,7 +362,7 @@ Figure\\
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=0.8\textwidth]{figure/unnamed-chunk-2-1} 
+{\centering \includegraphics[width=0.8\textwidth]{figure/DaytodayskillsSelfworth-1} 
 
 }
 
@@ -371,36 +378,89 @@ Figure\\
 
 In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries in both programs, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.
 
-<<<<<<< HEAD
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Wed Feb 26 23:49:45 2020
-=======
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Wed Feb 26 23:16:47 2020
-=======
-% Wed Feb 26 22:15:10 2020
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
-\begin{table}[ht]
-\centering
-\begin{tabular}{mmmmm}
-  \hline
-Year & Beneficiaries, Meals & Beneficiaries, Trips & Organizations, Meals & Organizations, Trips \\ 
-  \hline
-2011 & 3748.0 &  & 52 &  \\ 
-  2012 & 3556.0 & 2803.0 & 51 & 44 \\ 
-  2013 & 4015.0 & 2823.0 & 55 & 42 \\ 
-  2014 & 4685.0 & 2752.0 & 55 & 43 \\ 
-  2015 & 5857.0 & 3823.0 & 55 & 49 \\ 
-  2016 & 3075.0 & 3819.0 & 59 & 48 \\ 
-  2017 & 4895.0 & 4150.0 & 64 & 48 \\ 
-  2018 & 5102.5 & 6911.0 & 68 & 49 \\ 
-   \hline
-\end{tabular}
-\caption{Summary Statistics} 
-\label{fundamentalDynamics}
-\end{table}
+# <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+# 
+# # first, read in all Rds objects that you need
+# 
+# fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
+#  
+# colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
+# 
+# fundamental_dynamics <- xtable(fundamental_dynamics,
+#                                digits = c(0, 0, 1, 1, 0, 0),
+#           caption = "Summary Statistics",
+#           align = "lmmmmm", 
+#           label = "fundamentalDynamics"
+#           )
+# print(fundamental_dynamics, include.rownames = FALSE)
+# @
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 1:16:32 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{fundamentalDynamics} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+$2,011$ & $3,748$ & $$ & $52$ & $$ \\ 
+$2,012$ & $3,556$ & $2,803$ & $51$ & $44$ \\ 
+$2,013$ & $4,015$ & $2,823$ & $55$ & $42$ \\ 
+$2,014$ & $4,685$ & $2,752$ & $55$ & $43$ \\ 
+$2,015$ & $5,857$ & $3,823$ & $55$ & $49$ \\ 
+$2,016$ & $3,075$ & $3,819$ & $59$ & $48$ \\ 
+$2,017$ & $4,895$ & $4,150$ & $64$ & $48$ \\ 
+$2,018$ & $5,102.500$ & $6,911$ & $68$ & $49$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 1:16:32 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{fundamentalDynamics} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Summary Statistics \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+ [1] ""                                                                                                           
+ [2] "% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu"
+ [3] "% Date and time: Thu, Feb 27, 2020 - 1:16:32 PM"                                                            
+ [4] "\\begin{table}[!htbp] \\centering "                                                                         
+ [5] "  \\caption{} "                                                                                             
+ [6] "  \\label{fundamentalDynamics} "                                                                            
+ [7] "\\begin{tabular}{@{\\extracolsep{5pt}} ccccc} "                                                             
+ [8] "\\\\[-1.8ex]\\hline "                                                                                       
+ [9] "\\hline \\\\[-1.8ex] "                                                                                      
+[10] "$2,011$ & $3,748$ & $$ & $52$ & $$ \\\\ "                                                                   
+[11] "$2,012$ & $3,556$ & $2,803$ & $51$ & $44$ \\\\ "                                                            
+[12] "$2,013$ & $4,015$ & $2,823$ & $55$ & $42$ \\\\ "                                                            
+[13] "$2,014$ & $4,685$ & $2,752$ & $55$ & $43$ \\\\ "                                                            
+[14] "$2,015$ & $5,857$ & $3,823$ & $55$ & $49$ \\\\ "                                                            
+[15] "$2,016$ & $3,075$ & $3,819$ & $59$ & $48$ \\\\ "                                                            
+[16] "$2,017$ & $4,895$ & $4,150$ & $64$ & $48$ \\\\ "                                                            
+[17] "$2,018$ & $5,102.500$ & $6,911$ & $68$ & $49$ \\\\ "                                                        
+[18] "\\hline \\\\[-1.8ex] "                                                                                      
+[19] "\\end{tabular} "                                                                                            
+[20] "\\end{table} "                                                                                              
+[21] ""                                                                                                           
+[22] "% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu"
+[23] "% Date and time: Thu, Feb 27, 2020 - 1:16:32 PM"                                                            
+[24] "\\begin{table}[!htbp] \\centering "                                                                         
+[25] "  \\caption{} "                                                                                             
+[26] "  \\label{fundamentalDynamics} "                                                                            
+[27] "\\begin{tabular}{@{\\extracolsep{5pt}} c} "                                                                 
+[28] "\\\\[-1.8ex]\\hline "                                                                                       
+[29] "\\hline \\\\[-1.8ex] "                                                                                      
+[30] "Summary Statistics \\\\ "                                                                                   
+[31] "\\hline \\\\[-1.8ex] "                                                                                      
+[32] "\\end{tabular} "                                                                                            
+[33] "\\end{table} "                                                                                              
 
 % look up official names of price indices in English 
 
@@ -519,14 +579,13 @@ The estimated coefficients are very similar when we use the original dataset and
 the estimated coefficient decreases by about one order of magnitude. Still, spending not much more than three EUR more goes hand in hand with one extra meal. The estimate is also highly statistically significant.  
 
 
-\usepackage{graphicx}
 \usepackage{booktabs}
 
 \begin{table}
 \caption{Regression Results: Number of meals}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c}
+\begin{tabular}{l c c c }
 \toprule
  & OLS & OLS without Outliers & OLS Impute \\
 \midrule
@@ -535,17 +594,17 @@ the estimated coefficient decreases by about one order of magnitude. Still, spen
 realSubsidy & $2.61^{***}$    & $0.29^{***}$    & $2.72^{***}$     \\
             & $(0.57)$        & $(0.05)$        & $(0.51)$         \\
 \midrule
-R$^2$       & $0.43$          & $0.13$          & $0.45$           \\
-Adj. R$^2$  & $0.43$          & $0.12$          & $0.45$           \\
-Num. obs.   & $329$           & $250$           & $440$            \\
-RMSE        & $39992.79$      & $3629.72$       & $39601.41$       \\
+R$^2$       & 0.43            & 0.13            & 0.45             \\
+Adj. R$^2$  & 0.43            & 0.12            & 0.45             \\
+Num. obs.   & 329             & 250             & 440              \\
+RMSE        & 39992.79        & 3629.72         & 39601.41         \\
 \bottomrule
 \multicolumn{4}{l}{\scriptsize{\parbox{\linewidth}
 {\vspace{2pt}Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
 aliquyam. \\ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
-aliquyam. \\ $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.}}}
+aliquyam. \\ $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
 \end{tabular}
 }
 \label{GrantsRegressionsLunch}
@@ -557,12 +616,10 @@ In the remit of the Trips program, the picture looks much different. In the case
 In sum, there seems to be no clear connection between how much money CHILDREN gives to an organization and the number of trips it organizes. 
 
 
-\usepackage{graphicx}
-
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c}
+\begin{tabular}{l c c c }
 \hline
  & OLS & OLS without Outliers & OLS Impute \\
 \hline
@@ -571,12 +628,12 @@ In sum, there seems to be no clear connection between how much money CHILDREN gi
 realTripsSubsidy & $0.0002^{*}$   & $0.0003^{***}$ & $0.0002^{*}$   \\
                  & $(0.0001)$     & $(0.0001)$     & $(0.0001)$     \\
 \hline
-R$^2$            & $0.0474$       & $0.0880$       & $0.0504$       \\
-Adj. R$^2$       & $0.0444$       & $0.0844$       & $0.0476$       \\
-Num. obs.        & $322$          & $257$          & $334$          \\
-RMSE             & $2.9565$       & $1.6981$       & $2.9310$       \\
+R$^2$            & 0.0474         & 0.0880         & 0.0504         \\
+Adj. R$^2$       & 0.0444         & 0.0844         & 0.0476         \\
+Num. obs.        & 322            & 257            & 334            \\
+RMSE             & 2.9565         & 1.6981         & 2.9310         \\
 \hline
-\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Number of trips}
@@ -588,16 +645,14 @@ RMSE             & $2.9565$       & $1.6981$       & $2.9310$       \\
 \subsection{Variables of interest: selfworth and everyday expertise} 
 
 In their surveys, CHILDREN asks about two variables in both programs. These are the share of beneficiaries that are believed to have increased their self-worth and to have ehanced their everyday expertise. This feature could potentially allow us to compare the two programs regarding their realtive effectiveness. Like always, we standardize the two outcome variables. As before, we can only make associational claims. We invariably find no clear-cut relationship between the subsidy per beneficiary and the two outcomes. In fact, no coefficent is statistically significantly differnent from zero at any of the usual levels. 
-
+The four variables are recorded for each year in which the program was operative.
 Tables \ref{SelfworthRegressions} and \ref{DayToDaySkillsRegressions} present the null results. 
 
-
-\usepackage{graphicx}
 
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c}
+\begin{tabular}{l c c c c }
 \hline
  & OLS Lunch & OLS Trips & OLS Lunch Impute & OLS Trips Impute \\
 \hline
@@ -608,12 +663,12 @@ realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          \\
 realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  \\
                                &          & $(0.00)$ &          & $(0.00)$ \\
 \hline
-R$^2$                          & $0.00$   & $0.01$   & $0.00$   & $0.01$   \\
-Adj. R$^2$                     & $0.00$   & $0.01$   & $0.00$   & $0.01$   \\
-Num. obs.                      & $428$    & $184$    & $430$    & $187$    \\
-RMSE                           & $1.00$   & $1.00$   & $1.00$   & $1.00$   \\
+R$^2$                          & 0.00     & 0.01     & 0.00     & 0.01     \\
+Adj. R$^2$                     & 0.00     & 0.01     & 0.00     & 0.01     \\
+Num. obs.                      & 428      & 184      & 430      & 187      \\
+RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Selfworth}
@@ -622,19 +677,11 @@ RMSE                           & $1.00$   & $1.00$   & $1.00$   & $1.00$   \\
 \end{table}
 
 
-<<<<<<< HEAD
-\begin{kframe}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:6:1: unerwartete Eingabe\\\#\# 5: \\\#\# 6: <<\\\#\#\ \ \ \ \textasciicircum{}}}\end{kframe}
-=======
-
-\usepackage{graphicx}
 
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c}
+\begin{tabular}{l c c c c }
 \hline
  & OLS Lunch & OLS Trips & OLS Lunch Impute & OLS Trips Impute \\
 \hline
@@ -645,12 +692,12 @@ realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          \\
 realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  \\
                                &          & $(0.00)$ &          & $(0.00)$ \\
 \hline
-R$^2$                          & $0.01$   & $0.01$   & $0.01$   & $0.01$   \\
-Adj. R$^2$                     & $0.01$   & $0.01$   & $0.01$   & $0.01$   \\
-Num. obs.                      & $426$    & $177$    & $429$    & $181$    \\
-RMSE                           & $1.00$   & $0.98$   & $1.00$   & $0.99$   \\
+R$^2$                          & 0.01     & 0.01     & 0.01     & 0.01     \\
+Adj. R$^2$                     & 0.01     & 0.01     & 0.01     & 0.01     \\
+Num. obs.                      & 426      & 177      & 429      & 181      \\
+RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: dayToDaySkills}
@@ -658,7 +705,6 @@ RMSE                           & $1.00$   & $0.98$   & $1.00$   & $0.99$   \\
 \end{center}
 \end{table}
 
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
 
 \subsection{Variables of interest: Health variables} 
 
@@ -666,16 +712,9 @@ Now, we turn to a predictor that CHILDREN does not directly influence until now,
 
 In its yearly surveys, CHILDREN asks about three variables closely related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet.
 
-Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.
+Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis displays the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none. For example, if an organization says that most beneficiaries are healthier, then this would be coded as most. The highest amount of healthy criteria to be fulfilled is x. 
 
-We use standardized versions of these variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
-<<<<<<< HEAD
-By estimating these models with ordinary least squares, we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares, using the number of beneficiaries as weights. 
-=======
-If we estimated these models with ordinary least squares, we would ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we fit the models with weighted least squares, using the number of beneficiaries as weights. 
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
-
-
+All plots of Figure \ref{Health_Plots} show that most organizations suffice about 5 to 10 healthy food criteria. The largest part of criterion values are associated with most beneficiaries being less Ill, having a growing appreciation for a healthy diet or having increased their knowledge about what constituted a healthy diet. It secondly becomes visible that the healthy criterion only exchanges with a growing appreciation for a healthy diet or an increasing dietary knowlege for all beneficiaries (which is the second most stated criterion in the two bottom plots), but not with all beneficaries being more healthy. However, for the variable less ill, the least data is availabe. Overall, the criteria, even a few, seem to have a positive relationship with beneficiaries health relevant variables. This connection is empiricaly examined in regressions \ref{HealthRegressions-LessIll}, \ref{HealthRegressions-DietaryKnowledge} and \ref{HealthRegressions-AppreciateHealthy}.
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -694,15 +733,16 @@ If we estimated these models with ordinary least squares, we would ascribe the s
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
-In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
+We use standardized versions of the health related variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
+By estimating these models with ordinary least squares, we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares, using the number of beneficiaries as weights.
 
+In Table \ref{HealthRegressions-LessIll}, after weighting the regression for the original data set, the coefficent rises slightly but is becoming less statistically significant. An increase of the healthy food criterion by one standard deviation is associated with an increase in beneficiaris being more healthy by 0.35 standard deviations. Regressing with the imputed dataset, results decrease by about 0.1. Using weighted least squares additionaly results in a slighty decreased coefficent, which is not significant anymore.    
 
-\usepackage{graphicx}
 
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c}
+\begin{tabular}{l c c c c }
 \hline
  & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
@@ -711,12 +751,12 @@ In the following equation we use standardized variables in a standard OLS approa
 DGECriteriaNoScaled & $0.33^{***}$ & $0.35^{*}$  & $0.25^{***}$ & $0.24$       \\
                     & $(0.08)$     & $(0.16)$    & $(0.07)$     & $(0.14)$     \\
 \hline
-R$^2$               & $0.12$       & $0.29$      & $0.07$       & $0.16$       \\
-Adj. R$^2$          & $0.11$       & $0.29$      & $0.07$       & $0.16$       \\
-Num. obs.           & $121$        & $120$       & $177$        & $177$        \\
-RMSE                & $0.91$       & $7.83$      & $0.94$       & $7.95$       \\
+R$^2$               & 0.12         & 0.29        & 0.07         & 0.16         \\
+Adj. R$^2$          & 0.11         & 0.29        & 0.07         & 0.16         \\
+Num. obs.           & 121          & 120         & 177          & 177          \\
+RMSE                & 0.91         & 7.83        & 0.94         & 7.95         \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Less Ill}
@@ -726,12 +766,10 @@ RMSE                & $0.91$       & $7.83$      & $0.94$       & $7.95$       \
 
 
 
-\usepackage{graphicx}
-
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c}
+\begin{tabular}{l c c c c }
 \hline
  & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
@@ -740,12 +778,12 @@ RMSE                & $0.91$       & $7.83$      & $0.94$       & $7.95$       \
 DGECriteriaNoScaled & $0.11$   & $-0.02$  & $0.12^{*}$ & $0.10$   \\
                     & $(0.06)$ & $(0.12)$ & $(0.05)$   & $(0.14)$ \\
 \hline
-R$^2$               & $0.01$   & $0.00$   & $0.02$     & $0.01$   \\
-Adj. R$^2$          & $0.01$   & $-0.00$  & $0.01$     & $0.01$   \\
-Num. obs.           & $214$    & $212$    & $275$      & $275$    \\
-RMSE                & $0.98$   & $8.49$   & $0.96$     & $9.45$   \\
+R$^2$               & 0.01     & 0.00     & 0.02       & 0.01     \\
+Adj. R$^2$          & 0.01     & -0.00    & 0.01       & 0.01     \\
+Num. obs.           & 214      & 212      & 275        & 275      \\
+RMSE                & 0.98     & 8.49     & 0.96       & 9.45     \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Dietary Knowledge}
@@ -755,12 +793,10 @@ RMSE                & $0.98$   & $8.49$   & $0.96$     & $9.45$   \\
 
 
 
-\usepackage{graphicx}
-
 \begin{table}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{l c c c c}
+\begin{tabular}{l c c c c }
 \hline
  & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
@@ -769,12 +805,12 @@ RMSE                & $0.98$   & $8.49$   & $0.96$     & $9.45$   \\
 DGECriteriaNoScaled & $0.27^{***}$ & $-0.02$  & $0.25^{***}$ & $0.01$     \\
                     & $(0.07)$     & $(0.15)$ & $(0.06)$     & $(0.13)$   \\
 \hline
-R$^2$               & $0.06$       & $0.00$   & $0.06$       & $0.00$     \\
-Adj. R$^2$          & $0.06$       & $-0.00$  & $0.06$       & $-0.00$    \\
-Num. obs.           & $213$        & $211$    & $274$        & $274$      \\
-RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     \\
+R$^2$               & 0.06         & 0.00     & 0.06         & 0.00       \\
+Adj. R$^2$          & 0.06         & -0.00    & 0.06         & -0.00      \\
+Num. obs.           & 213          & 211      & 274          & 274        \\
+RMSE                & 1.02         & 8.61     & 1.01         & 9.00       \\
 \hline
-\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 }
 \caption{Regression Results: Appreciate Healthy}
@@ -786,6 +822,12 @@ RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     \\
 \section{Feature Selection}
 
 \subsection{Factor Analysis}
+
+We use imputed data set.
+
+we use the orthogonal rotation technique Varimax, which is recommended in Price (2017, p. 307) when the goal of analysis is to "minimize complexity of factors by maximizing variance of loadings on each factor" 
+We estimate factor scores with the Bartlett method, which is similar to a Maximum Likekelihood estimation, and presented as the most convential one in Eid and Schmidt (2010, p. 291)
+We use maximum likelihood as factoring method
 
 \subsection{Double Selection}
 
@@ -860,15 +902,7 @@ the dataset does not allow a channel analysis but these could be possible channe
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mi., Feb 26, 2020 - 23:49:53
-=======
-<<<<<<< HEAD
-% Date and time: Mi, Feb 26, 2020 - 23:16:52
-=======
-% Date and time: Wed, Feb 26, 2020 - 10:15:19 PM
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
+% Date and time: Thu, Feb 27, 2020 - 1:16:40 PM
 % Requires LaTeX packages: dcolumn rotating 
 \begin{sidewaystable}[!htbp] \centering 
   \caption{Regression Results} 
@@ -935,49 +969,47 @@ In addition to table \ref{HealthRegressions-LessIll} table \ref{expandLessIll} p
 \hline
  & OLS & WLS & OLS Impute & WLS Impute \\
 \hline
-(Intercept)               & $-1.08^{***}$ & $-0.99^{**}$ & $0.02$      & $-0.08$    \\
-                          & $(0.24)$      & $(0.30)$     & $(0.15)$    & $(0.20)$   \\
-DGECriteriaNoScaled       & $0.34^{***}$  & $0.36^{***}$ & $0.19^{**}$ & $0.27$     \\
-                          & $(0.08)$      & $(0.06)$     & $(0.07)$    & $(0.14)$   \\
-regionalProducts\_scaled  & $0.02$        & $-0.03$      & $0.11$      & $0.02$     \\
-                          & $(0.08)$      & $(0.11)$     & $(0.07)$    & $(0.11)$   \\
-yearsSupportSince         & $0.02$        & $-0.03$      & $-0.01$     & $0.05^{*}$ \\
-                          & $(0.03)$      & $(0.04)$     & $(0.02)$    & $(0.02)$   \\
-realSubsidyPerBeneficiary & $-0.00$       & $0.00$       &             & $-0.00$    \\
-                          & $(0.00)$      & $(0.00)$     &             & $(0.00)$   \\
-stateBayern               & $0.96^{**}$   & $1.88^{***}$ &             &            \\
-                          & $(0.33)$      & $(0.49)$     &             &            \\
-stateBerlin               & $1.09^{**}$   & $1.34^{***}$ &             &            \\
-                          & $(0.37)$      & $(0.37)$     &             &            \\
-stateBrandenburg          & $2.21^{***}$  & $2.46^{***}$ &             &            \\
-                          & $(0.43)$      & $(0.40)$     &             &            \\
-stateBremen               & $1.00$        & $1.03$       &             &            \\
-                          & $(0.58)$      & $(0.59)$     &             &            \\
-stateHamburg              & $0.95$        & $1.96^{***}$ &             &            \\
-                          & $(0.67)$      & $(0.40)$     &             &            \\
-stateHessen               & $0.87^{***}$  & $1.16^{***}$ &             &            \\
-                          & $(0.23)$      & $(0.31)$     &             &            \\
-stateMV                   & $0.09$        & $0.14$       &             &            \\
-                          & $(0.21)$      & $(0.26)$     &             &            \\
-stateNiedersachsen        & $2.48^{***}$  & $2.30^{***}$ &             &            \\
-                          & $(0.40)$      & $(0.43)$     &             &            \\
-stateNRW                  & $0.68^{*}$    & $1.00^{**}$  &             &            \\
-                          & $(0.27)$      & $(0.33)$     &             &            \\
-stateSaarland             & $1.50^{***}$  & $1.75^{***}$ &             &            \\
-                          & $(0.32)$      & $(0.25)$     &             &            \\
-stateSachsen              & $1.34^{***}$  & $1.23^{***}$ &             &            \\
-                          & $(0.27)$      & $(0.27)$     &             &            \\
-stateSchleswig-Holstein   & $1.33^{***}$  & $1.63^{***}$ &             &            \\
-                          & $(0.37)$      & $(0.42)$     &             &            \\
-stateThüringen            & $0.99$        & $1.29^{*}$   &             &            \\
-                          & $(0.59)$      & $(0.55)$     &             &            \\
-realSubsidy               &               &              & $0.00^{**}$ &            \\
-                          &               &              & $(0.00)$    &            \\
+(Intercept)               & $-1.08^{***}$ & $-0.99^{**}$ & $-0.04$      & $-0.08$    \\
+                          & $(0.24)$      & $(0.30)$     & $(0.18)$     & $(0.20)$   \\
+DGECriteriaNoScaled       & $0.34^{***}$  & $0.36^{***}$ & $0.23^{***}$ & $0.27$     \\
+                          & $(0.08)$      & $(0.06)$     & $(0.07)$     & $(0.14)$   \\
+regionalProducts\_scaled  & $0.02$        & $-0.03$      & $0.11$       & $0.02$     \\
+                          & $(0.08)$      & $(0.11)$     & $(0.07)$     & $(0.11)$   \\
+yearsSupportSince         & $0.02$        & $-0.03$      & $0.01$       & $0.05^{*}$ \\
+                          & $(0.03)$      & $(0.04)$     & $(0.02)$     & $(0.02)$   \\
+realSubsidyPerBeneficiary & $-0.00$       & $0.00$       & $0.00$       & $-0.00$    \\
+                          & $(0.00)$      & $(0.00)$     & $(0.00)$     & $(0.00)$   \\
+stateBayern               & $0.96^{**}$   & $1.88^{***}$ &              &            \\
+                          & $(0.33)$      & $(0.49)$     &              &            \\
+stateBerlin               & $1.09^{**}$   & $1.34^{***}$ &              &            \\
+                          & $(0.37)$      & $(0.37)$     &              &            \\
+stateBrandenburg          & $2.21^{***}$  & $2.46^{***}$ &              &            \\
+                          & $(0.43)$      & $(0.40)$     &              &            \\
+stateBremen               & $1.00$        & $1.03$       &              &            \\
+                          & $(0.58)$      & $(0.59)$     &              &            \\
+stateHamburg              & $0.95$        & $1.96^{***}$ &              &            \\
+                          & $(0.67)$      & $(0.40)$     &              &            \\
+stateHessen               & $0.87^{***}$  & $1.16^{***}$ &              &            \\
+                          & $(0.23)$      & $(0.31)$     &              &            \\
+stateMV                   & $0.09$        & $0.14$       &              &            \\
+                          & $(0.21)$      & $(0.26)$     &              &            \\
+stateNiedersachsen        & $2.48^{***}$  & $2.30^{***}$ &              &            \\
+                          & $(0.40)$      & $(0.43)$     &              &            \\
+stateNRW                  & $0.68^{*}$    & $1.00^{**}$  &              &            \\
+                          & $(0.27)$      & $(0.33)$     &              &            \\
+stateSaarland             & $1.50^{***}$  & $1.75^{***}$ &              &            \\
+                          & $(0.32)$      & $(0.25)$     &              &            \\
+stateSachsen              & $1.34^{***}$  & $1.23^{***}$ &              &            \\
+                          & $(0.27)$      & $(0.27)$     &              &            \\
+stateSchleswig-Holstein   & $1.33^{***}$  & $1.63^{***}$ &              &            \\
+                          & $(0.37)$      & $(0.42)$     &              &            \\
+stateThüringen            & $0.99$        & $1.29^{*}$   &              &            \\
+                          & $(0.59)$      & $(0.55)$     &              &            \\
 \hline
-R$^2$                     & 0.51          & 0.73         & 0.12        & 0.22       \\
-Adj. R$^2$                & 0.39          & 0.66         & 0.10        & 0.20       \\
-Num. obs.                 & 88            & 88           & 175         & 175        \\
-RMSE                      & 0.73          & 5.62         & 0.92        & 7.77       \\
+R$^2$                     & 0.51          & 0.73         & 0.09         & 0.22       \\
+Adj. R$^2$                & 0.39          & 0.66         & 0.07         & 0.20       \\
+Num. obs.                 & 88            & 88           & 175          & 175        \\
+RMSE                      & 0.73          & 5.62         & 0.94         & 7.77       \\
 \hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
@@ -998,15 +1030,8 @@ As an option to run a regression on the original ordinal variables, we use the p
   P(Y_i \leq \ r) = \frac{exp(y_0_r + x_i^Ty)}{1+exp(y_0_r + x_i^Ty)}    
 \end{equation}
 
-\begin{kframe}
 
-
-<<<<<<< HEAD
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
-% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Mi., Feb 26, 2020 - 23:49:53
-=======
-To demonstrate the results of this method, we show in the tables \ref{lessIllOdds}, \ref{dietaryOdds}, \ref{appreciateOdds} the regressions of the health related variables on the healthy meals criterion and in \ref{selfworthOdds} and \ref{dayToDayOdds} the regressions of the real meals subsidy on selfworth and everyday expertise. 
+To demonstrate the results of this method, we show in the tables \ref{lessIllOdds}, \ref{dietaryOdds}, \ref{appreciateOdds} the regressions of the health related variables on the healthy meals criterion and in the tables \ref{selfworthOdds} and \ref{dayToDayOdds} the regressions of the real meals subsidy on selfworth and everyday expertise. 
 
 As an example of interpreting such models, we consider the model of table \ref{lessIllOdds}: An increase of the healthy meals criterion by 1 is associated with an increase in chances, that a proportion of a maximum of r beneficiaries is healthier in relation to that a proportion of more than r beneficiaries are healthier, by the factor of exp(-0.29127) = 0.75.
 
@@ -1021,12 +1046,7 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mi, Feb 26, 2020 - 23:16:52
-=======
-% Date and time: Wed, Feb 26, 2020 - 10:15:19 PM
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
+% Date and time: Thu, Feb 27, 2020 - 1:16:40 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Less Ill} 
@@ -1044,20 +1064,10 @@ A summary of the remaining models:
 \end{tabular} 
 \end{table} 
 
-\begin{kframe}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mi., Feb 26, 2020 - 23:49:53
-=======
-<<<<<<< HEAD
-% Date and time: Mi, Feb 26, 2020 - 23:16:53
-=======
-% Date and time: Wed, Feb 26, 2020 - 10:15:19 PM
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
+% Date and time: Thu, Feb 27, 2020 - 1:16:40 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Dietary Knowledge} 
@@ -1075,20 +1085,10 @@ A summary of the remaining models:
 \end{tabular} 
 \end{table} 
 
-\begin{kframe}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mi., Feb 26, 2020 - 23:49:53
-=======
-<<<<<<< HEAD
-% Date and time: Mi, Feb 26, 2020 - 23:16:53
-=======
-% Date and time: Wed, Feb 26, 2020 - 10:15:19 PM
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
+% Date and time: Thu, Feb 27, 2020 - 1:16:40 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Appreciate Healthy} 
@@ -1107,20 +1107,9 @@ A summary of the remaining models:
 \end{table} 
 
 
-\begin{kframe}
 
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mi., Feb 26, 2020 - 23:49:53
-=======
-<<<<<<< HEAD
-% Date and time: Mi, Feb 26, 2020 - 23:16:53
-=======
-% Date and time: Wed, Feb 26, 2020 - 10:15:19 PM
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
+% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Selfworth} 
@@ -1139,20 +1128,9 @@ A summary of the remaining models:
 \end{table} 
 
 
-\begin{kframe}
 
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: namespace 'VGAM' is not available and has been replaced\\\#\# by .GlobalEnv when processing object ''}}\end{kframe}
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mi., Feb 26, 2020 - 23:49:53
-=======
-<<<<<<< HEAD
-% Date and time: Mi, Feb 26, 2020 - 23:16:53
-=======
-% Date and time: Wed, Feb 26, 2020 - 10:15:19 PM
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
+% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Everyday expertise} 
@@ -1173,114 +1151,79 @@ A summary of the remaining models:
 
 \subsection{A3: Partition}
 
-In addition to the factor analysis described in section 6, we would like to introduce to a another dimensionality reduction method called partition. 
+In addition to the factor analysis which is described in section 6, we would like to introduce to a another dimensionality reduction method called partition. This method was developped by Millenstein et. al in the context of genome analysis. 
 
-QUOTES FROM PAPER, describe method 
+According to the researchers, potential benefits of reducing dimensionality are reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{} (p.677).
 
-In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
+The partition approach partitions data into subsets of related features. It then  summarizes each subset into one new feature. By that, it defines a surjective mapping \cite{} (p.676). A function g is implemented using the arithmetic mean. In contrast to methods like the factor analysis, if a feature is identified as related to a response of interest, the exact subset of features that are implicated to the surjective mapping is known without ambiguity. What is as well different is the information loss constraint. It lets the extent of dependences among features on a local level guide the extent to which the number of features is reduced.\cite{}(p.677)  
 
-<<<<<<< HEAD
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Wed Feb 26 23:49:53 2020
-=======
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Wed Feb 26 23:16:53 2020
-=======
-% Wed Feb 26 22:15:20 2020
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
-\begin{table}[ht]
-\centering
-\begin{tabular}{rllr}
-  \hline
- & Variable, Meals & Mapping, Meals & Information, Meals \\ 
-  \hline
-1 & participateMore & participateMore & 1.00 \\ 
-  2 & tasksLunch & tasksLunch & 1.00 \\ 
-  3 & ownIdeas & ownIdeas & 1.00 \\ 
-  4 & stayLonger & stayLonger & 1.00 \\ 
-  5 & dietaryKnowledge & dietaryKnowledge & 1.00 \\ 
-  6 & appreciateHealthy & appreciateHealthy & 1.00 \\ 
-  7 & foodCulture & foodCulture & 1.00 \\ 
-  8 & lessIll & lessIll & 1.00 \\ 
-  9 & betterTeamwork & betterTeamwork & 1.00 \\ 
-  10 & moreRegularSchoolVisits & moreRegularSchoolVisits & 1.00 \\ 
-  11 & addressProblems & addressProblems & 1.00 \\ 
-  12 & reduced\_var\_1 & moreConcentrated & 0.66 \\ 
-  13 & reduced\_var\_1 & moreBalanced & 0.66 \\ 
-  14 & reduced\_var\_2 & monthlyCooks & 0.42 \\ 
-  15 & reduced\_var\_2 & weeklyCooks & 0.42 \\ 
-  16 & reduced\_var\_2 & shoppers & 0.42 \\ 
-  17 & reduced\_var\_2 & easyDishes & 0.42 \\ 
-  18 & reduced\_var\_3 & dayToDaySkills & 0.43 \\ 
-  19 & reduced\_var\_3 & moreIndependent & 0.43 \\ 
-  20 & reduced\_var\_3 & selfworth & 0.43 \\ 
-  21 & reduced\_var\_3 & moreOpen & 0.43 \\ 
-  22 & reduced\_var\_3 & moreConfidence & 0.43 \\ 
-  23 & reduced\_var\_3 & proud & 0.43 \\ 
-  24 & reduced\_var\_4 & betterReading & 0.53 \\ 
-  25 & reduced\_var\_4 & betterNumbers & 0.53 \\ 
-  26 & reduced\_var\_4 & betterGrades & 0.53 \\ 
-  27 & reduced\_var\_5 & influenceHome & 0.41 \\ 
-  28 & reduced\_var\_5 & cookAtHome & 0.41 \\ 
-  29 & reduced\_var\_5 & askRecipes & 0.41 \\ 
-   \hline
-\end{tabular}
-\caption{Partition of outcomes, Meals} 
-\end{table}
-<<<<<<< HEAD
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Wed Feb 26 23:49:53 2020
-=======
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Wed Feb 26 23:16:53 2020
-=======
-% Wed Feb 26 22:15:20 2020
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
-\begin{table}[ht]
-\centering
-\begin{tabular}{rllr}
-  \hline
- & Variable, Trips & Mapping, Trips & Information, Trips \\ 
-  \hline
-1 & tripsSuggestions & tripsSuggestions & 1.00 \\ 
-  2 & tripsDecisions & tripsDecisions & 1.00 \\ 
-  3 & tripsOrganization & tripsOrganization & 1.00 \\ 
-  4 & tripsCostCalculation & tripsCostCalculation & 1.00 \\ 
-  5 & tripsBudget & tripsBudget & 1.00 \\ 
-  6 & tripsMoney & tripsMoney & 1.00 \\ 
-  7 & tripsReview & tripsReview & 1.00 \\ 
-  8 & tripsPublicTransport & tripsPublicTransport & 1.00 \\ 
-  9 & tripsMobility & tripsMobility & 1.00 \\ 
-  10 & tripsAdditionalActivities & tripsAdditionalActivities & 1.00 \\ 
-  11 & tripsSelfworth & tripsSelfworth & 1.00 \\ 
-  12 & tripsFrustrationTolerance & tripsFrustrationTolerance & 1.00 \\ 
-  13 & reduced\_var\_1 & tripsSuccess & 0.68 \\ 
-  14 & reduced\_var\_1 & tripsSelfEfficacy & 0.68 \\ 
-  15 & reduced\_var\_2 & tripsNewPlaces & 0.60 \\ 
-  16 & reduced\_var\_2 & tripsNewCommunities & 0.60 \\ 
-  17 & reduced\_var\_2 & tripsNewIdeas & 0.60 \\ 
-  18 & reduced\_var\_2 & tripsSocialSkills & 0.60 \\ 
-  19 & reduced\_var\_3 & tripsSpecificSkills & 0.46 \\ 
-  20 & reduced\_var\_3 & tripsDayToDaySkills & 0.46 \\ 
-   \hline
-\end{tabular}
-\caption{Partition of outcomes, Trips} 
-\end{table}
+In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the featured variables in a reduced variable (or a summarizing one) for future surveys to avoid redundancy.
+
+Table \ref{partitionmeals} shows the obtained results of the dimensionality reduction for the variables of the Lunch program. It displays 10 variables which haven't been reduced, and 5 reduced variables with a number of featured variables.
+
+Table \ref{partitiontrips} shows the partitioned results for the variables of the Trips program. Here, 12 variables haven't been reduced, and a number of featured variables are summarized to 3 reduced variables. 
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitionmeals} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{Max} \\ 
+\hline \\[-1.8ex] 
+Information, Meals & 29 & 0.670 & 0.270 & 0 & 0.4 & 1 & 1 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitionmeals} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Partition of outcomes, Meals \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitiontrips} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{Max} \\ 
+\hline \\[-1.8ex] 
+Information, Trips & 20 & 0.834 & 0.215 & 0 & 0.6 & 1 & 1 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Feb 27, 2020 - 1:16:41 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{partitiontrips} 
+\begin{tabular}{@{\extracolsep{5pt}} c} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Partition of outcomes, Trips \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
 \begin{kframe}
 
-<<<<<<< HEAD
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
-=======
-<<<<<<< HEAD
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): ungültiges 'digits' Argument}}\end{kframe}
-=======
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print.default(m, ..., quote = quote, right = right, max = max): invalid 'digits' argument}}\end{kframe}
->>>>>>> db3b3b4d8228ab4e84f68210a2ec6c9443b47c7b
-\subsection{A3: OLS Regressions}
+
+\subsection{A4: OLS Regressions}
 
 #normal weights selfworth& subsidiy
 
@@ -1292,7 +1235,7 @@ In the following a threshold of 0.4 is used, meaning that the reduced variable c
 % lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
 % elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
 % @
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
+
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
 

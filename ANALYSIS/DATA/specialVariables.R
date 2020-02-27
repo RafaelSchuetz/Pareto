@@ -1,3 +1,17 @@
+# Names of variables used in models
+
+modelVariablesNames <- c('lessIll',
+                    'appreciateHealthy',
+                    'dietaryKnowledge',
+                    'DGECriteriaNo',
+                    'selfworth',
+                    'dayToDaySkills',
+                    'tripsSelfworth',
+                    'tripsDayToDaySkills',
+                    'realSubsidyPerBeneficiary',
+                    'realTripsSubsidyPerBeneficiary'
+                    )
+
 # outcomes not directly related to beneficiaries 
 
 generalOutcomes <- c(
@@ -66,4 +80,5 @@ availableVariables <- function(dataSet, variableName) {
   return(names(comparisonAvailableYears))
 }
 
-alwaysRecordedVariables <- availableVariables(mergedData, "subsidy")
+alwaysRecordedVariablesMeals <- availableVariables(mergedData, "subsidy")
+alwaysRecordedVariablesTrips <- availableVariables(mergedData, 'realSubsidy')

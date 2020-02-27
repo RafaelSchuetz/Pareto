@@ -24,6 +24,10 @@
  
 % If there is no error while knitting from Rnw to tex, but an error while compiling from tex to pdf, have a look at the pdf file. It might still have worked.
 
+% instead of Compile PDF, go into Terminal and enter 
+% Rscript -e "library(knitr); knit('paper.Rnw')"
+% latexmk -pdf paper
+
 
 
 % Julian's suggestions from February 24
@@ -66,8 +70,6 @@
 
 % working with knitR and LaTeX
 % https://kbroman.org/knitr_knutshell/pages/latex.html
-% Command line
-% R -e 'library(knitr);knit("knitr_example.Rnw")'
 
 % rotate tables in knitr
 % https://stackoverflow.com/questions/21840878/rotate-a-table-from-r-markdown-in-pdf
@@ -88,13 +90,14 @@
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 \usepackage{floatrow}
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
+% \usepackage{bookmark}
 \usepackage{rotating}
 % \usepackage[authoryear]{natbib}
 % \bibliographystyle{apalike}
 \usepackage{mathtools}
-\usepackage[onehalfspacing]{setspace}
+% \usepackage[onehalfspacing]{setspace}
 \usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
+\usepackage[hidelinks]{hyperref}
 
 % 1.5 spacing in Word is about this in LaTeX
 % https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
@@ -176,6 +179,12 @@ latin number pages\\
 
 \section{Examples}
 
+Citing\\
+
+If you want to cite \textcite{Millenstein.2020} inline, use this.
+If you want to cite \parencite[p.4]{Millenstein.2020} inline with a page number, use this.
+If you want to cite \citeauthor{Millenstein.2020} only as authors, use this.
+
 Equation with double index\\
 
 \begin{equation}
@@ -192,22 +201,22 @@ List\\
 \end{itemize}
 
 
-Figure\\
+% Figure\\
+% 
+% \begin{figure}
+%   \caption{Dispersion in productivity levels}
+%   \label{LineDisp}
+% 
+% <<echo=FALSE>>=
+% figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
+% print(figureLineDisp)
+% @
+% 
+% \floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
+% \end{figure}
 
-\begin{figure}
-  \caption{Dispersion in productivity levels}
-  \label{LineDisp}
 
-<<echo=FALSE>>=
-figureLineDisp = readRDS("./ANALYSIS/GRAPHS/LineDisp.Rds")
-print(figureLineDisp)
-@
-
-\floatfoot{Note: Time series plots of approximate deviations of the three annual dispersion measures from their trends in percent. A shows the full sample, B the non-durable manufacturing sector, and C the durable manufacturing sector. After taking the natural logarithm of the dispersion measures defined in equation 1, I have isolated their cyclical components with an HP-100 filter. The shaded bars represent recessions as defined by the NBER. The year ticks refer to January 1. The dispersion measures take as their date the middle of the year, July 2. Compare Kehrig (2015), Figure 1.}
-\end{figure}
-
-
-Figure \ref{LineDisp}
+% Figure \ref{LineDisp}
 
 % <<results='asis', echo=FALSE>>=
 % tableCyclicDisp = readRDS("./Analysis/CyclicDisp.Rds")
@@ -225,7 +234,7 @@ Regression fit output with texreg\\
 mealsNo_sub.lm = readRDS("./ANALYSIS/Tables/mealsNo_sub.lm.Rds")
 tripsNo_sub.lm = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 #  
-texreg(list(mealsNo_sub.lm, tripsNo_sub.lm))
+texreg(list(mealsNo_sub.lm, tripsNo_sub.lm), label = "mealsTripsSubsidyRegressions")
 @
 
 Table \ref{mealsTripsSubsidyRegressions}
@@ -276,6 +285,10 @@ CHILDREN's aims for data analysis\\
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
+\subsection{Previous research}
+
+The previous research shows, that the childhood and youth is central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Heckmann and Carneiro (2003) show that especially early family factors determine the most of gaps in highschool attendance. Moreover, Deckers et. al. (2015) found by experiments in Germany, that children of higher educated parents are signficantly more patient. Children from parents with lower income and lower educational attainment typically have a lower weight at birth and are born in a later week of gestation, which are indicators for good initial conditions (Deckers et. al. 2015, Case et. al. 2002). Children that grow up in families with a low socio-economic status are often less mobile and more likely to keep to themselves. This could have a negative influence on their character development. For example, Chetty et. al (2012) investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of Deckers et. al. (2020) provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could have a significant and persistant increase of elementary school children´s prosociality, in response to prosocial role models and intense social interactions. As investigated by Heckmann et. al. (2010) for a preschool education program in the US, investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.  
+
 \section{Data}
 
 To measure the effect of CHILDREN´s engagement on the funded organizations, we use the data CHILDREN collected from 2011 to 2018. In each year they send a survey to the organizations with several questions about the previous year. The number of organizations varies among the years and increases over time, from 52 in the 2012 survey to 73 in the survey from 2020. In some organizations one employee fills in the survey and in others they do it as a team. Since the children and adolescents are not questioned directly, all responses are documented through the perception of the employees. The number of variables varies over time as well. Included are numbers such as the average eaters per meal or the amount of money they provide to the organizations but also general questions. For instance, CHILDREN asks the average amount of kids with a better confidence or an improved dietary knowledge in the specific organization. This part of the survey must be answered on a scale from zero (no kids) to four (all kids). If an organization does not answer a question, this is documented as a “99”. We worked with the statistical program “R” and therefore changed the format from 99s to NA´s (not available) to avoid distortions. The surveyed variables change over the years, but some of them are included every year. 
@@ -291,7 +304,7 @@ Figure\\
   \caption{Trend in everyday expertise and selfworth}
   \label{LineDisp}
 
-<<echo=FALSE>>=
+<<DaytodayskillsSelfworth, echo=FALSE>>=
 figureDaytodayskillsSelfworth = readRDS("./ANALYSIS/GRAPHS/PAPER/plot_dayToDaySkills_selfworth.Rds")
 print(figureDaytodayskillsSelfworth)
 @
@@ -304,6 +317,23 @@ print(figureDaytodayskillsSelfworth)
 
 In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries in both programs, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.
 
+# <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+# 
+# # first, read in all Rds objects that you need
+# 
+# fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
+#  
+# colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
+# 
+# fundamental_dynamics <- xtable(fundamental_dynamics,
+#                                digits = c(0, 0, 1, 1, 0, 0),
+#           caption = "Summary Statistics",
+#           align = "lmmmmm", 
+#           label = "fundamentalDynamics"
+#           )
+# print(fundamental_dynamics, include.rownames = FALSE)
+# @
+
 <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
 # first, read in all Rds objects that you need
@@ -312,10 +342,11 @@ fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
  
 colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
 
-fundamental_dynamics <- xtable(fundamental_dynamics,
-                               digits = c(0, 0, 1, 1, 0, 0),
+fundamental_dynamics <- stargazer(fundamental_dynamics,
+                                  summary = FALSE,
+                               # digits = c(0, 0, 1, 1, 0, 0),
           caption = "Summary Statistics",
-          align = "lmmmmm", 
+          # align = "lmmmmm", 
           label = "fundamentalDynamics"
           )
 print(fundamental_dynamics, include.rownames = FALSE)
@@ -447,7 +478,7 @@ texreg(list(lm_ts, lm_ts_o,lm_ts_i), caption = "Regression Results: Number of tr
 \subsection{Variables of interest: selfworth and everyday expertise} 
 
 In their surveys, CHILDREN asks about two variables in both programs. These are the share of beneficiaries that are believed to have increased their self-worth and to have ehanced their everyday expertise. This feature could potentially allow us to compare the two programs regarding their realtive effectiveness. Like always, we standardize the two outcome variables. As before, we can only make associational claims. We invariably find no clear-cut relationship between the subsidy per beneficiary and the two outcomes. In fact, no coefficent is statistically significantly differnent from zero at any of the usual levels. 
-
+The four variables are recorded for each year in which the program was operative.
 Tables \ref{SelfworthRegressions} and \ref{DayToDaySkillsRegressions} present the null results. 
 
 <<SelfworthRegressions, echo=FALSE, results='asis', message=FALSE>>=
@@ -480,12 +511,9 @@ Now, we turn to a predictor that CHILDREN does not directly influence until now,
 
 In its yearly surveys, CHILDREN asks about three variables closely related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet.
 
-Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.
+Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion and each of the three health-related variables. The x-axis displays the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none. For example, if an organization says that most beneficiaries are healthier, then this would be coded as most. The highest amount of healthy criteria to be fulfilled is x. 
 
-We use standardized versions of these variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
-By estimating these models with ordinary least squares, we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares, using the number of beneficiaries as weights. 
-
-
+All plots of Figure \ref{Health_Plots} show that most organizations suffice about 5 to 10 healthy food criteria. The largest part of criterion values are associated with most beneficiaries being less Ill, having a growing appreciation for a healthy diet or having increased their knowledge about what constituted a healthy diet. It secondly becomes visible that the healthy criterion only exchanges with a growing appreciation for a healthy diet or an increasing dietary knowlege for all beneficiaries (which is the second most stated criterion in the two bottom plots), but not with all beneficaries being more healthy. However, for the variable less ill, the least data is availabe. Overall, the criteria, even a few, seem to have a positive relationship with beneficiaries health relevant variables. This connection is empiricaly examined in regressions \ref{HealthRegressions-LessIll}, \ref{HealthRegressions-DietaryKnowledge} and \ref{HealthRegressions-AppreciateHealthy}.
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
@@ -498,7 +526,10 @@ print(Health_percentageplots)
 The x-axis plots the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all(coded as 4), most (3), some (2), few (1), and none (coded as 0). For example, if an organization says that most beneficiaries are healthier, then this would be coded as 3.}
 \end{figure}
 
-In the following equation we use standardized variables in a standard OLS approach. The results are as well compared to the output with the imputed dataset, where we also use scaled coefficents.
+We use standardized versions of the health related variables as outcomes in simple linear models with a standardized version of the healthy food criterion as predictor in each.
+By estimating these models with ordinary least squares, we ascribe the same weight to an organization where a thousand beneficiaries regularly eat as to one where only ten people do so. To control for this difference in size, we additionally fit the models with weighted least squares, using the number of beneficiaries as weights.
+
+In Table \ref{HealthRegressions-LessIll}, after weighting the regression for the original data set, the coefficent rises slightly but is becoming less statistically significant. An increase of the healthy food criterion by one standard deviation is associated with an increase in beneficiaris being more healthy by 0.35 standard deviations. Regressing with the imputed dataset, results decrease by about 0.1. Using weighted least squares additionaly results in a slighty decreased coefficent, which is not significant anymore.    
 
 <<HealthRegressions-LessIll, echo=FALSE, results='asis', message=FALSE>>=
 
@@ -534,6 +565,12 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw), caption = "Regression Results: Apprec
 \section{Feature Selection}
 
 \subsection{Factor Analysis}
+
+We use imputed data set.
+
+we use the orthogonal rotation technique Varimax, which is recommended in Price (2017, p. 307) when the goal of analysis is to "minimize complexity of factors by maximizing variance of loadings on each factor" 
+We estimate factor scores with the Bartlett method, which is similar to a Maximum Likekelihood estimation, and presented as the most convential one in Eid and Schmidt (2010, p. 291)
+We use maximum likelihood as factoring method
 
 \subsection{Double Selection}
 
@@ -606,7 +643,7 @@ Adj. R$^2$ (proj model) & $0.36$        \\
 Ende??
 the dataset does not allow a channel analysis but these could be possible channels that might explain the effects we find
 
-<<echo=FALSE, results='asis', message=FALSE>>=
+<<selfworth_tripsProgram, echo=FALSE, results='asis', message=FALSE>>=
 
 # first, read in all Rds objects that you need
 
@@ -699,34 +736,36 @@ A summary of the remaining models:
   \item{Everyday Expertise: (-0.00003) = 1} 
 \end{itemize}
 
-<<echo=FALSE, results='asis', message=FALSE>>=
+<<lessIllOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 lessIllOdds <- readRDS("./ANALYSIS/Tables/lessIllProp.Rds")
 
 stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Less Ill", align = TRUE, label = "lessIllOdds")
 
 @
-<<echo=FALSE, results='asis', message=FALSE>>=
+
+<<dietaryOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 dietaryOdds <- readRDS("./ANALYSIS/Tables/DietaryProp.Rds")
 
 stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Dietary Knowledge", align = TRUE, label = "dietaryOdds")
 @
-<<echo=FALSE, results='asis', message=FALSE>>=
+
+<<appreciateOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 appreciateOdds <- readRDS("./ANALYSIS/Tables/AppreciateProp.Rds")
 
 stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Appreciate Healthy", align = TRUE, label = "appreciateOdds")
 @
 
-<<echo=FALSE, results='asis', message=FALSE>>=
+<<selfworthOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 selfworthOdds <- readRDS("./ANALYSIS/Tables/selfworthProp.Rds")
 
 stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Selfworth", align = TRUE, label = "selfworthOdds")
 @
 
-<<echo=FALSE, results='asis', message=FALSE>>=
+<<dayToDayOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 dayToDayOdds <- readRDS("./ANALYSIS/Tables/dayToDayProb.Rds")
 
@@ -735,11 +774,17 @@ stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Everyday expe
 
 \subsection{A3: Partition}
 
-In addition to the factor analysis described in section 6, we would like to introduce to a another dimensionality reduction method called partition. 
+In addition to the factor analysis which is described in section 6, we would like to introduce to a another dimensionality reduction method called partition. This method was developped by Millenstein et. al in the context of genome analysis. 
 
-QUOTES FROM PAPER, describe method 
+According to the researchers, potential benefits of reducing dimensionality are reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{} (p.677).
 
-In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the variables a reduced variable consists of or a summarizing one for future surveys to avoid redundancy. Table x shows the obtained results of the dimensionality reduction and displays x variables which haven't been reduced, and x reduced ones.    
+The partition approach partitions data into subsets of related features. It then  summarizes each subset into one new feature. By that, it defines a surjective mapping \cite{} (p.676). A function g is implemented using the arithmetic mean. In contrast to methods like the factor analysis, if a feature is identified as related to a response of interest, the exact subset of features that are implicated to the surjective mapping is known without ambiguity. What is as well different is the information loss constraint. It lets the extent of dependences among features on a local level guide the extent to which the number of features is reduced.\cite{}(p.677)  
+
+In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the featured variables in a reduced variable (or a summarizing one) for future surveys to avoid redundancy.
+
+Table \ref{partitionmeals} shows the obtained results of the dimensionality reduction for the variables of the Lunch program. It displays 10 variables which haven't been reduced, and 5 reduced variables with a number of featured variables.
+
+Table \ref{partitiontrips} shows the partitioned results for the variables of the Trips program. Here, 12 variables haven't been reduced, and a number of featured variables are summarized to 3 reduced variables. 
 
 <<Partition, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
@@ -751,27 +796,28 @@ partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.4.Rds")
 colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
 colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
 
-xtable(partition_meals,
+stargazer(partition_meals,
                                #digits = c(0, 0, 1, 1, 0, 0),
-          caption = "Partition of outcomes, Meals"
+          caption = "Partition of outcomes, Meals", 
+          label = 'partitionmeals'
           #align = "lmmm"
           )
 #print(partition_meals, include.rownames = FALSE)
 
 
-xtable(partition_trips,
+stargazer(partition_trips,
                                #digits = c(0, 0, 1, 1, 0, 0),
-          caption = "Partition of outcomes, Trips"
+          caption = "Partition of outcomes, Trips",
+          label = 'partitiontrips'
           #align = "lmmm"
           )
 print(partition_meals, partition_trips, include.rownames = FALSE)
 @
-<<<<<<< HEAD
-=======
-\subsection{A3: OLS Regressions}
+
+\subsection{A4: OLS Regressions}
 
 #normal weights selfworth& subsidiy
-<<eqaulity_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+<<equality_extra_reg, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
 lm_s = readRDS("./ANALYSIS/Tables/selfworth.lm.Rds") #weighted
 lm_d = readRDS("./ANALYSIS/Tables/dayToDaySkills.lm.Rds") #weighted
@@ -790,7 +836,7 @@ tdI = readRDS("./ANALYSIS/Tables/dayToDaySkillsTrips_IM.lm.Rds")
 % lm_elDGEw = readRDS("./ANALYSIS/Tables/Expand_LessIll_scaled_weighted.Rds")
 % elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.Rds")
 % @
->>>>>>> 72c6d5913679c3fb04935b691d8cdf7883ee60c8
+
 
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
 

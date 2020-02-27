@@ -6,9 +6,9 @@ library(tidyselect)
 
 # select rows with year in which DGECriteriaNo was recorded
 
-datasetMode <- mergedDataImputeMode %>% 
-  filter(year %in% c(2018, 2017, 2016, 2014)) %>%
-  dplyr::select(!tidyselect::contains('scaled'))
+# datasetMode <- mergedDataImputeMode %>% 
+#   filter(year %in% c(2018, 2017, 2016, 2014)) %>%
+#   dplyr::select(!tidyselect::contains('scaled'))
 
 datasetInterpolation <- mergedDataImputeInterpolation %>% 
   filter(year %in% c(2018, 2017, 2016, 2014)) %>% 
@@ -21,13 +21,17 @@ datasetInterpolation <- mergedDataImputeInterpolation %>%
 # loop for regressions with varying outcome and features
 
 flexibleRegression <- function(response, predictor, dataset) {
+  dataset <- dataset %>% 
   x <- as.matrix(dataset[, !(names(dataset) %in% response)])
   y <- as.matrix(dataset[, response])
   d <- as.matrix(dataset[, predictor])
   rlassoEffect(x, y, d)
 }
 
-DSSelfworthRealSubsidy <- flexibleRegression("selfworth", "realSubsidy", mergedDataImputeAll)
+DF_DS <- mergedDataImputeInterpolation %>% 
+  drop_na()
+
+DSSelfworthRealSubsidy <- flexibleRegression("selfworth", "realSubsidy", datasetInterpolation)
 
 DSDayToDaySkillsRealSubsidy <- flexibleRegression("dayToDaySkills", "realSubsidy", mergedDataImputeAll)
 

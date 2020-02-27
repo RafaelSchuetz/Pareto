@@ -1,12 +1,6 @@
 #inspectinfluenceofvariablesovertime
 #inpercentages
 
-library(ggplot2)
-library(cowplot)
-library(purrr)
-library(dplyr)
-library(ggpubr)
-
 #setthevariables
 
 responset= names(mergedData)

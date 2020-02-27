@@ -1,11 +1,15 @@
-#Real Subsidy Time Trend Total & Median
+#Real Subsidy Time Trend Total &Median
 
-library(dplyr)
-library(estimatr)
-library(tidyverse)
-library(ggplot2)
-library(stats)
-library(cowplot)
+
+# Inititial summary statistics about 
+
+modelVariables <- mergedData %>% 
+  dplyr::select(all_of(modelVariablesNames)) %>% 
+  data.frame()
+
+modelVariablesSummary <- stargazer(modelVariables)
+
+saveRDS(modelVariablesSummary, './ANALYSIS/Tables/modelVariablesSummary.Rds')
 
 ###total trips subsidy real 
 
@@ -78,7 +82,27 @@ summaryStatistics_Subsidy <- plot_grid(totalRealSub, totalRealTripSub, medianRea
                                        label_x = 0, label_y = 0, hjust = -3, vjust = 
                                          -1.5, label_fontface = "plain", label_size = 11)
 
-saveRDS(summaryStatistics_Subsidy, "./ANALYSIS/GRAPHS/PAPER GRAPHS/summaryStatistics_Subsidy.Rds")
+saveRDS(summaryStatistics_Subsidy, "./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
 
 
+#number of beneficiaries & organisations
+
+organisations_beneficiaries <- mergedData%>%
+  group_by(year)%>%
+  dplyr::summarize(Lunch_KidsNo=sum(eatersPerMealNo, na.rm = TRUE),trips_KidsNo=sum(tripsKidsNo, na.rm = TRUE), Lunch_OrganisationsNo = n_distinct(id))
+#trips no
+TripsOrgaData <- mergedData %>%
+  dplyr::filter(!(tripsKidsNo == 0 | is.na(tripsKidsNo)))
+
+TripsOrganisationsNumber <- TripsOrgaData%>%
+  group_by(year)%>%
+  dplyr::summarise(Trips_OrganisationNo = n_distinct(id))
+
+#join 
+organisationsbeneficaries <- organisations_beneficiaries %>% 
+  full_join(TripsOrganisationsNumber) 
+
+organisationsbeneficaries[1,3] <- NA
+
+fundamental_dynamics = saveRDS(organisationsbeneficaries,"./ANALYSIS/Tables/fundamental_dynamics.Rds")
 

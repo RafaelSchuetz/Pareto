@@ -1,4 +1,4 @@
-#Real Subsidy Time Trend Total &Median
+#Real Subsidy Time Trend Total & Median
 
 library(dplyr)
 library(estimatr)
@@ -81,24 +81,4 @@ summaryStatistics_Subsidy <- plot_grid(totalRealSub, totalRealTripSub, medianRea
 saveRDS(summaryStatistics_Subsidy, "./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
 
 
-#number of beneficiaries & organisations
-
-organisations_beneficiaries <- mergedData%>%
-  group_by(year)%>%
-  dplyr::summarize(Lunch_KidsNo=sum(eatersPerMealNo, na.rm = TRUE),trips_KidsNo=sum(tripsKidsNo, na.rm = TRUE), Lunch_OrganisationsNo = n_distinct(id))
-#trips no
-TripsOrgaData <- mergedData %>%
-  dplyr::filter(!(tripsKidsNo == 0 | is.na(tripsKidsNo)))
-
-TripsOrganisationsNumber <- TripsOrgaData%>%
-  group_by(year)%>%
-  dplyr::summarise(Trips_OrganisationNo = n_distinct(id))
-
-#join 
-organisationsbeneficaries <- organisations_beneficiaries %>% 
-  full_join(TripsOrganisationsNumber) 
-
-organisationsbeneficaries[1,3] <- NA
-
-fundamental_dynamics = saveRDS(organisationsbeneficaries,"./ANALYSIS/Tables/fundamental_dynamics.Rds")
 

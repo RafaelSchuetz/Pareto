@@ -1,6 +1,3 @@
-# Load packages
-library(dplyr)
-
 # Join data from 2011 to 2018
 
 data201118 <- df_2018 %>% #data2019 %>%

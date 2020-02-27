@@ -1,12 +1,6 @@
 # PaRE3To-Projekt
 
-# 1. Herunterladen der Daten ----------------------------------------------
-
-#rm(list = ls())
-
-library(readxl)
-library(dplyr)
-library(tidyverse)
+# 1. Herunterladen der Daten -----------------------------------------------
 
 ### Daten 2017
 
