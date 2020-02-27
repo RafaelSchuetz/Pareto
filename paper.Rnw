@@ -99,7 +99,7 @@ opts_chunk$set(fig.align = "center",
 % multiple authors
 % https://tex.stackexchange.com/questions/4805/whats-the-correct-use-of-author-when-multiple-authors
 
-\title{Effects of CHILDREN's programs}
+\title{Analysis of survey data collected by CHILDREN for a better World e.V.}
 \author{
 Laura Huber\\
 \texttt{11709507}
@@ -144,13 +144,11 @@ This study presents the results of the analysis of the data of effects of the no
 
 \section{Introduction}
 
-the introduction should include: motivation, precise research questions, very short literature review, most important results, further proceedings
 
-CHILDREN's aims for data analysis\\ 
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
-\subsection{Literature overview}
+\subsection{Literature Overview}
 
 Previous research shows, that the childhood and youth is central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Heckmann and Carneiro (2003) show that especially early family factors determine the most of gaps in highschool attendance. Moreover, Deckers et. al. (2015) found by experiments in Germany, that children of higher educated parents are significantly more patient. Children from parents with lower income and lower educational attainment have typically a lower weight at birth and are born in a later week of gestation, which are indicators for bad initial conditions (Deckers et. al. 2015, Case et. al. 2002). Children which grow up in families with a low socio-economic status are often less mobile and more likely to stay amongst themselves. This could have a negative influence on their character development. For example, Chetty et. al (2014) investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of Deckers et. al. (2020) provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could result in a significant and persistent increase in the prosociality of elementary school children, with regard to prosocial role models and intense social interactions. Heckmann et. al. (2010) investigated a preschool education program in the US. He shows that an investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.   
 
@@ -163,15 +161,10 @@ The final dataset we worked with is structured as follows: Each row represents o
 
 Many organizations do not answer all questions CHILDREN poses. We create a seperate data set, in which we impute missing values with an organization-specific linear trend. CHILDREN supports some very large organizations that give out hundreds of meals a day or conduct dozens of trips per year. We fit our models with outliers excluded to see if they are driving results. We define an outlier as a value that is at least 1.5 interquartile ranges below the 25th percentile or equally far above the 75th percentile. Once we exclude outliers in terms of numbers of meals and once in terms of number of trips.
 
-
-
-
-
 \section{Summary Statistics}
 \subsection{Fundamental Dynamics} 
 
 In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries in both programs, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.
-
 
 
 <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
@@ -196,7 +189,7 @@ xtable(fundamental_dynamics,
 
 Table \ref{fundamentalDynamics} shows that, at the beginning of the time series in 2011, in the Lunch program they supported in 52 organizations. In 2018, this number has increased to 68. In 2011, CHILDREN financed meals for 3748 beneficiaries, and for 5103 in 2018. In the trips program, which launched in 2012, the number of supported organizations amounted to 44 in 2012 and grew to 49 until 2018. In 2012, their grant allowed 2803 beneficiaries to go on trips, and 6911 in 2018.
 
-\subsection{Trend of grants} 
+\subsection{Trends of grants} 
 
 \begin{figure}
   \caption{Yearly dynamics of total grants in Meals and Trips program}
@@ -218,7 +211,7 @@ In the total Trips grant, a slightly negative trend is visible, after the subsid
 
 These results visualize, for the Lunch as well as for the Trips program, together with the fundamental dynamics of table \ref{fundamentalDynamics}, that children was able to increase the number of organizations they support, but had to distribute the available subsidy among them. 
 
-\subsection{Health relevant variables over time} 
+\subsection{Dynamics of Health-Related Variables} 
 
 In its yearly surveys, CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet. Figure \ref{HealthTimeplots} displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all, most, some, few, and none. For this figure, we use the original ordinal varibles which result from the survey structure.  
 
@@ -275,9 +268,9 @@ As the fundamental theorem of factor analysis has no unique solution, we have to
 
 % \subsection{Double Selection}
 
-\section{Associations between CHILDREN's grants and selected outcomes}
+\section{Associations Between CHILDREN's Grants and Selected Outcomes}
 
-\subsection{Empirical approach} 
+\subsection{Empirical Approach} 
 
 In this section, we use a simple linear model, as described in equation \ref{SimpleLinearModel}. We estimate each model with the original data set, the one with imputed variables, and the one with excluded outliers. When appropriate, we include the relevant extracted factors as controls. 
 
@@ -298,7 +291,7 @@ In this section, we use a simple linear model, as described in equation \ref{Sim
 
 We discuss all these models in turn.
 
-\subsection{Direct effects of CHILDREN's grants} 
+\subsection{Direct Effects of CHILDREN's Grants} 
 
 If CHILDREN's grants are to have an effect on beneficiaries, they should first influence the output of organizations in terms of meals dispensed and trips conducted. 
 
