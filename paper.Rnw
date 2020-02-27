@@ -181,9 +181,9 @@ latin number pages\\
 
 Citing\\
 
-If you want to cite \textcite{Millenstein.2020} inline, use this.
+If you want to cite \textcite{Millstein.2020} inline, use this.
 If you want to cite \parencite[p.4]{Millenstein.2020} inline with a page number, use this.
-If you want to cite \citeauthor{Millenstein.2020} only as authors, use this.
+If you want to cite \citeauthor{Millstein.2020} only as authors, use this.
 
 Equation with double index\\
 
@@ -589,6 +589,8 @@ we use the orthogonal rotation technique Varimax, which is recommended in Price 
 We estimate factor scores with the Bartlett method, which is similar to a Maximum Likekelihood estimation, and presented as the most convential one in Eid and Schmidt (2010, p. 291)
 We use maximum likelihood as factoring method
 
+
+
 \subsection{Double Selection}
 
 \section{The effect of the "Entdeckerfonds" on the beneficiaries of the program}
@@ -727,7 +729,7 @@ elDGE_i = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled.lm.Rds")
 elDGE_iw = readRDS("./ANALYSIS/Tables/Expand_LessIll_IM_scaled_weighted.lm.Rds")
 
 texreg(list(lm_elDGE, lm_elDGEw, elDGE_i, elDGE_iw), caption = "Regression Results: Less ill expanded model", custom.model.names = c("OLS", "WLS", "OLS Impute","WLS Impute"), custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} Dependent variable is less ill \\\\ Model (1): original data set, simple linear model with controls, estimated with OLS \\\\ Model (2): original data set, simple linear model with controls, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ All regressions are estimated with robust standard errors %stars.}", scalebox = 0.8, label = 'expandLessIll')
+{\\vspace{2pt} Dependent variable: share of beneficiaries who are less frequently ill \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ regionalProducts: wether the organization offers meals with local ingredients or not \\\\ yearsSupportSince: the number of years an organization is already part of the Meals program \\\\ realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ state: german 'Bundeland' \\\\ Model (1): original data set, simple linear model with controls, estimated with OLS \\\\ Model (2): original data set, simple linear model with controls, estimated with WLS \\\\ Model (3): imputed data set, simple linear model with controls, estimated with OLS \\\\ Model (4): imputed data set, simple linear model with controls, estimated with WLS \\\\ All regressions are estimated with robust standard errors %stars.}", scalebox = 0.8, label = 'expandLessIll')
 @
 
 \subsection{A2: Cumulative Odds Regression} 
@@ -758,7 +760,7 @@ A summary of the remaining models:
 
 lessIllOdds <- readRDS("./ANALYSIS/Tables/lessIllProp.Rds")
 
-stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Less Ill", align = TRUE, label = "lessIllOdds")
+stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries who are less frequently ill", align = TRUE, label = "lessIllOdds")
 
 @
 
@@ -766,35 +768,35 @@ stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Less Ill", ali
 
 dietaryOdds <- readRDS("./ANALYSIS/Tables/DietaryProp.Rds")
 
-stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Dietary Knowledge", align = TRUE, label = "dietaryOdds")
+stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and share of beneficiaries with expanded dietary knowledge", align = TRUE, label = "dietaryOdds")
 @
 
 <<appreciateOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 appreciateOdds <- readRDS("./ANALYSIS/Tables/AppreciateProp.Rds")
 
-stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Appreciate Healthy", align = TRUE, label = "appreciateOdds")
+stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries with increased appreciation for a healthy diet", align = TRUE, label = "appreciateOdds")
 @
 
 <<selfworthOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 selfworthOdds <- readRDS("./ANALYSIS/Tables/selfworthProp.Rds")
 
-stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Selfworth", align = TRUE, label = "selfworthOdds")
+stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with improved self-worth", align = TRUE, label = "selfworthOdds")
 @
 
 <<dayToDayOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 dayToDayOdds <- readRDS("./ANALYSIS/Tables/dayToDayProb.Rds")
 
-stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Everyday expertise", align = TRUE, label = "dayToDayOdds")
+stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with broadened everyday expertise", align = TRUE, label = "dayToDayOdds")
 @
 
 \subsection{A3: Partition}
 
 In addition to the factor analysis which is described in section 6, we would like to introduce to a another dimensionality reduction method called partition. This method was developped by Millenstein et. al in the context of genome analysis. 
 
-The partition approach partitions data into subsets of related features. It then  summarizes each subset into one new feature. By that, it defines a surjective mapping \cite{Millenstein.2020, p.676}. A function g is implemented using the arithmetic mean. In contrast to methods like the factor analysis, if a feature is identified as related to a response of interest, the exact subset of features that are implicated to the surjective mapping is known without ambiguity. What is as well different is the information loss constraint. It lets the extent of dependences among features on a local level guide the extent to which the number of features is reduced \cite{Millenstein.2020, p.677}. 
+The partition approach partitions data into subsets of related features. It then  summarizes each subset into one new feature. By that, it defines a surjective mapping \parencite[p.676]{Millstein.2020}. A function g is implemented using the arithmetic mean. In contrast to methods like the factor analysis, if a feature is identified as related to a response of interest, the exact subset of features that are implicated to the surjective mapping is known without ambiguity. What is as well different is the information loss constraint. It lets the extent of dependences among features on a local level guide the extent to which the number of features is reduced \parencite[p.677]{Millstein.2020}. 
 
 In the following a threshold of 0.4 is used, meaning that the reduced variable consists of variables which explain each other to at least 40 percent. It might be meaningful to decide to use only one of the featured variables in a reduced variable (or a summarizing one) for future surveys to avoid redundancy.
 
