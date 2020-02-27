@@ -552,7 +552,7 @@ The fact that all organizations within the control group did not answer the trip
 \subsubsection{Graphical Evidence}
 
 \begin{figure}
-  \caption{Trend in share of beneficiaries with improved self-worth and with broadened everyday expertise}
+  \caption{Trend in share of beneficiaries with improved selfworth}
   \label{selfworth_Trend}
 
 <<Selfworth, echo=FALSE>>=
@@ -564,7 +564,7 @@ print(figureSelfworth)
 \end{figure}
 
 \begin{figure}
-  \caption{Trend in share of beneficiaries with improved self-worth and with broadened everyday expertise}
+  \caption{Trend in share of beneficiaries with broadened everyday competence}
   \label{dayToDaySkills_Trend}
 
 <<Daytodayskills, echo=FALSE>>=
