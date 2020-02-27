@@ -268,11 +268,11 @@ These results visualize, for the Lunch as well as for the Trips program, togethe
 
 \subsection{Health relevant variables over time} 
 
-In its yearly surveys, CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet. Figure \ref{Health_timeplots} displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all, most, some, few, and none. For this figure, we use the original ordinal varibles which result from the survey structure.  
+In its yearly surveys, CHILDREN asks about three variables closley related to a healthy diet. These are the shares of beneficiaries who are healthier, have a growing appreciation for a healthy diet, or have increased their knowledge about what constitutes a healthy diet. Figure \ref{HealthTimeplots} displays the share of organizarions in each category of the health outcome from 2011 to 2018. The possible values are: all, most, some, few, and none. For this figure, we use the original ordinal varibles which result from the survey structure.  
 
 \begin{figure}
   \caption{Health outcome over time}
-  \label{Health_timeplots}
+  \label{HealthTimeplots}
 <<HealthTimePlots, echo=FALSE, message=FALSE>>=
 Health_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
 print(Health_timeplots)
@@ -281,11 +281,11 @@ print(Health_timeplots)
 The x-axis plots the year. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none.}
 \end{figure}
 
-In Figure \ref{Health_timeplots}, for the variable 'lessIll_ordered', there is much non available data (lessIll_ordered refers to the share of beneficiaries who are less frequently ill). In all years, most organizations say that most beneficiaries are more healthy. The least stated category is, that all beneficiaries are less ill. That few are less ill, appears sometimes and the leftover category, none, which is only coded for the variable 'lessIll_ordered', appears as good as never.
+In Figure \ref{HealthTimeplots}, for the variable 'lessIll\_ordered', there is much non available data (lessIll\_ordered refers to the share of beneficiaries who are less frequently ill). In all years, most organizations say that most beneficiaries are more healthy. The least stated category is, that all beneficiaries are less ill. That few are less ill, appears sometimes and the leftover category, none, which is only coded for the variable 'lessIll\_ordered', appears as good as never.
 
-In the second plot of figure \ref{Health_timeplots} (variable 'dietaryKnowledge_ordered', refers to the share of beneficiaries with expanded dietary knowledge) most organizations state, that predominantely most or all beneficiaries increased their knowledge about what constitutes a healthy diet. The least stated category is that some beneficiaries increased their dietary knowledge. The leftover category, few, does not appear.
+In the second plot of figure \ref{HealthTimeplots} (variable 'dietaryKnowledge\_ordered', refers to the share of beneficiaries with expanded dietary knowledge) most organizations state, that predominantely most or all beneficiaries increased their knowledge about what constitutes a healthy diet. The least stated category is that some beneficiaries increased their dietary knowledge. The leftover category, few, does not appear.
 
-The the bottom plot of figure \ref{Health_timeplots}, which visualizes the variable 'appreciateHealthy_ordered' (refers to the share of beneficiaries with increased appreciation for a healthy diet). Again most organizations state, that most beneficiaries have a growing appreciation for a healthier diet. The second most stated answer is that all beneficiaries have a growing appreciation for a healthier diet. The least stated category by the organizations is, as well as in the second plot, that some have a growing appreciation for a healthier diet. The leftover category, few, also does not appear.
+The the bottom plot of figure \ref{HealthTimeplots}, which visualizes the variable 'appreciateHealthy\_ordered' (refers to the share of beneficiaries with increased appreciation for a healthy diet). Again most organizations state, that most beneficiaries have a growing appreciation for a healthier diet. The second most stated answer is that all beneficiaries have a growing appreciation for a healthier diet. The least stated category by the organizations is, as well as in the second plot, that some have a growing appreciation for a healthier diet. The leftover category, few, also does not appear.
 
 
 \subsection{Selfworth and everyday expertise} 
@@ -294,7 +294,7 @@ In its yearly surveys, CHILDREN has always asked about the following two variabl
 
 \begin{figure}
   \caption{Selfworth and everyday expertise over time}
-  \label{Equality_timeplots}
+  \label{EqualityTimeplots}
 <<EqualityTimePlots, echo=FALSE, message=FALSE>>=
 Equality_timeplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Equality_Year.Rds")
 print(Equality_timeplots)
@@ -303,9 +303,9 @@ print(Equality_timeplots)
 The x-axis plots the year. The y-axis displays the share of organizations in each category of the health outcome. The possible values are: all, most, some, few, and none.}
 \end{figure}
 
-Figure \ref{Equality_timeplots} shows in its upper plot the development of the answered categories for the variable selfworth_ordered (refers to the share of beneficiaries with improved self-worth). Mostly, the answer is that most beneficiaries in most organizations have more selfworth. The second most stated category is that all beneficiaries gained in selfworth and the least stated is that some have more selfworth. The leftover category, few, does not appear.
+Figure \ref{EqualityTimeplots} shows in its upper plot the development of the answered categories for the variable selfworth\_ordered (refers to the share of beneficiaries with improved self-worth). Mostly, the answer is that most beneficiaries in most organizations have more selfworth. The second most stated category is that all beneficiaries gained in selfworth and the least stated is that some have more selfworth. The leftover category, few, does not appear.
 
-In the bottom plot of figure \ref{Equality_timeplots} the development of the share of beneficiaries with a broadened understanding for everyday expertise over time is visible. The results are about similar to the previous results of selfworth: Most beneficiaries in most organisations have a growing understanding for everyday expertise. 
+In the bottom plot of figure \ref{EqualityTimeplots} the development of the share of beneficiaries with a broadened understanding for everyday expertise over time is visible. The results are about similar to the previous results of selfworth: Most beneficiaries in most organisations have a growing understanding for everyday expertise. 
 
 \section{Regressions}
 
@@ -344,7 +344,7 @@ lm_ms_i = readRDS("./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")#impute meals
 
 
 texreg(list(lm_ms, lm_ms_c, lm_ms_o, lm_ms_o_c, lm_ms_i), caption = "Association between number of meals and real subsidy", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} Dependent variable: number of meals \\\\ realSubsidy: subsidy for Meals program in 2015 EUR \\\\ eatersPerMeal: number of beneficiaries of Lunch program \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, linear model with controls, estimated with OLS \\\\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\\\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\\\ Model (5): imputed data set, simple linear model, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = "GrantsRegressionsLunch", booktabs = TRUE)
+{\\vspace{2pt} Dependent variable: number of meals \\\\ realSubsidy: subsidy for Meals program in 2015 EUR \\\\ eatersPerMeal: number of beneficiaries of Lunch program \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, linear model with controls, estimated with OLS \\\\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\\\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\\\ Model (5): imputed data set, simple linear model, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = "GrantsRegressionsLunch", booktabs = TRUE, use.packages=FALSE)
 
 @
 
@@ -364,7 +364,7 @@ lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
 
 
 texreg(list(lm_ts, lm_ts_c, lm_ts_o, lm_ts_o_c, lm_ts_i), caption = "Association between number of trips and real subsidy", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} Dependent variable: number of trips \\\\ realTripsSubsidy: subsidy for Trips program in 2015 EUR \\\\ tripsKidsNo: number of beneficiaries of Trips program \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, linear model with controls, estimated with OLS \\\\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\\\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\\\ Model (5): imputed data set, simple linear model, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'GrantsRegressionsTrips', digits = 4, booktabs = TRUE)
+{\\vspace{2pt} Dependent variable: number of trips \\\\ realTripsSubsidy: subsidy for Trips program in 2015 EUR \\\\ tripsKidsNo: number of beneficiaries of Trips program \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, linear model with controls, estimated with OLS \\\\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\\\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\\\ Model (5): imputed data set, simple linear model, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'GrantsRegressionsTrips', digits = 4, booktabs = TRUE, use.packages=FALSE)
 @
 
 \subsection{Variables of interest: selfworth and everyday expertise} 
@@ -405,13 +405,13 @@ Now, we turn to a predictor that CHILDREN does not directly influence until now,
 
 In its yearly surveys, CHILDREN asks about three variables closely related to a healthy diet. These are the shares of beneficiaries who are less frequently ill, with expanded dietary knowledge and with increased appreciation for a healthy diet. 
 
-Figure \ref{Health_Plots} gives an overview of the relationship between the healthy food criterion (DGECriteriaNo, index of healthy diet criteria fulfilled in organization's menu) and each of the three health-related variables. For these results, we use their ordinal values. The x-axis displays the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none. For example, if an organization says that most beneficiaries are healthier, then this would be coded as most. In the last reporting period, there are 13 healthy diet criteria. In previous years there were up to 15. The ecotrophologist assessed each criterion individually and decided wether it was fulfilled or not. The healthy food incex is calculated as the number of fulfilled criteria. Examples for criteria are daily carbohydrates or daily vegetables.  
+Figure \ref{HealthPlots} gives an overview of the relationship between the healthy food criterion (DGECriteriaNo, index of healthy diet criteria fulfilled in organization's menu) and each of the three health-related variables. For these results, we use their ordinal values. The x-axis displays the index for a healthy diet. The y-axis displays the share of organizarions in each category of the health outcome. The possible values are: all, most, some, few and none. For example, if an organization says that most beneficiaries are healthier, then this would be coded as most. In the last reporting period, there are 13 healthy diet criteria. In previous years there were up to 15. The ecotrophologist assessed each criterion individually and decided wether it was fulfilled or not. The healthy food incex is calculated as the number of fulfilled criteria. Examples for criteria are daily carbohydrates or daily vegetables.  
 
-All plots of Figure \ref{Health_Plots} show that most organizations suffice about 5 to 10 healthy food criteria. The largest part of criterion values are associated with most beneficiaries being less Ill, having a growing appreciation for a healthy diet or having increased their knowledge about what constitutes a healthy diet. It secondly becomes visible that the healthy criterion only exchanges with a growing appreciation for a healthy diet or an increasing dietary knowlege for all beneficiaries (which is the second most stated criterion in the two bottom plots), but not with all beneficaries being more healthy. However, for the variable less ill, the least data is availabe. Overall, the criteria, even a few, seem to have a positive relationship with beneficiaries health relevant variables. This connection is empiricaly examined in regressions \ref{HealthRegressions-LessIll}, \ref{HealthRegressions-DietaryKnowledge} and \ref{HealthRegressions-AppreciateHealthy}.
+All plots of Figure \ref{HealthPlots} show that most organizations suffice about 5 to 10 healthy food criteria. The largest part of criterion values are associated with most beneficiaries being less Ill, having a growing appreciation for a healthy diet or having increased their knowledge about what constitutes a healthy diet. It secondly becomes visible that the healthy criterion only exchanges with a growing appreciation for a healthy diet or an increasing dietary knowlege for all beneficiaries (which is the second most stated criterion in the two bottom plots), but not with all beneficaries being more healthy. However, for the variable less ill, the least data is availabe. Overall, the criteria, even a few, seem to have a positive relationship with beneficiaries health relevant variables. This connection is empiricaly examined in regressions \ref{HealthRegressions-LessIll}, \ref{HealthRegressions-DietaryKnowledge} and \ref{HealthRegressions-AppreciateHealthy}.
 
 \begin{figure}
   \caption{Health Outcomes versus Healthy Meals}
-  \label{Health_Plots}
+  \label{HealthPlots}
 <<HealthRegressionsPercentageplots, echo=FALSE, message=FALSE>>=
 Health_percentageplots <- readRDS("./ANALYSIS/GRAPHS/PAPER/Health_percentageplots.Rds")
 print(Health_percentageplots)
@@ -474,7 +474,7 @@ The previous simple linear models are regressed with metric versions of the surv
 
 \subsection{Factor Analysis}
 
-Benefits of reducing dimensionality can be reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{Millenstein.2020, p.677}.
+Benefits of reducing dimensionality can be reduced computational demands, reduced multiple-testing burden, reduced noise, as well as better-behaved data \cite{Millstein.2020, p.677}.
 
 We use imputed data set.
 
@@ -569,9 +569,9 @@ Using the panel structure of the dataset we implement the DID estimation with th
   Y_{it} = \alpha + \beta \cdot TreatEF_{it} + \gamma_{i} + \delta_{t} + \epsilon_{it}
 \end{equation}
 
-where \begin{itshape}{i}\end{itshape} indexes the identification number of each organization supported by CHILDREN and \begin{itshape}{t}\end{itshape} indexes the year of observation. The outcome variable, denoted by \begin{itshape}Y_{it}\end{itshape}, is either selfworth or everyday expertise. As mentioned in the previous section, \begin{itshape}TreatEF_{it}\end{itshape} represents the treatment status of organization \begin{itshape}{i}\end{itshape} in year \begin{itshape}{t}\end{itshape}. The corresponding regression coefficient \begin{itshape}\beta\end{itshape} represents the DiD estimator, which measures the average treatment effect of participating in the trips program.
+where $i$ indexes the identification number of each organization supported by CHILDREN and $t$ indexes the year of observation. The outcome variable, denoted by $Y_{it}$, is either selfworth or everyday expertise. As mentioned in the previous section, $TreatEF_{it}$ represents the treatment status of organization $i$ in year $t$. The corresponding regression coefficient $\beta$ represents the DiD estimator, which measures the average treatment effect of participating in the trips program.
 
-The panel data set allows us to implement fixed effects. In our analysis we introduce individual fixed effects and time fixed effects. The ID fixed effects \begin{itshape}\gamma_{i}\end{itshape} control for organization specific observable and unobservable characteristics that are constant over time but differ across social institutions. For example, the state of an organization does not vary over time but might differ across supported social institutions. Additionally, the year fixed effects \begin{itshape}\delta_{t}\end{itshape} capture all variables that change across years but are the same for all organizations and within a specific year. For all following regression estimations, we use robust standard errors to take potential heteroscedasticity into account.
+The panel data set allows us to implement fixed effects. In our analysis we introduce individual fixed effects and time fixed effects. The ID fixed effects $\gamma_{i}$ control for organization specific observable and unobservable characteristics that are constant over time but differ across social institutions. For example, the state of an organization does not vary over time but might differ across supported social institutions. Additionally, the year fixed effects $\delta_{t}$ capture all variables that change across years but are the same for all organizations and within a specific year. For all following regression estimations, we use robust standard errors to take potential heteroscedasticity into account.
 
 One concern with our empirical approach is that the allocation to treatment and control group might not be perfectly randomized because the selection into the treatment could be driven by time-variant characteristics. Therefore, we include a set of control variables to deal with potential selection bias. For this, we select variables of the available dataset that might influence both the treatment status and either of the outcome variables. Furthermore, we control for organization specific characteristics which include the subsidy received for the meals program, the corresponding total costs of providing meals and the number of days in a week on which children cook in a specific social institution.
 
