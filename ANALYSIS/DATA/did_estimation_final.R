@@ -189,7 +189,7 @@ RpValue_selfworth_2 = coef(summary(lmdid_selfworth_2, robust = TRUE))[, "Pr(>|t|
 
 ### DaytoDayskills ####
 
-screenreg(
+test1 <- texreg(
   list(lmdid_dayToDaySkills_1, lmdid_dayToDaySkills_2, lmdid_dayToDaySkills_3, lmdid_dayToDaySkills_4),
   override.se = list(RSE_1, RSE_2, RSE_3, RSE_4),
   override.pvalues = list(RpValue_1, RpValue_2, RpValue_3, RpValue_4),
