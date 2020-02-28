@@ -45,6 +45,8 @@ correlationMatrixMealsLong <- data.frame(variable1=rownames(correlationMatrixMea
                                          correlation=correlationMatrixMeals$correlations[upper.tri(correlationMatrixMeals$correlations)])
 highCorrelationsMeals <- correlationMatrixMealsLong %>%  arrange(desc(correlation)) %>% filter(abs(correlation)>0.5)
 
+# saveRDS(highCorrelationsMeals, "./ANALYSIS/Tables/")
+
 # --- Factor analysis for later regression: selfworth_scaled vs. realSubsidyPerBeneficiary
 
 dfFA_Selfworth_RealSubsidyPerBeneficiary <- dfFAMeals %>% 
