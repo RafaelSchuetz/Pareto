@@ -728,8 +728,8 @@ It is our impression that the partition technique results in a highly intuitive 
 
 # first, read in all Rds objects that you need
 
-partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.4.Rds")
-partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.4.Rds")
+partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.Rds")
+partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.Rds")
  
 colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
 colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")

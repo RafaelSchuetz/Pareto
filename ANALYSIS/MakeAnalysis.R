@@ -1,14 +1,43 @@
+# Summary statistics
+
 source(encoding = "UTF8", "./ANALYSIS/SummaryStatistics.R")
-# source(encoding = "UTF8", "./ANALYSIS/SummaryStatistics_ggplot.R")
+
+# Plots of health-related variables
+
 source(encoding = "UTF8", "./ANALYSIS/PlotHealthVariables.R")
+
+# Plots of dynamics of selected outcomes
+
 source(encoding = "UTF8", "./ANALYSIS/PlotVariablesOverTime.R")
+
+# Factor analysis Meals program
+
 source(encoding = "UTF8", "./ANALYSIS/factor_analysis.R")
-source(encoding = "UTF8", "./ANALYSIS/double-selection.R")
-source(encoding = "UTF8", "./ANALYSIS/Partition.R")
+
+# Factor analysis Trips program
+
+source(encoding = "UTF8", "./ANALYSIS/factoranalysis_trips.R")
+
+# Associations between CHILDREN's grants and organization's direct outputs
+
 source(encoding = "UTF8", "./ANALYSIS/MetricRegressions.R")
+
+# Associations between healthiness of meals and health-related outcomes
+
 source(encoding = "UTF8", "./ANALYSIS/HealthRegressions.R")
+
+# Regressions with extracted factors as controls
+
+source(encoding = "UTF8", "./ANALYSIS/FactorRegressions.R")
+
+# Cumulative logit regressions
+
 source(encoding = "UTF8", "./ANALYSIS/PropoddsRegressions.R")
+
+# Association between CHILDREN's grants and selected outcomes
+
 source(encoding = "UTF8", "./ANALYSIS/Selfworth_dayToDaySkills.R")
-# source(encoding = "UTF8", "./ANALYSIS/DATA/regression_tables.R")
 
+# Partition analysis
 
+source(encoding = "UTF8", "./ANALYSIS/Partition.R")
