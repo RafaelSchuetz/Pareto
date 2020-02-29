@@ -144,15 +144,11 @@ This study describes the analysis of the data from the non-profit organisation '
 
 \section{Introduction}
 
-<<<<<<< HEAD
-
 CHILDREN supports organizations working with children and youth across Germany (in German: Einrichtungen der offenen Kinder- und Jugendarbeit) across Germany. We call them organizations in the following. They apply to CHILDREN for yearly grants. If approved, they are supposed to use them for specific purposes defined by CHILDREN. CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and youth that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 Unless otherwise specified, we consider all variables to be metric, even if they are ordinal. 
 
-\subsection{Literature Overview}
+Previous research shows, that the childhood and youth is central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Children from parents with lower income and lower educational attainment have typically a lower weight at birth and are born in a later week of gestation, which are indicators for bad initial conditions, as shown by \textcite{Case.2002}. Children which grow up in families with a low socio-economic status are often less mobile and more likely to stay amongst themselves. This could have a negative influence on their character development. For example, \textcite{Chetty.2014} investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of \textcite{Kosse.2020} provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could result in a significant and persistent increase in the prosociality of elementary school children, with regard to prosocial role models and intense social interactions. \textcite{Heckman.2010} investigated a preschool education program in the US. He shows that an investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.   
 
-Previous research shows, that the childhood and youth is central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Heckmann and Carneiro (2003) show that especially early family factors determine the most of gaps in highschool attendance. Moreover, Deckers et. al. (2015) found by experiments in Germany, that children of higher educated parents are significantly more patient. Children from parents with lower income and lower educational attainment have typically a lower weight at birth and are born in a later week of gestation, which are indicators for bad initial conditions (Deckers et. al. 2015, Case et. al. 2002). Children which grow up in families with a low socio-economic status are often less mobile and more likely to stay amongst themselves. This could have a negative influence on their character development. For example, Chetty et. al (2014) investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of Deckers et. al. (2020) provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could result in a significant and persistent increase in the prosociality of elementary school children, with regard to prosocial role models and intense social interactions. Heckmann et. al. (2010) investigated a preschool education program in the US. He shows that an investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.   
-=======
 CHILDREN for a better World e.V. is a non-profit organization supporting social institutions for children and adolescents across Germany, such as youth centers. Their goal is to foster equality of opportunities for the youth in Germany. CHILDREN supports poor and disadvantaged families and young people in socially problematic areas. Furthermore, they fight child poverty and encourage the youth to engage in society. We call the institutions funded by CHILDREN organizations in the following. Organizations have to apply for funding from CHILDREN each year again. In the application process, CHILDREN requires the applicants to answer a survey which contains questions about outcomes related to CHILDREN’s programs as well as general information about the organization such as the yearly budget.
 CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and adolescents that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 
@@ -160,8 +156,7 @@ Previous research shows that childhood and youth are central in the development 
 
 The aim of our project paper is to test whether CHILDREN’s programs positively influence the beneficiaries. We look at the associations between the subsidy CHILDREN provides and the share of beneficiaries with broadened everyday expertise and improved selfworth. Furthermore, we analyze the association between the measure of the healthiness of the meals the organizations offer and health-relevant outcomes of beneficiaries. The aim of our applied differences-in-differences estimation is to test whether the activities offered by the trips program have a positive effect on the participating children, measured through a change in selfworth and everyday expertise.
 We find no profound connection between the subsidy CHILDREN provides and the effectiveness of the organizations regarding the share of beneficiaries with broadened everyday expertise and improved selfworth. On the other hand, focusing on health relevant variables, we obtain a positive association between the index of healthy diet criteria fulfilled by organizations and the share of beneficiaries who are less frequently ill. By using the differences-in-differences (DID) strategy, the estimates show that the participation in the trips program has a positive, but insignificant effect on the everyday expertise of beneficiaries. Strikingly, we observe a negative association between participating in the trips program and selfworth. However, the results of the DID estimation should not be overstated because of the small sample size.
-The remainder of this project paper is structured as follows: Section \ref{data} describes the variable used for the empirical analysis. The summary statistics are presented in section XX. We explain the dimensionality reducing method factor analysis in section XX. The proceeding section XX reports different regression results. In section XX, we implement the differences-in-differences strategy to test for the effects of the trips program. Finally, section XX concludes and provides suggestions for CHILDREN.
->>>>>>> 16ca56cbd230d9f7d5d74eb92961da56349c263e
+The remainder of this project paper is structured as follows: Section \ref{data} describes the variable used for the empirical analysis. Then we present summary statistics. We explain the dimensionality reducing method factor analysis. The proceeding section reports different regression results. After that, we implement the differences-in-differences strategy to test for the effects of the trips program. Finally, we conclude and provide suggestions for CHILDREN.
 
 \section{Data}
 \label{data}
@@ -375,7 +370,7 @@ texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association betw
 
 \subsection{Variables of interest: Health variables} 
 
-Now, we turn to a predictor that CHILDREN does not directly influence until now, but that it easily could. In 2014, 2016, 2017 and 2018 the organizations had to send CHILDREN a sample of their menus. An ecotrophologist collaborating with CHILDREN assessed those menus with regards to how healthy they were. This assessment was based on criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). https://www.schuleplusessen.de/startseite/
+Now, we turn to a predictor that CHILDREN does not directly influence until now, but that it easily could. In 2014, 2016, 2017 and 2018 the organizations had to send CHILDREN a sample of their menus. An ecotrophologist collaborating with CHILDREN assessed those menus with regards to how healthy they were. This assessment was based on criteria of the German Nutrition Society (Deutsche Gesellschaft für Ernährung). 
 
 In its yearly surveys, CHILDREN asks about three variables closely related to a healthy diet. These are the shares of beneficiaries who are less frequently ill, with expanded dietary knowledge and with increased appreciation for a healthy diet. 
 
@@ -534,7 +529,7 @@ One concern with our empirical approach is that the allocation to treatment and 
 
 \subsubsection{Everyday Expertise}
 
-The estimated coefficients of equation XX are represented in Table \ref{table:coefficients1} with everyday expertise as the dependent variable. Columns (1)-(2) report estimates using the first definition of the treatment variable, while columns (3)-(4) apply the second treatment specification. Columns (1) and (3) only include ID fixed effects and year fixed effects without any controls. Columns (2) and (4) expand the regression equation by adding the organization specific control variables: Subsidy, total costs and the number of days in a week on which children cook in a social institution.
+The estimated coefficients of equation 4 are represented in Table \ref{table:coefficients1} with everyday expertise as the dependent variable. Columns (1)-(2) report estimates using the first definition of the treatment variable, while columns (3)-(4) apply the second treatment specification. Columns (1) and (3) only include ID fixed effects and year fixed effects without any controls. Columns (2) and (4) expand the regression equation by adding the organization specific control variables: Subsidy, total costs and the number of days in a week on which children cook in a social institution.
 
 
 \begin{table}
@@ -733,8 +728,8 @@ It is our impression that the partition technique results in a highly intuitive 
 
 # first, read in all Rds objects that you need
 
-partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.4.Rds")
-partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.4.Rds")
+partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.Rds")
+partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.Rds")
  
 colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
 colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
@@ -824,7 +819,11 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 \end{table}
 
 
+\section{Division of tasks}
 
+Data preparation, fundamental dynamics: everybody\\
+Factor analysis, general regresions, partition, cumulative odds model: Laura Jepsen and Rafael Schütz\\
+DiD estimations and time series: Laura Huber, Jonathan Kirschner, and Yannick Zurl
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
 
 

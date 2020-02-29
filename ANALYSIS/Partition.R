@@ -3,7 +3,92 @@ library(ggplot2)
 library(dplyr)
 library(tidyselect)
 
+outcomesMeals <- c("participateMore",
+                   "tasksLunch",
+                   "monthlyCooks",
+                   "weeklyCooks",
+                   "shoppers",
+                   "ownIdeas",
+                   "stayLonger",
+                   "easyDishes",
+                   "dietaryKnowledge",
+                   "appreciateHealthy",
+                   "foodCulture",
+                   "influenceHome",
+                   "cookAtHome",
+                   "askRecipes",
+                   "moreConcentrated",
+                   "moreBalanced",
+                   "lessIll",
+                   "dayToDaySkills",
+                   "moreIndependent",
+                   "betterTeamwork",
+                   "betterReading",
+                   "betterNumbers",
+                   "betterGrades",
+                   "moreRegularSchoolVisits",
+                   "selfworth",
+                   "moreOpen",
+                   "moreConfidence",
+                   "addressProblems",
+                   "proud")
+
+outcomesTrips <- c("tripsSuggestions",
+                   "tripsDecisions",
+                   "tripsOrganization",
+                   "tripsCostCalculation",
+                   "tripsBudget",
+                   "tripsMoney",
+                   "tripsReview",
+                   "tripsPublicTransport",
+                   "tripsMobility",
+                   "tripsNewPlaces",
+                   "tripsNewCommunities",
+                   "tripsNewIdeas",
+                   "tripsAdditionalActivities",
+                   "tripsSpecificSkills",
+                   "tripsDayToDaySkills",
+                   "tripsSuccess",
+                   "tripsSelfEfficacy",
+                   "tripsSelfworth",
+                   "tripsSocialSkills",
+                   "tripsFrustrationTolerance")
+
 #https://cran.r-project.org/web/packages/partition/vignettes/introduction-to-partition.html
+
+PartitionTable <- function(df,outcomes, threshold){
+  df <- df[ ,colSums(is.na(df)) == 0]
+  if(identical(outcomes,outcomesMeals)){
+    df<- df[,outcomesMeals]
+  }
+  else{
+    df<- df[,outcomesTrips]
+  }
+  
+  prt <- partition(df, threshold)
+  as.data.frame(unnest_mappings(prt))%>%
+    dplyr::select(-indices)
+}
+
+PartitionMeals <- PartitionTable(mergedDataImputeAll,outcomesMeals,.4)
+PartitionTrips <- PartitionTable(mergedDataImputeAll, outcomesTrips, .4)
+
+#PartitionTables.4 <- list(PartitionMeals.4, PartitionTrips.4)
+
+#saveRDS(PartitionTables.4, "./ANALYSIS/Tables/PartitionTables.4.Rds")
+
+# PartitionMeals.4 <- PartitionMeals.4%>%
+#   dplyr::rename(Meals_variable = variable,
+#                 Meals_mappings = mapping,
+#                 Meals_information = information)
+# 
+# PartitionTrips.4 <- PartitionTrips.4%>%
+#   dplyr::rename(Trips_variable = variable,
+#                 Trips_mapping = mapping,
+#                 Trips_information = information)
+
+saveRDS(PartitionMeals, "./ANALYSIS/Tables/PartitionMeals.Rds")
+saveRDS(PartitionTrips, "./ANALYSIS/Tables/PartitionTrips.Rds")
 
 #partition merged Data 
 
@@ -173,39 +258,7 @@ library(tidyselect)
 # PartitionedDataMeals<- PartitionedDataMealsTrips[,outcomesMeals]
 # PartitionedDataTrips<- PartitionedDataMealsTrips[,outcomesTrips]
 
-PartitionTable <- function(df,outcomes, threshold){
-  df <- df[ ,colSums(is.na(df)) == 0]
-  if(identical(outcomes,outcomesMeals)){
-    df<- df[,outcomesMeals]
-  }
-  else{
-    df<- df[,outcomesTrips]
-  }
- 
-  prt <- partition(df, threshold)
-  as.data.frame(unnest_mappings(prt))%>%
-    dplyr::select(-indices)
-}
 
-PartitionMeals.4 <- PartitionTable(mergedDataImputeAll,outcomesMeals,.4)
-PartitionTrips.4 <- PartitionTable(mergedDataImputeAll, outcomesTrips, .4)
-
-#PartitionTables.4 <- list(PartitionMeals.4, PartitionTrips.4)
-
-#saveRDS(PartitionTables.4, "./ANALYSIS/Tables/PartitionTables.4.Rds")
-
-# PartitionMeals.4 <- PartitionMeals.4%>%
-#   dplyr::rename(Meals_variable = variable,
-#                 Meals_mappings = mapping,
-#                 Meals_information = information)
-# 
-# PartitionTrips.4 <- PartitionTrips.4%>%
-#   dplyr::rename(Trips_variable = variable,
-#                 Trips_mapping = mapping,
-#                 Trips_information = information)
-
-saveRDS(PartitionMeals.4, "./ANALYSIS/Tables/PartitionMeals.4.Rds")
-saveRDS(PartitionTrips.4, "./ANALYSIS/Tables/PartitionTrips.4.Rds")
 
 
 

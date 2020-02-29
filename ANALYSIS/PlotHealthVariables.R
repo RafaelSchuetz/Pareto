@@ -1,5 +1,7 @@
 #https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/
 
+library(purrr)
+
 #createdataset
 
 HealthRelVar <- mergedData %>% 
@@ -60,14 +62,14 @@ saveRDS(Health_plots, "./ANALYSIS/GRAPHS/PAPER/Health_plots.Rds")
 
 #againbutinpercentages #differentggplotfunction
 
-response= names(HealthRelVar)[1:3]
-expl= names(HealthRelVar)[4]
-
-response = purrr::set_names(response)
-response
-
-expl = set_names(expl)
-expl
+# response= names(HealthRelVar)[1:3]
+# expl= names(HealthRelVar)[4]
+# 
+# response = purrr::set_names(response)
+# response
+# 
+# expl = set_names(expl)
+# expl
 
 #createfunction 
 
