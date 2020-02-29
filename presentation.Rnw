@@ -1,3 +1,9 @@
+% Rscript -e "library(knitr); knit('paper.Rnw')"
+% pdflatex paper
+% biber paper
+% pdflatex paper
+% pdflatex paper
+
 \documentclass{beamer}
 
 \usepackage{mathtools}
@@ -40,8 +46,8 @@
 \makeatother
 
 \rmfamily
-\title[Cleansing/Sullying Effects of Recessions]{Analyse der Survey-Daten von CHILDREN for a better World e.V. \\
-	\small{\textit{following Kehrig: The Cyclical Nature of the Productivity Distribution}}}
+\title[Analyse der Survey-Daten von CHILDREN]{Analyse der Survey-Daten von CHILDREN for a better World e.V. \\
+	% \small{\textit{following Kehrig: The Cyclical Nature of the Productivity Distribution}}}
 \author[Laura, Laura, Jonathan, Rafael und Yannick]{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz, Yannick Zurl}
 \date{March 3, 2020}
 
@@ -73,404 +79,404 @@
 	\end{itemize}
 }
 
-\frame{\frametitle{Illustration of concepts}
-	\begin{figure}[h]
-		\includegraphics[width = 5.5cm]{gdp_growth.pdf}
-		\includegraphics[width = 5.5cm]{norm_distribution.pdf}
-		\caption{Business Cycles and Probability Densitiy Function (\footnotesize{\textit{Source: Own Illustration}})}
-	\end{figure}
-}
-
-\subsection*{Relevance}
-\frame{\frametitle{Why Should We Care?}
-	\begin{enumerate}
-		\item[1]{Relevance for the economy \& society:}
-		\begin{itemize}
-			\item{Various important connections between the nature of recessions and economic welfare:
-				\begin{itemize}
-					\item{Short-run: Besides undesirable effects of recessions (e.g. unemployment, higher government deficits, lower 
-						profiability), do recessions have a \textit{creative destruction}-quality as proposed 
-						by Pre-Keynesian liquidationists?}
-					\item{Long-run: Are recessions crucial for promoting long-run technological progress, i.e. productivity 
-						growth?}
-				\end{itemize}
-			}
-		\end{itemize}
-		\item[2]{Economic policy implications:
-			\begin{itemize}
-				\item{Should fiscal and monetary policy even focus on preventing or mitigating economic recessions?}
-				\item{If recessions have (undesirable) sullying properties, which policy instruments 
-					could be helpful for eliminating respective causes (e.g. market imperfections, liquiditiy frictions)}
-		\end{itemize}}
-	\end{enumerate}
-}
-
-\frame{\frametitle{Why Should We Care?}
-	\begin{enumerate}    
-		\item[3]{Academia:}
-		\begin{itemize}
-			\item{Assessing the behavior of micro-level variables over the business cycle is essential 
-				for comprehending and predicting aggregate macroeconomic outcomes}
-			\item{Which theoretical models in terms of recession properties are backed by empirical evidence?}
-		\end{itemize}
-	\end{enumerate}
-}
-
-\subsection*{Literature}
-\frame{\frametitle{Related Literature}
-	\begin{itemize}
-		\item{Extensive (recent) literature on how firm-level-variables and their cross-sectional dispersion behave over the business cycle 
-			(see \cite{10.1257/aer.104.4.1392}, \cite{doi:10.1111/j.0013-0427.2004.00371.x}, \cite{NBERw18245})}
-		\item{Identification of recession properties via resource (i.e. production input) reallocation 
-			in and around times of economic downturn (e.g. \cite{10.1111/j.1467-937X.2005.00334.x}, \cite{Mustre})}
-		\item{Behavior of productivity dispersion over the business cycle \cite{kehrig}:}
-		\begin{itemize}
-			\item{Productivity dispersion is \textit{countercyclical} and particularly peaks during 
-				or following recessions}
-			\item{Results are driven by unproductive firms, becoming even more unproductive during recessions}
-			\item{Evidence supports sullying properties}
-		\end{itemize}
-	\end{itemize}
-}
-
-\section{Data}
-
-\frame{\frametitle{Data Sources}
-	\begin{itemize}
-		\item{Primary source: COMPUSTAT Capital IQ - Fundamentals Annual in North America}
-		\begin{itemize}
-			\item{Provider: Standard \& Poor's (S\&P), data is primarly drawn from SEC filings}
-			\item{Contains annual financial information on publicly traded, active and inactive firms}
-			\item{Sample selection issues \cite{Davis}}
-			\item{Initial sample: 1950-2018 and firms from all divisions ($n = 450.000$)}
-		\end{itemize}
-		\item{Additional sources:}
-		\begin{itemize}
-			\item{Bureau of Economic Analysis: price deflators, GDP-growth and real GDP-values, gross 
-				output by industry-data}
-			\item{Bureau of Labor Statistics: entry and exit rates within divisions}
-		\end{itemize}
-	\end{itemize}
-}
-
-\frame{\frametitle{Variable selection and grouping levels}
-	\begin{itemize}
-		\item{Variables of interest:}
-		\begin{enumerate}
-			\item{Identification variables: GVKEY, fyear}
-			\item{Variables for selection purposes: FIC, SIC, AQC, AT}
-			\item{Firm-level variables for analysis: PPEGT, PPENT, SALE, EMP, COGS}
-		\end{enumerate}
-		\item{Data grouping into divisions and industries via SIC codes}
-		\item{Within manufacturing: distinction between durable-goods- and non-durable-goods-producing firms}
-	\end{itemize}
-}
-
-\frame{\frametitle{Data grouping}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 5.5cm]{Divisions.JPG}
-		\includegraphics[width = 5.5cm]{Manufacturing.JPG}
-		\caption{Data grouping levels according to SIC-codes \newline \footnotesize{\textit{Source: https://www.naics.com/sic-codes-industry-drilldown/}}}
-	\end{figure}
-}
-
-\frame{\frametitle{Sample Selection and Variable ``Treatments''}
-	\begin{enumerate}
-		\item{Restrict analysis to US-firms}
-		\item{Main focus: manufacturing firms, supplemented by other division(s) for comparative 
-			reasons (e.g. services)}
-		\item{Exclude:}
-		\begin{itemize}
-			\item{Utility firms and financial firms}
-			\item{Observations in which $AQC > 5\%~ of ~AT$}
-			\item{Observations with no entries on firm-level variables}
-			\item{Observations with $SALE > 0$ \& $EMP = 0$}
-			\item{Observations with $PPEGT = 0$ or $PPENT = 0$}
-			\item{Years with too little observations (per industry) to allow for statistically 
-				reliable results}
-		\end{itemize}
-		\item{Denominate nominal value variables in real values by deflating}
-	\end{enumerate}
-}
-
-\frame{\frametitle{Sample Size}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 5cm]{Observations1.JPG}
-		\includegraphics[width = 5cm]{Observations2.JPG}
-		\caption{Annual number of observations, (\textit{Source: Own calculations})}
-	\end{figure}
-}
-
-\frame{\frametitle{Summary Statistics}
-	\begin{table}[h]
-		\footnotesize
-		\centering
-		\caption{Descriptive statistics of production inputs and outputs}
-		\begin{tabular}{p{2.0cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}}
-			\hline\hline \\
-			\textbf{Sample} &\hfill Capital &\hfill Labor &\hfill Interm. &\hfill Sale &\hfill \textbf{n} \\
-			\hline
-			\textbf{Manufacturing} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{107783}\\ 
-			mean &\hfill 691.18 &\hfill 4.84 &\hfill 985.16 &\hfill 1400.99 \\
-			$\sigma$ &\hfill 5188.13 &\hfill 20.53 &\hfill 6812.45 &\hfill 8815.76  \\
-			\hline
-			\textbf{Services} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{38218}\\
-			mean &\hfill 297.95 &\hfill 5.29 &\hfill 340.46  &\hfill 580.84  \\
-			$\sigma$ &\hfill 2162.94 &\hfill 28.37 &\hfill 1823.36 &\hfill 3563.94 \\
-			\hline 
-			\textbf{Durables} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{67020} \\
-			mean &\hfill 464.25 &\hfill 4.62 &\hfill 780.05 &\hfill 1078.07 \\
-			\hline
-			\textbf{Non-Durables} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{40763} \\
-			mean &\hfill 1068.12 &\hfill 5.21 &\hfill 1322.36 &\hfill 1931.90 \\
-			\hline %need to find a double-hline!
-			\textbf{Overall} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{146001} \\
-			\hline\hline
-			% Sigma-values need to denominated in smaller letters, or alternatively brackets. 
-		\end{tabular} \\
-		\vspace{2mm}
-		{\tiny \textit{Note: Capital, intermediaries and sales are denominated in mio. USD, labor 
-				is denominated in thousands of employees. All figures are rounded to two decimal digits.}}
-		\label{tab: 1}
-	\end{table}  
-}
-
-\section{Dispersion Measurement}
-\frame{\frametitle{Estimating Productivity}
-	\begin{equation}
-	ln~y_{it} = \beta_0 + \beta_k~ln~k_{it-1} + \beta_n ~ ln~n_{it} + \beta_m ~ ln~m_{it} 
-	+ \beta_i D_i + \beta_t D_t + \epsilon_{it}
-	\end{equation}
-	\begin{itemize}
-		\small
-		\item{$y_{it}$: Real Sales}
-		\item{$k_{it-1}$: Constructed Capital via PIM:}
-		\item{$n_{it}$: Number of Employees}
-		\item{$m_{it}$: Real Cost of Sold Goods}
-		\item{$D_i$: Firm Dummy}
-		\item{$D_t$: Year Dummy}
-		\item{$\epsilon_{it}$: Firm-level productivity}
-	\end{itemize}
-	
-}
-
-\frame{\frametitle{Compute Productivity Dispersion}
-	\begin{block}{\textbf{\color{red}Goal:}}
-		\color{black} $\Rightarrow$ Compute an aggregated productivity 
-		dispersion measure for every industry
-	\end{block}
-	\begin{enumerate}
-		\item[1.]{Adjustment: control for industry specific productivity growth trend \newline
-			$\epsilon_{ijt} = g_{j}t + z_{ijt}$}
-		\begin{itemize}
-			\item{$\epsilon_{ijt}$: Productivity}
-			\item{$g_j$: Industry-specific growth trend}
-			\item{$z_{ijt}$: Productivity dispersion}
-		\end{itemize}
-		\item[2.]{Adjustment: decenter and scale to construct cross-sectional dispersion}
-		\item[3.]{Adjustment: control for a long-term trend}
-	\end{enumerate}
-}
-
-\frame{\frametitle{Dispersion Measure}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 12cm]{Dispersion.JPG}
-		\caption{Illustration of adjustment steps (\footnotesize{\textit{Source: Kehrig (2015)}})}
-	\end{figure}
-}
-
-\frame{\frametitle{The Distribution of Normalized Productivity Dispersion}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[height = 4.5cm, width = 5.5cm]{28_1998.pdf}
-		\includegraphics[height = 4.5cm, width = 5.5cm]{34_2003.pdf}
-		\caption{Exemplary normalized productivity dispersion for two industries, (\textit{Source: Own illustration})}
-	\end{figure}
-}
-
-\frame{\frametitle{The Normalized Productivity Dispersion}
-	\begin{minipage}[c]{0.6\textwidth}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width = 7cm]{normalized_productvitiy.pdf}
-			\caption{Normalized productivity over years}
-		\end{figure}
-	\end{minipage}
-	\begin{minipage}[b]{0.2\textwidth}
-		\begin{flalign*}
-		Dispersion_t &= \\
-		Median_t[Std_{jt}&(\frac{z_{ijt} - \bar{z_j}}{\sigma_j})]
-		\end{flalign*}
-	\end{minipage}
-}
-\frame{\frametitle{Growth-Trends in Productivity-Dispersion}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 8.5cm]{long_final.pdf}
-		\caption{Actual dispersion behavior and trends over time, (\textit{Source: Own Illustration})}
-	\end{figure}
-}
-
-\frame{\frametitle{First Estimations}
-	\begin{table}[htb]
-		\centering
-		\caption{Results of OLS Regression}\vspace{1ex}
-		\begin{tabular}{@{}lcccc@{}}
-			\toprule[2pt]
-			{\bf ln\_sale} & Coefficient & Robust St. Err. & t-Statistics & p-value \\
-			\hline
-			\bf ln\_capital & 0.4300*** & 0.0097 & 44.12 & 0.000\\
-			\bf ln\_emp &0.4801*** & 0.0099 & 48.20 & 0.000\\
-			\bf ln\_cog &0.1035*** & 0.0064 & 16.13 & 0.000\\
-			\hline 
-			\midrule
-			\multicolumn{5}{c}{R-squared=0.9681 Adj.R-squared=0.969 RMSE=0.4686}\\
-			\bottomrule[2pt]
-		\end{tabular}
-	\end{table}
-}
-
-\frame{\frametitle{First Estimations}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 9cm]{fixed_final.pdf}
-		\caption{Annual time-FE-coefficients and GDP-growth (\textit{Source: Own Illustration})}
-	\end{figure}
-}
-
-\section{Empirical Analysis}
-\frame{\frametitle{Duables and Non-Durables Within Manufacturing}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 8cm]{durable_final.pdf}
-		\caption{Dispersion of productivity levels within durables and non-durables, (\textit{Source: Own Illustration})}
-	\end{figure}
-}
-
-\frame{\frametitle{AutoscaledLineDispTot}
-	\fitimage{LineDispTot.pdf}
-}
-
-\frame{\frametitle{}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[]{LineDispTot.pdf}
-		\caption{(\textit{Source: Own Illustration})}
-	\end{figure}
-}
-
-\frame{\frametitle{}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 9cm]{ScatDispTot.pdf}
-		\caption{(\textit{Source: Own Illustration})}
-	\end{figure}
-}
-
-\frame{\frametitle{}
-	\begin{table}[ht]
-		\centering
-		\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip, keepaspectratio}
-			\begin{tabular}{ccccccc}
-				\hline
-				Lead in years & All & p-value & Non-Durables & p-value & Durables & p-value \\ 
-				\hline
-				-2 & 0.195 & 0.12 & -0.144 & 0.30 & 0.030 & 0.83 \\ 
-				1 & 0.038 & 0.76 & 0.101 & 0.47 & 0.186 & 0.18 \\ 
-				0 & -0.045 & 0.71 & 0.132 & 0.34 & -0.184 & 0.18 \\ 
-				1 & 0.038 & 0.76 & 0.101 & 0.47 & 0.186 & 0.18 \\ 
-				2 & -0.160 & 0.20 & 0.056 & 0.69 & 0.297 & 0.03 \\ 
-				\hline
-			\end{tabular}
-		\end{adjustbox}
-	\end{table}
-}
-
-\frame{\frametitle{}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 9cm]{PlotQuantilesLow.pdf}
-		\caption{(\textit{Source: Own Illustration})}
-	\end{figure}
-}
-
-\frame{\frametitle{}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width = 9cm]{PlotQuantilesHigh.pdf}
-		\caption{(\textit{Source: Own Illustration})}
-	\end{figure}
-}
-
-\frame{\frametitle{Dynamics in the Manufacturing Division}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=8cm]{quantile_m_final.pdf}
-		\caption{Productivity changes in different manufacturing quantiles, (\textit{Source: Own illustration})}
-	\end{figure}
-}
-
-\section{Discussion}
-\frame{\frametitle{}
-	\begin{table}[ht]
-		\centering
-		\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip, keepaspectratio}
-			\begin{tabular}{lcccccc}
-				\hline
-				& All & p-value & Non-durables & p-value & Durables & p-value \\ 
-				\hline
-				Standard Deviation & -0.045 & 0.71 & 0.132 & 0.34 & -0.184 & 0.18 \\ 
-				Variance & -0.045 & 0.71 & 0.132 & 0.34 & -0.184 & 0.18 \\ 
-				Inter-quartile range & 0.005 & 0.97 & 0.114 & 0.41 & -0.140 & 0.31 \\ 
-				Median absolute deviation & -0.023 & 0.86 & 0.135 & 0.33 & -0.091 & 0.51 \\ 
-				\hline
-			\end{tabular}
-		\end{adjustbox}
-	\end{table}
-}
-
-\frame{\frametitle{}
-	\begin{table}[ht]
-		\centering
-		\begin{adjustbox}{{width=\textwidth, totalheight=\textheight-2\baselineskip, keepaspectratio}
-				\begin{tabular}{lcccccc}
-					\hline
-					& All & p-value & Non-durables & p-value & Durables & p-value \\ 
-					\hline
-					Production - HP filtered ($\lambda = 100$) &  &  & 0.132 & 0.34 & -0.184 & 0.18 \\ 
-					Production - HP filtered ($\lambda = 6.25$) &  &  & 0.150 & 0.28 & -0.322 & 0.02 \\ 
-					Production growth rate &  &  & 0.032 & 0.82 & -0.343 & 0.01 \\ 
-					GDP - HP filtered ($\lambda = 100$) & -0.045 & 0.71 & 0.058 & 0.64 & -0.100 & 0.42 \\ 
-					GDP - HP filtered ($\lambda = 6.25$) & -0.121 & 0.33 & 0.109 & 0.38 & -0.129 & 0.29 \\ 
-					GDP growth rate & -0.043 & 0.73 & -0.041 & 0.74 & 0.018 & 0.89 \\ 
-					\hline
-				\end{tabular}
-			\end{adjustbox}
-		\end{table}
-	}
-	
-	\section{Conclusion}
-	\frame{\frametitle{Conclusion}
-		\begin{itemize}
-			\item{\textbf{Main result:}}
-			\begin{itemize}
-				\item{No clear general cyclical or countercyclical pattern}
-				\item{But: Productivitiy dispersion is countercyclical for durables}
-				\item{Recessions do have (small) sullying effects, in particular in the manufacturing division}
-			\end{itemize}
-			\item{\textbf{Where to go from here?}}
-			\begin{itemize}
-				\item{Replicate findings with quarterly data}
-				\item{Did policy interventions in the analyzed NBER-recessions already have an impact (potential OVB)?}
-				\item{Identify causal link for sullying effecs: Why do unproductive firms remain in business (potential frictions)?}
-			\end{itemize}
-		\end{itemize}
-	}
+% \frame{\frametitle{Illustration of concepts}
+% 	\begin{figure}[h]
+% 		\includegraphics[width = 5.5cm]{gdp_growth.pdf}
+% 		\includegraphics[width = 5.5cm]{norm_distribution.pdf}
+% 		\caption{Business Cycles and Probability Densitiy Function (\footnotesize{\textit{Source: Own Illustration}})}
+% 	\end{figure}
+% }
+% 
+% \subsection*{Relevance}
+% \frame{\frametitle{Why Should We Care?}
+% 	\begin{enumerate}
+% 		\item[1]{Relevance for the economy \& society:}
+% 		\begin{itemize}
+% 			\item{Various important connections between the nature of recessions and economic welfare:
+% 				\begin{itemize}
+% 					\item{Short-run: Besides undesirable effects of recessions (e.g. unemployment, higher government deficits, lower 
+% 						profiability), do recessions have a \textit{creative destruction}-quality as proposed 
+% 						by Pre-Keynesian liquidationists?}
+% 					\item{Long-run: Are recessions crucial for promoting long-run technological progress, i.e. productivity 
+% 						growth?}
+% 				\end{itemize}
+% 			}
+% 		\end{itemize}
+% 		\item[2]{Economic policy implications:
+% 			\begin{itemize}
+% 				\item{Should fiscal and monetary policy even focus on preventing or mitigating economic recessions?}
+% 				\item{If recessions have (undesirable) sullying properties, which policy instruments 
+% 					could be helpful for eliminating respective causes (e.g. market imperfections, liquiditiy frictions)}
+% 		\end{itemize}}
+% 	\end{enumerate}
+% }
+% 
+% \frame{\frametitle{Why Should We Care?}
+% 	\begin{enumerate}    
+% 		\item[3]{Academia:}
+% 		\begin{itemize}
+% 			\item{Assessing the behavior of micro-level variables over the business cycle is essential 
+% 				for comprehending and predicting aggregate macroeconomic outcomes}
+% 			\item{Which theoretical models in terms of recession properties are backed by empirical evidence?}
+% 		\end{itemize}
+% 	\end{enumerate}
+% }
+% 
+% \subsection*{Literature}
+% \frame{\frametitle{Related Literature}
+% 	\begin{itemize}
+% 		\item{Extensive (recent) literature on how firm-level-variables and their cross-sectional dispersion behave over the business cycle 
+% 			(see \cite{10.1257/aer.104.4.1392}, \cite{doi:10.1111/j.0013-0427.2004.00371.x}, \cite{NBERw18245})}
+% 		\item{Identification of recession properties via resource (i.e. production input) reallocation 
+% 			in and around times of economic downturn (e.g. \cite{10.1111/j.1467-937X.2005.00334.x}, \cite{Mustre})}
+% 		\item{Behavior of productivity dispersion over the business cycle \cite{kehrig}:}
+% 		\begin{itemize}
+% 			\item{Productivity dispersion is \textit{countercyclical} and particularly peaks during 
+% 				or following recessions}
+% 			\item{Results are driven by unproductive firms, becoming even more unproductive during recessions}
+% 			\item{Evidence supports sullying properties}
+% 		\end{itemize}
+% 	\end{itemize}
+% }
+% 
+% \section{Data}
+% 
+% \frame{\frametitle{Data Sources}
+% 	\begin{itemize}
+% 		\item{Primary source: COMPUSTAT Capital IQ - Fundamentals Annual in North America}
+% 		\begin{itemize}
+% 			\item{Provider: Standard \& Poor's (S\&P), data is primarly drawn from SEC filings}
+% 			\item{Contains annual financial information on publicly traded, active and inactive firms}
+% 			\item{Sample selection issues \cite{Davis}}
+% 			\item{Initial sample: 1950-2018 and firms from all divisions ($n = 450.000$)}
+% 		\end{itemize}
+% 		\item{Additional sources:}
+% 		\begin{itemize}
+% 			\item{Bureau of Economic Analysis: price deflators, GDP-growth and real GDP-values, gross 
+% 				output by industry-data}
+% 			\item{Bureau of Labor Statistics: entry and exit rates within divisions}
+% 		\end{itemize}
+% 	\end{itemize}
+% }
+% 
+% \frame{\frametitle{Variable selection and grouping levels}
+% 	\begin{itemize}
+% 		\item{Variables of interest:}
+% 		\begin{enumerate}
+% 			\item{Identification variables: GVKEY, fyear}
+% 			\item{Variables for selection purposes: FIC, SIC, AQC, AT}
+% 			\item{Firm-level variables for analysis: PPEGT, PPENT, SALE, EMP, COGS}
+% 		\end{enumerate}
+% 		\item{Data grouping into divisions and industries via SIC codes}
+% 		\item{Within manufacturing: distinction between durable-goods- and non-durable-goods-producing firms}
+% 	\end{itemize}
+% }
+% 
+% \frame{\frametitle{Data grouping}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 5.5cm]{Divisions.JPG}
+% 		\includegraphics[width = 5.5cm]{Manufacturing.JPG}
+% 		\caption{Data grouping levels according to SIC-codes \newline \footnotesize{\textit{Source: https://www.naics.com/sic-codes-industry-drilldown/}}}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{Sample Selection and Variable ``Treatments''}
+% 	\begin{enumerate}
+% 		\item{Restrict analysis to US-firms}
+% 		\item{Main focus: manufacturing firms, supplemented by other division(s) for comparative 
+% 			reasons (e.g. services)}
+% 		\item{Exclude:}
+% 		\begin{itemize}
+% 			\item{Utility firms and financial firms}
+% 			\item{Observations in which $AQC > 5\%~ of ~AT$}
+% 			\item{Observations with no entries on firm-level variables}
+% 			\item{Observations with $SALE > 0$ \& $EMP = 0$}
+% 			\item{Observations with $PPEGT = 0$ or $PPENT = 0$}
+% 			\item{Years with too little observations (per industry) to allow for statistically 
+% 				reliable results}
+% 		\end{itemize}
+% 		\item{Denominate nominal value variables in real values by deflating}
+% 	\end{enumerate}
+% }
+% 
+% \frame{\frametitle{Sample Size}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 5cm]{Observations1.JPG}
+% 		\includegraphics[width = 5cm]{Observations2.JPG}
+% 		\caption{Annual number of observations, (\textit{Source: Own calculations})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{Summary Statistics}
+% 	\begin{table}[h]
+% 		\footnotesize
+% 		\centering
+% 		\caption{Descriptive statistics of production inputs and outputs}
+% 		\begin{tabular}{p{2.0cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}}
+% 			\hline\hline \\
+% 			\textbf{Sample} &\hfill Capital &\hfill Labor &\hfill Interm. &\hfill Sale &\hfill \textbf{n} \\
+% 			\hline
+% 			\textbf{Manufacturing} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{107783}\\ 
+% 			mean &\hfill 691.18 &\hfill 4.84 &\hfill 985.16 &\hfill 1400.99 \\
+% 			$\sigma$ &\hfill 5188.13 &\hfill 20.53 &\hfill 6812.45 &\hfill 8815.76  \\
+% 			\hline
+% 			\textbf{Services} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{38218}\\
+% 			mean &\hfill 297.95 &\hfill 5.29 &\hfill 340.46  &\hfill 580.84  \\
+% 			$\sigma$ &\hfill 2162.94 &\hfill 28.37 &\hfill 1823.36 &\hfill 3563.94 \\
+% 			\hline 
+% 			\textbf{Durables} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{67020} \\
+% 			mean &\hfill 464.25 &\hfill 4.62 &\hfill 780.05 &\hfill 1078.07 \\
+% 			\hline
+% 			\textbf{Non-Durables} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{40763} \\
+% 			mean &\hfill 1068.12 &\hfill 5.21 &\hfill 1322.36 &\hfill 1931.90 \\
+% 			\hline %need to find a double-hline!
+% 			\textbf{Overall} &\hfill &\hfill &\hfill &\hfill &\hfill \textbf{146001} \\
+% 			\hline\hline
+% 			% Sigma-values need to denominated in smaller letters, or alternatively brackets. 
+% 		\end{tabular} \\
+% 		\vspace{2mm}
+% 		{\tiny \textit{Note: Capital, intermediaries and sales are denominated in mio. USD, labor 
+% 				is denominated in thousands of employees. All figures are rounded to two decimal digits.}}
+% 		\label{tab: 1}
+% 	\end{table}  
+% }
+% 
+% \section{Dispersion Measurement}
+% \frame{\frametitle{Estimating Productivity}
+% 	\begin{equation}
+% 	ln~y_{it} = \beta_0 + \beta_k~ln~k_{it-1} + \beta_n ~ ln~n_{it} + \beta_m ~ ln~m_{it} 
+% 	+ \beta_i D_i + \beta_t D_t + \epsilon_{it}
+% 	\end{equation}
+% 	\begin{itemize}
+% 		\small
+% 		\item{$y_{it}$: Real Sales}
+% 		\item{$k_{it-1}$: Constructed Capital via PIM:}
+% 		\item{$n_{it}$: Number of Employees}
+% 		\item{$m_{it}$: Real Cost of Sold Goods}
+% 		\item{$D_i$: Firm Dummy}
+% 		\item{$D_t$: Year Dummy}
+% 		\item{$\epsilon_{it}$: Firm-level productivity}
+% 	\end{itemize}
+% 	
+% }
+% 
+% \frame{\frametitle{Compute Productivity Dispersion}
+% 	\begin{block}{\textbf{\color{red}Goal:}}
+% 		\color{black} $\Rightarrow$ Compute an aggregated productivity 
+% 		dispersion measure for every industry
+% 	\end{block}
+% 	\begin{enumerate}
+% 		\item[1.]{Adjustment: control for industry specific productivity growth trend \newline
+% 			$\epsilon_{ijt} = g_{j}t + z_{ijt}$}
+% 		\begin{itemize}
+% 			\item{$\epsilon_{ijt}$: Productivity}
+% 			\item{$g_j$: Industry-specific growth trend}
+% 			\item{$z_{ijt}$: Productivity dispersion}
+% 		\end{itemize}
+% 		\item[2.]{Adjustment: decenter and scale to construct cross-sectional dispersion}
+% 		\item[3.]{Adjustment: control for a long-term trend}
+% 	\end{enumerate}
+% }
+% 
+% \frame{\frametitle{Dispersion Measure}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 12cm]{Dispersion.JPG}
+% 		\caption{Illustration of adjustment steps (\footnotesize{\textit{Source: Kehrig (2015)}})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{The Distribution of Normalized Productivity Dispersion}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[height = 4.5cm, width = 5.5cm]{28_1998.pdf}
+% 		\includegraphics[height = 4.5cm, width = 5.5cm]{34_2003.pdf}
+% 		\caption{Exemplary normalized productivity dispersion for two industries, (\textit{Source: Own illustration})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{The Normalized Productivity Dispersion}
+% 	\begin{minipage}[c]{0.6\textwidth}
+% 		\begin{figure}[h]
+% 			\centering
+% 			\includegraphics[width = 7cm]{normalized_productvitiy.pdf}
+% 			\caption{Normalized productivity over years}
+% 		\end{figure}
+% 	\end{minipage}
+% 	\begin{minipage}[b]{0.2\textwidth}
+% 		\begin{flalign*}
+% 		Dispersion_t &= \\
+% 		Median_t[Std_{jt}&(\frac{z_{ijt} - \bar{z_j}}{\sigma_j})]
+% 		\end{flalign*}
+% 	\end{minipage}
+% }
+% \frame{\frametitle{Growth-Trends in Productivity-Dispersion}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 8.5cm]{long_final.pdf}
+% 		\caption{Actual dispersion behavior and trends over time, (\textit{Source: Own Illustration})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{First Estimations}
+% 	\begin{table}[htb]
+% 		\centering
+% 		\caption{Results of OLS Regression}\vspace{1ex}
+% 		\begin{tabular}{@{}lcccc@{}}
+% 			\toprule[2pt]
+% 			{\bf ln\_sale} & Coefficient & Robust St. Err. & t-Statistics & p-value \\
+% 			\hline
+% 			\bf ln\_capital & 0.4300*** & 0.0097 & 44.12 & 0.000\\
+% 			\bf ln\_emp &0.4801*** & 0.0099 & 48.20 & 0.000\\
+% 			\bf ln\_cog &0.1035*** & 0.0064 & 16.13 & 0.000\\
+% 			\hline 
+% 			\midrule
+% 			\multicolumn{5}{c}{R-squared=0.9681 Adj.R-squared=0.969 RMSE=0.4686}\\
+% 			\bottomrule[2pt]
+% 		\end{tabular}
+% 	\end{table}
+% }
+% 
+% \frame{\frametitle{First Estimations}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 9cm]{fixed_final.pdf}
+% 		\caption{Annual time-FE-coefficients and GDP-growth (\textit{Source: Own Illustration})}
+% 	\end{figure}
+% }
+% 
+% \section{Empirical Analysis}
+% \frame{\frametitle{Duables and Non-Durables Within Manufacturing}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 8cm]{durable_final.pdf}
+% 		\caption{Dispersion of productivity levels within durables and non-durables, (\textit{Source: Own Illustration})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{AutoscaledLineDispTot}
+% 	\fitimage{LineDispTot.pdf}
+% }
+% 
+% \frame{\frametitle{}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[]{LineDispTot.pdf}
+% 		\caption{(\textit{Source: Own Illustration})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 9cm]{ScatDispTot.pdf}
+% 		\caption{(\textit{Source: Own Illustration})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{}
+% 	\begin{table}[ht]
+% 		\centering
+% 		\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip, keepaspectratio}
+% 			\begin{tabular}{ccccccc}
+% 				\hline
+% 				Lead in years & All & p-value & Non-Durables & p-value & Durables & p-value \\ 
+% 				\hline
+% 				-2 & 0.195 & 0.12 & -0.144 & 0.30 & 0.030 & 0.83 \\ 
+% 				1 & 0.038 & 0.76 & 0.101 & 0.47 & 0.186 & 0.18 \\ 
+% 				0 & -0.045 & 0.71 & 0.132 & 0.34 & -0.184 & 0.18 \\ 
+% 				1 & 0.038 & 0.76 & 0.101 & 0.47 & 0.186 & 0.18 \\ 
+% 				2 & -0.160 & 0.20 & 0.056 & 0.69 & 0.297 & 0.03 \\ 
+% 				\hline
+% 			\end{tabular}
+% 		\end{adjustbox}
+% 	\end{table}
+% }
+% 
+% \frame{\frametitle{}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 9cm]{PlotQuantilesLow.pdf}
+% 		\caption{(\textit{Source: Own Illustration})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width = 9cm]{PlotQuantilesHigh.pdf}
+% 		\caption{(\textit{Source: Own Illustration})}
+% 	\end{figure}
+% }
+% 
+% \frame{\frametitle{Dynamics in the Manufacturing Division}
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width=8cm]{quantile_m_final.pdf}
+% 		\caption{Productivity changes in different manufacturing quantiles, (\textit{Source: Own illustration})}
+% 	\end{figure}
+% }
+% 
+% \section{Discussion}
+% \frame{\frametitle{}
+% 	\begin{table}[ht]
+% 		\centering
+% 		\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip, keepaspectratio}
+% 			\begin{tabular}{lcccccc}
+% 				\hline
+% 				& All & p-value & Non-durables & p-value & Durables & p-value \\ 
+% 				\hline
+% 				Standard Deviation & -0.045 & 0.71 & 0.132 & 0.34 & -0.184 & 0.18 \\ 
+% 				Variance & -0.045 & 0.71 & 0.132 & 0.34 & -0.184 & 0.18 \\ 
+% 				Inter-quartile range & 0.005 & 0.97 & 0.114 & 0.41 & -0.140 & 0.31 \\ 
+% 				Median absolute deviation & -0.023 & 0.86 & 0.135 & 0.33 & -0.091 & 0.51 \\ 
+% 				\hline
+% 			\end{tabular}
+% 		\end{adjustbox}
+% 	\end{table}
+% }
+% 
+% \frame{\frametitle{}
+% 	\begin{table}[ht]
+% 		\centering
+% 		\begin{adjustbox}{{width=\textwidth, totalheight=\textheight-2\baselineskip, keepaspectratio}
+% 				\begin{tabular}{lcccccc}
+% 					\hline
+% 					& All & p-value & Non-durables & p-value & Durables & p-value \\ 
+% 					\hline
+% 					Production - HP filtered ($\lambda = 100$) &  &  & 0.132 & 0.34 & -0.184 & 0.18 \\ 
+% 					Production - HP filtered ($\lambda = 6.25$) &  &  & 0.150 & 0.28 & -0.322 & 0.02 \\ 
+% 					Production growth rate &  &  & 0.032 & 0.82 & -0.343 & 0.01 \\ 
+% 					GDP - HP filtered ($\lambda = 100$) & -0.045 & 0.71 & 0.058 & 0.64 & -0.100 & 0.42 \\ 
+% 					GDP - HP filtered ($\lambda = 6.25$) & -0.121 & 0.33 & 0.109 & 0.38 & -0.129 & 0.29 \\ 
+% 					GDP growth rate & -0.043 & 0.73 & -0.041 & 0.74 & 0.018 & 0.89 \\ 
+% 					\hline
+% 				\end{tabular}
+% 			\end{adjustbox}
+% 		\end{table}
+% 	}
+% 	
+% 	\section{Conclusion}
+% 	\frame{\frametitle{Conclusion}
+% 		\begin{itemize}
+% 			\item{\textbf{Main result:}}
+% 			\begin{itemize}
+% 				\item{No clear general cyclical or countercyclical pattern}
+% 				\item{But: Productivitiy dispersion is countercyclical for durables}
+% 				\item{Recessions do have (small) sullying effects, in particular in the manufacturing division}
+% 			\end{itemize}
+% 			\item{\textbf{Where to go from here?}}
+% 			\begin{itemize}
+% 				\item{Replicate findings with quarterly data}
+% 				\item{Did policy interventions in the analyzed NBER-recessions already have an impact (potential OVB)?}
+% 				\item{Identify causal link for sullying effecs: Why do unproductive firms remain in business (potential frictions)?}
+% 			\end{itemize}
+% 		\end{itemize}
+% 	}
 	\frame[allowframebreaks]{\frametitle{References}
-		\tiny\bibliography{Cleansing}
+		\tiny\printbibliography
 	}
 	
 \end{document}
