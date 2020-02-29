@@ -199,7 +199,7 @@ The remainder of this project paper is structured as follows: Section \ref{data}
 \section{Data}
 \label{data}
 
-To measure the effect of CHILDREN's programs on the supported organizations, we use data from 2011 to 2018. In each year CHILDREN sends a survey to the organizations with several questions about the previous year. The number of organizations varies across years and increases over time: From 52 organizations in 2011 to 68 organizations in 2018. In some organizations one specific employee answers the survey questions, while in other institutions the questionnaire is answered in a team. As the children and adolescents are not questioned directly, all responses are documented as perceptions of the employees. The constellation of the variables in the data set also varies across years. For instance, CHILDREN asks for the average amount of kids that increased their confidence or improved their dietary knowledge. These questions of the survey are based on a scale of five levels from no to all kids. We perform several steps to receive a full dataset, which we use in our empirical analysis. Originally, the data was divided into seperate data sets for the respective years. We only use the surveys until 2018, because in 2019 some organization-ID´s occurred multiple times and the dataset for 2019 was incomplete. To ensure comparability across years, we named all variables the same. We merged the different datasets to a common dataset, including all years and variables CHILDREN collected. For an efficient and clear data structure, we created a function that automatically changed the data type of all variables from "character" to "ordinal" and added several versions for each initially metric encoded variable afterwards. The three variants are ordinal, standardized and weighted.
+To measure the effect of CHILDREN's programs on the supported organizations, we use data from 2011 to 2018. In each year CHILDREN sends a survey to the organizations with several questions about the previous year. The number of organizations varies across years and increases over time: From 52 organizations in 2011 to 68 organizations in 2018. In some organizations one specific employee answers the survey questions, while in other institutions the questionnaire is answered in a team. As the children and adolescents are not questioned directly, all responses are documented as perceptions of the employees. The constellation of the variables in the data set also varies across years. For instance, CHILDREN asks for the average amount of kids that increased their confidence or improved their dietary knowledge. These questions of the survey are based on a scale of five levels from no to all kids. We perform several steps to receive a full dataset, which we use in our empirical analysis. Originally, the data was divided into seperate data sets for the respective years. We only use the surveys until 2018, because in 2019 some organization-ID's occurred multiple times and the dataset for 2019 was incomplete. To ensure comparability across years, we named all variables the same. We merged the different datasets to a common dataset, including all years and variables CHILDREN collected. For an efficient and clear data structure, we created a function that automatically changed the data type of all variables from "character" to "ordinal" and added several versions for each initially metric encoded variable afterwards. The three variants are ordinal, standardized and weighted.
 Furthermore, we created a set of new variables. For instance, we used the information CHILDREN gave us to assign the German states to the corresponding organization-ID. 
 The final dataset for the empirical analysis is structured as follows: Each row represents a specific organization observed in a specific year. The questions are divided in two categories. The first part of the data set includes variables regarding the meals program. The second part contains variables affecting the trips program. The final data set comprises the years 2011 to 2018.
 Many organizations do not answer all questions CHILDREN poses. We create a seperate data set, in which we impute missing values with an organization-specific linear trend. CHILDREN supports some very large organizations that give out hundreds of meals a day or conduct dozens of trips per year. We fit our models with outliers excluded to see if they are driving results. We define an outlier as a value that is at least 1.5 interquartile ranges below the 25th percentile or equally far above the 75th percentile. Once we exclude outliers in terms of numbers of meals and once in terms of number of trips.
@@ -211,7 +211,11 @@ In this section, we give an overview of the dynamics of CHILDREN's two flagship 
 
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
+% Sat Feb 29 17:42:29 2020
+=======
 % Sat Feb 29 17:21:23 2020
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccccc}
@@ -943,7 +947,11 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Sa, Feb 29, 2020 - 17:42:40
+=======
 % Date and time: Sa, Feb 29, 2020 - 17:21:32
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries who are less frequently ill} 
@@ -964,7 +972,11 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Sa, Feb 29, 2020 - 17:42:40
+=======
 % Date and time: Sa, Feb 29, 2020 - 17:21:32
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and share of beneficiaries with expanded dietary knowledge} 
@@ -985,7 +997,11 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Sa, Feb 29, 2020 - 17:42:41
+=======
 % Date and time: Sa, Feb 29, 2020 - 17:21:32
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries with increased appreciation for a healthy diet} 
@@ -1006,7 +1022,11 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Sa, Feb 29, 2020 - 17:42:41
+=======
 % Date and time: Sa, Feb 29, 2020 - 17:21:32
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with improved self-worth} 
@@ -1027,7 +1047,11 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+<<<<<<< HEAD
+% Date and time: Sa, Feb 29, 2020 - 17:42:41
+=======
 % Date and time: Sa, Feb 29, 2020 - 17:21:32
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with broadened everyday expertise} 
@@ -1061,7 +1085,11 @@ Table \ref{partitiontrips} does the same for the variables of the Trips program.
 It is our impression that the partition technique results in a highly intuitive dimensionality reduction.
 
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
+% Sat Feb 29 17:42:41 2020
+=======
 % Sat Feb 29 17:21:32 2020
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -1103,7 +1131,11 @@ It is our impression that the partition technique results in a highly intuitive 
 \label{partitionmeals}
 \end{table}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
+% Sat Feb 29 17:42:41 2020
+=======
 % Sat Feb 29 17:21:32 2020
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
