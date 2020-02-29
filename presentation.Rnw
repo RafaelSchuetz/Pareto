@@ -3,6 +3,41 @@
 % biber presentation
 % pdflatex presentation
 % pdflatex presentation
+% 
+% Einleitung
+% 
+% Überblick children kurz
+% Wie fördern sie
+% Über d verteilt
+% Beide programme erklären
+% Daten sammlung prozess
+% Datenstruktur
+% Datenaufbereitung
+% 
+% Summary Statistics
+% 
+% Mittagstisch
+% Entdeckerfonds
+% Subsidy
+% Selfworth
+% Daytodayskills
+% Health variables
+% 
+% Regressionen
+% 
+% DiD-Ansatz
+% 
+% Grundlegende Idee – was wollen wir testen?
+% Zielvariablen und warum
+% Grafische evidenz 
+% Resultate - Regressionstabellen
+% 
+% Fazit und Verbesserungsvorschläge
+% 
+% Gründe für fehlende effekte 
+% Tipps zur datenerhebung und struktur
+% partition
+
 
 \documentclass[hyperref={pdfpagelabels=false}]{beamer}
 \usepackage{lmodern}
