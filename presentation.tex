@@ -1,10 +1,71 @@
+<<<<<<< HEAD
 % Rscript -e "library(knitr); knit('presentation.Rnw')"
 % pdflatex presentation
 % biber presentation
 % pdflatex presentation
 % pdflatex presentation
 
-\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\documentclass[hyperref={pdfpagelabels=false}\usepackage[]{graphicx}\usepackage[]{color}
+=======
+% Rscript -e "library(knitr); knit('paper.Rnw')"
+% pdflatex paper
+% biber paper
+% pdflatex paper
+% pdflatex paper
+
+\documentclass{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+<<<<<<< HEAD
+\usepackage{alltt}]{beamer}
 \usepackage{lmodern}
 \usepackage{lscape}
 \usepackage{graphicx}
@@ -36,20 +97,38 @@
 % \usepackage{ifthen}
 % \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 % \usepackage[hidelinks]{hyperref}
+=======
+\usepackage{alltt}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{eurosym}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{floatrow}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{subfigure}
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{sidecap}
+\usepackage{ifthen}
+\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+\usepackage[hidelinks]{hyperref}
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 % \graphicspath{{./Visuals/}}
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
 \addbibresource{references.bib}
 
-<<LoadingPackages, include=FALSE>>=
-library(knitr)
-library(xtable)
-library(dplyr)
-library(stargazer)
-library(cowplot)
-library(texreg)
-@
+<<<<<<< HEAD
 
+
+=======
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 % Fancy fit image command with optional caption copied from https://www.patrickbaylis.com/posts/2018-10-11-beamer-resizing/
 \makeatletter
 \newcommand{\fitimage}[2][\@nil]{
@@ -67,6 +146,7 @@ library(texreg)
 \makeatother
 
 \rmfamily
+<<<<<<< HEAD
 \title[Analyse der Survey-Daten von CHILDREN]{Analyse der Survey-Daten von CHILDREN for a better World e.V. 
 	% \small{\textit{following Kehrig: The Cyclical Nature of the Productivity Distribution}}
 	}
@@ -84,8 +164,13 @@ Yannick Zurl\\
 Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
 \and
 Ludwig-Maximilians-Universität München}
+=======
+\title[Analyse der Survey-Daten von CHILDREN]{Analyse der Survey-Daten von CHILDREN for a better World e.V. \\
+	% \small{\textit{following Kehrig: The Cyclical Nature of the Productivity Distribution}}}
+\author[Laura, Laura, Jonathan, Rafael und Yannick]{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz, Yannick Zurl}
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 \date{March 3, 2020}
-
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 	\begin{frame}
 	\maketitle
@@ -95,6 +180,7 @@ Ludwig-Maximilians-Universität München}
 	\tableofcontents
 }
 
+<<<<<<< HEAD
 \frame{\frametitle{List of Tables}
 	\listoftables
 }
@@ -103,6 +189,8 @@ Ludwig-Maximilians-Universität München}
 	\listoffigures
 }
 
+=======
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 \section{Introduction}
 \subsection*{Terminology}
 
@@ -122,27 +210,35 @@ Ludwig-Maximilians-Universität München}
 	\end{itemize}
 }
 
+<<<<<<< HEAD
 \section{Summary Statistics}
 
 \frame{\frametitle{Fundamental Dynamic}}
-<<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Sat Feb 29 17:39:39 2020
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccccc}
+  \hline
+ & Year & Beneficiaries, Meals & Beneficiaries, Trips & Organizations, Meals & Organizations, Trips \\ 
+  \hline
+1 & 2011 & 3748.0 &  & 52 &  \\ 
+  2 & 2012 & 3556.0 & 2803.0 & 51 & 44 \\ 
+  3 & 2013 & 4015.0 & 2823.0 & 55 & 42 \\ 
+  4 & 2014 & 4685.0 & 2752.0 & 55 & 43 \\ 
+  5 & 2015 & 5857.0 & 3823.0 & 55 & 49 \\ 
+  6 & 2016 & 3075.0 & 3819.0 & 59 & 48 \\ 
+  7 & 2017 & 4895.0 & 4150.0 & 64 & 48 \\ 
+  8 & 2018 & 5102.5 & 6911.0 & 68 & 49 \\ 
+   \hline
+\end{tabular}
+\caption{Summary Statistics} 
+\label{fundamentalDynamics}
+\end{table}
 
-# first, read in all Rds objects that you need
 
-fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
- 
-colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
-
-xtable(fundamental_dynamics,
-                                  # summary = FALSE,
-                                digits = c(0, 0, 1, 1, 0, 0),
-           caption = "Summary Statistics",
-           align = "lccccc", 
-          label = "fundamentalDynamics"
-          )
-
-@
-
+=======
+>>>>>>> 3bdac388644aa716916f4d502dee50bd036f4610
 % \frame{\frametitle{Illustration of concepts}
 % 	\begin{figure}[h]
 % 		\includegraphics[width = 5.5cm]{gdp_growth.pdf}
