@@ -1,33 +1,54 @@
-% Rscript -e "library(knitr); knit('paper.Rnw')"
-% pdflatex paper
-% biber paper
-% pdflatex paper
-% pdflatex paper
+% Rscript -e "library(knitr); knit('presentation.Rnw')"
+% pdflatex presentation
+% biber presentation
+% pdflatex presentation
+% pdflatex presentation
 
-\documentclass{beamer}
-
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage{latexsym}
-\usepackage{eurosym}
-\usepackage{xcolor}
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\usepackage{lmodern}
+\usepackage{lscape}
 \usepackage{graphicx}
-\usepackage{dcolumn}
-\usepackage{floatrow}
-\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{subfigure}
-\usepackage[flushleft]{threeparttable}
-\usepackage{booktabs}
-\usepackage{adjustbox}
-\usepackage{sidecap}
-\usepackage{ifthen}
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
-\usepackage[hidelinks]{hyperref}
+\usepackage{floatrow}
+\usepackage{booktabs}
+% \usepackage{bookmark}
+\usepackage{rotating}
+\usepackage{dcolumn}
+\usepackage{mathtools}
+\usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{mathtools}
+% \usepackage{amssymb}
+% \usepackage{latexsym}
+% \usepackage{eurosym}
+% \usepackage{xcolor}
+% \usepackage{graphicx}
+% \usepackage{dcolumn}
+% \usepackage{floatrow}
+% \usepackage[english]{babel}
+% \usepackage[utf8]{inputenc}
+% \usepackage{subfigure}
+% \usepackage[flushleft]{threeparttable}
+% \usepackage{booktabs}
+% \usepackage{adjustbox}
+% \usepackage{sidecap}
+% \usepackage{ifthen}
+% \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+% \usepackage[hidelinks]{hyperref}
 % \graphicspath{{./Visuals/}}
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
 \addbibresource{references.bib}
+
+<<LoadingPackages, include=FALSE>>=
+library(knitr)
+library(xtable)
+library(dplyr)
+library(stargazer)
+library(cowplot)
+library(texreg)
+@
 
 % Fancy fit image command with optional caption copied from https://www.patrickbaylis.com/posts/2018-10-11-beamer-resizing/
 \makeatletter
@@ -46,9 +67,23 @@
 \makeatother
 
 \rmfamily
-\title[Analyse der Survey-Daten von CHILDREN]{Analyse der Survey-Daten von CHILDREN for a better World e.V. \\
-	% \small{\textit{following Kehrig: The Cyclical Nature of the Productivity Distribution}}}
-\author[Laura, Laura, Jonathan, Rafael und Yannick]{Laura Huber, Laura Jepsen, Jonathan Kirschner, Rafael Schütz, Yannick Zurl}
+\title[Analyse der Survey-Daten von CHILDREN]{Analyse der Survey-Daten von CHILDREN for a better World e.V. 
+	% \small{\textit{following Kehrig: The Cyclical Nature of the Productivity Distribution}}
+	}
+\author[Laura, Laura, Jonathan, Rafael und Yannick]{
+Laura Huber\\
+\and
+Laura Jepsen\\
+\and
+Jonathan Kirschner\\
+\and
+Rafael Schütz\\
+\and 
+Yannick Zurl\\
+\and
+Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
+\and
+Ludwig-Maximilians-Universität München}
 \date{March 3, 2020}
 
 \begin{document}
@@ -58,6 +93,14 @@
 
 \frame{\frametitle{Table of Contents}
 	\tableofcontents
+}
+
+\frame{\frametitle{List of Tables}
+	\listoftables
+}
+
+\frame{\frametitle{List of Figures}
+	\listoffigures
 }
 
 \section{Introduction}
@@ -78,6 +121,27 @@
 		\end{itemize}
 	\end{itemize}
 }
+
+\section{Summary Statistics}
+
+\frame{\frametitle{Fundamental Dynamic}}
+<<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+# first, read in all Rds objects that you need
+
+fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
+ 
+colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
+
+xtable(fundamental_dynamics,
+                                  # summary = FALSE,
+                                digits = c(0, 0, 1, 1, 0, 0),
+           caption = "Summary Statistics",
+           align = "lccccc", 
+          label = "fundamentalDynamics"
+          )
+
+@
 
 % \frame{\frametitle{Illustration of concepts}
 % 	\begin{figure}[h]
