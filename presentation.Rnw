@@ -204,19 +204,24 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 
+<<<<<<< HEAD
 \section{Summary Statistics und Fundamentale Dynamiken}
+=======
+
+\section{Zusammenfassende Statistiken}
+>>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 \subsection{Überblick: Entwickung der Anzahl der geförderten Einrichtungen}
 
 
 \begin{frame}[fragile]
-\frametitle{Summary Statistics}
+\frametitle{Zusammenfassende Statistiken}
 <<SummaryStatistics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
 # first, read in all Rds objects that you need
 
 fundamental_dynamics = readRDS("./ANALYSIS/Tables/fundamental_dynamics.Rds")
 
-colnames(fundamental_dynamics) <- c("Year", "Beneficiaries, Meals", "Beneficiaries, Trips", "Organizations, Meals", "Organizations, Trips")
+colnames(fundamental_dynamics) <- c("Jahr", "Begünstigte, Mittagstisch", "Begünstigte, Entdeckerfonds", "Einrichtungen, Mittagstisch", "Einrichtungen, Entdeckerfonds")
 
 print(xtable(fundamental_dynamics,
                                   # summary = FALSE,
@@ -224,7 +229,7 @@ print(xtable(fundamental_dynamics,
            caption = "Summary Statistics",
            align = "lccccc",
           label = "fundamentalDynamics"
-          ), scalebox = '0.75')
+          ), scalebox = '0.7')
 
 @
 \end{frame}
@@ -344,6 +349,8 @@ appreciatetimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate_Time.Rds.Rds")
 print(appreciatetimeplot, label = "lessilltimeplot")
 @
 \end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Dynamics}
 
 
@@ -361,8 +368,15 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 % \end{figure}
 % 
 
+<<<<<<< HEAD
 \section{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
 \subsection{Empirischer Ansatz}
+=======
+\end{frame}
+
+
+\section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
+>>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 
 \begin{frame}
 \frametitle{Empirischer Ansatz}
@@ -370,6 +384,7 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 \label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
+<<<<<<< HEAD
 \begin{itemize}
 \item Schätzung der Modelle mit OLS (Ordinary least squares)
 \item An geeigneter Stelle: Vergleich der Ergebnisse mit WLS (Weighted least squares)
@@ -385,6 +400,8 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 \end{itemize}
 \item Vergleich von Regressionen mit den Daten des originalen Datenatzes mit den imputierten Daten
 \end{itemize} 
+=======
+>>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 \end{frame}
 
 
@@ -429,8 +446,8 @@ lm_ms_o_c = readRDS("./ANALYSIS/Tables/mealsNo_sub_ex_control.lm.Rds")#outlierco
 lm_ms_i = readRDS("./ANALYSIS/Tables/mealsNo_sub_IM.lm.Rds")#impute meals
 
 
-texreg(list(lm_ms, lm_ms_c, lm_ms_o, lm_ms_o_c, lm_ms_i), caption = "Association between number of meals and real subsidy", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)"), scalebox = 0.5, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} Dependent variable: number of meals \\\\ realSubsidy: subsidy for Meals program in 2015 EUR \\\\ eatersPerMeal: number of beneficiaries of Lunch program \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, linear model with controls, estimated with OLS \\\\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\\\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\\\ Model (5): imputed data set, simple linear model, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = "GrantsRegressionsLunch", booktabs = TRUE, use.packages=FALSE)
+texreg(list(lm_ms, lm_ms_c, lm_ms_o, lm_ms_o_c, lm_ms_i), caption = "Zusammenhang zwischen Anzahl der Mahlzeiten und realer Fördersumme", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)"), scalebox = 0.5, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt} Abhängige Variable: Anzahl der Mahlzeiten \\\\ realSubsidy: Fördersumme für Mittagstisch (EUR von 2015)\\\\ eatersPerMeal: Anzahl der durch Mittagtisch Begünstigten, einfaches lineares Modell, geschätzt mit Ansatz der kleinsten Quadrate \\\\ Modell (2): ursprünglicher Datensatz, lineares Modell mit Kontrollen, geschätzt mit Ansatz der kleinsten Quadrate \\\\ Modell (3): Datensatz ohne Ausreißer, einfaches lineares Modell, geschätzt mit Ansatz der kleinsten Quadrate \\\\ Modell (4): data set without outliers, linear model with controls, estimated with OLS \\\\ Model (5): imputed data set, simple linear model, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = "GrantsRegressionsLunch", booktabs = TRUE, use.packages=FALSE)
 
 @
 \end{frame}

@@ -246,19 +246,24 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 
-\section{Summary Statistics and Fundamental Dynamics}
+
+\section{Zusammenfassende Statistiken}
 \subsection{Überblick: Entwickung der Anzahl der geförderten Einrichtungen}
 
 \begin{frame}[fragile]
-\frametitle{Summary Statistics}
+\frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Sun Mar 01 19:09:39 2020
+=======
+% Sun Mar 01 20:36:52 2020
+>>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 \begin{table}[ht]
 \centering
-\scalebox{0.75}{
+\scalebox{0.7}{
 \begin{tabular}{lccccc}
   \hline
- & Year & Beneficiaries, Meals & Beneficiaries, Trips & Organizations, Meals & Organizations, Trips \\ 
+ & Jahr & Begünstigte, Mittagstisch & Begünstigte, Entdeckerfonds & Einrichtungen, Mittagstisch & Einrichtungen, Entdeckerfonds \\ 
   \hline
 1 & 2011 & 3748.0 &  & 52 &  \\ 
   2 & 2012 & 3556.0 & 2803.0 & 51 & 44 \\ 
@@ -415,6 +420,11 @@ Ludwig-Maximilians-Universität München}
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print(appreciatetimeplot, label = "{}lessilltimeplot"{}): Objekt 'appreciatetimeplot' nicht gefunden}}\end{kframe}
 \end{knitrout}
 \end{frame}
+<<<<<<< HEAD
+=======
+
+\begin{frame}[fragile]
+>>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 \frametitle{Dynamics}
 
 \begin{figure}
@@ -435,7 +445,10 @@ Ludwig-Maximilians-Universität München}
 % \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
 \end{figure}
 
-\section{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
+\end{frame}
+
+
+\section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
 
 \begin{frame}
 \frametitle{Empirischer Ansatz}
@@ -443,7 +456,6 @@ Ludwig-Maximilians-Universität München}
 \label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
-
 \end{frame}
 
 \subsection{Direkte Effekte von CHILDRENs Zuschüssen} 
@@ -453,7 +465,7 @@ Ludwig-Maximilians-Universität München}
 
 
 \begin{table}
-\caption{Association between number of meals and real subsidy}
+\caption{Zusammenhang zwischen Anzahl der Mahlzeiten und realer Fördersumme}
 \begin{center}
 \scalebox{0.5}{
 \begin{tabular}{l c c c c c }
@@ -473,7 +485,7 @@ Num. obs.       & 329             & 329            & 250             & 250      
 RMSE            & 39992.79        & 27390.90       & 3629.72         & 3463.66         & 39601.41         \\
 \bottomrule
 \multicolumn{6}{l}{\scriptsize{\parbox{\linewidth}
-{\vspace{2pt} Dependent variable: number of meals \\ realSubsidy: subsidy for Meals program in 2015 EUR \\ eatersPerMeal: number of beneficiaries of Lunch program \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, linear model with controls, estimated with OLS \\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\ Model (5): imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
+{\vspace{2pt} Abhängige Variable: Anzahl der Mahlzeiten \\ realSubsidy: Fördersumme für Mittagstisch (EUR von 2015)\\ eatersPerMeal: Anzahl der durch Mittagtisch Begünstigten, einfaches lineares Modell, geschätzt mit Ansatz der kleinsten Quadrate \\ Modell (2): ursprünglicher Datensatz, lineares Modell mit Kontrollen, geschätzt mit Ansatz der kleinsten Quadrate \\ Modell (3): Datensatz ohne Ausreißer, einfaches lineares Modell, geschätzt mit Ansatz der kleinsten Quadrate \\ Modell (4): data set without outliers, linear model with controls, estimated with OLS \\ Model (5): imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
 \end{tabular}
 }
 \label{GrantsRegressionsLunch}
@@ -717,7 +729,11 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}[fragile]
 \frametitle{Partition Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Sun Mar 01 19:09:47 2020
+=======
+% Sun Mar 01 20:37:09 2020
+>>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -765,7 +781,11 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Sun Mar 01 19:09:47 2020
+=======
+% Sun Mar 01 20:37:09 2020
+>>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
