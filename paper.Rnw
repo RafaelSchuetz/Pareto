@@ -362,7 +362,7 @@ dfactort = readRDS("./ANALYSIS/Tables/factordaytodayskillstrips.Rds")
 
 
 texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association between everyday expertise and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)", "(6)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
-{\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\ Model (1): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, simple linear model, estimated with OLS\\\\ Model (5): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ Model (6): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'DayToDaySkillsRegressions', bookmarks = TRUE)
+{\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\ Model (1): dependent variable: share of beneficiaries with broadened everyday expertise in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with broadened everyday expertise in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with broadened everyday expertise in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with broadened everyday expertise in the Trips program, imputed data set, simple linear model, estimated with OLS\\\\ Model (5): dependent variable: share of beneficiaries with broadened everyday expertise in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ Model (6): dependent variable: share of beneficiaries with broadened everyday expertise in the Trips program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'DayToDaySkillsRegressions', bookmarks = TRUE)
 
 
 
@@ -677,7 +677,7 @@ A summary of the remaining models:
 lessIllOdds <- readRDS("./ANALYSIS/Tables/lessIllProp.Rds")
 
 
-stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries who are less frequently ill", align = TRUE, label = "lessIllOdds")
+stargazer(lessIllOdds@coef3, title= "Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries who are less frequently ill", align = TRUE, label = "lessIllOdds")
 
 
 @
@@ -686,28 +686,28 @@ stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Association of
 
 dietaryOdds <- readRDS("./ANALYSIS/Tables/DietaryProp.Rds")
 
-stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and share of beneficiaries with expanded dietary knowledge", align = TRUE, label = "dietaryOdds")
+stargazer(dietaryOdds@coef3, title= "Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and share of beneficiaries with expanded dietary knowledge", align = TRUE, label = "dietaryOdds")
 @
 
 <<appreciateOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 appreciateOdds <- readRDS("./ANALYSIS/Tables/AppreciateProp.Rds")
 
-stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries with increased appreciation for a healthy diet", align = TRUE, label = "appreciateOdds")
+stargazer(appreciateOdds@coef3, title= "Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries with increased appreciation for a healthy diet", align = TRUE, label = "appreciateOdds")
 @
 
 <<selfworthOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 selfworthOdds <- readRDS("./ANALYSIS/Tables/selfworthProp.Rds")
 
-stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with improved self-worth", align = TRUE, label = "selfworthOdds")
+stargazer(selfworthOdds@coef3, title= "Propodds Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with improved self-worth", align = TRUE, label = "selfworthOdds")
 @
 
 <<dayToDayOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 dayToDayOdds <- readRDS("./ANALYSIS/Tables/dayToDayProb.Rds")
 
-stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with broadened everyday expertise", align = TRUE, label = "dayToDayOdds")
+stargazer(dayToDayOdds@coef3, title= "Propodds Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with broadened everyday expertise", align = TRUE, label = "dayToDayOdds")
 @
 
 \subsection{A3: Partition}
@@ -822,7 +822,7 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 \section{Division of tasks}
 
 Data preparation, fundamental dynamics: everybody\\
-Factor analysis, general regresions, partition, cumulative odds model: Laura Jepsen and Rafael Schütz\\
+Factor analysis, general regressions, partition, cumulative odds model: Laura Jepsen and Rafael Schütz\\
 DiD estimations and time series: Laura Huber, Jonathan Kirschner, and Yannick Zurl
 \section{Ehrenwörtliche Erklärung aller Teilnehmer}
 
