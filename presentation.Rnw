@@ -350,8 +350,8 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 @
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Dynamics}
+% \begin{frame}[fragile]
+% \frametitle{Dynamics}
 
 
 
@@ -370,20 +370,23 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 
 \section{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
 \subsection{Empirischer Ansatz}
-\end{frame}
 
 
-\section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
+% \section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
 
 \begin{frame}
 \frametitle{Empirischer Ansatz}
+
 \begin{equation}
 \label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
+
 \begin{itemize}
 \item Schätzung der Modelle mit OLS (Ordinary least squares)
 \item An geeigneter Stelle: Vergleich der Ergebnisse mit WLS (Weighted least squares)
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}[fragile]
