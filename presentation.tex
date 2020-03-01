@@ -106,7 +106,7 @@
 % \usepackage{lmodern}
 % \usepackage{lscape}
 % \usepackage{graphicx}
-% \usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 % \usepackage{floatrow}
 \usepackage{booktabs}
@@ -246,12 +246,14 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 
+
 \section{Zusammenfassende Statistiken}
+\subsection{Überblick: Entwickung der Anzahl der geförderten Einrichtungen}
 
 \begin{frame}[fragile]
 \frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar 01 20:25:18 2020
+% Sun Mar 01 20:36:52 2020
 \begin{table}[ht]
 \centering
 \scalebox{0.7}{
@@ -274,7 +276,145 @@ Ludwig-Maximilians-Universität München}
 \label{fundamentalDynamics}
 \end{table}
 
+\end{frame}
 
+\subsection{Entwicklung der Fördersummen über die Zeit}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Summe}
+
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsMealsTotal-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Median}
+
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsMealsMedian-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Median pro Begünstigter}
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsMealsMedianPerBene-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Summe}
+
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsTripsTotal-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Median}
+
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsTripsMedian-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Median pro Begünstigter}
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsTripsMedianPerBene-1} 
+
+}
+
+
+
+\end{frame}
+
+\subsection{Dynamiken des Selbstwertgefühls und der Alltagskompetenzen}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Selbstwertgefühl": Dynamik}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-SelfworthTime-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Alltagskompetenzen": Dynamik}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-DayToDayTime-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+\subsection{Dynamiken der gesundheitsrelevanten Variablen}
+
+\begin{frame}[fragile]
+\frametitle{Variable "seltener krank": Dynamik}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-lessIllTime-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Wertschätzung gesunder Ernährung": Dynamik}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): kann komprimierte Datei './ANALYSIS/GRAPHS/PAPER/appreciate\_Time.Rds.Rds' nicht öffnen. Grund evtl. 'No such file or directory'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print(appreciatetimeplot, label = "{}lessilltimeplot"{}): Objekt 'appreciatetimeplot' nicht gefunden}}\end{kframe}
+\end{knitrout}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -283,7 +423,7 @@ Ludwig-Maximilians-Universität München}
 \begin{figure}
   \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
-
+  
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -304,12 +444,11 @@ Ludwig-Maximilians-Universität München}
 \section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
 
 \begin{frame}
-\frametitle{Empirische Ansatz}
+\frametitle{Empirischer Ansatz}
 \begin{equation}
 \label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
-
 \end{frame}
 
 \subsection{Direkte Effekte von CHILDRENs Zuschüssen} 
@@ -578,18 +717,12 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 
 \end{frame}
 
-\section{DID - Estimation}
-
-\begin{frame}[fragile]
-\frametitle{Graphical evidence}
-\end{frame}
-
 \section{Partition}
 
 \begin{frame}[fragile]
 \frametitle{Partition Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar 01 20:25:23 2020
+% Sun Mar 01 20:37:09 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -636,10 +769,8 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
-
-
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar 01 20:25:23 2020
+% Sun Mar 01 20:37:09 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -672,7 +803,46 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \label{partitiontrips}
 \end{table}
 
+\end{frame}
 
+\section{Effekte des Entdeckerfonds}
+
+\subsection{Idee}
+
+\begin{frame}[fragile]
+\frametitle{Idee}
+\end{frame}
+
+\subsection{Empirische Methode}
+
+\begin{frame}[fragile]
+\frametitle{Definition der Treatmentgruppe}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Zielvariable}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Graphische Darstellung: Alltagskompetenzen}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Graphische Darstellung: Selbstwertgefühl}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{DID - Schätzung}
+\end{frame}
+
+\subsection{Ergebnisse}
+
+\begin{frame}[fragile]
+\frametitle{Alltagskompetenzen}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Selbstwertgefühl}
 \end{frame}
 
 \frame[allowframebreaks]{\frametitle{References}
