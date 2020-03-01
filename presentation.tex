@@ -246,19 +246,25 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 
-\section{Summary Statistics and Fundamental Dynamics}
+
+\section{Summary Statistics und Fundamentale Dynamiken}
+
+
+\section{Zusammenfassende Statistiken}
+
 \subsection{Überblick: Entwickung der Anzahl der geförderten Einrichtungen}
 
+
 \begin{frame}[fragile]
-\frametitle{Summary Statistics}
+\frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar 01 19:02:26 2020
+% Sun Mar 01 21:58:08 2020
 \begin{table}[ht]
 \centering
-\scalebox{0.75}{
+\scalebox{0.7}{
 \begin{tabular}{lccccc}
   \hline
- & Year & Beneficiaries, Meals & Beneficiaries, Trips & Organizations, Meals & Organizations, Trips \\ 
+ & Jahr & Begünstigte, Mittagstisch & Begünstigte, Entdeckerfonds & Einrichtungen, Mittagstisch & Einrichtungen, Entdeckerfonds \\ 
   \hline
 1 & 2011 & 3748.0 &  & 52 &  \\ 
   2 & 2012 & 3556.0 & 2803.0 & 51 & 44 \\ 
@@ -278,6 +284,17 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 \subsection{Entwicklung der Fördersummen über die Zeit}
+
+\begin{frame}[fragile]
+\frametitle{Umrechnung der Fördersummen: reale Werte}
+\begin{itemize}
+  \item{Darstellung der Entwicklung der Fördersummen über die Zeit: Zur besseren Vergleichbarkeit Berechung der realen Werte}
+  \item{Verwendung der Preisindizes des statistischen Bundesamtes}
+  \item{Mittagstisch Fördersumme: Preisindex für Nahrungsmittel und alkoholfreie Getränke}
+  \item{Entdeckerfonds: Preisindex für Freizeit, Unterhaltung und Kultur}
+  \item{Unterscheidung zwischen den Gesamtsummen, dem Median und dem Median pro Begünstigtem}
+\end{itemize}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Dynamik der Fördersumme, Mittagstisch: Summe}
@@ -318,7 +335,6 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 \begin{frame}[fragile]
-<<<<<<< HEAD
 \frametitle{Dynamik der Fördersumme, Entdeckerfonds: Summe}
 
 
@@ -386,7 +402,7 @@ Ludwig-Maximilians-Universität München}
 \end{knitrout}
 \end{frame}
 
-\subsection{Dynamiken der gesundheitsrelevanten Variablen}
+\subsection{Dynamiken gesundheitsrelevanter Variablen}
 
 \begin{frame}[fragile]
 \frametitle{Variable "seltener krank": Dynamik}
@@ -403,8 +419,22 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Wertschätzung gesunder Ernährung": Dynamik}
+\frametitle{Variable "erweitertes Ernährungswissen": Dynamik}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-dietaryTime-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Variable "Wertschätzung gesunder Ernährung": Dynamik}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
@@ -416,46 +446,102 @@ Ludwig-Maximilians-Universität München}
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print(appreciatetimeplot, label = "{}lessilltimeplot"{}): Objekt 'appreciatetimeplot' nicht gefunden}}\end{kframe}
 \end{knitrout}
 \end{frame}
-=======
-\frametitle{Dynamics}
-
-\begin{figure}
-  \caption{Yearly dynamics of total grants in Meals and Trips program}
-  \label{totalGrantsDyn}
-  
-\begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=\maxwidth]{figure/beamer-GrantTrend-1} 
-
-}
 
 
 
-\end{knitrout}
 
-% \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
-\end{figure}
 
-\section{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
+% \begin{frame}[fragile]
+% \frametitle{Dynamics}
+
+
+
+% \begin{figure}
+%   \caption{Yearly dynamics of total grants in Meals and Trips program}
+%   \label{totalGrantsDyn}
+%
+% <<GrantTrend, echo=FALSE, message=FALSE>>=
+% totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
+% print(totalGrantsDyn, scalebox = '0.25')
+% @
+%
+% % \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+% \end{figure}
+
+%
+
+
+% \end{frame}
+% 
+% 
+\section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
+
+% 
+\subsection{Empirischer Ansatz}
 
 \begin{frame}
 \frametitle{Empirischer Ansatz}
+
 \begin{equation}
 \label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
 
+\begin{itemize}
+\item Schätzung der Modelle mit OLS (Ordinary least squares)
+\item An geeigneter Stelle: Vergleich der Ergebnisse mit WLS (Weighted least squares)
+\end{itemize}
+
 \end{frame}
 
-\subsection{Direkte Effekte von CHILDRENs Zuschüssen} 
+\begin{frame}[fragile]
+\frametitle{Empirischer Ansatz: Imputieren fehlender Werte}
+\begin{itemize}
+\item Viele Organisationen beantworten nicht alle Fragen aus CHILDREN's Fragebogen
+\begin{itemize}
+\item Lösung: Erstellung eines seperaten Datensatzes in welchem fehlende Werte imputiert werden
+\item Imputierung der Daten mit einem organisations-spezifischem linearen Trend
+\end{itemize}
+\item Vergleich von Regressionen mit den Daten des originalen Datenatzes mit den imputierten Daten
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Empirischer Ansatz: Ausschließen von Außreißern}
+\begin{itemize}
+\item CHILDREN fördert einige Organisationen, die überproportional viele Essen ausgeben und Ausflüge unternehmen
+\begin{itemize}
+\item Lösung: Wir erstellen Datensätze, in welchen solche Ausreißer ausgeschlossen werden
+\item Für die Variablen: Anzahl von Essen und Anzahl von Ausflügen
+\end{itemize}
+\item Definition eines Ausreißers:
+\begin{itemize}
+\item Werte, die 1.5 Interquantilsäbstände unter des 25\%-Perzentils liegen
+\item Werte, die 1.5 Interqauntilsabstände über des 25\%-Perzentils liegen
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Empirische Fragestellungen (1), Assoziationen zwischen:}
+\begin{itemize}
+\item Der realen Fördersumme die eine Organisation für den Mittagstisch erhält und der Anzahl der Essen die sie ausgibt
+\item Der realen Fördersumme die eine Organisation für den Entdeckerfonds erhält und der Anzahl der Ausflüge die sie unternimmt
+\item Der realen Fördersumme pro Begünstigtem und dem standardisierten Anteil der Begünstigten, deren Selbstwertgefühl gestiegen ist
+\item Der realen Fördersumme pro Begünstigtem und dem standardisierten Anteil der Begünstigten, die ihre Alltagskompetenzen erweitert haben
+\end{itemize}
+\end{frame}
+
+
+\subsection{Direkte Effekte von CHILDRENs Zuschüssen}
 
 \begin{frame}[fragile]
 \frametitle{Zusammenhang Mahlzeiten und Zuschüsse}
 
 
 \begin{table}
-\caption{Association between number of meals and real subsidy}
+\caption{Zusammenhang zwischen Anzahl der Mahlzeiten und realer Fördersumme}
 \begin{center}
 \scalebox{0.5}{
 \begin{tabular}{l c c c c c }
@@ -475,7 +561,7 @@ Num. obs.       & 329             & 329            & 250             & 250      
 RMSE            & 39992.79        & 27390.90       & 3629.72         & 3463.66         & 39601.41         \\
 \bottomrule
 \multicolumn{6}{l}{\scriptsize{\parbox{\linewidth}
-{\vspace{2pt} Dependent variable: number of meals \\ realSubsidy: subsidy for Meals program in 2015 EUR \\ eatersPerMeal: number of beneficiaries of Lunch program \\ Model (1): original data set, simple linear model, estimated with OLS \\ Model (2): original data set, linear model with controls, estimated with OLS \\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\ Model (5): imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
+{\vspace{2pt} Abhängige Variable: Anzahl der Mahlzeiten \\ realSubsidy: Fördersumme für Mittagstisch (EUR von 2015)\\ eatersPerMeal: Anzahl der durch Mittagtisch Begünstigten, einfaches lineares Modell, geschätzt mit Ansatz der kleinsten Quadrate \\ Modell (2): ursprünglicher Datensatz, lineares Modell mit Kontrollen, geschätzt mit Ansatz der kleinsten Quadrate \\ Modell (3): Datensatz ohne Ausreißer, einfaches lineares Modell, geschätzt mit Ansatz der kleinsten Quadrate \\ Modell (4): data set without outliers, linear model with controls, estimated with OLS \\ Model (5): imputed data set, simple linear model, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
 \end{tabular}
 }
 \label{GrantsRegressionsLunch}
@@ -522,10 +608,41 @@ RMSE             & 2.9565         & 2.8967         & 1.6981         & 1.6579    
 \begin{frame}[fragile]
 \frametitle{Selbstwertgefühl}
 
-\begin{kframe}
 
+\begin{table}
+\caption{Association between selfworth and subsidy per beneficiary}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{l c c c c c }
+\hline
+ & (1) & (2) & (3) & (4) & (5) \\
+\hline
+(Intercept)                    & $0.08$   & $0.12$   & $0.09$   & $0.12$   & $0.23^{*}$   \\
+                               & $(0.09)$ & $(0.12)$ & $(0.09)$ & $(0.11)$ & $(0.11)$     \\
+realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          & $-0.00$      \\
+                               & $(0.00)$ &          & $(0.00)$ &          & $(0.00)$     \\
+realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  &              \\
+                               &          & $(0.00)$ &          & $(0.00)$ &              \\
+ML1                            &          &          &          &          & $0.24^{***}$ \\
+                               &          &          &          &          & $(0.06)$     \\
+ML2                            &          &          &          &          & $0.37^{***}$ \\
+                               &          &          &          &          & $(0.05)$     \\
+ML3                            &          &          &          &          & $0.15^{***}$ \\
+                               &          &          &          &          & $(0.04)$     \\
+\hline
+R$^2$                          & 0.00     & 0.01     & 0.00     & 0.01     & 0.30         \\
+Adj. R$^2$                     & 0.00     & 0.01     & 0.00     & 0.01     & 0.28         \\
+Num. obs.                      & 428      & 184      & 430      & 187      & 161          \\
+RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     & 0.79         \\
+\hline
+\multicolumn{6}{l}{\scriptsize{\parbox{\linewidth}
+{\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\Model (1): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, original data set, simple linear model, estimated with OLS \\ Model (2): dependent variable: share of beneficiaries with improved self-worth in the Trips program, original data set, simple linear model, estimated with OLS \\ Model (3): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, simple linear model, estimated with OLS \\ Model (4): dependent variable: share of beneficiaries with improved self-worth in the Trips program, imputed data set, simple linear model, estimated with OLS \\ Model (5): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
+\end{tabular}
+}
+\label{SelfworthRegressions}
+\end{center}
+\end{table}
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:8:1: Unerwartete(s) '>'\\\#\# 7: sfactor = readRDS("{}./ANALYSIS/Tables/factorselfworthmeals.Rds"{})\\\#\# 8: >\\\#\#\ \ \ \ \textasciicircum{}}}\end{kframe}
 
 \end{frame}
 
@@ -573,6 +690,69 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \subsection{Gesundheit}
+
+\begin{frame}[fragile]
+\frametitle{Empirische Fragestellungen (2), Assoziationen zwischen:}
+\begin{itemize}
+\item Dem standardisierten Maß für gesundes Essen (DGE-Kriterium) und ausgewählten standardisierten gesundheitsrelevanten Variablen
+\begin{itemize}
+\item Anteil an Begünstigten, die seltener krank sind
+\item Anteil an Begünstigten, die ihr Ernährungswissen erweitert haben
+\item Anteil an Begünstigten, die gesund Ernährung stärker wertschätzen
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "seltener krank": Zusammenhang mit dem DGE-Kriterium}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Removed 244 rows containing missing values (position\_stack).}}\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-lessIllDGEplot-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "erweitertes Ernährungswissen": Zusammenhang mit dem DGE-Kriterium}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Removed 244 rows containing missing values (position\_stack).}}\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-dietaryDGEplot-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit dem DGE-Kriterium}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Removed 244 rows containing missing values (position\_stack).}}\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-appreciateDGEplot-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Seltener krank}
@@ -688,7 +868,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}[fragile]
 \frametitle{Partition Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar 01 19:02:33 2020
+% Sun Mar 01 21:58:18 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -736,7 +916,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar 01 19:02:33 2020
+% Sun Mar 01 21:58:18 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}

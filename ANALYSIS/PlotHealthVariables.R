@@ -107,6 +107,10 @@ LessIll_percentageplot <- plotDGEOutcomeInPercent("DGECriteriaNo", "lessIll_orde
 Dietary_percentageplot <- plotDGEOutcomeInPercent("DGECriteriaNo", "dietaryKnowledge_ordered")
 Appreciate_percentageplot <- plotDGEOutcomeInPercent("DGECriteriaNo", "appreciateHealthy_ordered")
 
+saveRDS(LessIll_percentageplot, "./ANALYSIS/GRAPHS/PAPER/lessill.Rds")
+saveRDS(Dietary_percentageplot, "./ANALYSIS/GRAPHS/PAPER/dietary.Rds")
+saveRDS(Appreciate_percentageplot, "./ANALYSIS/GRAPHS/PAPER/appreciate.Rds")
+
 Health_percentageplots <- plot_grid(LessIll_percentageplot, Dietary_percentageplot, Appreciate_percentageplot, 
                           ncol = 1, nrow = 3, align = "hv",
                           labels = "AUTO",
