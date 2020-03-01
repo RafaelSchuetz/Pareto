@@ -57,7 +57,7 @@
 % \usepackage{lscape}
 % \usepackage{graphicx}
 % \usepackage[utf8]{inputenc}
-% \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 % \usepackage{floatrow}
 % \usepackage{booktabs}
 % \usepackage{rotating}
