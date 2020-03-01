@@ -121,7 +121,7 @@
 % \rmfamily
 
 \usetheme{CambridgeUS}
-% \usecolortheme{dolphin}
+\usecolortheme{crane}
 % \addbibresource{references.bib}
 % 
 
