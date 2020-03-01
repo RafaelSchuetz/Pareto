@@ -122,7 +122,7 @@
 
 \usetheme{CambridgeUS}
 % \usecolortheme{dolphin}
-% \addbibresource{references.bib}
+\addbibresource{references.bib}
 % 
 
 \begin{document}
@@ -175,12 +175,9 @@ Ludwig-Maximilians-Universität München}
 
 \section{Summary Statistics}
 
-<<<<<<< HEAD
-\frame{\frametitle{Fundamental Dynamic}
-=======
 \begin{frame}[fragile]
->>>>>>> 17517d59fb9c83556e9a3b95470493f065379745
-<<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+\frametitle{Summary Statistics}
+<<SummaryStatistics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
 # first, read in all Rds objects that you need
 
@@ -197,19 +194,16 @@ print(xtable(fundamental_dynamics,
           ), scalebox = '0.75')
 
 @
-<<<<<<< HEAD
-}
 
-\frame{\frametitel{Grants: fundamental dynamics}}
-=======
 \end{frame}
->>>>>>> 17517d59fb9c83556e9a3b95470493f065379745
 
-% \begin
-% \frame[allowframebreaks]{\frametitle{References}
-% 		\tiny
-% 		\printbibliography
-% }
+
+
+\begin
+\frame[allowframebreaks]{\frametitle{References}
+		\tiny
+		\printbibliography
+}
 	
 \end{document}
 
