@@ -157,7 +157,7 @@ Yannick Zurl\\
 Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
 \and
 Ludwig-Maximilians-Universität München}
-\date{March 3, 2020}
+\date{3. März 2020}
 
 
 \begin{frame}
@@ -228,6 +228,13 @@ print(xtable(fundamental_dynamics,
 
 \end{frame}
 
+<<<<<<< HEAD
+\section{DID - Estimation}
+
+\begin{frame}[fragile]
+\frametitle{Graphical evidence}
+\end{frame}
+=======
 \begin{frame}[fragile]
 \frametitle{Dynamics}
 
@@ -245,6 +252,7 @@ print(totalGrantsDyn, scalebox = '0.25')
 
 \end{frame}
 
+>>>>>>> 7ccd638bd2873d0916b703596f58f6d1096d9d92
 
 \frame[allowframebreaks]{\frametitle{References}
 		\tiny
