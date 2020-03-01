@@ -384,8 +384,48 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Association b
 \frametitle{Graphical evidence}
 \end{frame}
 
+\section{Partition}
+
+\begin{frame}[fragile]
+\frametitle{Partition Mittagstisch}
+<<Partition, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+# first, read in all Rds objects that you need
+
+partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.Rds")
+partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.Rds")
+ 
+colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
+colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
+
+xtable(partition_meals,
+                               # digits = c(0, 0, 1, 1, 0, 0),
+          caption = "Partition of outcomes, Meals", 
+          label = 'partitionmeals',
+          align = "lccc",
+          scalebox = "0.5"
+          )
+#print(partition_meals, include.rownames = FALSE)
+@
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Partition Entdeckerfonds}
 
 
+<<PartitionTrips, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+xtable(partition_trips,
+                               #digits = c(0, 0, 1, 1, 0, 0),
+          caption = "Partition of outcomes, Trips",
+          label = 'partitiontrips',
+          align = "lccc",
+          scalebox = "0.5"
+          )
+# print(partition_meals, partition_trips, include.rownames = FALSE)
+@
+
+\end{frame}
 
 \frame[allowframebreaks]{\frametitle{References}
 		\tiny
