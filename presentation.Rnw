@@ -159,7 +159,7 @@ Ludwig-Maximilians-Universität München}
 
 \section{Summary Statistics}
 
-\frame{\frametitle{Fundamental Dynamic}}
+\frame{\frametitle{Fundamental Dynamic}
 <<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
 # first, read in all Rds objects that you need
@@ -177,6 +177,9 @@ xtable(fundamental_dynamics,
           )
 
 @
+}
+
+\frame{\frametitel{Grants: fundamental dynamics}}
 
 % \frame{\frametitle{Illustration of concepts}
 % 	\begin{figure}[h]
