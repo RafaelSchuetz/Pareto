@@ -260,7 +260,6 @@ print(medianMealsGrantsDynBene, caption = "Fundamentale Dynamik Mittagstisch: Me
 \end{frame}
 
 \begin{frame}[fragile]
-<<<<<<< HEAD
 \frametitle{Dynamik der Fördersumme, Entdeckerfonds: Summe}
 
 <<FundamentalDynamicsTripsTotal, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
@@ -301,7 +300,7 @@ print(selfworthtimeplot, label = "selfworthtimeplot")
 
 \begin{frame}[fragile]
 \frametitle{Variable "Alltagskompetenzen": Dynamik}
-<<SelfworthTime, echo=FALSE, message=FALSE>>=
+<<DayToDayTime, echo=FALSE, message=FALSE>>=
 daytodaytimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/dayToDay_Time.Rds")
 print(daytodaytimeplot, label = "daytodaytimeplot")
 @
@@ -325,7 +324,6 @@ appreciatetimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate_Time.Rds.Rds")
 print(appreciatetimeplot, label = "lessilltimeplot")
 @
 \end{frame}
-=======
 \frametitle{Dynamics}
 
 \begin{figure}
@@ -399,7 +397,6 @@ tss = readRDS("./ANALYSIS/Tables/selfworthTrips_scaled.Rds")#sw
 ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
 tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds") 
 sfactor = readRDS("./ANALYSIS/Tables/factorselfworthmeals.Rds")
->>>>>>> 60c2a38bcd397c649510e44176cfd93af2c1f0b5
 
 texreg(list(ss, tss, ssI, tssI, sfactor), caption = "Association between selfworth and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)" ), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
 {\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\Model (1): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with improved self-worth in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with improved self-worth in the Trips program, imputed data set, simple linear model, estimated with OLS \\\\ Model (5): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'SelfworthRegressions', bookmarks = TRUE)
