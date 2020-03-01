@@ -22,7 +22,7 @@ realTripsSubTotal <- mergedData %>%
 #plot the linear time trend of total real trips subsidy trend with ggplot 
 totalRealTripSub <- ggplot(realTripsSubTotal, aes(year, total_TripsSubsidy)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x = "Year", y = "Trips, total")
 
-saveRDS(totalRealTripSub, './ANALYSIS/Tables/totalRealTripSub.Rds')
+saveRDS(totalRealTripSub, './ANALYSIS/GRAPHS/PAPER/totalRealTripSub.Rds')
 
 ###median trips subsidy real 
 
@@ -34,7 +34,7 @@ medianRealTripsSubTotal <- mergedData %>%
 #plot the linear time trend of median real trips subsidy trend with ggplot 
 medianRealTripSub <- ggplot(medianRealTripsSubTotal, aes(year, Median_TripsSubsidy)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y = "Trips, median")
 
-saveRDS(medianRealTripSub, './ANALYSIS/Tables/medianRealTripSub.Rds')
+saveRDS(medianRealTripSub, './ANALYSIS/GRAPHS/PAPER/medianRealTripSub.Rds')
 
 #total lunch subsidy 
 realSubTotal <- mergedData %>% 
@@ -44,7 +44,7 @@ realSubTotal <- mergedData %>%
 #plot the linear time trend of total real subsidy trend with ggplot 
 totalRealSub <- ggplot(realSubTotal, aes(year, total_Subsidy)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Meals, total")
 
-saveRDS(totalRealSub, './ANALYSIS/Tables/totalRealSub.Rds')
+saveRDS(totalRealSub, './ANALYSIS/GRAPHS/PAPER/totalRealSub.Rds')
 
 #median lunch subsidy 
 
@@ -55,7 +55,7 @@ medianRealSub <- mergedData %>%
 #plot the linear time trend of median real trips subsidy trend with ggplot 
 medianRealSub <- ggplot(medianRealSub, aes(year, median_Subsidy)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Meals, median")
 
-saveRDS(medianRealSub, './ANALYSIS/Tables/medianRealSub.Rds')
+saveRDS(medianRealSub, './ANALYSIS/GRAPHS/PAPER/medianRealSub.Rds')
 
 ###per individual 
 
@@ -69,7 +69,7 @@ medianRealSubInd <- mergedData %>%
 #plot the linear time trend of median real trips subsidy per ind trend with ggplot 
 medianSubInd <- ggplot(medianRealSubInd, aes(year, median_SubsidyInd)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Meals, median grant/beneficiary")
 
-saveRDS(medianSubInd, './ANALYSIS/Tables/medianSubInd.Rds')
+saveRDS(medianSubInd, './ANALYSIS/GRAPHS/PAPER/medianSubInd.Rds')
 
 #trips 
 
@@ -82,7 +82,7 @@ medianRealTripsSubInd <- mergedData %>%
 #plot the linear time trend of median real trips subsidy per ind trend with ggplot 
 medianTripsSubInd <- ggplot(medianRealTripsSubInd, aes(year, median_TripsSubsidyInd)) + geom_line() + geom_smooth(method = "lm") + theme_cowplot(12) + labs(x= "Year", y= "Trips, median grant/beneficiary")
 
-saveRDS(medianTripsSubInd, './ANALYSIS/Tables/medianTripsSubInd.Rds')
+saveRDS(medianTripsSubInd, './ANALYSIS/GRAPHS/PAPER/medianTripsSubInd.Rds')
 
 #save in one grid 
 

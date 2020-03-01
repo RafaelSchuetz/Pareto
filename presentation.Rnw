@@ -137,7 +137,7 @@ library(dplyr)
 library(stargazer)
 library(cowplot)
 library(texreg)
-opts_chunk$set(fig.path='figure/beamer-',fig.align='center',fig.show='hold',size='footnotesize')
+opts_chunk$set(fig.path='figure/beamer-',fig.align='center',fig.show='hold',size='footnotesize', fig.height=2.8, fig.width=4.2)
 @
 
 
@@ -204,7 +204,8 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 
-\section{Summary Statistics}
+\section{Summary Statistics and Fundamental Dynamics}
+\subsection{Überblick: Entwickung der Anzahl der geförderten Einrichtungen}
 
 \begin{frame}[fragile]
 \frametitle{Summary Statistics}
@@ -225,10 +226,104 @@ print(xtable(fundamental_dynamics,
           ), scalebox = '0.75')
 
 @
+\end{frame}
 
+\subsection{Entwicklung der Fördersummen über die Zeit}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Summe}
+
+<<FundamentalDynamicsMealsTotal, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+totalMealsGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/totalRealSub.Rds")
+print(totalMealsGrantsDyn, caption = "Fundamentale Dynamik Mittagstisch: Summe", label = "fundamentalMittagstischSumme")
+@
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Median}
+
+<<FundamentalDynamicsMealsMedian, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+medianMealsGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/medianRealSub.Rds")
+print(medianMealsGrantsDyn, caption = "Fundamentale Dynamik Mittagstisch: Median", label = "fundamentalMittagstischMedian")
+@
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Median pro Begünstigter}
+<<FundamentalDynamicsMealsMedianPerBene, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+medianMealsGrantsDynBene = readRDS("./ANALYSIS/GRAPHS/PAPER/medianSubInd.Rds")
+print(medianMealsGrantsDynBene, caption = "Fundamentale Dynamik Mittagstisch: Median pro Begünstigter", label = "fundamentalMittagstischMedianBeneficiary")
+@
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Summe}
+
+<<FundamentalDynamicsTripsTotal, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+totalTripsGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/totalRealTripSub.Rds")
+print(totalTripsGrantsDyn, caption = "Fundamentale Dynamik Entdeckerfonds: Summe", label = "fundamentalEntdeckerfondsSumme")
+@
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Median}
+
+<<FundamentalDynamicsTripsMedian, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+medianTripsGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/medianRealTripSub.Rds")
+print(medianTripsGrantsDyn, caption = "Fundamentale Dynamik Entdeckerfonds: Median", label = "fundamentalEntdeckerfondsMedian")
+@
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Median pro Begünstigter}
+<<FundamentalDynamicsTripsMedianPerBene, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+medianTripsGrantsDynBene = readRDS("./ANALYSIS/GRAPHS/PAPER/medianTripsSubInd.Rds")
+print(medianTripsGrantsDynBene, caption = "Fundamentale Dynamik Entdeckerfonds: Median pro Begünstigter", label = "fundamentalEntdeckerfondsMedianBeneficiary")
+@
+\end{frame}
+
+\subsection{Dynamiken des Selbstwertgefühls und der Alltagskompetenzen}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Selbstwertgefühl": Dynamik}
+<<SelfworthTime, echo=FALSE, message=FALSE>>=
+selfworthtimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/selfworth_Time.Rds")
+print(selfworthtimeplot, label = "selfworthtimeplot")
+@
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Alltagskompetenzen": Dynamik}
+<<DayToDayTime, echo=FALSE, message=FALSE>>=
+daytodaytimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/dayToDay_Time.Rds")
+print(daytodaytimeplot, label = "daytodaytimeplot")
+@
+\end{frame}
+
+\subsection{Dynamiken der gesundheitsrelevanten Variablen}
+
+\begin{frame}[fragile]
+\frametitle{Variable "seltener krank": Dynamik}
+<<lessIllTime, echo=FALSE, message=FALSE>>=
+lessilltimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/lessIll_Time.Rds")
+print(lessilltimeplot, label = "lessilltimeplot")
+@
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Wertschätzung gesunder Ernährung": Dynamik}
+
+<<appreciateTime, echo=FALSE, message=FALSE>>=
+appreciatetimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate_Time.Rds.Rds")
+print(appreciatetimeplot, label = "lessilltimeplot")
+@
+\end{frame}
 \frametitle{Dynamics}
 
 \begin{figure}

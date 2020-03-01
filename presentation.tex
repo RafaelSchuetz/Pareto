@@ -246,12 +246,13 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 
-\section{Summary Statistics}
+\section{Summary Statistics and Fundamental Dynamics}
+\subsection{Überblick: Entwickung der Anzahl der geförderten Einrichtungen}
 
 \begin{frame}[fragile]
 \frametitle{Summary Statistics}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar  1 17:43:41 2020
+% Sun Mar 01 19:02:26 2020
 \begin{table}[ht]
 \centering
 \scalebox{0.75}{
@@ -274,10 +275,148 @@ Ludwig-Maximilians-Universität München}
 \label{fundamentalDynamics}
 \end{table}
 
+\end{frame}
+
+\subsection{Entwicklung der Fördersummen über die Zeit}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Summe}
+
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsMealsTotal-1} 
+
+}
+
+
 
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Median}
+
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsMealsMedian-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Mittagstisch: Median pro Begünstigter}
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsMealsMedianPerBene-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+<<<<<<< HEAD
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Summe}
+
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsTripsTotal-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Median}
+
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsTripsMedian-1} 
+
+}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dynamik der Fördersumme, Entdeckerfonds: Median pro Begünstigter}
+
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-FundamentalDynamicsTripsMedianPerBene-1} 
+
+}
+
+
+
+\end{frame}
+
+\subsection{Dynamiken des Selbstwertgefühls und der Alltagskompetenzen}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Selbstwertgefühl": Dynamik}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-SelfworthTime-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Alltagskompetenzen": Dynamik}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-DayToDayTime-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+\subsection{Dynamiken der gesundheitsrelevanten Variablen}
+
+\begin{frame}[fragile]
+\frametitle{Variable "seltener krank": Dynamik}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=\maxwidth]{figure/beamer-lessIllTime-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable "Wertschätzung gesunder Ernährung": Dynamik}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in gzfile(file, "{}rb"{}): kann komprimierte Datei './ANALYSIS/GRAPHS/PAPER/appreciate\_Time.Rds.Rds' nicht öffnen. Grund evtl. 'No such file or directory'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gzfile(file, "{}rb"{}): kann Verbindung nicht öffnen}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in print(appreciatetimeplot, label = "{}lessilltimeplot"{}): Objekt 'appreciatetimeplot' nicht gefunden}}\end{kframe}
+\end{knitrout}
+\end{frame}
+=======
 \frametitle{Dynamics}
 
 \begin{figure}
@@ -383,41 +522,10 @@ RMSE             & 2.9565         & 2.8967         & 1.6981         & 1.6579    
 \begin{frame}[fragile]
 \frametitle{Selbstwertgefühl}
 
+\begin{kframe}
 
-\begin{table}
-\caption{Association between selfworth and subsidy per beneficiary}
-\begin{center}
-\scalebox{0.8}{
-\begin{tabular}{l c c c c c }
-\hline
- & (1) & (2) & (3) & (4) & (5) \\
-\hline
-(Intercept)                    & $0.08$   & $0.12$   & $0.09$   & $0.12$   & $0.23^{*}$   \\
-                               & $(0.09)$ & $(0.12)$ & $(0.09)$ & $(0.11)$ & $(0.11)$     \\
-realSubsidyPerBeneficiary      & $-0.00$  &          & $-0.00$  &          & $-0.00$      \\
-                               & $(0.00)$ &          & $(0.00)$ &          & $(0.00)$     \\
-realTripsSubsidyPerBeneficiary &          & $-0.00$  &          & $-0.00$  &              \\
-                               &          & $(0.00)$ &          & $(0.00)$ &              \\
-ML1                            &          &          &          &          & $0.24^{***}$ \\
-                               &          &          &          &          & $(0.06)$     \\
-ML2                            &          &          &          &          & $0.37^{***}$ \\
-                               &          &          &          &          & $(0.05)$     \\
-ML3                            &          &          &          &          & $0.15^{***}$ \\
-                               &          &          &          &          & $(0.04)$     \\
-\hline
-R$^2$                          & 0.00     & 0.01     & 0.00     & 0.01     & 0.30         \\
-Adj. R$^2$                     & 0.00     & 0.01     & 0.00     & 0.01     & 0.28         \\
-Num. obs.                      & 428      & 184      & 430      & 187      & 161          \\
-RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     & 0.79         \\
-\hline
-\multicolumn{6}{l}{\scriptsize{\parbox{\linewidth}
-{\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\Model (1): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, original data set, simple linear model, estimated with OLS \\ Model (2): dependent variable: share of beneficiaries with improved self-worth in the Trips program, original data set, simple linear model, estimated with OLS \\ Model (3): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, simple linear model, estimated with OLS \\ Model (4): dependent variable: share of beneficiaries with improved self-worth in the Trips program, imputed data set, simple linear model, estimated with OLS \\ Model (5): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\ All regressions are estimated with robust standard errors $^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$.}}}
-\end{tabular}
-}
-\label{SelfworthRegressions}
-\end{center}
-\end{table}
 
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:8:1: Unerwartete(s) '>'\\\#\# 7: sfactor = readRDS("{}./ANALYSIS/Tables/factorselfworthmeals.Rds"{})\\\#\# 8: >\\\#\#\ \ \ \ \textasciicircum{}}}\end{kframe}
 
 \end{frame}
 
@@ -580,7 +688,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}[fragile]
 \frametitle{Partition Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar  1 17:43:43 2020
+% Sun Mar 01 19:02:33 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -627,10 +735,8 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
-
-
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sun Mar  1 17:43:43 2020
+% Sun Mar 01 19:02:33 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
