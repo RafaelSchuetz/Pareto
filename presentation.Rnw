@@ -56,7 +56,7 @@
 % \usepackage{lmodern}
 % \usepackage{lscape}
 % \usepackage{graphicx}
-% \usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 % \usepackage{floatrow}
 % \usepackage{booktabs}
@@ -200,20 +200,13 @@ print(xtable(fundamental_dynamics,
 
 \end{frame}
 
-<<<<<<< HEAD
-\section{DID - Estimation}
-
-\begin{frame}[fragile]
-\frametitle{Graphical evidence}
-\end{frame}
-=======
 \begin{frame}[fragile]
 \frametitle{Dynamics}
 
 \begin{figure}
   \caption{Yearly dynamics of total grants in Meals and Trips program}
   \label{totalGrantsDyn}
-
+  
 <<GrantTrend, echo=FALSE, message=FALSE>>=
 totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
 print(totalGrantsDyn, scalebox = '0.25')
@@ -224,7 +217,45 @@ print(totalGrantsDyn, scalebox = '0.25')
 
 \end{frame}
 
->>>>>>> 7ccd638bd2873d0916b703596f58f6d1096d9d92
+\section{Effekte des Entdeckerfonds}
+
+\subsection{Idee}
+
+\begin{frame}[fragile]
+\frametitle{Idee}
+\end{frame}
+
+\subsection{Empirische Methode}
+
+\begin{frame}[fragile]
+\frametitle{Definition der Treatmentgruppe}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Zielvariable}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Graphische Darstellung: Alltagskompetenzen}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Graphische Darstellung: Selbstwertgefühl}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{DID - Schätzung}
+\end{frame}
+
+\subsection{Ergebnisse}
+
+\begin{frame}[fragile]
+\frametitle{Alltagskompetenzen}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Selbstwertgefühl}
+\end{frame}
 
 \frame[allowframebreaks]{\frametitle{References}
 		\tiny
