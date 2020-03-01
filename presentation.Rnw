@@ -204,12 +204,12 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 
-<<<<<<< HEAD
+
 \section{Summary Statistics und Fundamentale Dynamiken}
-=======
+
 
 \section{Zusammenfassende Statistiken}
->>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
+
 \subsection{Überblick: Entwickung der Anzahl der geförderten Einrichtungen}
 
 
@@ -368,15 +368,12 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 % \end{figure}
 % 
 
-<<<<<<< HEAD
 \section{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
 \subsection{Empirischer Ansatz}
-=======
 \end{frame}
 
 
 \section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
->>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 
 \begin{frame}
 \frametitle{Empirischer Ansatz}
@@ -384,7 +381,6 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 \label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
-<<<<<<< HEAD
 \begin{itemize}
 \item Schätzung der Modelle mit OLS (Ordinary least squares)
 \item An geeigneter Stelle: Vergleich der Ergebnisse mit WLS (Weighted least squares)
@@ -400,8 +396,6 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 \end{itemize}
 \item Vergleich von Regressionen mit den Daten des originalen Datenatzes mit den imputierten Daten
 \end{itemize} 
-=======
->>>>>>> 237519f2a67d1b4991f87db88fe2fa22505bb59d
 \end{frame}
 
 
@@ -529,7 +523,7 @@ print(lessillDGE, label = "lessillDGE")
 
 \begin{frame}[fragile]
 \frametitle{Variable "erweitertes Ernährungswissen": Zusammenhang mit dem DGE-Kriterium}
-<<lessIllDGEplot, echo=FALSE, message=FALSE>>=
+<<dietaryDGEplot, echo=FALSE, message=FALSE>>=
 dietaryDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/dietary.Rds")
 print(dietaryDGE, label = "dietaryDGE")
 @
@@ -537,7 +531,7 @@ print(dietaryDGE, label = "dietaryDGE")
 
 \begin{frame}[fragile]
 \frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit dem DGE-Kriterium}
-<<lessIllDGEplot, echo=FALSE, message=FALSE>>=
+<<appreciateDGEplot, echo=FALSE, message=FALSE>>=
 appreciateDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate.Rds")
 print(appreciateDGE, label = "appreciateDGE")
 @
