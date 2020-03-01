@@ -87,3 +87,4 @@ view(Rnew)
 # dietaryKnowledge, appreciateHealthy, foodCulture, moreConcentrated, moreBalanced,
 # moreIndependent, moreOpen, moreConfidence, adressProblems, proud, enoughFood
 
+# Test
