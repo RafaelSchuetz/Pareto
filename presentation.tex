@@ -1,22 +1,58 @@
-<<<<<<< HEAD
 % in Terminal enter
-=======
->>>>>>> 49d207dd3cfa83951ab0a285bb08a0f96c513c41
 % Rscript -e "library(knitr); knit('presentation.Rnw')"
 % pdflatex presentation
 % biber presentation
 % pdflatex presentation
 % pdflatex presentation
+% 
+% Einleitung
+% 
+% Überblick children kurz
+% Wie fördern sie
+% Über d verteilt
+% Beide programme erklären
+% Daten sammlung prozess
+% Datenstruktur
+% Datenaufbereitung
+% 
+% Summary Statistics
+% 
+% Mittagstisch
+% Entdeckerfonds
+% Subsidy
+% Selfworth
+% Daytodayskills
+% Health variables
+% 
+% Regressionen
+% 
+% DiD-Ansatz
+% 
+% Grundlegende Idee – was wollen wir testen?
+% Zielvariablen und warum
+% Grafische evidenz 
+% Resultate - Regressionstabellen
+% 
+% Fazit und Verbesserungsvorschläge
+% 
+% Gründe für fehlende effekte 
+% Tipps zur datenerhebung und struktur
+% partition
 
-<<<<<<< HEAD
+
+% when you begin a slide with a table or figure on it, always write
+% \begin{frame}[fragile]
+% the fragile option is important
+
+% to make tables and figures fit, use
+% scalebox = '0.75'
+% or another number
+
 % https://github.com/yihui/knitr/blob/master/inst/examples/knitr-beamer.Rnw
 
 
 
 \documentclass{beamer}\usepackage[]{graphicx}\usepackage[]{color}
-=======
-\documentclass[hyperref={pdfpagelabels=false}\usepackage[]{graphicx}\usepackage[]{color}
->>>>>>> 49d207dd3cfa83951ab0a285bb08a0f96c513c41
 % maxwidth is the original width if it is less than linewidth
 % otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -66,34 +102,18 @@
 \definecolor{errorcolor}{rgb}{1, 0, 0}
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
-<<<<<<< HEAD
 \usepackage{alltt}
 % \usepackage{lmodern}
 % \usepackage{lscape}
 % \usepackage{graphicx}
 % \usepackage[utf8]{inputenc}
-% \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 % \usepackage{floatrow}
 % \usepackage{booktabs}
 % \usepackage{rotating}
 % \usepackage{dcolumn}
 % \usepackage{mathtools}
 % \usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
-=======
-\usepackage{alltt}]{beamer}
-\usepackage{lmodern}
-\usepackage{lscape}
-\usepackage{graphicx}
-\usepackage[utf8]{inputenc}
-\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
-\usepackage{floatrow}
-\usepackage{booktabs}
-% \usepackage{bookmark}
-\usepackage{rotating}
-\usepackage{dcolumn}
-\usepackage{mathtools}
-\usepackage[left = 2.5cm, top = 2.5cm, right = 2.5cm, bottom = 2.0cm]{geometry}
->>>>>>> 49d207dd3cfa83951ab0a285bb08a0f96c513c41
 % \usepackage[hidelinks]{hyperref}
 % \usepackage{mathtools}
 % \usepackage{amssymb}
@@ -151,38 +171,19 @@
 % \rmfamily
 
 \usetheme{CambridgeUS}
-% \usecolortheme{dolphin}
-% \addbibresource{references.bib}
+
+\usecolortheme{crane}
+
+\addbibresource{references.bib}
+
 %
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 
 
-<<<<<<< HEAD
 
 \title[Analyse der Survey-Daten von CHILDREN]{Analyse der Survey-Daten von CHILDREN for a better World e.V.
-=======
-% Fancy fit image command with optional caption copied from https://www.patrickbaylis.com/posts/2018-10-11-beamer-resizing/
-\makeatletter
-\newcommand{\fitimage}[2][\@nil]{
-	\begin{figure}
-		\begin{adjustbox}{width=0.9\textwidth, totalheight=\textheight-2\baselineskip-2\baselineskip,keepaspectratio}
-			\includegraphics{#2}
-		\end{adjustbox}
-		\def\tmp{#1}%
-		\ifx\tmp\@nnil
-		\else
-		\caption{#1}
-		\fi
-	\end{figure}
-}
-\makeatother
-
-\rmfamily
-\title[Analyse der Survey-Daten von CHILDREN]{Analyse der Survey-Daten von CHILDREN for a better World e.V. 
-	% \small{\textit{following Kehrig: The Cyclical Nature of the Productivity Distribution}}
->>>>>>> 49d207dd3cfa83951ab0a285bb08a0f96c513c41
 	}
 \author[Laura, Laura, Jonathan, Rafael und Yannick]{
 Laura Huber\\
@@ -217,43 +218,12 @@ Ludwig-Maximilians-Universität München}
 	\listoffigures
 }
 
-<<<<<<< HEAD
 \section{Summary Statistics}
 
 \begin{frame}[fragile]
+\frametitle{Summary Statistics}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sat Feb 29 22:45:36 2020
-=======
-\section{Introduction}
-\subsection*{Terminology}
-
-\frame{\frametitle{Terminology}
-	\begin{itemize}
-		\item{Properties of recessions:}
-		\begin{itemize}
-			\item{Cleansing effects: relatively unproductive firms exit in and around recessions}
-			\item{Sullying effects: more firms become relatively unproductive/ unproductive firms become 
-				even more unproductive in and around recessions}
-		\end{itemize}
-		\item{Effects on productivity dispersion:}
-		\begin{itemize}
-			\item{Productivity dispersion is \textit{procyclical}, when cleansing effects are at work}
-			\item{Productivity dispersion is \textit{countercyclical}, when sullying effects are dominant}
-		\end{itemize}
-	\end{itemize}
-}
-
-\section{Summary Statistics}
-
-\frame{\frametitle{Fundamental Dynamic}}
-<<<<<<< HEAD
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Sat Feb 29 17:52:27 2020
-=======
-% latex table generated in R 3.5.1 by xtable 1.8-4 package
-% Sat Feb 29 17:55:38 2020
->>>>>>> b24662a116b8b0301ff26431155b33d6392d6dc5
->>>>>>> 49d207dd3cfa83951ab0a285bb08a0f96c513c41
+% Sun Mar 01 15:39:54 2020
 \begin{table}[ht]
 \centering
 \scalebox{0.75}{
@@ -276,57 +246,16 @@ Ludwig-Maximilians-Universität München}
 \label{fundamentalDynamics}
 \end{table}
 
+
 \end{frame}
 
-<<<<<<< HEAD
-% \begin
-% \frame[allowframebreaks]{\frametitle{References}
-% 		\tiny
-% 		\printbibliography
-=======
-% \frame{\frametitle{Illustration of concepts}
-% 	\begin{figure}[h]
-% 		\includegraphics[width = 5.5cm]{gdp_growth.pdf}
-% 		\includegraphics[width = 5.5cm]{norm_distribution.pdf}
-% 		\caption{Business Cycles and Probability Densitiy Function (\footnotesize{\textit{Source: Own Illustration}})}
-% 	\end{figure}
-% }
-% 
-% \subsection*{Relevance}
-% \frame{\frametitle{Why Should We Care?}
-% 	\begin{enumerate}
-% 		\item[1]{Relevance for the economy \& society:}
-% 		\begin{itemize}
-% 			\item{Various important connections between the nature of recessions and economic welfare:
-% 				\begin{itemize}
-% 					\item{Short-run: Besides undesirable effects of recessions (e.g. unemployment, higher government deficits, lower 
-% 						profiability), do recessions have a \textit{creative destruction}-quality as proposed 
-% 						by Pre-Keynesian liquidationists?}
-% 					\item{Long-run: Are recessions crucial for promoting long-run technological progress, i.e. productivity 
-% 						growth?}
-% 				\end{itemize}
-% 			}
-% 		\end{itemize}
-% 		\item[2]{Economic policy implications:
-% 			\begin{itemize}
-% 				\item{Should fiscal and monetary policy even focus on preventing or mitigating economic recessions?}
-% 				\item{If recessions have (undesirable) sullying properties, which policy instruments 
-% 					could be helpful for eliminating respective causes (e.g. market imperfections, liquiditiy frictions)}
-% 		\end{itemize}}
-% 	\end{enumerate}
-% }
-% 
-% \frame{\frametitle{Why Should We Care?}
-% 	\begin{enumerate}    
-% 		\item[3]{Academia:}
-% 		\begin{itemize}
-% 			\item{Assessing the behavior of micro-level variables over the business cycle is essential 
-% 				for comprehending and predicting aggregate macroeconomic outcomes}
-% 			\item{Which theoretical models in terms of recession properties are backed by empirical evidence?}
-% 		\end{itemize}
-% 	\end{enumerate}
->>>>>>> 49d207dd3cfa83951ab0a285bb08a0f96c513c41
-% }
+
+
+
+\frame[allowframebreaks]{\frametitle{References}
+		\tiny
+		\printbibliography
+}
 	
 \end{document}
 

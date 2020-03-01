@@ -57,7 +57,7 @@
 % \usepackage{lscape}
 % \usepackage{graphicx}
 % \usepackage[utf8]{inputenc}
-% \usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
 % \usepackage{floatrow}
 % \usepackage{booktabs}
 % \usepackage{rotating}
@@ -121,8 +121,11 @@
 % \rmfamily
 
 \usetheme{CambridgeUS}
+
 \usecolortheme{crane}
-% \addbibresource{references.bib}
+
+\addbibresource{references.bib}
+
 % 
 
 \begin{document}
@@ -176,7 +179,8 @@ Ludwig-Maximilians-Universität München}
 \section{Summary Statistics}
 
 \begin{frame}[fragile]
-<<FundamentalDynamics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+\frametitle{Summary Statistics}
+<<SummaryStatistics, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
 
 # first, read in all Rds objects that you need
 
@@ -193,13 +197,16 @@ print(xtable(fundamental_dynamics,
           ), scalebox = '0.75')
 
 @
+
 \end{frame}
 
-% \begin
-% \frame[allowframebreaks]{\frametitle{References}
-% 		\tiny
-% 		\printbibliography
-% }
+
+
+
+\frame[allowframebreaks]{\frametitle{References}
+		\tiny
+		\printbibliography
+}
 	
 \end{document}
 
