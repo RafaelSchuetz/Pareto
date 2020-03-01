@@ -350,8 +350,9 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 @
 \end{frame}
 
-\section{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
-\subsection{Empirischer Ansatz}
+
+
+
 
 % \begin{frame}[fragile]
 % \frametitle{Dynamics}
@@ -369,6 +370,7 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 %
 % % \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
 % \end{figure}
+
 %
 
 
@@ -377,16 +379,22 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 % 
 \section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
 
+% 
+\subsection{Empirischer Ansatz}
+
 \begin{frame}
 \frametitle{Empirischer Ansatz}
+
 \begin{equation}
 \label{SimpleLinearModel}
   y_{it} = \beta_0 + \beta_1 x_{it} + \epsilon_{it}
 \end{equation}
+
 \begin{itemize}
 \item Schätzung der Modelle mit OLS (Ordinary least squares)
 \item An geeigneter Stelle: Vergleich der Ergebnisse mit WLS (Weighted least squares)
 \end{itemize}
+
 \end{frame}
 
 \begin{frame}[fragile]
