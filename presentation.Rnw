@@ -157,7 +157,7 @@ Yannick Zurl\\
 Studentisches Praxisprojekt zur Empirischen Wirtschaftsforschung PaRE3To\\
 \and
 Ludwig-Maximilians-Universität München}
-\date{March 3, 2020}
+\date{3. März 2020}
 
 
 \begin{frame}
@@ -175,6 +175,34 @@ Ludwig-Maximilians-Universität München}
 \frame{\frametitle{List of Figures}
 	\listoffigures
 }
+\section{Einleitung}
+
+\begin{frame}[fragile]
+\frametitle{Einleitung}
+
+\begin{itemize}
+ \item<1-> Text visible on slide 1
+ \item<2-> Text visible on slide 2
+ \item<3> Text visible on slide 3
+ \item<4-> Text visible on slide 4
+\end{itemize}
+
+\end{frame}
+
+\section{Datenaufbereitung}
+
+\begin{frame}[fragile]
+\frametitle{Datenaufbereitung}
+
+\begin{itemize}
+ \item<1-> Text visible on slide 1
+ \item<2-> Text visible on slide 2
+ \item<3> Text visible on slide 3
+ \item<4-> Text visible on slide 4
+\end{itemize}
+
+\end{frame}
+
 
 \section{Summary Statistics}
 
@@ -216,6 +244,7 @@ print(totalGrantsDyn, scalebox = '0.25')
 \end{figure}
 
 \end{frame}
+
 
 \section{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
 
@@ -348,6 +377,15 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Association b
 {\\vspace{2pt} Dependent variable: share of beneficiaries with increased appreciation for a healthy diet \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ Model (5): imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'HealthRegressions-AppreciateHealthy')
 @
 \end{frame}
+
+\section{DID - Estimation}
+
+\begin{frame}[fragile]
+\frametitle{Graphical evidence}
+\end{frame}
+
+
+
 
 \frame[allowframebreaks]{\frametitle{References}
 		\tiny
