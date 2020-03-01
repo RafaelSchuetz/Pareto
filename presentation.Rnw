@@ -345,7 +345,7 @@ print(dietarytimeplot, label = "dietarytimeplot")
 \begin{frame}[fragile]
 \frametitle{Variable "Wertschätzung gesunder Ernährung": Dynamik}
 <<appreciateTime, echo=FALSE, message=FALSE>>=
-appreciatetimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate_Time.Rds.Rds")
+appreciatetimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate_Time.Rds")
 print(appreciatetimeplot, label = "lessilltimeplot")
 @
 \end{frame}
@@ -411,7 +411,7 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 
 
 \begin{frame}[fragile]
-\frametitle{Empirischer Ansatz: Ausschließen von Außreißern}
+\frametitle{Empirischer Ansatz: Ausschließen von Ausreißern}
 \begin{itemize}
 \item CHILDREN fördert einige Organisationen, die überproportional viele Essen ausgeben und Ausflüge unternehmen
 \begin{itemize}
