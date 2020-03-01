@@ -200,11 +200,31 @@ print(xtable(fundamental_dynamics,
 
 \end{frame}
 
+<<<<<<< HEAD
 \section{DID - Estimation}
 
 \begin{frame}[fragile]
 \frametitle{Graphical evidence}
 \end{frame}
+=======
+\begin{frame}[fragile]
+\frametitle{Dynamics}
+
+\begin{figure}
+  \caption{Yearly dynamics of total grants in Meals and Trips program}
+  \label{totalGrantsDyn}
+
+<<GrantTrend, echo=FALSE, message=FALSE>>=
+totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
+print(totalGrantsDyn, scalebox = '0.25')
+@
+
+% \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+\end{figure}
+
+\end{frame}
+
+>>>>>>> 7ccd638bd2873d0916b703596f58f6d1096d9d92
 
 \frame[allowframebreaks]{\frametitle{References}
 		\tiny
