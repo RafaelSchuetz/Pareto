@@ -636,6 +636,15 @@ xtable(partition_trips,
 
 \section{Effekte des Entdeckerfonds}
 
+\begin{frame}[fragile]
+\frametitle{Fragestellung}
+\begin{itemize}
+\item Welchen Effekt besitzt die Teilnahme einer sozialen Einrichtung am CHILDREN Entdeckerfonds auf die teilnehmenden Kinder und Jugendlichen?
+\item Herausforderung: Identifizieren einer geeigneten empirischen Methode, um die Wirkungseffekte des CHILDREN Entdeckerfonds zu bestimmmen 
+\item Hypothese: Die Teilnahme einer sozialen Einrichtung am CHILDREN Entdeckerfonds besitzt einen positiven Effekt auf die Alltagskompetenzen und das Selbstwertgefühl der Kinder und Jugendlichen
+\end{itemize}
+\end{frame}
+
 \subsection{Idee}
 
 \begin{frame}[fragile]
