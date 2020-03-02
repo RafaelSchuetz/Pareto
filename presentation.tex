@@ -107,9 +107,10 @@
 % \usepackage{lscape}
 % \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
-\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+\usepackage[backend=biber, style=apa]{biblatex}
 % \usepackage{floatrow}
 \usepackage{booktabs}
+\usepackage[ngerman]{babel}
 % \usepackage{rotating}
 % \usepackage{dcolumn}
 % \usepackage{mathtools}
@@ -172,6 +173,8 @@
 
 \usetheme{CambridgeUS}
 
+\setbeamerfont{subsection in toc}{size=\tiny}
+
 \usecolortheme{crane}
 
 \addbibresource{references.bib}
@@ -206,11 +209,21 @@ Ludwig-Maximilians-Universität München}
 	\maketitle
 \end{frame}
 
-\frame{\frametitle{Table of Contents}
+\frame[allowframebreaks]{\frametitle{Table of Contents}
 	\tableofcontents
 
+<<<<<<< HEAD
 }
 
+=======
+\frame[allowframebreaks]{\frametitle{List of Tables}
+	\listoftables
+}
+
+\frame[allowframebreaks]{\frametitle{List of Figures}
+	\listoffigures
+}
+>>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 \section{Einleitung}
 
 \begin{frame}[fragile]
@@ -253,6 +266,7 @@ Ludwig-Maximilians-Universität München}
 
 \begin{frame}[fragile]
 \frametitle{Beispiel: Datensatz}
+<<<<<<< HEAD
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccccc}
@@ -272,6 +286,50 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 \section{Summary Statistics und Fundamentale Dynamiken}
+=======
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
+## % Mon Mar 02 22:19:03 2020
+=======
+<<<<<<< HEAD
+## % Mon Mar  2 19:54:53 2020
+=======
+<<<<<<< HEAD
+## % Mon Mar 02 20:08:58 2020
+=======
+## % Mon Mar  2 19:45:07 2020
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
+>>>>>>> 4f7f126523380a7b313f1d448d593074fb09818a
+>>>>>>> d1c04dc41181b9d3390072860aa6809fd9f42f5f
+## \begin{table}[ht]
+## \centering
+## \scalebox{0.7}{
+## \begin{tabular}{lccccc}
+##   \hline
+##  & ID & Jahr & Anzahl der Kinder MT & Selbstwertgefühl & Ausflüge \\ 
+##   \hline
+## 1 & 103.00 & 2014.00 & 30.00 & 3.00 & 4.00 \\ 
+##   2 & 103.00 & 2015.00 & 50.00 & 3.00 & 6.00 \\ 
+##   3 & 103.00 & 2016.00 &  & 2.00 & 3.00 \\ 
+##   4 & 112.00 & 2014.00 & 27.00 & 3.00 &  \\ 
+##   5 & 112.00 & 2015.00 & 55.00 & 3.00 &  \\ 
+##   6 & 112.00 & 2016.00 & 35.00 & 3.00 &  \\ 
+##   7 & 112.00 & 2018.00 & 36.00 & 2.00 &  \\ 
+##    \hline
+## \end{tabular}
+## }
+## \caption{Beispielhafter Datensatz} 
+## \label{Datensatz}
+## \end{table}
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+>>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 
 \section{Zusammenfassende Statistiken}
 
@@ -281,10 +339,26 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Mon Mar  2 22:27:47 2020
+=======
+<<<<<<< HEAD
+% Mon Mar 02 22:19:03 2020
+=======
+<<<<<<< HEAD
+% Mon Mar  2 19:54:53 2020
+=======
+<<<<<<< HEAD
+% Mon Mar 02 20:08:58 2020
+=======
+% Mon Mar  2 19:45:07 2020
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
+>>>>>>> 4f7f126523380a7b313f1d448d593074fb09818a
+>>>>>>> d1c04dc41181b9d3390072860aa6809fd9f42f5f
+>>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 \begin{table}[ht]
 \centering
-\scalebox{0.7}{
+\scalebox{0.5}{
 \begin{tabular}{lccccc}
   \hline
  & Jahr & Begünstigte, Mittagstisch & Begünstigte, Entdeckerfonds & Einrichtungen, Mittagstisch & Einrichtungen, Entdeckerfonds \\ 
@@ -300,7 +374,7 @@ Ludwig-Maximilians-Universität München}
    \hline
 \end{tabular}
 }
-\caption{Summary Statistics} 
+\caption{Zusammenfassende Statistiken} 
 \label{fundamentalDynamics}
 \end{table}
 
@@ -311,11 +385,10 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Umrechnung der Fördersummen: reale Werte}
 \begin{itemize}
-  \item{Darstellung der Entwicklung der Fördersummen über die Zeit: Zur besseren Vergleichbarkeit Berechung der realen Werte}
+  \item{Zur besseren Vergleichbarkeit der Fördersummen über die Zeit: Umrechnung in 2015 EUR}
   \item{Verwendung der Preisindizes des statistischen Bundesamtes}
   \item{Mittagstisch Fördersumme: Preisindex für Nahrungsmittel und alkoholfreie Getränke}
-  \item{Entdeckerfonds: Preisindex für Freizeit, Unterhaltung und Kultur}
-  \item{Unterscheidung zwischen den Gesamtsummen, dem Median und dem Median pro Begünstigtem}
+  \item{Entdeckerfonds Fördersumme: Preisindex für Freizeit, Unterhaltung und Kultur}
 \end{itemize}
 \end{frame}
 
@@ -478,26 +551,55 @@ Ludwig-Maximilians-Universität München}
 \begin{itemize}
  \item<1-> Viele Zielvariablen 
  \item<2-> Teilweise sehr ähnliche Zielvariablen, z.B. Begünstigte "kochen mindestensts einmal im Monat in der Einrichtung" und "kochen mindestens einmal in der Woche in der Einrichtung"
- \linebreak
- \item<3-> CHILDREN Mittagstisch: Bereitstellung von Mahlzeiten, um eine ausgewogene und gesunde Ernährung der Kinder und Jugendlichen zu fördern
- \item<4-> CHILDREN Entdeckerfonds: Durch Ausflüge und Aktivitäten wird es Kindern und Jugendlichen ermöglicht, neue Erfahrungen zu sammeln
+ \item<3-> Welche Variablen liegen zugrunde?
+ \item<4-> Variablenreduktion zur Bestimmung möglicher Kontrollen
 \end{itemize}
 
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Technisches Vorgehen}
 
-% \begin{frame}[fragile]
-% \frametitle{Dynamics}
-%  \begin{figure}
-%    \caption{Yearly dynamics of total grants in Meals and Trips program}
-%    \label{totalGrantsDyn}
-%  <<GrantTrend, echo=FALSE, message=FALSE>>=
-%  totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
-%  print(totalGrantsDyn, scalebox = '0.25')
-%  @
-% % \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
-% \end{figure}
-% \end{frame}
+\begin{itemize}
+ \item<1-> Imputierter Datensatz 
+ \item<2-> Separate Faktoranalyse für jedes später zu schätzende Modell: Abhhängige Variable und Prädiktor ausgeschlossen
+ \item<3-> Jede Variable als Linearkombination von wenigen Faktoren
+ \item<4-> Schätzung an sich uneindeutig $\Rightarrow$ rotiere Faktoren so, dass orthogonal zueinander
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel Faktoranalyse Mittagstisch}
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar 02 22:19:08 2020
+\begin{table}[ht]
+\centering
+\begin{tabular}{lcc}
+  \hline
+ & ML2 & ML1 \\ 
+  \hline
+participateMore\_scaled & 0.14 & 0.07 \\ 
+  monthlyCooks\_scaled & 0.22 & 0.79 \\ 
+  weeklyCooks\_scaled & 0.17 & 0.85 \\ 
+  shoppers\_scaled & 0.16 & 0.55 \\ 
+  easyDishes\_scaled & 0.47 & 0.44 \\ 
+  dietaryKnowledge\_scaled & 0.64 & 0.20 \\ 
+  appreciateHealthy\_scaled & 0.74 & 0.00 \\ 
+  foodCulture\_scaled & 0.56 & 0.14 \\ 
+  dayToDaySkills\_scaled & 0.57 & 0.34 \\ 
+  selfworth\_scaled & 0.54 & 0.26 \\ 
+  influenceHome\_scaled & 0.46 & 0.17 \\ 
+   \hline
+\end{tabular}
+\caption{Faktoranalyse Mittagstisch ohne 'seltener krank'} 
+\label{factor-analysis-example}
+\end{table}
+
+
+
+\end{frame}
+
 
 \section{Zusammenhänge zwischen CHILDRENs Zuschüssen, dem DGE-Kriterium und ausgewählten Variablen}
 
@@ -553,18 +655,19 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Assoziationen zwischen:}
 \begin{itemize}
-\item Der realen Fördersumme die eine Organisation für den Mittagstisch erhält und der Anzahl der Essen die sie ausgibt
-\item Der realen Fördersumme die eine Organisation für den Entdeckerfonds erhält und der Anzahl der Ausflüge die sie unternimmt
-\item Der realen Fördersumme pro Begünstigtem und dem standardisierten Anteil der Begünstigten, deren Selbstwertgefühl gestiegen ist
-\item Der realen Fördersumme pro Begünstigtem und dem standardisierten Anteil der Begünstigten, die ihre Alltagskompetenzen erweitert haben
+\item Fördersumme für Mittagstisch (in 2015 EUR) und Anzahl ausgegebener Essen
+\item Fördersumme für Entdeckerfonds (in 2015 EUR) und Anzahl unternommener Ausflüge
+\item Sowohl für Mittagstisch als auch für Entdeckerfonds:
+\begin{itemize}
+\item Fördersumme pro Begünstigter (in 2015 EUR) und standardisierter Anteil der Begünstigten mit gestiegenen Selbstwertgefühl
+\item Fördersumme pro Begünstigter (in 2015 EUR) und standardisierter Anteil der Begünstigten mit erweiterten Alltagskompetenzen
+\end{itemize}
 \end{itemize}
 \end{frame}
 
 
-\subsection{Direkte Effekte von CHILDRENs Zuschüssen}
-
 \begin{frame}[fragile]
-\frametitle{Zusammenhang Mahlzeiten und Zuschüsse}
+\frametitle{Anzahl Mahlzeiten und Fördersumme}
 
 
 \begin{table}
@@ -598,12 +701,12 @@ RMSE            & 39992.79        & 27390.90       & 3629.72         & 3463.66  
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Zusammenhang Ausflüge und Zuschüsse}
+\frametitle{Anzahl Ausflüge und Fördersumme}
 
 \begin{table}
-\caption{Association between number of trips and real subsidy}
+\caption{Zusammenhang zwischen Anzahl Ausflüge und Fördersumme}
 \begin{center}
-\scalebox{0.8}{
+\scalebox{0.7}{
 \begin{tabular}{l c c c c c }
 \toprule
  & (1) & (2) & (3) & (4) & (5) \\
@@ -630,16 +733,14 @@ RMSE             & 2.9565         & 2.8967         & 1.6981         & 1.6579    
 
 \end{frame}
 
-\subsection{Selbstwertgefühl, Alltagskompetenzen und Zuschüsse}
-
 \begin{frame}[fragile]
-\frametitle{Selbstwertgefühl}
+\frametitle{Selbstwertgefühl und Fördersumme pro Begünstigter}
 
 
 \begin{table}
-\caption{Association between selfworth and subsidy per beneficiary}
+\caption{Zusammenhang zwischen Selbstwertgefühl und Fördersumme pro Begünstigtem}
 \begin{center}
-\scalebox{0.8}{
+\scalebox{0.4}{
 \begin{tabular}{l c c c c c }
 \hline
  & (1) & (2) & (3) & (4) & (5) \\
@@ -674,13 +775,13 @@ RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Alltagskompetenzen}
+\frametitle{Alltagskompetenzen und Fördersumme pro Begünstigter}
 
 
 \begin{table}
-\caption{Association between everyday expertise and subsidy per beneficiary}
+\caption{Zusammenhang zwischen Alltagskompetenzen und Fördersumme pro Begünstigtem}
 \begin{center}
-\scalebox{0.8}{
+\scalebox{0.4}{
 \begin{tabular}{l c c c c c c }
 \hline
  & (1) & (2) & (3) & (4) & (5) & (6) \\
@@ -717,9 +818,10 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Ergebnisse der Fördersumme}
+\frametitle{Zusammenfassung der Ergebnisse}
 
 \begin{itemize}
+<<<<<<< HEAD
 \item Effekt auf Anzahl an Essen \& Ausflüge
 \begin{itemize}
 \item Mittagstisch: Circa 3 Euro mehr resultieren in einer Mahlzeit mehr
@@ -729,6 +831,11 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \begin{itemize}
 \item Nulleffekte bei beiden Variablen 
 \end{itemize}
+=======
+\item Mittagstisch ohne Ausreißer: Circa 3 EUR höhere Fördersumme geht einher mit einer weiteren Mahlzeit
+\item Entdeckerfonds ohne Ausreißer: Circa 3000 EUR höhere Fördersumme geht einher mit einem weiteren Ausflug
+\item Selbstwertgefühl \& die Alltagskompetenzen: kein Zusammenhang mit Fördersumme
+>>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 \end{itemize}
 
 \end{frame}
@@ -738,17 +845,18 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \begin{frame}[fragile]
 \frametitle{Fragestellungen, Assoziationen zwischen:}
 \begin{itemize}
-\item Dem standardisierten Maß für gesundes Essen (DGE-Kriterium) und ausgewählten standardisierten gesundheitsrelevanten Variablen
+\item Standardisierten Maß für gesundes Essen (DGE-Kriterium) und ausgewählte standardisierte gesundheitsrelevante Variablen
 \begin{itemize}
 \item Anteil an Begünstigten, die seltener krank sind
 \item Anteil an Begünstigten, die ihr Ernährungswissen erweitert haben
-\item Anteil an Begünstigten, die gesund Ernährung stärker wertschätzen
+\item Anteil an Begünstigten, die gesunde Ernährung stärker wertschätzen
 \end{itemize}
+\item Schätzung mit WLS
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "seltener krank": Zusammenhang mit dem DGE-Kriterium}
+\frametitle{Variable 'seltener krank': Zusammenhang mit DGE-Kriterium}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -762,7 +870,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "erweitertes Ernährungswissen": Zusammenhang mit dem DGE-Kriterium}
+\frametitle{Variable 'erweitertes Ernährungswissen': Zusammenhang mit DGE-Kriterium}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -776,7 +884,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit dem DGE-Kriterium}
+\frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit DGE-Kriterium}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -790,12 +898,12 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Seltener krank}
+\frametitle{Variable 'seltener krank': Zusammenhang mit DGE-Kriterium}
 
 \begin{table}
-\caption{Association between healthy meals criterion and beneficiaries being less ill}
+\caption{Zusammenhang zwischen DGE-Kriterium und Variable 'seltener krank'}
 \begin{center}
-\scalebox{0.8}{
+\scalebox{0.65}{
 \begin{tabular}{l c c c c c }
 \hline
  & (1) & (2) & (3) & (4) & (5) \\
@@ -825,12 +933,12 @@ RMSE                & 0.91         & 7.83        & 0.94         & 7.95         &
 \end{frame}
 
 \begin{frame}
-\frametitle{Ernährungswissen}
+\frametitle{Variable 'erweitertes Ernährungswissen': Zusammenhang mit DGE-Kriterium}
 
 \begin{table}
-\caption{Association between healthy meals criterion and beneficiaries dietary knowledge}
+\caption{Zusammenhang zwischen DGE-Kriterium und Variable 'erweitertes Ernährungswissen'}
 \begin{center}
-\scalebox{0.8}{
+\scalebox{0.55}{
 \begin{tabular}{l c c c c c }
 \hline
  & (1) & (2) & (3) & (4) & (5) \\
@@ -862,12 +970,12 @@ RMSE                & 0.98     & 8.49     & 0.96       & 9.45     & 0.83        
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Wertschätzung für gesundes Essen}
+\frametitle{Variable 'Wertschätzung gesunder Ernährung': Zusammenhang mit DGE-Kriterium}
 
 \begin{table}
-\caption{Association between healthy meals criterion and  beneficiaries appreciation of a healthy diet}
+\caption{Zusammenhang zwischen DGE-Kriterium und Variable 'Wertschätzung gesunder Ernährung'}
 \begin{center}
-\scalebox{0.8}{
+\scalebox{0.5}{
 \begin{tabular}{l c c c c c }
 \hline
  & (1) & (2) & (3) & (4) & (5) \\
@@ -898,17 +1006,21 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 
 \end{frame}
 
+<<<<<<< HEAD
 \subsection{Empirische Fragestellungen (2): Ergebnisse}
 
+=======
+>>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 \begin{frame}
-\frametitle{Empirische Fragestellungen (2): }
+\frametitle{Zusammenfassung der Ergebnisse}
 
 
 \begin{itemize}
-\item Signifikante Effekte in Bezug auf den Zusammenhang des Kriteriums für gesundes Essen und gesundheitsrelevanten Variablen 
+\item Einfaches lineares Modell, geschätzt mit OLS: Großer, teilweise signifikanter Zusammenhang zwischen DGE-Kriterium und gesundheitsrelevanten Variablen 
 \item Hinzunahme von extrahierten Faktoren als Kontrollen:
 \begin{itemize}
 \item Variable "seltener krank": nach wie vor großer, statistisch signifikanter Koeffizient
+\item Variablen "erweitertes Ernährungswissen" und "Wertschätzung gesunder Ernährung": kein Zusammenhang mehr erkennbar
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -919,9 +1031,26 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
  \begin{frame}[fragile]
  \frametitle{Partition Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Mon Mar  2 22:27:52 2020
+=======
+<<<<<<< HEAD
+% Mon Mar 02 22:19:11 2020
+=======
+<<<<<<< HEAD
+% Mon Mar  2 19:54:58 2020
+=======
+<<<<<<< HEAD
+% Mon Mar 02 20:09:05 2020
+=======
+% Mon Mar  2 19:45:12 2020
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
+>>>>>>> 4f7f126523380a7b313f1d448d593074fb09818a
+>>>>>>> d1c04dc41181b9d3390072860aa6809fd9f42f5f
+>>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 \begin{table}[ht]
 \centering
+\scalebox{0.4}{
 \begin{tabular}{lccc}
   \hline
  & Variable, Meals & Mapping, Meals & Information, Meals \\ 
@@ -957,7 +1086,8 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
   29 & reduced\_var\_5 & askRecipes & 0.41 \\ 
    \hline
 \end{tabular}
-\caption{Partition of outcomes, Meals} 
+}
+\caption{Partition der Zielvariablen, Mittagstisch} 
 \label{partitionmeals}
 \end{table}
 
@@ -967,9 +1097,26 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Mon Mar  2 22:27:52 2020
+=======
+<<<<<<< HEAD
+% Mon Mar 02 22:19:11 2020
+=======
+<<<<<<< HEAD
+% Mon Mar  2 19:54:58 2020
+=======
+<<<<<<< HEAD
+% Mon Mar 02 20:09:05 2020
+=======
+% Mon Mar  2 19:45:12 2020
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
+>>>>>>> 4f7f126523380a7b313f1d448d593074fb09818a
+>>>>>>> d1c04dc41181b9d3390072860aa6809fd9f42f5f
+>>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 \begin{table}[ht]
 \centering
+\scalebox{0.5}{
 \begin{tabular}{lccc}
   \hline
  & Variable, Trips & Mapping, Trips & Information, Trips \\ 
@@ -996,7 +1143,8 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
   20 & reduced\_var\_3 & tripsDayToDaySkills & 0.46 \\ 
    \hline
 \end{tabular}
-\caption{Partition of outcomes, Trips} 
+}
+\caption{Partition der Zielvariablen, Entdeckerfonds} 
 \label{partitiontrips}
 \end{table}
 
