@@ -178,13 +178,14 @@ Ludwig-Maximilians-Universität München}
 \section{Einleitung}
 
 \begin{frame}[fragile]
-\frametitle{Einleitung}
+\frametitle{CHILDREN for a better World e.V.}
 
 \begin{itemize}
- \item<1-> Text visible on slide 1
- \item<2-> Text visible on slide 2
- \item<3> Text visible on slide 3
- \item<4-> Text visible on slide 4
+ \item<1-> Spendenfinanzierte Kinderhilfsorganisation
+ \item<2-> Finanziert Einrichtungen deutschlandweit
+ \linebreak
+ \item<3-> CHILDREN Mittagstisch: Bereitstellung von Mahlzeiten, um eine ausgewogene und gesunde Ernährung der Kinder und Jugendlichen zu fördern
+ \item<4-> CHILDREN Entdeckerfonds: Durch Ausflüge und Aktivitäten wird es Kindern und Jugendlichen ermöglicht, neue Erfahrungen zu sammeln
 \end{itemize}
 
 \end{frame}
@@ -192,13 +193,27 @@ Ludwig-Maximilians-Universität München}
 \section{Datenaufbereitung}
 
 \begin{frame}[fragile]
+\frametitle{Datenerhebung von CHILDREN}
+
+\begin{itemize}
+ \item<1-> Jährliche Umfragebögen an die Einrichtungen
+ \item<2-> Beantwortung durch Mitarbeiter
+ \item<3-> Verschiedene Fragen zu Mittagstisch und Entdeckerfonds
+ \item<4-> Generelle Variablen (z.B. Fördersumme, Anzahl angebotener Mahlzeiten, Anzahl Aktivitäten)
+ \item<5-> Abhängige Variablen (z.B. Selbstwertgefühl, seltener krank)
+  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Datenaufbereitung}
 
 \begin{itemize}
- \item<1-> Text visible on slide 1
- \item<2-> Text visible on slide 2
- \item<3> Text visible on slide 3
- \item<4-> Text visible on slide 4
+ \item<1-> Arbeit mit dem Statistik-Programm “R”
+ \item<2-> Zusammenfügen der verschiedenen Datensätze
+ \item<3-> Anpassung und Vergleich der Variablennamen
+ \item<4-> Abstimmung des Teams über “Git”
+  
 \end{itemize}
 
 \end{frame}
