@@ -259,7 +259,7 @@ Ludwig-Maximilians-Universität München}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ## % latex table generated in R 3.6.2 by xtable 1.8-4 package
-## % Mon Mar 02 17:19:43 2020
+## % Mon Mar 02 20:08:58 2020
 ## \begin{table}[ht]
 ## \centering
 ## \scalebox{0.7}{
@@ -296,7 +296,7 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Mar 02 17:19:43 2020
+% Mon Mar 02 20:08:58 2020
 \begin{table}[ht]
 \centering
 \scalebox{0.7}{
@@ -514,9 +514,7 @@ Ludwig-Maximilians-Universität München}
 % \end{figure}
 % \end{frame}
 
-
-\section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
-
+\section{Zusammenhänge zwischen CHILDRENs Zuschüssen, dem DGE-Kriterium und ausgewählten Variablen}
 
 \subsection{Empirischer Ansatz}
 
@@ -529,19 +527,21 @@ Ludwig-Maximilians-Universität München}
 \end{equation}
 
 \begin{itemize}
-\item Schätzung der Modelle mit OLS (Ordinary least squares)
-\item An geeigneter Stelle: Vergleich der Ergebnisse mit WLS (Weighted least squares)
+\item Schätzung der Modelle mit OLS (Methode der kleinsten Quadrate)
+\item Problem: Einrichtungen werden gleich gewichtet, unabhängig von Größe
+\item Lösung: Modellschätzung mit WLS (Gewichtete kleinste Quadrate)
+\item [$\Rightarrow$] Gewichte: Anzahl der regelmäßigen Teilnehmer am Mittagstisch und im Entdeckerfonds
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Empirischer Ansatz: Imputieren fehlender Werte}
+\frametitle{Variante: Imputieren fehlender Werte}
 \begin{itemize}
-\item Viele Organisationen beantworten nicht alle Fragen aus CHILDREN's Fragebogen
+\item Problem: Viele Einrichtungen beantworten nicht alle Fragen
 \begin{itemize}
 \item Lösung: Erstellung eines seperaten Datensatzes in welchem fehlende Werte imputiert werden
-\item Imputierung der Daten mit einem organisations-spezifischem linearen Trend
+\item [$\Rightarrow$] Imputieren der Daten mit einrichtungs-spezifischem linearen Trend
 \end{itemize}
 \item Vergleich von Regressionen mit den Daten des originalen Datenatzes mit den imputierten Daten
 \end{itemize}
@@ -549,23 +549,24 @@ Ludwig-Maximilians-Universität München}
 
 
 \begin{frame}[fragile]
-\frametitle{Empirischer Ansatz: Ausschließen von Ausreißern}
+\frametitle{Variante: Ausschließen von Ausreißern}
 \begin{itemize}
-\item CHILDREN fördert einige Organisationen, die überproportional viele Essen ausgeben und Ausflüge unternehmen
-\begin{itemize}
-\item Lösung: Wir erstellen Datensätze, in welchen solche Ausreißer ausgeschlossen werden
-\item Für die Variablen: Anzahl von Essen und Anzahl von Ausflügen
-\end{itemize}
+\item Problem: CHILDREN fördert Einrichtungen mit sehr vielen und sehr wenigen ausgegebenen Essen und unternommenen Ausflügen
+\item Lösung: Datensätze ohne Ausreißer
+\item Mittagstisch: Ausreißer bei Anzahl von Essen
+\item Entdeckerfonds: Ausreißer bei Anzahl von Ausflügen
 \item Definition eines Ausreißers:
 \begin{itemize}
-\item Werte, die 1.5 Interquantilsäbstände unter des 25\%-Perzentils liegen
-\item Werte, die 1.5 Interqauntilsabstände über des 25\%-Perzentils liegen
+\item Werte, die 1.5 Interquantilsäbstände unter dem 25\%-Perzentil liegen
+\item Werte, die 1.5 Interqauntilsabstände über dem 75\%-Perzentil liegen
 \end{itemize}
 \end{itemize}
 \end{frame}
 
+\subsection{Assoziationen zwischen Fördersumme und ausgewählten Variablen}
+
 \begin{frame}[fragile]
-\frametitle{Empirische Fragestellungen (1), Assoziationen zwischen:}
+\frametitle{Assoziationen zwischen:}
 \begin{itemize}
 \item Der realen Fördersumme die eine Organisation für den Mittagstisch erhält und der Anzahl der Essen die sie ausgibt
 \item Der realen Fördersumme die eine Organisation für den Entdeckerfonds erhält und der Anzahl der Ausflüge die sie unternimmt
@@ -730,10 +731,27 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Ergebnisse der Fördersumme}
+
+\begin{itemize}
+\item Effekt auf Anzahl an Essen \& Ausflüge
+\begin{itemize}
+\item Mittagstisch: Circa 3 Euro mehr resultieren in einer Mahlzeit mehr
+\item Entdeckerfonds: kein klarer Zusammenhang 
+\end{itemize}
+\item Effekt auf das Selbstwertgefühl \& die Alltagskompetenzen 
+\begin{itemize}
+\item Nulleffekte bei beiden Variablen 
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
 \subsection{Gesundheit}
 
 \begin{frame}[fragile]
-\frametitle{Empirische Fragestellungen (2), Assoziationen zwischen:}
+\frametitle{Fragestellungen, Assoziationen zwischen:}
 \begin{itemize}
 \item Dem standardisierten Maß für gesundes Essen (DGE-Kriterium) und ausgewählten standardisierten gesundheitsrelevanten Variablen
 \begin{itemize}
@@ -895,12 +913,28 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 
 \end{frame}
 
+\subsection{Empirische Fragestellungen (2): Ergebnisse}
+
+\begin{frame}
+\frametitle{Empirische Fragestellungen (2): }
+
+
+\begin{itemize}
+\item Signifikante Effekte in Bezug auf den Zusammenhang des Kriteriums für gesundes Essen und gesundheitsrelevanten Variablen 
+\item Hinzunahme von extrahierten Faktoren als Kontrollen:
+\begin{itemize}
+\item Variable "seltener krank": nach wie vor großer, statistisch signifikanter Koeffizient
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
 \section{Partition}
 
  \begin{frame}[fragile]
  \frametitle{Partition Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Mar 02 17:19:51 2020
+% Mon Mar 02 20:09:05 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -948,7 +982,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Mar 02 17:19:51 2020
+% Mon Mar 02 20:09:05 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
