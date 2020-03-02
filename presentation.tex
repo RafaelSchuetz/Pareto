@@ -111,6 +111,7 @@
 % \usepackage{floatrow}
 \usepackage{booktabs}
 \usepackage[ngerman]{babel}
+\usepackage{csquotes}
 % \usepackage{rotating}
 % \usepackage{dcolumn}
 % \usepackage{mathtools}
@@ -176,6 +177,8 @@
 \setbeamerfont{subsection in toc}{size=\tiny}
 
 \usecolortheme{crane}
+
+\setbeamercolor{titlelike}{parent=structure, fg = black}
 
 \addbibresource{references.bib}
 
@@ -262,19 +265,7 @@ Ludwig-Maximilians-Universität München}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ## % latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-## % Mon Mar 02 22:19:03 2020
-=======
-<<<<<<< HEAD
-## % Mon Mar  2 19:54:53 2020
-=======
-<<<<<<< HEAD
-## % Mon Mar 02 20:08:58 2020
-=======
-## % Mon Mar  2 19:45:07 2020
->>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
->>>>>>> 4f7f126523380a7b313f1d448d593074fb09818a
->>>>>>> d1c04dc41181b9d3390072860aa6809fd9f42f5f
+## % Mon Mar 02 23:17:27 2020
 ## \begin{table}[ht]
 ## \centering
 ## \scalebox{0.7}{
@@ -309,19 +300,7 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Mon Mar 02 22:19:03 2020
-=======
-<<<<<<< HEAD
-% Mon Mar  2 19:54:53 2020
-=======
-<<<<<<< HEAD
-% Mon Mar 02 20:08:58 2020
-=======
-% Mon Mar  2 19:45:07 2020
->>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
->>>>>>> 4f7f126523380a7b313f1d448d593074fb09818a
->>>>>>> d1c04dc41181b9d3390072860aa6809fd9f42f5f
+% Mon Mar 02 23:17:27 2020
 \begin{table}[ht]
 \centering
 \scalebox{0.5}{
@@ -437,7 +416,7 @@ Ludwig-Maximilians-Universität München}
 \subsection{Dynamiken des Selbstwertgefühls und der Alltagskompetenzen}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Selbstwertgefühl": Dynamik}
+\frametitle{Variable \glqq Selbstwertgefühl\grqq: Dynamik}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -451,7 +430,7 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Alltagskompetenzen": Dynamik}
+\frametitle{Variable \glqq Alltagskompetenzen\grqq: Dynamik}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -467,7 +446,7 @@ Ludwig-Maximilians-Universität München}
 \subsection{Dynamiken gesundheitsrelevanter Variablen}
 
 \begin{frame}[fragile]
-\frametitle{Variable "seltener krank": Dynamik}
+\frametitle{Variable \glqq seltener krank\grqq: Dynamik}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -481,7 +460,7 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "erweitertes Ernährungswissen": Dynamik}
+\frametitle{Variable \glqq erweitertes Ernährungswissen\grqq: Dynamik}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -496,7 +475,7 @@ Ludwig-Maximilians-Universität München}
 
 
 \begin{frame}[fragile]
-\frametitle{Variable "Wertschätzung gesunder Ernährung": Dynamik}
+\frametitle{Variable \glqq Wertschätzung gesunder Ernährung\grqq: Dynamik}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -516,7 +495,7 @@ Ludwig-Maximilians-Universität München}
 
 \begin{itemize}
  \item<1-> Viele Zielvariablen 
- \item<2-> Teilweise sehr ähnliche Zielvariablen, z.B. Begünstigte "kochen mindestensts einmal im Monat in der Einrichtung" und "kochen mindestens einmal in der Woche in der Einrichtung"
+ \item<2-> Teilweise sehr ähnliche Zielvariablen, z.B. Begünstigte \glqq kochen mindestensts einmal im Monat in der Einrichtung\grqq und \glqq kochen mindestens einmal in der Woche in der Einrichtung\grqq
  \item<3-> Welche Variablen liegen zugrunde?
  \item<4-> Variablenreduktion zur Bestimmung möglicher Kontrollen
 \end{itemize}
@@ -538,7 +517,7 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Beispiel Faktoranalyse Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Mar 02 22:19:08 2020
+% Mon Mar 02 23:17:32 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lcc}
@@ -566,8 +545,113 @@ participateMore\_scaled & 0.14 & 0.07 \\
 
 \end{frame}
 
+\section{Partition}
+\begin{frame}[fragile]
+\frametitle{Alternative zu Faktoranalyse?}
+\begin{itemize}
+\item<1-> Neue Methode aus Biostatistik zur Dimensionalitätsreduktion: Partition \parencite{Millstein.2020}
+\item<2-> Aufteilung der Menge aller Variablen in Gruppen
+\item<3-> Jeder Variable wird genau eine zugrundeliegende Variable zugewiesen
+\item<3-> In jeder Gruppe muss Intraklassen-Korrelationskoeffizient mindestens bestimmten, willkürlich festgelegten Wert annehmen
+\item<4-> Bestimmung der Gruppen durch deterministischen Nächste-Nachbarn-Algorithmus
 
-\section{Zusammenhänge zwischen CHILDRENs Zuschüssen, dem DGE-Kriterium und ausgewählten Variablen}
+\end{itemize}
+\end{frame}
+
+ \begin{frame}[fragile]
+ \frametitle{Partition Mittagstisch}
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar 02 23:17:32 2020
+\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{lccc}
+  \hline
+ & Variable, Meals & Mapping, Meals & Information, Meals \\ 
+  \hline
+1 & participateMore & participateMore & 1.00 \\ 
+  2 & tasksLunch & tasksLunch & 1.00 \\ 
+  3 & ownIdeas & ownIdeas & 1.00 \\ 
+  4 & stayLonger & stayLonger & 1.00 \\ 
+  5 & dietaryKnowledge & dietaryKnowledge & 1.00 \\ 
+  6 & appreciateHealthy & appreciateHealthy & 1.00 \\ 
+  7 & foodCulture & foodCulture & 1.00 \\ 
+  8 & lessIll & lessIll & 1.00 \\ 
+  9 & betterTeamwork & betterTeamwork & 1.00 \\ 
+  10 & moreRegularSchoolVisits & moreRegularSchoolVisits & 1.00 \\ 
+  11 & addressProblems & addressProblems & 1.00 \\ 
+  12 & reduced\_var\_1 & moreConcentrated & 0.66 \\ 
+  13 & reduced\_var\_1 & moreBalanced & 0.66 \\ 
+  14 & reduced\_var\_2 & monthlyCooks & 0.42 \\ 
+  15 & reduced\_var\_2 & weeklyCooks & 0.42 \\ 
+  16 & reduced\_var\_2 & shoppers & 0.42 \\ 
+  17 & reduced\_var\_2 & easyDishes & 0.42 \\ 
+  18 & reduced\_var\_3 & dayToDaySkills & 0.43 \\ 
+  19 & reduced\_var\_3 & moreIndependent & 0.43 \\ 
+  20 & reduced\_var\_3 & selfworth & 0.43 \\ 
+  21 & reduced\_var\_3 & moreOpen & 0.43 \\ 
+  22 & reduced\_var\_3 & moreConfidence & 0.43 \\ 
+  23 & reduced\_var\_3 & proud & 0.43 \\ 
+  24 & reduced\_var\_4 & betterReading & 0.53 \\ 
+  25 & reduced\_var\_4 & betterNumbers & 0.53 \\ 
+  26 & reduced\_var\_4 & betterGrades & 0.53 \\ 
+  27 & reduced\_var\_5 & influenceHome & 0.41 \\ 
+  28 & reduced\_var\_5 & cookAtHome & 0.41 \\ 
+  29 & reduced\_var\_5 & askRecipes & 0.41 \\ 
+   \hline
+\end{tabular}
+}
+\caption{Partition der Zielvariablen, Mittagstisch} 
+\label{partitionmeals}
+\end{table}
+
+
+ \end{frame}
+
+\begin{frame}
+\frametitle{Partition Entdeckerfonds}
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar 02 23:17:32 2020
+\begin{table}[ht]
+\centering
+\scalebox{0.5}{
+\begin{tabular}{lccc}
+  \hline
+ & Variable, Trips & Mapping, Trips & Information, Trips \\ 
+  \hline
+1 & tripsSuggestions & tripsSuggestions & 1.00 \\ 
+  2 & tripsDecisions & tripsDecisions & 1.00 \\ 
+  3 & tripsOrganization & tripsOrganization & 1.00 \\ 
+  4 & tripsCostCalculation & tripsCostCalculation & 1.00 \\ 
+  5 & tripsBudget & tripsBudget & 1.00 \\ 
+  6 & tripsMoney & tripsMoney & 1.00 \\ 
+  7 & tripsReview & tripsReview & 1.00 \\ 
+  8 & tripsPublicTransport & tripsPublicTransport & 1.00 \\ 
+  9 & tripsMobility & tripsMobility & 1.00 \\ 
+  10 & tripsAdditionalActivities & tripsAdditionalActivities & 1.00 \\ 
+  11 & tripsSelfworth & tripsSelfworth & 1.00 \\ 
+  12 & tripsFrustrationTolerance & tripsFrustrationTolerance & 1.00 \\ 
+  13 & reduced\_var\_1 & tripsSuccess & 0.68 \\ 
+  14 & reduced\_var\_1 & tripsSelfEfficacy & 0.68 \\ 
+  15 & reduced\_var\_2 & tripsNewPlaces & 0.60 \\ 
+  16 & reduced\_var\_2 & tripsNewCommunities & 0.60 \\ 
+  17 & reduced\_var\_2 & tripsNewIdeas & 0.60 \\ 
+  18 & reduced\_var\_2 & tripsSocialSkills & 0.60 \\ 
+  19 & reduced\_var\_3 & tripsSpecificSkills & 0.46 \\ 
+  20 & reduced\_var\_3 & tripsDayToDaySkills & 0.46 \\ 
+   \hline
+\end{tabular}
+}
+\caption{Partition der Zielvariablen, Entdeckerfonds} 
+\label{partitiontrips}
+\end{table}
+
+\end{frame}
+
+
+\section{Effekte des Entdeckerfonds}
+
+\section[Zusammenhänge]{Zusammenhänge zwischen CHILDRENs Zuschüssen, dem DGE-Kriterium und ausgewählten Variablen}
 
 \subsection{Empirischer Ansatz}
 
@@ -810,7 +894,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable 'seltener krank': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq seltener krank\grqq: Zusammenhang mit DGE-Kriterium}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -824,7 +908,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable 'erweitertes Ernährungswissen': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq erweitertes Ernährungswissen\grqq: Zusammenhang mit DGE-Kriterium}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -838,7 +922,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq Wertschätzung gesunder Ernährung\grqq: Zusammenhang mit DGE-Kriterium}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -852,7 +936,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable 'seltener krank': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq seltener krank\grqq: Zusammenhang mit DGE-Kriterium}
 
 \begin{table}
 \caption{Zusammenhang zwischen DGE-Kriterium und Variable 'seltener krank'}
@@ -887,7 +971,7 @@ RMSE                & 0.91         & 7.83        & 0.94         & 7.95         &
 \end{frame}
 
 \begin{frame}
-\frametitle{Variable 'erweitertes Ernährungswissen': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq erweitertes Ernährungswissen\grqq: Zusammenhang mit DGE-Kriterium}
 
 \begin{table}
 \caption{Zusammenhang zwischen DGE-Kriterium und Variable 'erweitertes Ernährungswissen'}
@@ -924,7 +1008,7 @@ RMSE                & 0.98     & 8.49     & 0.96       & 9.45     & 0.83        
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable 'Wertschätzung gesunder Ernährung': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq Wertschätzung gesunder Ernährung\grqq: Zusammenhang mit DGE-Kriterium}
 
 \begin{table}
 \caption{Zusammenhang zwischen DGE-Kriterium und Variable 'Wertschätzung gesunder Ernährung'}
@@ -968,131 +1052,14 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \item Einfaches lineares Modell, geschätzt mit OLS: Großer, teilweise signifikanter Zusammenhang zwischen DGE-Kriterium und gesundheitsrelevanten Variablen 
 \item Hinzunahme von extrahierten Faktoren als Kontrollen:
 \begin{itemize}
-\item Variable "seltener krank": nach wie vor großer, statistisch signifikanter Koeffizient
-\item Variablen "erweitertes Ernährungswissen" und "Wertschätzung gesunder Ernährung": kein Zusammenhang mehr erkennbar
+\item Variable \glqq seltener krank\grqq: nach wie vor großer, statistisch signifikanter Koeffizient
+\item Variablen \glqq erweitertes Ernährungswissen\grqq und \grqq Wertschätzung gesunder Ernährung\glqq: kein Zusammenhang mehr erkennbar
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 
-\section{Partition}
 
- \begin{frame}[fragile]
- \frametitle{Partition Mittagstisch}
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Mon Mar 02 22:19:11 2020
-=======
-<<<<<<< HEAD
-% Mon Mar  2 19:54:58 2020
-=======
-<<<<<<< HEAD
-% Mon Mar 02 20:09:05 2020
-=======
-% Mon Mar  2 19:45:12 2020
->>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
->>>>>>> 4f7f126523380a7b313f1d448d593074fb09818a
->>>>>>> d1c04dc41181b9d3390072860aa6809fd9f42f5f
-\begin{table}[ht]
-\centering
-\scalebox{0.4}{
-\begin{tabular}{lccc}
-  \hline
- & Variable, Meals & Mapping, Meals & Information, Meals \\ 
-  \hline
-1 & participateMore & participateMore & 1.00 \\ 
-  2 & tasksLunch & tasksLunch & 1.00 \\ 
-  3 & ownIdeas & ownIdeas & 1.00 \\ 
-  4 & stayLonger & stayLonger & 1.00 \\ 
-  5 & dietaryKnowledge & dietaryKnowledge & 1.00 \\ 
-  6 & appreciateHealthy & appreciateHealthy & 1.00 \\ 
-  7 & foodCulture & foodCulture & 1.00 \\ 
-  8 & lessIll & lessIll & 1.00 \\ 
-  9 & betterTeamwork & betterTeamwork & 1.00 \\ 
-  10 & moreRegularSchoolVisits & moreRegularSchoolVisits & 1.00 \\ 
-  11 & addressProblems & addressProblems & 1.00 \\ 
-  12 & reduced\_var\_1 & moreConcentrated & 0.66 \\ 
-  13 & reduced\_var\_1 & moreBalanced & 0.66 \\ 
-  14 & reduced\_var\_2 & monthlyCooks & 0.42 \\ 
-  15 & reduced\_var\_2 & weeklyCooks & 0.42 \\ 
-  16 & reduced\_var\_2 & shoppers & 0.42 \\ 
-  17 & reduced\_var\_2 & easyDishes & 0.42 \\ 
-  18 & reduced\_var\_3 & dayToDaySkills & 0.43 \\ 
-  19 & reduced\_var\_3 & moreIndependent & 0.43 \\ 
-  20 & reduced\_var\_3 & selfworth & 0.43 \\ 
-  21 & reduced\_var\_3 & moreOpen & 0.43 \\ 
-  22 & reduced\_var\_3 & moreConfidence & 0.43 \\ 
-  23 & reduced\_var\_3 & proud & 0.43 \\ 
-  24 & reduced\_var\_4 & betterReading & 0.53 \\ 
-  25 & reduced\_var\_4 & betterNumbers & 0.53 \\ 
-  26 & reduced\_var\_4 & betterGrades & 0.53 \\ 
-  27 & reduced\_var\_5 & influenceHome & 0.41 \\ 
-  28 & reduced\_var\_5 & cookAtHome & 0.41 \\ 
-  29 & reduced\_var\_5 & askRecipes & 0.41 \\ 
-   \hline
-\end{tabular}
-}
-\caption{Partition der Zielvariablen, Mittagstisch} 
-\label{partitionmeals}
-\end{table}
-
-
- \end{frame}
-
-\begin{frame}
-\frametitle{Partition Entdeckerfonds}
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Mon Mar 02 22:19:11 2020
-=======
-<<<<<<< HEAD
-% Mon Mar  2 19:54:58 2020
-=======
-<<<<<<< HEAD
-% Mon Mar 02 20:09:05 2020
-=======
-% Mon Mar  2 19:45:12 2020
->>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
->>>>>>> 4f7f126523380a7b313f1d448d593074fb09818a
->>>>>>> d1c04dc41181b9d3390072860aa6809fd9f42f5f
-\begin{table}[ht]
-\centering
-\scalebox{0.5}{
-\begin{tabular}{lccc}
-  \hline
- & Variable, Trips & Mapping, Trips & Information, Trips \\ 
-  \hline
-1 & tripsSuggestions & tripsSuggestions & 1.00 \\ 
-  2 & tripsDecisions & tripsDecisions & 1.00 \\ 
-  3 & tripsOrganization & tripsOrganization & 1.00 \\ 
-  4 & tripsCostCalculation & tripsCostCalculation & 1.00 \\ 
-  5 & tripsBudget & tripsBudget & 1.00 \\ 
-  6 & tripsMoney & tripsMoney & 1.00 \\ 
-  7 & tripsReview & tripsReview & 1.00 \\ 
-  8 & tripsPublicTransport & tripsPublicTransport & 1.00 \\ 
-  9 & tripsMobility & tripsMobility & 1.00 \\ 
-  10 & tripsAdditionalActivities & tripsAdditionalActivities & 1.00 \\ 
-  11 & tripsSelfworth & tripsSelfworth & 1.00 \\ 
-  12 & tripsFrustrationTolerance & tripsFrustrationTolerance & 1.00 \\ 
-  13 & reduced\_var\_1 & tripsSuccess & 0.68 \\ 
-  14 & reduced\_var\_1 & tripsSelfEfficacy & 0.68 \\ 
-  15 & reduced\_var\_2 & tripsNewPlaces & 0.60 \\ 
-  16 & reduced\_var\_2 & tripsNewCommunities & 0.60 \\ 
-  17 & reduced\_var\_2 & tripsNewIdeas & 0.60 \\ 
-  18 & reduced\_var\_2 & tripsSocialSkills & 0.60 \\ 
-  19 & reduced\_var\_3 & tripsSpecificSkills & 0.46 \\ 
-  20 & reduced\_var\_3 & tripsDayToDaySkills & 0.46 \\ 
-   \hline
-\end{tabular}
-}
-\caption{Partition der Zielvariablen, Entdeckerfonds} 
-\label{partitiontrips}
-\end{table}
-
-\end{frame}
-
-
-\section{Effekte des Entdeckerfonds}
 
 \subsection{Idee}
 
@@ -1253,11 +1220,6 @@ totalCost   &           & $0.001^{**}$ &           & $0.001^{*}$  \\
 weeklyCooks &           & $0.166^{**}$ &           & $0.162^{**}$ \\
             &           & $(0.072)$    &           & $(0.073)$    \\
 \hline
-ID fixed effects       & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
-Year fixed effects     & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
-Number of observations & $428$     & $410$        & $428$     & $410$        \\
-R$^2$                  & $0.475$   & $0.490$      & $0.476$   & $0.491$      \\
-\hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$, $^{**}p<0.05$, $^*p<0.1$}}
 \end{tabular}
 }
@@ -1314,8 +1276,28 @@ weeklyCooks &           & $0.036$   &           & $0.037$      \\
 \item Mögliche Gründe:
 \item Die Anzahl der Beobachtungseinheiten in der Kontrollgruppe ist gering
 \item Die Fragenbögen werden nicht direkt von den Kindern und Jugendlichen beantwortet, sondern von den Betreuern der geförderten Einrichtungen
-\item Die Skalierung der Zielvariable "Selbstwertgefühl" führt zu geringer Variation
+\item Die Skalierung der Zielvariable \glqq Selbstwertgefühl\grqq führt zu geringer Variation
 \item [$\Rightarrow$] Daher sollte dieses Ergebnis nicht überinterpretiert werden
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Statistisches Lob für CHILDREN}
+\begin{itemize}
+\item<1-> Erfassung vieler Variablen über die ganze Zeit
+\item<2-> Unveränderte Datenskala (alle bis keine)
+\item<3-> Erfassung von zwei Variablen sowohl bei Mittagstisch als auch bei Entdeckerfonds
+\item<4-> Fragebogen wird automatisch ausgefüllt $\Rightarrow$ wenige fehlende Werte
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Empfehlungen für CHILDREN}
+\begin{itemize}
+\item[a)] Datenstruktur:
+\item[b)] Auswahl der Variablen: Ähnliche Variablen durch zugrundeliegende ersetzen, anhand von Faktoranalyse oder Partition 
+\item[c)] Datenerhebung: Ordinale Variablen an sich kein Problem, Ersetzung durch metrische (in Prozent) nur sinnvoll, wenn dadurch nicht häufiger fehlende Werte
+\item[d)] Interventionen: Noch stärkeres Gewicht auf gesunder Ernährung in Einrichtungen
 \end{itemize}
 \end{frame}
 

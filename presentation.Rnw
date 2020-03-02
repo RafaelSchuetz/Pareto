@@ -61,6 +61,7 @@
 % \usepackage{floatrow}
 \usepackage{booktabs}
 \usepackage[ngerman]{babel}
+\usepackage{csquotes}
 % \usepackage{rotating}
 % \usepackage{dcolumn}
 % \usepackage{mathtools}
@@ -126,6 +127,8 @@
 \setbeamerfont{subsection in toc}{size=\tiny}
 
 \usecolortheme{crane}
+
+\setbeamercolor{titlelike}{parent=structure, fg = black}
 
 \addbibresource{references.bib}
 
@@ -330,7 +333,7 @@ print(medianTripsGrantsDynBene, caption = "Fundamentale Dynamik Entdeckerfonds: 
 \subsection{Dynamiken des Selbstwertgefühls und der Alltagskompetenzen}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Selbstwertgefühl": Dynamik}
+\frametitle{Variable \glqq Selbstwertgefühl\grqq: Dynamik}
 <<SelfworthTime, echo=FALSE, message=FALSE>>=
 selfworthtimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/selfworth_Time.Rds")
 print(selfworthtimeplot, label = "selfworthtimeplot")
@@ -338,7 +341,7 @@ print(selfworthtimeplot, label = "selfworthtimeplot")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Alltagskompetenzen": Dynamik}
+\frametitle{Variable \glqq Alltagskompetenzen\grqq: Dynamik}
 <<DayToDayTime, echo=FALSE, message=FALSE>>=
 daytodaytimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/dayToDay_Time.Rds")
 print(daytodaytimeplot, label = "daytodaytimeplot")
@@ -348,7 +351,7 @@ print(daytodaytimeplot, label = "daytodaytimeplot")
 \subsection{Dynamiken gesundheitsrelevanter Variablen}
 
 \begin{frame}[fragile]
-\frametitle{Variable "seltener krank": Dynamik}
+\frametitle{Variable \glqq seltener krank\grqq: Dynamik}
 <<lessIllTime, echo=FALSE, message=FALSE>>=
 lessilltimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/lessIll_Time.Rds")
 print(lessilltimeplot, label = "lessilltimeplot")
@@ -356,7 +359,7 @@ print(lessilltimeplot, label = "lessilltimeplot")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "erweitertes Ernährungswissen": Dynamik}
+\frametitle{Variable \glqq erweitertes Ernährungswissen\grqq: Dynamik}
 <<dietaryTime, echo=FALSE, message=FALSE>>=
 dietarytimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/dietary_Time.Rds")
 print(dietarytimeplot, label = "dietarytimeplot")
@@ -365,7 +368,7 @@ print(dietarytimeplot, label = "dietarytimeplot")
 
 
 \begin{frame}[fragile]
-\frametitle{Variable "Wertschätzung gesunder Ernährung": Dynamik}
+\frametitle{Variable \glqq Wertschätzung gesunder Ernährung\grqq: Dynamik}
 <<appreciateTime, echo=FALSE, message=FALSE>>=
 appreciatetimeplot <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate_Time.Rds")
 print(appreciatetimeplot, label = "lessilltimeplot")
@@ -379,7 +382,7 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 
 \begin{itemize}
  \item<1-> Viele Zielvariablen 
- \item<2-> Teilweise sehr ähnliche Zielvariablen, z.B. Begünstigte "kochen mindestensts einmal im Monat in der Einrichtung" und "kochen mindestens einmal in der Woche in der Einrichtung"
+ \item<2-> Teilweise sehr ähnliche Zielvariablen, z.B. Begünstigte \glqq kochen mindestensts einmal im Monat in der Einrichtung\grqq und \glqq kochen mindestens einmal in der Woche in der Einrichtung\grqq
  \item<3-> Welche Variablen liegen zugrunde?
  \item<4-> Variablenreduktion zur Bestimmung möglicher Kontrollen
 \end{itemize}
@@ -417,8 +420,60 @@ xtable(loadings_FA_lessIll_DGECriteriaNo,
 
 \end{frame}
 
+\section{Partition}
+\begin{frame}[fragile]
+\frametitle{Alternative zu Faktoranalyse?}
+\begin{itemize}
+\item<1-> Neue Methode aus Biostatistik zur Dimensionalitätsreduktion: Partition \parencite{Millstein.2020}
+\item<2-> Aufteilung der Menge aller Variablen in Gruppen
+\item<3-> Jeder Variable wird genau eine zugrundeliegende Variable zugewiesen
+\item<3-> In jeder Gruppe muss Intraklassen-Korrelationskoeffizient mindestens bestimmten, willkürlich festgelegten Wert annehmen
+\item<4-> Bestimmung der Gruppen durch deterministischen Nächste-Nachbarn-Algorithmus
 
-\section{Zusammenhänge zwischen CHILDRENs Zuschüssen, dem DGE-Kriterium und ausgewählten Variablen}
+\end{itemize}
+\end{frame}
+
+ \begin{frame}[fragile]
+ \frametitle{Partition Mittagstisch}
+ <<Partition, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+
+ # first, read in all Rds objects that you need
+
+ partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.Rds")
+ partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.Rds")
+
+ colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
+ colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
+
+ print(xtable(partition_meals,
+                                # digits = c(0, 0, 1, 1, 0, 0),
+           caption = "Partition der Zielvariablen, Mittagstisch",
+           label = 'partitionmeals',
+           align = "lccc"
+           ), scalebox = "0.4")
+ #print(partition_meals, include.rownames = FALSE)
+ @
+
+ \end{frame}
+
+\begin{frame}
+\frametitle{Partition Entdeckerfonds}
+<<PartitionTrips, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
+print(xtable(partition_trips,
+                               #digits = c(0, 0, 1, 1, 0, 0),
+          caption = "Partition der Zielvariablen, Entdeckerfonds",
+          label = 'partitiontrips',
+          align = "lccc"
+          ),
+          scalebox = "0.5")
+# print(partition_meals, partition_trips, include.rownames = FALSE)
+@
+\end{frame}
+
+
+\section{Effekte des Entdeckerfonds}
+
+\section[Zusammenhänge]{Zusammenhänge zwischen CHILDRENs Zuschüssen, dem DGE-Kriterium und ausgewählten Variablen}
 
 \subsection{Empirischer Ansatz}
 
@@ -461,8 +516,8 @@ xtable(loadings_FA_lessIll_DGECriteriaNo,
 \item Entdeckerfonds: Ausreißer bei Anzahl von Ausflügen
 \item Definition eines Ausreißers:
 \begin{itemize}
-\item Werte, die 1.5 Interquantilsäbstände unter dem 25\%-Perzentil liegen
-\item Werte, die 1.5 Interqauntilsabstände über dem 75\%-Perzentil liegen
+\item Werte, die 1,5 Interquantilsabstände unter dem 25\%-Perzentil liegen
+\item Werte, die 1,5 Interqauntilsabstände über dem 75\%-Perzentil liegen
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -579,7 +634,7 @@ texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Zusammenhang zwi
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable 'seltener krank': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq seltener krank\grqq: Zusammenhang mit DGE-Kriterium}
 <<lessIllDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 lessillDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/lessill.Rds")
 print(lessillDGE, label = "lessillDGE")
@@ -587,7 +642,7 @@ print(lessillDGE, label = "lessillDGE")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable 'erweitertes Ernährungswissen': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq erweitertes Ernährungswissen\grqq: Zusammenhang mit DGE-Kriterium}
 <<dietaryDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 dietaryDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/dietary.Rds")
 print(dietaryDGE, label = "dietaryDGE")
@@ -595,7 +650,7 @@ print(dietaryDGE, label = "dietaryDGE")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq Wertschätzung gesunder Ernährung\grqq: Zusammenhang mit DGE-Kriterium}
 <<appreciateDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 appreciateDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate.Rds")
 print(appreciateDGE, label = "appreciateDGE")
@@ -603,7 +658,7 @@ print(appreciateDGE, label = "appreciateDGE")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable 'seltener krank': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq seltener krank\grqq: Zusammenhang mit DGE-Kriterium}
 <<HealthRegressions-LessIll, echo=FALSE, results='asis', message=FALSE>>=
 
 lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
@@ -621,7 +676,7 @@ texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw, illfactor), caption = "Zusammenhang zw
 \end{frame}
 
 \begin{frame}
-\frametitle{Variable 'erweitertes Ernährungswissen': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq erweitertes Ernährungswissen\grqq: Zusammenhang mit DGE-Kriterium}
 <<HealthRegressions-DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
 dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 dDGEw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled_weighted.Rds")
@@ -635,7 +690,7 @@ texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw, dietaryf), caption = "Zusammenhang zwi
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable 'Wertschätzung gesunder Ernährung': Zusammenhang mit DGE-Kriterium}
+\frametitle{Variable \glqq Wertschätzung gesunder Ernährung\grqq: Zusammenhang mit DGE-Kriterium}
 <<HealthRegressions-AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
 aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
 aDGEw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled_weighted.Rds")
@@ -656,54 +711,14 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Zusammenhang 
 \item Einfaches lineares Modell, geschätzt mit OLS: Großer, teilweise signifikanter Zusammenhang zwischen DGE-Kriterium und gesundheitsrelevanten Variablen 
 \item Hinzunahme von extrahierten Faktoren als Kontrollen:
 \begin{itemize}
-\item Variable "seltener krank": nach wie vor großer, statistisch signifikanter Koeffizient
-\item Variablen "erweitertes Ernährungswissen" und "Wertschätzung gesunder Ernährung": kein Zusammenhang mehr erkennbar
+\item Variable \glqq seltener krank\grqq: nach wie vor großer, statistisch signifikanter Koeffizient
+\item Variablen \glqq erweitertes Ernährungswissen\grqq und \glqq Wertschätzung gesunder Ernährung\grqq: kein Zusammenhang mehr erkennbar
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 
-\section{Partition}
 
- \begin{frame}[fragile]
- \frametitle{Partition Mittagstisch}
- <<Partition, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-
- # first, read in all Rds objects that you need
-
- partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.Rds")
- partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.Rds")
-
- colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
- colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
-
- print(xtable(partition_meals,
-                                # digits = c(0, 0, 1, 1, 0, 0),
-           caption = "Partition der Zielvariablen, Mittagstisch",
-           label = 'partitionmeals',
-           align = "lccc"
-           ), scalebox = "0.4")
- #print(partition_meals, include.rownames = FALSE)
- @
-
- \end{frame}
-
-\begin{frame}
-\frametitle{Partition Entdeckerfonds}
-<<PartitionTrips, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-print(xtable(partition_trips,
-                               #digits = c(0, 0, 1, 1, 0, 0),
-          caption = "Partition der Zielvariablen, Entdeckerfonds",
-          label = 'partitiontrips',
-          align = "lccc"
-          ),
-          scalebox = "0.5")
-# print(partition_meals, partition_trips, include.rownames = FALSE)
-@
-\end{frame}
-
-
-\section{Effekte des Entdeckerfonds}
 
 \subsection{Idee}
 
@@ -908,19 +923,28 @@ weeklyCooks &           & $0.036$   &           & $0.037$      \\
 \item Mögliche Gründe:
 \item Die Anzahl der Beobachtungseinheiten in der Kontrollgruppe ist gering
 \item Die Fragenbögen werden nicht direkt von den Kindern und Jugendlichen beantwortet, sondern von den Betreuern der geförderten Einrichtungen
-\item Die Skalierung der Zielvariable "Selbstwertgefühl" führt zu geringer Variation
+\item Die Skalierung der Zielvariable \glqq Selbstwertgefühl\grqq führt zu geringer Variation
 \item [$\Rightarrow$] Daher sollte dieses Ergebnis nicht überinterpretiert werden
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Statistisches Lob für CHILDREN}
+\begin{itemize}
+\item<1-> Erfassung vieler Variablen über die ganze Zeit
+\item<2-> Unveränderte Datenskala (alle bis keine)
+\item<3-> Erfassung von zwei Variablen sowohl bei Mittagstisch als auch bei Entdeckerfonds
+\item<4-> Fragebogen wird automatisch ausgefüllt $\Rightarrow$ wenige fehlende Werte
+\end{itemize}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Empfehlungen für CHILDREN}
 \begin{itemize}
 \item[a)] Datenstruktur:
-\item[b)] Auswahl der Variablen:
-\item[c)] Datenerhebung:
-\item 
+\item[b)] Auswahl der Variablen: Ähnliche Variablen durch zugrundeliegende ersetzen, anhand von Faktoranalyse oder Partition 
+\item[c)] Datenerhebung: Ordinale Variablen an sich kein Problem, Ersetzung durch metrische (in Prozent) nur sinnvoll, wenn dadurch nicht häufiger fehlende Werte
+\item[d)] Interventionen: Noch stärkeres Gewicht auf gesunder Ernährung in Einrichtungen
 \end{itemize}
 \end{frame}
 
