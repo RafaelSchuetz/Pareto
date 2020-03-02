@@ -170,18 +170,8 @@ Ludwig-Maximilians-Universität München}
 \frame[allowframebreaks]{\frametitle{Table of Contents}
 	\tableofcontents
 
-<<<<<<< HEAD
 }
 
-=======
-\frame[allowframebreaks]{\frametitle{List of Tables}
-	\listoftables
-}
-
-\frame[allowframebreaks]{\frametitle{List of Figures}
-	\listoffigures
-}
->>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 \section{Einleitung}
 
 \begin{frame}[fragile]
@@ -217,8 +207,8 @@ Ludwig-Maximilians-Universität München}
  \item Änderung der Datentypen von Variablen
  \item [$\Rightarrow$] Erstellung eines finalen Datensatzes
  \linebreak
- \item Datenauswertung mit dem Statistik-Programm “R”
- \item Versionskontrolle über "Git"
+ \item Datenauswertung mit dem Statistik-Programm \glqq R\grqq
+ \item Versionskontrolle über \glqq Git\grqq
 \end{itemize}
 \end{frame}
 
@@ -242,10 +232,7 @@ Ludwig-Maximilians-Universität München}
 \end{table}
 \end{frame}
 
-<<<<<<< HEAD
 \section{Summary Statistics und Fundamentale Dynamiken}
-=======
->>>>>>> 44e9a983b6ae7757fc5d11859e25e724aa662b03
 
 \section{Zusammenfassende Statistiken}
 
@@ -276,7 +263,7 @@ print(xtable(fundamental_dynamics,
 \subsection{Entwicklung der Fördersummen über die Zeit}
 
 \begin{frame}[fragile]
-\frametitle{Umrechnung der Fördersummen: reale Werte}
+\frametitle{Umrechnung der Fördersummen: Reale Werte}
 \begin{itemize}
   \item{Zur besseren Vergleichbarkeit der Fördersummen über die Zeit: Umrechnung in 2015 EUR}
   \item{Verwendung der Preisindizes des statistischen Bundesamtes}
@@ -672,8 +659,8 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Zusammenhang 
 \item Einfaches lineares Modell, geschätzt mit OLS: Großer, teilweise signifikanter Zusammenhang zwischen DGE-Kriterium und gesundheitsrelevanten Variablen 
 \item Hinzunahme von extrahierten Faktoren als Kontrollen:
 \begin{itemize}
-\item Variable "seltener krank": nach wie vor großer, statistisch signifikanter Koeffizient
-\item Variablen "erweitertes Ernährungswissen" und "Wertschätzung gesunder Ernährung": kein Zusammenhang mehr erkennbar
+\item Variable "seltener krank": Nach wie vor großer, statistisch signifikanter Koeffizient
+\item Variablen "erweitertes Ernährungswissen" und "Wertschätzung gesunder Ernährung": Kein Zusammenhang mehr erkennbar
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -768,7 +755,7 @@ print(xtable(partition_trips,
 \begin{frame}[fragile]
 \frametitle{Variante 1}
 \begin{itemize}
-\item "Einmal Treatment, immer Treatment"
+\item \glqq Einmal Treatment, immer Treatment\grqq
 \item Sobald eine Einrichtung am Entdeckerfonds teilgenommen hat, gilt $TreatEF_{it}$ = 1 für das Jahr der ersten Förderung durch den Entdeckerfonds und alle darauffolgenden Jahre
 \item [$\Rightarrow$] Kein Wechsel von der Treatmentgruppe in die Kontrollgruppe möglich
 \item Solange eine Einrichtung keine Förderung vom CHILDREN Entdeckerfonds erhält, befindet sich diese in der Kontrollgruppe
@@ -934,7 +921,7 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 \item [ ] Mögliche Gründe:
 \item Die Anzahl der Beobachtungseinheiten in der Kontrollgruppe ist gering
 \item Die Fragenbögen werden nicht direkt von den Kindern und Jugendlichen beantwortet, sondern von den Betreuern der geförderten Einrichtungen
-\item Die Skalierung der Zielvariable "Selbstwertgefühl" führt zu geringer Variation
+\item Die Skalierung der Zielvariable \glqq Selbstwertgefühl\grqq{} führt zu geringer Variation
 \item [$\Rightarrow$] Daher sollte dieses Ergebnis nicht überinterpretiert werden
 \end{itemize}
 \end{frame}
