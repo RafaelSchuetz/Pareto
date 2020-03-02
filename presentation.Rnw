@@ -388,18 +388,18 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 \end{frame}
 
 
-\begin{frame}[fragile]
-\frametitle{Dynamics}
- \begin{figure}
-   \caption{Yearly dynamics of total grants in Meals and Trips program}
-   \label{totalGrantsDyn}
- <<GrantTrend, echo=FALSE, message=FALSE>>=
- totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
- print(totalGrantsDyn, scalebox = '0.25')
- @
-% \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
-\end{figure}
-\end{frame}
+% \begin{frame}[fragile]
+% \frametitle{Dynamics}
+%  \begin{figure}
+%    \caption{Yearly dynamics of total grants in Meals and Trips program}
+%    \label{totalGrantsDyn}
+%  <<GrantTrend, echo=FALSE, message=FALSE>>=
+%  totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
+%  print(totalGrantsDyn, scalebox = '0.25')
+%  @
+% % \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+% \end{figure}
+% \end{frame}
 
 
 \section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
@@ -417,7 +417,7 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 
 \begin{itemize}
 \item Schätzung der Modelle mit OLS (Ordinary least squares)
-\item An geeigneter Stelle: Vergleich der Ergebnisse mit WLS (Weighted least squares)
+\item An geeigneter Stelle Vergleich der Ergebnisse mit WLS (Weighted least squares) \item[$\Rightarrow$]Gewichtung der Regressionen mit Variablen die sich stark in ihrer Größe zwischen den verschiednen Organisationen unterscheiden (e.g. Anzahl an Essen die ausgegeben werden, Ausflüge die unternommen werden)
 \end{itemize}
 
 \end{frame}
@@ -535,6 +535,23 @@ texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association betw
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Empirische Fragestellungen (1): Ergebnisse der Fördersumme}
+
+\begin{itemize}
+\item Effekt auf Anzahl an Essen & Ausflüge
+\begin{itemize}
+\item Mittagstisch: Circa 3 Euro mehr resultieren in einer Mahlzeit mehr
+\item Entdeckerfonds: kein klarer Zusammenhang 
+\end{itemze}
+\item Effekt auf das Selbstwertgefühl & die Alltagskompetenzen 
+\begin{itemize}
+\item Nulleffekte bei beiden Variablen 
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
 \subsection{Gesundheit}
 
 \begin{frame}[fragile]
@@ -551,7 +568,7 @@ texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association betw
 
 \begin{frame}[fragile]
 \frametitle{Variable "seltener krank": Zusammenhang mit dem DGE-Kriterium}
-<<lessIllDGEplot, echo=FALSE, message=FALSE>>=
+<<lessIllDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 lessillDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/lessill.Rds")
 print(lessillDGE, label = "lessillDGE")
 @
@@ -559,7 +576,7 @@ print(lessillDGE, label = "lessillDGE")
 
 \begin{frame}[fragile]
 \frametitle{Variable "erweitertes Ernährungswissen": Zusammenhang mit dem DGE-Kriterium}
-<<dietaryDGEplot, echo=FALSE, message=FALSE>>=
+<<dietaryDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 dietaryDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/dietary.Rds")
 print(dietaryDGE, label = "dietaryDGE")
 @
@@ -567,7 +584,7 @@ print(dietaryDGE, label = "dietaryDGE")
 
 \begin{frame}[fragile]
 \frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit dem DGE-Kriterium}
-<<appreciateDGEplot, echo=FALSE, message=FALSE>>=
+<<appreciateDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 appreciateDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate.Rds")
 print(appreciateDGE, label = "appreciateDGE")
 @
@@ -618,6 +635,12 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Association b
 {\\vspace{2pt} Dependent variable: share of beneficiaries with increased appreciation for a healthy diet \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ Model (5): imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'HealthRegressions-AppreciateHealthy')
 @
 \end{frame}
+
+\begin{frame}
+\frametitle{Empirische Fragestellungen (2): Ergebnisse des DGE-Kriteriums}
+
+\begin{itemize}
+\item 
 
 \section{Partition}
 

@@ -259,7 +259,7 @@ Ludwig-Maximilians-Universität München}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ## % latex table generated in R 3.6.2 by xtable 1.8-4 package
-## % Mon Mar  2 16:43:52 2020
+## % Mon Mar 02 17:19:43 2020
 ## \begin{table}[ht]
 ## \centering
 ## \scalebox{0.7}{
@@ -296,19 +296,7 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Mon Mar  2 16:43:52 2020
-=======
-<<<<<<< HEAD
-% Mon Mar 02 15:12:42 2020
-=======
-% Mon Mar  2 15:48:14 2020
-=======
-% latex table generated in R 3.5.1 by xtable 1.8-4 package
-% Mon Mar 02 15:39:22 2020
->>>>>>> 7c1b49b1baa2bbe488f76bcdea87229ba06d152d
->>>>>>> 2d3836cfbaddb3cbe9b9993cfeb6f4f78aca4b90
->>>>>>> dd92184e1f59e35a1ce900deafa3208d8d4e1c6b
+% Mon Mar 02 17:19:43 2020
 \begin{table}[ht]
 \centering
 \scalebox{0.7}{
@@ -513,24 +501,18 @@ Ludwig-Maximilians-Universität München}
 \end{frame}
 
 
-\begin{frame}[fragile]
-\frametitle{Dynamics}
- \begin{figure}
-   \caption{Yearly dynamics of total grants in Meals and Trips program}
-   \label{totalGrantsDyn}
-\begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=\maxwidth]{figure/beamer-GrantTrend-1} 
-
-}
-
-
-
-\end{knitrout}
-% \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
-\end{figure}
-\end{frame}
+% \begin{frame}[fragile]
+% \frametitle{Dynamics}
+%  \begin{figure}
+%    \caption{Yearly dynamics of total grants in Meals and Trips program}
+%    \label{totalGrantsDyn}
+%  <<GrantTrend, echo=FALSE, message=FALSE>>=
+%  totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
+%  print(totalGrantsDyn, scalebox = '0.25')
+%  @
+% % \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
+% \end{figure}
+% \end{frame}
 
 
 \section[Zusammenhang Zuschüsse \& ausgewählte Variablen]{Zusammenhang zwischen CHILDRENs Zuschüssen und ausgewählten Variablen}
@@ -765,10 +747,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \begin{frame}[fragile]
 \frametitle{Variable "seltener krank": Zusammenhang mit dem DGE-Kriterium}
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Removed 244 rows containing missing values (position\_stack).}}\end{kframe}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
 {\centering \includegraphics[width=\maxwidth]{figure/beamer-lessIllDGEplot-1} 
 
@@ -782,10 +761,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \begin{frame}[fragile]
 \frametitle{Variable "erweitertes Ernährungswissen": Zusammenhang mit dem DGE-Kriterium}
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Removed 244 rows containing missing values (position\_stack).}}\end{kframe}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
 {\centering \includegraphics[width=\maxwidth]{figure/beamer-dietaryDGEplot-1} 
 
@@ -799,10 +775,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \begin{frame}[fragile]
 \frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit dem DGE-Kriterium}
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Removed 244 rows containing missing values (position\_stack).}}\end{kframe}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
 {\centering \includegraphics[width=\maxwidth]{figure/beamer-appreciateDGEplot-1} 
 
@@ -924,28 +897,10 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 
 \section{Partition}
 
-<<<<<<< HEAD
  \begin{frame}[fragile]
  \frametitle{Partition Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Mar  2 16:43:58 2020
-=======
-<<<<<<< HEAD
-\begin{frame}[fragile]
-\frametitle{Partition Mittagstisch}
-% latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Mon Mar 02 15:12:52 2020
-=======
-% Mon Mar  2 15:48:19 2020
-=======
- \begin{frame}[fragile]
- \frametitle{Partition Mittagstisch}
-% latex table generated in R 3.5.1 by xtable 1.8-4 package
-% Mon Mar 02 15:39:32 2020
->>>>>>> 7c1b49b1baa2bbe488f76bcdea87229ba06d152d
->>>>>>> 2d3836cfbaddb3cbe9b9993cfeb6f4f78aca4b90
->>>>>>> dd92184e1f59e35a1ce900deafa3208d8d4e1c6b
+% Mon Mar 02 17:19:51 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -993,19 +948,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-<<<<<<< HEAD
-% Mon Mar  2 16:43:58 2020
-=======
-<<<<<<< HEAD
-% Mon Mar 02 15:12:52 2020
-=======
-% Mon Mar  2 15:48:19 2020
-=======
-% latex table generated in R 3.5.1 by xtable 1.8-4 package
-% Mon Mar 02 15:39:32 2020
->>>>>>> 7c1b49b1baa2bbe488f76bcdea87229ba06d152d
->>>>>>> 2d3836cfbaddb3cbe9b9993cfeb6f4f78aca4b90
->>>>>>> dd92184e1f59e35a1ce900deafa3208d8d4e1c6b
+% Mon Mar 02 17:19:51 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
