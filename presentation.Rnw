@@ -852,11 +852,6 @@ totalCost   &           & $0.001^{**}$ &           & $0.001^{*}$  \\
 weeklyCooks &           & $0.166^{**}$ &           & $0.162^{**}$ \\
             &           & $(0.072)$    &           & $(0.073)$    \\
 \hline
-ID fixed effects       & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
-Year fixed effects     & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
-Number of observations & $428$     & $410$        & $428$     & $410$        \\
-R$^2$                  & $0.475$   & $0.490$      & $0.476$   & $0.491$      \\
-\hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$, $^{**}p<0.05$, $^*p<0.1$}}
 \end{tabular}
 }
@@ -915,6 +910,17 @@ weeklyCooks &           & $0.036$   &           & $0.037$      \\
 \item Die Fragenbögen werden nicht direkt von den Kindern und Jugendlichen beantwortet, sondern von den Betreuern der geförderten Einrichtungen
 \item Die Skalierung der Zielvariable "Selbstwertgefühl" führt zu geringer Variation
 \item [$\Rightarrow$] Daher sollte dieses Ergebnis nicht überinterpretiert werden
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Empfehlungen für CHILDREN}
+\begin{itemize}
+\item[a)] Datenstruktur:
+\item[b)] Auswahl der Variablen:
+\item[c)] Datenerhebung:
+\item 
 \end{itemize}
 \end{frame}
 
