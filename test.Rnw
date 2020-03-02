@@ -1,0 +1,50 @@
+% Rscript -e "library(knitr); knit('test.Rnw')"
+% pdflatex test
+% biber test
+% pdflatex test
+% pdflatex test
+
+
+\documentclass[12pt, a4paper, titlepage]{article}
+
+<<LoadingPackages, include=FALSE>>=
+library(knitr)
+library(xtable)
+library(dplyr)
+library(stargazer)
+library(cowplot)
+library(texreg)
+@
+
+\begin{document}
+
+<<Partition, echo=FALSE, results='asis', message=TRUE, warning=TRUE>>=
+
+# first, read in all Rds objects that you need
+
+partition_meals = readRDS("./ANALYSIS/Tables/PartitionMeals.4.Rds")
+partition_trips = readRDS("./ANALYSIS/Tables/PartitionTrips.4.Rds")
+ 
+# colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
+# colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
+
+xtable(partition_meals,
+                               # digits = c(0, 0, 1, 1, 0, 0),
+          caption = "Partition of Outcomes, Meals", 
+          label = 'partitionmeals',
+          align = "lccc"
+          )
+#print(partition_meals, include.rownames = FALSE)
+
+
+# xtable(partition_trips,
+#                                #digits = c(0, 0, 1, 1, 0, 0),
+#           caption = "Partition of Outcomes, Trips",
+#           label = 'partitiontrips',
+#           align = "lccc"
+#           )
+# print(partition_meals, partition_trips, include.rownames = FALSE)
+@
+
+
+\end{document}

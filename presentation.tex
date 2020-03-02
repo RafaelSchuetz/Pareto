@@ -259,7 +259,11 @@ Ludwig-Maximilians-Universität München}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ## % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 ## % Mon Mar 02 20:08:58 2020
+=======
+## % Mon Mar  2 19:45:07 2020
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
 ## \begin{table}[ht]
 ## \centering
 ## \scalebox{0.7}{
@@ -296,7 +300,11 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Mon Mar 02 20:08:58 2020
+=======
+% Mon Mar  2 19:45:07 2020
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
 \begin{table}[ht]
 \centering
 \scalebox{0.7}{
@@ -527,10 +535,15 @@ Ludwig-Maximilians-Universität München}
 \end{equation}
 
 \begin{itemize}
+<<<<<<< HEAD
 \item Schätzung der Modelle mit OLS (Methode der kleinsten Quadrate)
 \item Problem: Einrichtungen werden gleich gewichtet, unabhängig von Größe
 \item Lösung: Modellschätzung mit WLS (Gewichtete kleinste Quadrate)
 \item [$\Rightarrow$] Gewichte: Anzahl der regelmäßigen Teilnehmer am Mittagstisch und im Entdeckerfonds
+=======
+\item Schätzung der Modelle mit OLS (Ordinary least squares)
+\item An geeigneter Stelle Vergleich der Ergebnisse mit WLS (Weighted least squares) \item[$\Rightarrow$]Gewichtung der Regressionen mit Variablen die sich stark in ihrer Größe zwischen den verschiednen Organisationen unterscheiden (e.g. Anzahl an Essen die ausgegeben werden, Ausflüge die unternommen werden)
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
 \end{itemize}
 
 \end{frame}
@@ -731,6 +744,7 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 
 \end{frame}
 
+<<<<<<< HEAD
 \begin{frame}[fragile]
 \frametitle{Ergebnisse der Fördersumme}
 
@@ -741,6 +755,18 @@ RMSE                           & 1.00     & 0.98     & 1.00     & 0.99     & 0.7
 \item Entdeckerfonds: kein klarer Zusammenhang 
 \end{itemize}
 \item Effekt auf das Selbstwertgefühl \& die Alltagskompetenzen 
+=======
+\begin{frame}
+\frametitle{Empirische Fragestellungen (1): Ergebnisse der Fördersumme}
+
+\begin{itemize}
+\item Effekt auf Anzahl an Essen & Ausflüge
+\begin{itemize}
+\item Mittagstisch: Circa 3 Euro mehr resultieren in einer Mahlzeit mehr
+\item Entdeckerfonds: kein klarer Zusammenhang 
+\end{itemze}
+\item Effekt auf das Selbstwertgefühl & die Alltagskompetenzen 
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
 \begin{itemize}
 \item Nulleffekte bei beiden Variablen 
 \end{itemize}
@@ -913,6 +939,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 
 \end{frame}
 
+<<<<<<< HEAD
 \subsection{Empirische Fragestellungen (2): Ergebnisse}
 
 \begin{frame}
@@ -928,13 +955,24 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \end{itemize}
 \end{frame}
 
+=======
+\begin{frame}
+\frametitle{Empirische Fragestellungen (2): Ergebnisse des DGE-Kriteriums}
+
+\begin{itemize}
+\item 
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
 
 \section{Partition}
 
  \begin{frame}[fragile]
  \frametitle{Partition Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Mon Mar 02 20:09:05 2020
+=======
+% Mon Mar  2 19:45:12 2020
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -982,7 +1020,11 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Mon Mar 02 20:09:05 2020
+=======
+% Mon Mar  2 19:45:12 2020
+>>>>>>> ebcc3f6afd24a44f02be517d9654bdc35aebb7ac
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -1179,6 +1221,11 @@ totalCost   &           & $0.001^{**}$ &           & $0.001^{*}$  \\
 weeklyCooks &           & $0.166^{**}$ &           & $0.162^{**}$ \\
             &           & $(0.072)$    &           & $(0.073)$    \\
 \hline
+ID fixed effects       & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
+Year fixed effects     & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
+Number of observations & $428$     & $410$        & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.490$      & $0.476$   & $0.491$      \\
+\hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$, $^{**}p<0.05$, $^*p<0.1$}}
 \end{tabular}
 }
@@ -1235,7 +1282,7 @@ weeklyCooks &           & $0.036$   &           & $0.037$      \\
 \item Mögliche Gründe:
 \item Die Anzahl der Beobachtungseinheiten in der Kontrollgruppe ist gering
 \item Die Fragenbögen werden nicht direkt von den Kindern und Jugendlichen beantwortet, sondern von den Betreuern der geförderten Einrichtungen
-\item Die Skalierung der Zielvariable führt zu geringerer Variation
+\item Die Skalierung der Zielvariable "Selbstwertgefühl" führt zu geringer Variation
 \item [$\Rightarrow$] Daher sollte dieses Ergebnis nicht überinterpretiert werden
 \end{itemize}
 \end{frame}
