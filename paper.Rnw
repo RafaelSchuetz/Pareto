@@ -681,7 +681,7 @@ A summary of the remaining models:
 
 lessIllOdds <- readRDS("./ANALYSIS/Tables/lessIllProp.Rds")
 
-stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and the Share of Beneficiaries Who Are Less Frequently Ill", align = TRUE, label = "lessIllOdds")
+stargazer(lessIllOdds@coef3, title= "Propodds Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and the Share of Beneficiaries Who Are Less Frequently Ill", align = TRUE, label = "lessIllOdds")
 
 @
 
@@ -689,14 +689,14 @@ stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Association of
 
 dietaryOdds <- readRDS("./ANALYSIS/Tables/DietaryProp.Rds")
 
-stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and Share of Beneficiaries with Expanded Dietary Knowledge", align = TRUE, label = "dietaryOdds")
+stargazer(dietaryOdds@coef3, title= "Propodds Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and Share of Beneficiaries with Expanded Dietary Knowledge", align = TRUE, label = "dietaryOdds")
 @
 
 <<appreciateOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 appreciateOdds <- readRDS("./ANALYSIS/Tables/AppreciateProp.Rds")
 
-stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and the Share of Beneficiaries with Increased Appreciation for a Healthy Diet", align = TRUE, label = "appreciateOdds")
+stargazer(appreciateOdds@coef3, title= "Propodds Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and the Share of Beneficiaries with Increased Appreciation for a Healthy Diet", align = TRUE, label = "appreciateOdds")
 
 @
 
@@ -704,7 +704,7 @@ stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Association
 
 selfworthOdds <- readRDS("./ANALYSIS/Tables/selfworthProp.Rds")
 
-stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Association of Subsidy for Meals Program in 2015 EUR and the Share of Beneficiaries with Improved Self-worth", align = TRUE, label = "selfworthOdds")
+stargazer(selfworthOdds@coef3, title= "Propodds Regression Results: Association of Subsidy for Meals Program in 2015 EUR and the Share of Beneficiaries with Improved Self-worth", align = TRUE, label = "selfworthOdds")
 
 @
 
@@ -712,7 +712,7 @@ stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Association 
 
 dayToDayOdds <- readRDS("./ANALYSIS/Tables/dayToDayProb.Rds")
 
-stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Association of Subsidy for Meals program in 2015 EUR and the Share of Beneficiaries with Broadened Everyday Expertise", align = TRUE, label = "dayToDayOdds")
+stargazer(dayToDayOdds@coef3, title= "Propodds Regression Results: Association of Subsidy for Meals program in 2015 EUR and the Share of Beneficiaries with Broadened Everyday Expertise", align = TRUE, label = "dayToDayOdds")
 
 @
 
