@@ -101,6 +101,10 @@ scores_lessIll_DGECriteriaNo <- data.frame(FA_lessIll_DGECriteriaNo$scores)
 
 lessIll_DGECriteriaNo_Factors <- cbind.data.frame(scores_lessIll_DGECriteriaNo, lessIll_DGECriteriaNo)
 
+loadings_FA_lessIll_DGECriteriaNo <- data.frame((FA_lessIll_DGECriteriaNo$loadings)[1:11, 1:2])
+
+saveRDS(loadings_FA_lessIll_DGECriteriaNo, "./ANALYSIS/Tables/loadings_FA_lessIll_DGECriteriaNo.Rds")
+
 #factor analysis dietary knowledge_scaled vs DGECriteriaNoScaled
 
 dfFA_dietaryKnowledge_DGECriteriaNo <- dfFAMeals %>% 

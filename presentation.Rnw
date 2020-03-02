@@ -57,9 +57,10 @@
 % \usepackage{lscape}
 % \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
-\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+\usepackage[backend=biber, style=apa]{biblatex}
 % \usepackage{floatrow}
 \usepackage{booktabs}
+\usepackage[ngerman]{babel}
 % \usepackage{rotating}
 % \usepackage{dcolumn}
 % \usepackage{mathtools}
@@ -122,6 +123,8 @@
 
 \usetheme{CambridgeUS}
 
+\setbeamerfont{subsection in toc}{size=\tiny}
+
 \usecolortheme{crane}
 
 \addbibresource{references.bib}
@@ -164,15 +167,15 @@ Ludwig-Maximilians-Universität München}
 	\maketitle
 \end{frame}
 
-\frame{\frametitle{Table of Contents}
+\frame[allowframebreaks]{\frametitle{Table of Contents}
 	\tableofcontents
 }
 
-\frame{\frametitle{List of Tables}
+\frame[allowframebreaks]{\frametitle{List of Tables}
 	\listoftables
 }
 
-\frame{\frametitle{List of Figures}
+\frame[allowframebreaks]{\frametitle{List of Figures}
 	\listoffigures
 }
 \section{Einleitung}
@@ -227,8 +230,6 @@ print(xtable(Datensatz, include.rownames = FALSE,
 @
 \end{frame}
 
-\section{Summary Statistics und Fundamentale Dynamiken}
-
 
 \section{Zusammenfassende Statistiken}
 
@@ -248,10 +249,10 @@ colnames(fundamental_dynamics) <- c("Jahr", "Begünstigte, Mittagstisch", "Begü
 print(xtable(fundamental_dynamics,
                                   # summary = FALSE,
                                 digits = c(0, 0, 1, 1, 0, 0),
-           caption = "Summary Statistics",
+           caption = "Zusammenfassende Statistiken",
            align = "lccccc",
           label = "fundamentalDynamics"
-          ), scalebox = '0.7')
+          ), scalebox = '0.5')
 
 @
 \end{frame}
@@ -261,11 +262,10 @@ print(xtable(fundamental_dynamics,
 \begin{frame}[fragile]
 \frametitle{Umrechnung der Fördersummen: reale Werte}
 \begin{itemize}
-  \item{Darstellung der Entwicklung der Fördersummen über die Zeit: Zur besseren Vergleichbarkeit Berechung der realen Werte}
+  \item{Zur besseren Vergleichbarkeit der Fördersummen über die Zeit: Umrechnung in 2015 EUR}
   \item{Verwendung der Preisindizes des statistischen Bundesamtes}
   \item{Mittagstisch Fördersumme: Preisindex für Nahrungsmittel und alkoholfreie Getränke}
-  \item{Entdeckerfonds: Preisindex für Freizeit, Unterhaltung und Kultur}
-  \item{Unterscheidung zwischen den Gesamtsummen, dem Median und dem Median pro Begünstigtem}
+  \item{Entdeckerfonds Fördersumme: Preisindex für Freizeit, Unterhaltung und Kultur}
 \end{itemize}
 \end{frame}
 
@@ -380,26 +380,43 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 \begin{itemize}
  \item<1-> Viele Zielvariablen 
  \item<2-> Teilweise sehr ähnliche Zielvariablen, z.B. Begünstigte "kochen mindestensts einmal im Monat in der Einrichtung" und "kochen mindestens einmal in der Woche in der Einrichtung"
- \linebreak
- \item<3-> CHILDREN Mittagstisch: Bereitstellung von Mahlzeiten, um eine ausgewogene und gesunde Ernährung der Kinder und Jugendlichen zu fördern
- \item<4-> CHILDREN Entdeckerfonds: Durch Ausflüge und Aktivitäten wird es Kindern und Jugendlichen ermöglicht, neue Erfahrungen zu sammeln
+ \item<3-> Welche Variablen liegen zugrunde?
+ \item<4-> Variablenreduktion zur Bestimmung möglicher Kontrollen
 \end{itemize}
 
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Technisches Vorgehen}
 
-% \begin{frame}[fragile]
-% \frametitle{Dynamics}
-%  \begin{figure}
-%    \caption{Yearly dynamics of total grants in Meals and Trips program}
-%    \label{totalGrantsDyn}
-%  <<GrantTrend, echo=FALSE, message=FALSE>>=
-%  totalGrantsDyn = readRDS("./ANALYSIS/GRAPHS/PAPER/summaryStatistics_Subsidy.Rds")
-%  print(totalGrantsDyn, scalebox = '0.25')
-%  @
-% % \floatfoot{This graph shows the development of grants in the Meals compared to the Trips program. We distinguish between the sum of grants in one year, the median grant and the median grant per beneficiary. From left to right: Meals, Trips. From top to bottom: sum, median, median per beneficiary. We have deflated the values to 2015 euros using the price index related to food and non-alcoholic beverages(in German: Nahrungsmittel und alkoholfreie Getränke) for the Meals program and the price index related to Leisure, Entertainment and Culture (in German: Freizeit, Unterhaltung, Kultur) provided by the Federal Statistical Office of Germany (Statistisches Bundesamt).}
-% \end{figure}
-% \end{frame}
+\begin{itemize}
+ \item<1-> Imputierter Datensatz 
+ \item<2-> Separate Faktoranalyse für jedes später zu schätzende Modell: Abhhängige Variable und Prädiktor ausgeschlossen
+ \item<3-> Jede Variable als Linearkombination von wenigen Faktoren
+ \item<4-> Schätzung an sich uneindeutig $\Rightarrow$ rotiere Faktoren so, dass orthogonal zueinander
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel Faktoranalyse Mittagstisch}
+<<Faktoranalyse-Beispiel, results='asis', echo=FALSE, message=FALSE>>=
+
+loadings_FA_lessIll_DGECriteriaNo = readRDS("./ANALYSIS/Tables/loadings_FA_lessIll_DGECriteriaNo.Rds")
+
+
+
+xtable(loadings_FA_lessIll_DGECriteriaNo,
+           caption = "Faktoranalyse Mittagstisch ohne 'seltener krank'",
+           align = "lcc",
+          label = "factor-analysis-example"
+          )
+# , scalebox = '0.7')
+@
+
+
+\end{frame}
+
 
 \section{Zusammenhänge zwischen CHILDRENs Zuschüssen, dem DGE-Kriterium und ausgewählten Variablen}
 
@@ -455,18 +472,19 @@ print(appreciatetimeplot, label = "lessilltimeplot")
 \begin{frame}[fragile]
 \frametitle{Assoziationen zwischen:}
 \begin{itemize}
-\item Der realen Fördersumme die eine Organisation für den Mittagstisch erhält und der Anzahl der Essen die sie ausgibt
-\item Der realen Fördersumme die eine Organisation für den Entdeckerfonds erhält und der Anzahl der Ausflüge die sie unternimmt
-\item Der realen Fördersumme pro Begünstigtem und dem standardisierten Anteil der Begünstigten, deren Selbstwertgefühl gestiegen ist
-\item Der realen Fördersumme pro Begünstigtem und dem standardisierten Anteil der Begünstigten, die ihre Alltagskompetenzen erweitert haben
+\item Fördersumme für Mittagstisch (in 2015 EUR) und Anzahl ausgegebener Essen
+\item Fördersumme für Entdeckerfonds (in 2015 EUR) und Anzahl unternommener Ausflüge
+\item Sowohl für Mittagstisch als auch für Entdeckerfonds:
+\begin{itemize}
+\item Fördersumme pro Begünstigter (in 2015 EUR) und standardisierter Anteil der Begünstigten mit gestiegenen Selbstwertgefühl
+\item Fördersumme pro Begünstigter (in 2015 EUR) und standardisierter Anteil der Begünstigten mit erweiterten Alltagskompetenzen
+\end{itemize}
 \end{itemize}
 \end{frame}
 
 
-\subsection{Direkte Effekte von CHILDRENs Zuschüssen}
-
 \begin{frame}[fragile]
-\frametitle{Zusammenhang Mahlzeiten und Zuschüsse}
+\frametitle{Anzahl Mahlzeiten und Fördersumme}
 
 <<GrantsRegressionsLunch, echo=FALSE, results='asis', message=FALSE>>=
 
@@ -484,7 +502,7 @@ texreg(list(lm_ms, lm_ms_c, lm_ms_o, lm_ms_o_c, lm_ms_i), caption = "Zusammenhan
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Zusammenhang Ausflüge und Zuschüsse}
+\frametitle{Anzahl Ausflüge und Fördersumme}
 <<GrantsRegressionsTrips, echo=FALSE, results='asis', message=FALSE>>=
 lm_ts = readRDS("./ANALYSIS/Tables/tripsNo_sub.lm.Rds")
 lm_ts_c = readRDS("./ANALYSIS/Tables/tripsNo_sub_control.lm.Rds")
@@ -493,15 +511,13 @@ lm_ts_o_c = readRDS("./ANALYSIS/Tables/tripsNo_sub_ex_control.lm.Rds")
 lm_ts_i = readRDS("./ANALYSIS/Tables/tripsNo_sub_IM.lm.Rds") #imputetrips
 
 
-texreg(list(lm_ts, lm_ts_c, lm_ts_o, lm_ts_o_c, lm_ts_i), caption = "Association between number of trips and real subsidy", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+texreg(list(lm_ts, lm_ts_c, lm_ts_o, lm_ts_o_c, lm_ts_i), caption = "Zusammenhang zwischen Anzahl Ausflüge und Fördersumme", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)"), scalebox = 0.7, custom.note = "\\parbox{\\linewidth}
 {\\vspace{2pt} Dependent variable: number of trips \\\\ realTripsSubsidy: subsidy for Trips program in 2015 EUR \\\\ tripsKidsNo: number of beneficiaries of Trips program \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, linear model with controls, estimated with OLS \\\\ Model (3): data set without outliers, simple linear model, esmitaed with OLS \\\\ Model (4): data set without outliers, linear model with controls, estimated with OLS \\\\ Model (5): imputed data set, simple linear model, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'GrantsRegressionsTrips', digits = 4, booktabs = TRUE, use.packages=FALSE)
 @
 \end{frame}
 
-\subsection{Selbstwertgefühl, Alltagskompetenzen und Zuschüsse}
-
 \begin{frame}[fragile]
-\frametitle{Selbstwertgefühl}
+\frametitle{Selbstwertgefühl und Fördersumme pro Begünstigter}
 
 <<SelfworthRegressions, echo=FALSE, results='asis', message=FALSE>>=
 
@@ -512,14 +528,14 @@ ssI = readRDS("./ANALYSIS/Tables/selfworth_IM_scaled.lm.Rds") #standardized
 tssI = readRDS("./ANALYSIS/Tables/selfworthTrips_IM_scaled.lm.Rds")
 sfactor = readRDS("./ANALYSIS/Tables/factorselfworthmeals.Rds")
 
-texreg(list(ss, tss, ssI, tssI, sfactor), caption = "Association between selfworth and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)" ), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+texreg(list(ss, tss, ssI, tssI, sfactor), caption = "Zusammenhang zwischen Selbstwertgefühl und Fördersumme pro Begünstigtem", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)" ), scalebox = 0.4, custom.note = "\\parbox{\\linewidth}
 {\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\Model (1): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with improved self-worth in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with improved self-worth in the Trips program, imputed data set, simple linear model, estimated with OLS \\\\ Model (5): dependent variable: share of beneficiaries with improved self-worth in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'SelfworthRegressions', bookmarks = TRUE, use.packages=FALSE)
 @
 
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Alltagskompetenzen}
+\frametitle{Alltagskompetenzen und Fördersumme pro Begünstigter}
 
 <<DayToDaySkillsRegressions, echo=FALSE, results='asis', message=FALSE>>=
 ds = readRDS("./ANALYSIS/Tables/dayToDaySkills_scaled.lm.Rds") #standardizedweigh
@@ -530,25 +546,19 @@ dfactorm = readRDS("./ANALYSIS/Tables/factordaytodayskillsmeals.Rds")
 dfactort = readRDS("./ANALYSIS/Tables/factordaytodayskillstrips.Rds")
 
 
-texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association between everyday expertise and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)", "(6)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Zusammenhang zwischen Alltagskompetenzen und Fördersumme pro Begünstigtem", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)", "(6)"), scalebox = 0.4, custom.note = "\\parbox{\\linewidth}
 {\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\ Model (1): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, simple linear model, estimated with OLS\\\\ Model (5): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ Model (6): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'DayToDaySkillsRegressions', bookmarks = TRUE, use.packages=FALSE)
 @
 
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Ergebnisse der Fördersumme}
+\frametitle{Zusammenfassung der Ergebnisse}
 
 \begin{itemize}
-\item Effekt auf Anzahl an Essen \& Ausflüge
-\begin{itemize}
-\item Mittagstisch: Circa 3 Euro mehr resultieren in einer Mahlzeit mehr
-\item Entdeckerfonds: kein klarer Zusammenhang 
-\end{itemize}
-\item Effekt auf das Selbstwertgefühl \& die Alltagskompetenzen 
-\begin{itemize}
-\item Nulleffekte bei beiden Variablen 
-\end{itemize}
+\item Mittagstisch ohne Ausreißer: Circa 3 EUR höhere Fördersumme geht einher mit einer weiteren Mahlzeit
+\item Entdeckerfonds ohne Ausreißer: Circa 3000 EUR höhere Fördersumme geht einher mit einem weiteren Ausflug
+\item Selbstwertgefühl \& die Alltagskompetenzen: kein Zusammenhang mit Fördersumme
 \end{itemize}
 
 \end{frame}
@@ -558,17 +568,18 @@ texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association betw
 \begin{frame}[fragile]
 \frametitle{Fragestellungen, Assoziationen zwischen:}
 \begin{itemize}
-\item Dem standardisierten Maß für gesundes Essen (DGE-Kriterium) und ausgewählten standardisierten gesundheitsrelevanten Variablen
+\item Standardisierten Maß für gesundes Essen (DGE-Kriterium) und ausgewählte standardisierte gesundheitsrelevante Variablen
 \begin{itemize}
 \item Anteil an Begünstigten, die seltener krank sind
 \item Anteil an Begünstigten, die ihr Ernährungswissen erweitert haben
-\item Anteil an Begünstigten, die gesund Ernährung stärker wertschätzen
+\item Anteil an Begünstigten, die gesunde Ernährung stärker wertschätzen
 \end{itemize}
+\item Schätzung mit WLS
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "seltener krank": Zusammenhang mit dem DGE-Kriterium}
+\frametitle{Variable 'seltener krank': Zusammenhang mit DGE-Kriterium}
 <<lessIllDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 lessillDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/lessill.Rds")
 print(lessillDGE, label = "lessillDGE")
@@ -576,7 +587,7 @@ print(lessillDGE, label = "lessillDGE")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "erweitertes Ernährungswissen": Zusammenhang mit dem DGE-Kriterium}
+\frametitle{Variable 'erweitertes Ernährungswissen': Zusammenhang mit DGE-Kriterium}
 <<dietaryDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 dietaryDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/dietary.Rds")
 print(dietaryDGE, label = "dietaryDGE")
@@ -584,7 +595,7 @@ print(dietaryDGE, label = "dietaryDGE")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit dem DGE-Kriterium}
+\frametitle{Variable "Wertschätzung gesunder Ernährung": Zusammenhang mit DGE-Kriterium}
 <<appreciateDGEplot, echo=FALSE, message=FALSE, warning=FALSE>>=
 appreciateDGE <- readRDS("./ANALYSIS/GRAPHS/PAPER/appreciate.Rds")
 print(appreciateDGE, label = "appreciateDGE")
@@ -592,7 +603,7 @@ print(appreciateDGE, label = "appreciateDGE")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Seltener krank}
+\frametitle{Variable 'seltener krank': Zusammenhang mit DGE-Kriterium}
 <<HealthRegressions-LessIll, echo=FALSE, results='asis', message=FALSE>>=
 
 lDGE = readRDS("./ANALYSIS/Tables/lessIll_DGE_scaled.lm.Rds")
@@ -604,13 +615,13 @@ lDGE_i = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled.lm.Rds")
 lDGE_iw = readRDS("./ANALYSIS/Tables/lessIll_DGE_IM_scaled_weighted.lm.Rds")
 illfactor = readRDS("./ANALYSIS/Tables/lessIllfactor.Rds")
 
-texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw, illfactor), caption = "Association between healthy meals criterion and beneficiaries being less ill", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+texreg(list(lDGE, lDGEw, lDGE_i, lDGE_iw, illfactor), caption = "Zusammenhang zwischen DGE-Kriterium und Variable 'seltener krank'", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.65, custom.note = "\\parbox{\\linewidth}
 {\\vspace{2pt} Dependent variable: share of beneficiaries who are less frequently ill \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ Model (5): imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = "HealthRegressions-LessIll", bookmarks = TRUE, use.packages=FALSE)
 @
 \end{frame}
 
 \begin{frame}
-\frametitle{Ernährungswissen}
+\frametitle{Variable 'erweitertes Ernährungswissen': Zusammenhang mit DGE-Kriterium}
 <<HealthRegressions-DietaryKnowledge, echo=FALSE, results='asis', message=FALSE>>=
 dDGE = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled.Rds")
 dDGEw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_scaled_weighted.Rds")
@@ -618,13 +629,13 @@ dDGE_i = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled.lm.Rds")
 dDGE_iw = readRDS("./ANALYSIS/Tables/dietaryKnowledge_DGE_IM_scaled_weighted.lm.Rds")
 dietaryf = readRDS("./ANALYSIS/Tables/dietaryknowledgefactor.Rds")
 
-texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw, dietaryf), caption = "Association between healthy meals criterion and beneficiaries dietary knowledge", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+texreg(list(dDGE, dDGEw, dDGE_i, dDGE_iw, dietaryf), caption = "Zusammenhang zwischen DGE-Kriterium und Variable 'erweitertes Ernährungswissen'", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.55, custom.note = "\\parbox{\\linewidth}
 {\\vspace{2pt} Dependent variable: share of beneficiaries with expanded dietary knowledge \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ Model (5): imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'HealthRegressions-DietaryKnowledge', bookmarks = TRUE, use.packages=FALSE)
 @
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Wertschätzung für gesundes Essen}
+\frametitle{Variable 'Wertschätzung gesunder Ernährung': Zusammenhang mit DGE-Kriterium}
 <<HealthRegressions-AppreciateHealthy, echo=FALSE, results='asis', message=FALSE>>=
 aDGE = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled.Rds")
 aDGEw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_scaled_weighted.Rds")
@@ -632,22 +643,21 @@ aDGE_i = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled.lm.Rds")
 aDGE_iw = readRDS("./ANALYSIS/Tables/appreciateHealthy_DGE_IM_scaled_weighted.lm.Rds")
 appreciatef = readRDS("./ANALYSIS/Tables/appreciatehealthyfactor.Rds")
 
-texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Association between healthy meals criterion and  beneficiaries appreciation of a healthy diet", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Zusammenhang zwischen DGE-Kriterium und Variable 'Wertschätzung gesunder Ernährung'", custom.model.names = c("(1)", "(2)", "(3)","(4)", "(5)"), scalebox = 0.5, custom.note = "\\parbox{\\linewidth}
 {\\vspace{2pt} Dependent variable: share of beneficiaries with increased appreciation for a healthy diet \\\\ DGECriteriaNo: index of healthy diet criteria fulfilled in organization's menu \\\\ Model (1): original data set, simple linear model, estimated with OLS \\\\ Model (2): original data set, simple linear model, estimated with WLS \\\\ Model (3): imputed data set, simple linear model, estimated with OLS \\\\ Model (4): imputed data set, simple linear model, estimated with WLS \\\\ Model (5): imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'HealthRegressions-AppreciateHealthy')
 @
 \end{frame}
 
-\subsection{Empirische Fragestellungen (2): Ergebnisse}
-
 \begin{frame}
-\frametitle{Empirische Fragestellungen (2): }
+\frametitle{Zusammenfassung der Ergebnisse}
 
 
 \begin{itemize}
-\item Signifikante Effekte in Bezug auf den Zusammenhang des Kriteriums für gesundes Essen und gesundheitsrelevanten Variablen 
+\item Einfaches lineares Modell, geschätzt mit OLS: Großer, teilweise signifikanter Zusammenhang zwischen DGE-Kriterium und gesundheitsrelevanten Variablen 
 \item Hinzunahme von extrahierten Faktoren als Kontrollen:
 \begin{itemize}
 \item Variable "seltener krank": nach wie vor großer, statistisch signifikanter Koeffizient
+\item Variablen "erweitertes Ernährungswissen" und "Wertschätzung gesunder Ernährung": kein Zusammenhang mehr erkennbar
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -667,13 +677,12 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Association b
  colnames(partition_meals) <- c("Variable, Meals", "Mapping, Meals", "Information, Meals")
  colnames(partition_trips) <- c("Variable, Trips", "Mapping, Trips", "Information, Trips")
 
- xtable(partition_meals,
+ print(xtable(partition_meals,
                                 # digits = c(0, 0, 1, 1, 0, 0),
-           caption = "Partition of outcomes, Meals",
+           caption = "Partition der Zielvariablen, Mittagstisch",
            label = 'partitionmeals',
-           align = "lccc",
-           scalebox = "0.5"
-           )
+           align = "lccc"
+           ), scalebox = "0.4")
  #print(partition_meals, include.rownames = FALSE)
  @
 
@@ -682,13 +691,13 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Association b
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
 <<PartitionTrips, echo=FALSE, results='asis', message=FALSE, warning=FALSE>>=
-xtable(partition_trips,
+print(xtable(partition_trips,
                                #digits = c(0, 0, 1, 1, 0, 0),
-          caption = "Partition of outcomes, Trips",
+          caption = "Partition der Zielvariablen, Entdeckerfonds",
           label = 'partitiontrips',
-          align = "lccc",
-          scalebox = "0.5"
-          )
+          align = "lccc"
+          ),
+          scalebox = "0.5")
 # print(partition_meals, partition_trips, include.rownames = FALSE)
 @
 \end{frame}
