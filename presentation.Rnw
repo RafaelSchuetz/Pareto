@@ -215,10 +215,15 @@ Ludwig-Maximilians-Universität München}
  \item<4-> Abstimmung des Teams über “Git”
   
 \end{itemize}
-
 \end{frame}
 
-
+\begin{frame}[fragile]
+\frametitle{Beispiel: Datensatz}
+<<Datensatz, echo=FALSE, message=FALSE>>=
+Datensatz <- readRDS("./ANALYSIS/GRAPHS/PAPER/dataExample.Rds")
+print(Datensatz, label = "Datensatz")
+@
+\end{frame}
 
 \section{Summary Statistics und Fundamentale Dynamiken}
 
