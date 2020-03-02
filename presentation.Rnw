@@ -865,7 +865,7 @@ weeklyCooks &           & $0.036$   &           & $0.037$      \\
 \item Mögliche Gründe:
 \item Die Anzahl der Beobachtungseinheiten in der Kontrollgruppe ist gering
 \item Die Fragenbögen werden nicht direkt von den Kindern und Jugendlichen beantwortet, sondern von den Betreuern der geförderten Einrichtungen
-\item Die Skalierung der Zielvariable führt zu geringerer Variation
+\item Die Skalierung der Zielvariable "Selbstwertgefühl" führt zu geringer Variation
 \item [$\Rightarrow$] Daher sollte dieses Ergebnis nicht überinterpretiert werden
 \end{itemize}
 \end{frame}
