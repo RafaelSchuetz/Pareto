@@ -86,8 +86,16 @@ Health_Year <- plot_grid(lessIll_Time, dietaryKnowledge_Time, appreciateHealthy_
 
 saveRDS(Health_Year, "./ANALYSIS/GRAPHS/PAPER/Health_Year.Rds")
 
+saveRDS(lessIll_Time, "./ANALYSIS/GRAPHS/PAPER/lessIll_Time.Rds")
+saveRDS(dietaryKnowledge_Time, "./ANALYSIS/GRAPHS/PAPER/dietary_Time.Rds")
+saveRDS(appreciateHealthy_Time, "./ANALYSIS/GRAPHS/PAPER/appreciate_Time.Rds")
+
+
 selfworth_Time <- plotOutcomeOverTime("year", "selfworth_ordered")
 dayToDaySkills_Time <- plotOutcomeOverTime("year", "dayToDaySkills_ordered")
+
+saveRDS(selfworth_Time, "./ANALYSIS/GRAPHS/PAPER/selfworth_Time.Rds")
+saveRDS(dayToDaySkills_Time, "./ANALYSIS/GRAPHS/PAPER/dayToDay_Time.Rds")
 
 Equality_Year <- plot_grid(selfworth_Time, dayToDaySkills_Time, 
                          ncol = 1, nrow = 2, align = "v",
