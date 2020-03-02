@@ -727,10 +727,18 @@ xtable(partition_trips,
 
 \begin{frame}[fragile]
 \frametitle{Graphische Darstellung: Alltagskompetenzen}
+<<DIDDtdsplot, echo=FALSE, message=FALSE>>=
+DIDDtdsplot <- readRDS("./ANALYSIS/GRAPHS/plot_dtds.Rds")
+print(DIDDtdsplot, label = "DIDDtdslot")
+@
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Graphische Darstellung: Selbstwertgefühl}
+<<DIDSelfworthplot, echo=FALSE, message=FALSE>>=
+DIDSelfworthplot <- readRDS("./ANALYSIS/GRAPHS/plot_selfworth.Rds")
+print(DIDSelfworthplot, label = "DIDSelfworthplot")
+@
 \end{frame}
 
 \begin{frame}[fragile]
@@ -770,6 +778,32 @@ xtable(partition_trips,
 
 \begin{frame}[fragile]
 \frametitle{Alltagskompetenzen}
+\begin{table}
+\begin{center}
+\scalebox{0.9}{
+\begin{tabular}{l c c c c }
+\\[-1.8ex]\hline
+& \multicolumn{4}{c}{\textit{Abhängige Variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Alltagskompetenzen} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF     & $-0.143$  & $-0.166$     & $0.247$   & $0.255$      \\
+            & $(0.402)$ & $(0.405)$    & $(0.299)$ & $(0.310)$    \\
+subsidy     &           & $0.019$      &           & $0.016$      \\
+            &           & $(0.014)$    &           & $(0.014)$    \\
+totalCost   &           & $0.001^{**}$ &           & $0.001^{*}$  \\
+            &           & $(0.000)$    &           & $(0.000)$    \\
+weeklyCooks &           & $0.166^{**}$ &           & $0.162^{**}$ \\
+            &           & $(0.072)$    &           & $(0.073)$    \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$, $^{**}p<0.05$, $^*p<0.1$}}
+\end{tabular}
+}
+\end{center}
+\caption{DID-Schätzung: Ergebnisse für Alltagskompetenzen}
+\end{table}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -784,6 +818,32 @@ xtable(partition_trips,
 
 \begin{frame}[fragile]
 \frametitle{Selbstwertgefühl}
+\begin{table}
+\begin{center}
+\scalebox{0.9}{
+\begin{tabular}{l c c c c }
+\\[-1.8ex]\hline
+& \multicolumn{4}{c}{\textit{Abhängige Variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{Selbstwertgefühl} \\
+\hline
+ & (1) & (2) & (3) & (4) \\
+\hline
+treatEF     & $-0.474$  & $-0.481$  & $-0.328$  & $-0.442^{*}$ \\
+            & $(0.309)$ & $(0.312)$ & $(0.247)$ & $(0.256)$    \\
+subsidy     &           & $0.011$   &           & $0.014$      \\
+            &           & $(0.018)$ &           & $(0.017)$    \\
+totalCost   &           & $0.000$   &           & $0.000$      \\
+            &           & $(0.001)$ &           & $(0.001)$    \\
+weeklyCooks &           & $0.036$   &           & $0.037$      \\
+            &           & $(0.069)$ &           & $(0.069)$    \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$, $^{**}p<0.05$, $^*p<0.1$}}
+\end{tabular}
+}
+\caption{DID-Schätzung: Ergebnisse für Selbstwertgefühl}
+\end{center}
+\end{table}
 \end{frame}
 
 \begin{frame}[fragile]
