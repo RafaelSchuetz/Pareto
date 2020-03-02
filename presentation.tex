@@ -191,7 +191,7 @@
 
 \title[Analyse der Survey-Daten von CHILDREN]{Analyse der Survey-Daten von CHILDREN for a better World e.V.
 	}
-\author[Laura, Laura, Jonathan, Rafael und Yannick]{
+\author[PaRE3To]{
 Laura Huber\\
 \and
 Laura Jepsen\\
@@ -214,53 +214,52 @@ Ludwig-Maximilians-Universität München}
 
 \frame[allowframebreaks]{\frametitle{Table of Contents}
 	\tableofcontents
+
 }
 
-\frame[allowframebreaks]{\frametitle{List of Tables}
-	\listoftables
-}
-
-\frame[allowframebreaks]{\frametitle{List of Figures}
-	\listoffigures
-}
 \section{Einleitung}
 
 \begin{frame}[fragile]
 \frametitle{CHILDREN for a better World e.V.}
 \begin{itemize}
- \item<1-> Spendenfinanzierte Kinderhilfsorganisation
- \item<2-> Finanziert Einrichtungen deutschlandweit
+ \item Spendenfinanzierte Kinderhilfsorganisation
+ \item Finanziert Einrichtungen in ganz Deutschland
  \linebreak
- \item<3-> CHILDREN Mittagstisch: Bereitstellung von Mahlzeiten, um eine ausgewogene und gesunde Ernährung der Kinder und Jugendlichen zu fördern
- \item<4-> CHILDREN Entdeckerfonds: Durch Ausflüge und Aktivitäten wird es Kindern und Jugendlichen ermöglicht, neue Erfahrungen zu sammeln
+ \item CHILDREN Mittagstisch: Bereitstellung von Mahlzeiten, um eine ausgewogene und gesunde Ernährung der Kinder und Jugendlichen zu fördern
+ \item CHILDREN Entdeckerfonds: Durch Ausflüge und Aktivitäten wird es Kindern und Jugendlichen ermöglicht, neue Erfahrungen zu sammeln
 \end{itemize}
 \end{frame}
+
 
 \section{Datenaufbereitung}
 
 \begin{frame}[fragile]
 \frametitle{Datenerhebung von CHILDREN}
 \begin{itemize}
- \item<1-> Jährliche Umfragebögen an die Einrichtungen
- \item<2-> Beantwortung durch Mitarbeiter
- \item<3-> Verschiedene Fragen zu Mittagstisch und Entdeckerfonds
- \item<4-> Generelle Variablen (z.B. Fördersumme, Anzahl angebotener Mahlzeiten, Anzahl Aktivitäten)
- \item<5-> Abhängige Variablen (z.B. Selbstwertgefühl, seltener krank)
+ \item Jährliche Umfragebögen an die Einrichtungen
+ \item Beantwortung durch Mitarbeiter
+ \item Verschiedene Fragen zu Mittagstisch und Entdeckerfonds
+ \item Allgemeine Variablen zu den Einrichtungen (z.B. Fördersumme, Anzahl angebotener Mahlzeiten, Anzahl Aktivitäten)
+ \item Abhängige Variablen zu den Kindern (z.B. Selbstwertgefühl, seltener krank)
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Datenaufbereitung}
 \begin{itemize}
- \item<1-> Arbeit mit dem Statistik-Programm “R”
- \item<2-> Zusammenfügen der verschiedenen Datensätze
- \item<3-> Anpassung und Vergleich der Variablennamen
- \item<4-> Abstimmung des Teams über “Git”
+ \item Zusammenfügen der Datensätze aus den verschiedenen Jahren
+ \item Anpassung der Variablennamen und Hinzufügen von neuen Variablen
+ \item Änderung der Datentypen von Variablen
+ \item [$\Rightarrow$] Erstellung eines finalen Datensatzes
+ \linebreak
+ \item Datenauswertung mit dem Statistik-Programm \glqq R\grqq
+ \item Versionskontrolle über \glqq Git\grqq
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Beispiel: Datensatz}
+<<<<<<< HEAD
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
@@ -289,8 +288,27 @@ Ludwig-Maximilians-Universität München}
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
+=======
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccccc}
+  \hline
+ & ID & Jahr & Anzahl der Kinder MT & Selbstwertgefühl & Ausflüge \\ 
+  \hline
+1 & 103 & 2014 & 30 & 3 & 4 \\ 
+  2 & 103 & 2015 & 50 & 3 & 6 \\ 
+  3 & 103 & 2016 & NA & 2 & 3 \\ 
+  4 & 112 & 2014 & 27 & 3 & NA \\ 
+  5 & 112 & 2015 & 55 & 3 & NA \\ 
+  6 & 112 & 2016 & 35 & 3 & NA \\ 
+   \hline
+\end{tabular}
+\caption{Beispielhafter Datensatz} 
+\end{table}
+>>>>>>> a80e31f272a49038f595690850e54c1bfe5e498e
 \end{frame}
 
+\section{Summary Statistics und Fundamentale Dynamiken}
 
 \section{Zusammenfassende Statistiken}
 
@@ -300,7 +318,11 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Zusammenfassende Statistiken}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Mon Mar 02 23:17:27 2020
+=======
+% Mon Mar  2 23:16:47 2020
+>>>>>>> a80e31f272a49038f595690850e54c1bfe5e498e
 \begin{table}[ht]
 \centering
 \scalebox{0.5}{
@@ -328,7 +350,7 @@ Ludwig-Maximilians-Universität München}
 \subsection{Entwicklung der Fördersummen über die Zeit}
 
 \begin{frame}[fragile]
-\frametitle{Umrechnung der Fördersummen: reale Werte}
+\frametitle{Umrechnung der Fördersummen: Reale Werte}
 \begin{itemize}
   \item{Zur besseren Vergleichbarkeit der Fördersummen über die Zeit: Umrechnung in 2015 EUR}
   \item{Verwendung der Preisindizes des statistischen Bundesamtes}
@@ -517,7 +539,11 @@ Ludwig-Maximilians-Universität München}
 \begin{frame}[fragile]
 \frametitle{Beispiel Faktoranalyse Mittagstisch}
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
+<<<<<<< HEAD
 % Mon Mar 02 23:17:32 2020
+=======
+% Mon Mar  2 23:16:50 2020
+>>>>>>> a80e31f272a49038f595690850e54c1bfe5e498e
 \begin{table}[ht]
 \centering
 \begin{tabular}{lcc}
@@ -1052,13 +1078,112 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \item Einfaches lineares Modell, geschätzt mit OLS: Großer, teilweise signifikanter Zusammenhang zwischen DGE-Kriterium und gesundheitsrelevanten Variablen 
 \item Hinzunahme von extrahierten Faktoren als Kontrollen:
 \begin{itemize}
+<<<<<<< HEAD
 \item Variable \glqq seltener krank\grqq: nach wie vor großer, statistisch signifikanter Koeffizient
 \item Variablen \glqq erweitertes Ernährungswissen\grqq und \grqq Wertschätzung gesunder Ernährung\glqq: kein Zusammenhang mehr erkennbar
+=======
+\item Variable "seltener krank": Nach wie vor großer, statistisch signifikanter Koeffizient
+\item Variablen "erweitertes Ernährungswissen" und "Wertschätzung gesunder Ernährung": Kein Zusammenhang mehr erkennbar
+>>>>>>> a80e31f272a49038f595690850e54c1bfe5e498e
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 
+<<<<<<< HEAD
+=======
+\section{Partition}
+
+ \begin{frame}[fragile]
+ \frametitle{Partition Mittagstisch}
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar  2 23:16:51 2020
+\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{lccc}
+  \hline
+ & Variable, Meals & Mapping, Meals & Information, Meals \\ 
+  \hline
+1 & participateMore & participateMore & 1.00 \\ 
+  2 & tasksLunch & tasksLunch & 1.00 \\ 
+  3 & ownIdeas & ownIdeas & 1.00 \\ 
+  4 & stayLonger & stayLonger & 1.00 \\ 
+  5 & dietaryKnowledge & dietaryKnowledge & 1.00 \\ 
+  6 & appreciateHealthy & appreciateHealthy & 1.00 \\ 
+  7 & foodCulture & foodCulture & 1.00 \\ 
+  8 & lessIll & lessIll & 1.00 \\ 
+  9 & betterTeamwork & betterTeamwork & 1.00 \\ 
+  10 & moreRegularSchoolVisits & moreRegularSchoolVisits & 1.00 \\ 
+  11 & addressProblems & addressProblems & 1.00 \\ 
+  12 & reduced\_var\_1 & moreConcentrated & 0.66 \\ 
+  13 & reduced\_var\_1 & moreBalanced & 0.66 \\ 
+  14 & reduced\_var\_2 & monthlyCooks & 0.42 \\ 
+  15 & reduced\_var\_2 & weeklyCooks & 0.42 \\ 
+  16 & reduced\_var\_2 & shoppers & 0.42 \\ 
+  17 & reduced\_var\_2 & easyDishes & 0.42 \\ 
+  18 & reduced\_var\_3 & dayToDaySkills & 0.43 \\ 
+  19 & reduced\_var\_3 & moreIndependent & 0.43 \\ 
+  20 & reduced\_var\_3 & selfworth & 0.43 \\ 
+  21 & reduced\_var\_3 & moreOpen & 0.43 \\ 
+  22 & reduced\_var\_3 & moreConfidence & 0.43 \\ 
+  23 & reduced\_var\_3 & proud & 0.43 \\ 
+  24 & reduced\_var\_4 & betterReading & 0.53 \\ 
+  25 & reduced\_var\_4 & betterNumbers & 0.53 \\ 
+  26 & reduced\_var\_4 & betterGrades & 0.53 \\ 
+  27 & reduced\_var\_5 & influenceHome & 0.41 \\ 
+  28 & reduced\_var\_5 & cookAtHome & 0.41 \\ 
+  29 & reduced\_var\_5 & askRecipes & 0.41 \\ 
+   \hline
+\end{tabular}
+}
+\caption{Partition der Zielvariablen, Mittagstisch} 
+\label{partitionmeals}
+\end{table}
+
+
+ \end{frame}
+
+\begin{frame}
+\frametitle{Partition Entdeckerfonds}
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar  2 23:16:51 2020
+\begin{table}[ht]
+\centering
+\scalebox{0.5}{
+\begin{tabular}{lccc}
+  \hline
+ & Variable, Trips & Mapping, Trips & Information, Trips \\ 
+  \hline
+1 & tripsSuggestions & tripsSuggestions & 1.00 \\ 
+  2 & tripsDecisions & tripsDecisions & 1.00 \\ 
+  3 & tripsOrganization & tripsOrganization & 1.00 \\ 
+  4 & tripsCostCalculation & tripsCostCalculation & 1.00 \\ 
+  5 & tripsBudget & tripsBudget & 1.00 \\ 
+  6 & tripsMoney & tripsMoney & 1.00 \\ 
+  7 & tripsReview & tripsReview & 1.00 \\ 
+  8 & tripsPublicTransport & tripsPublicTransport & 1.00 \\ 
+  9 & tripsMobility & tripsMobility & 1.00 \\ 
+  10 & tripsAdditionalActivities & tripsAdditionalActivities & 1.00 \\ 
+  11 & tripsSelfworth & tripsSelfworth & 1.00 \\ 
+  12 & tripsFrustrationTolerance & tripsFrustrationTolerance & 1.00 \\ 
+  13 & reduced\_var\_1 & tripsSuccess & 0.68 \\ 
+  14 & reduced\_var\_1 & tripsSelfEfficacy & 0.68 \\ 
+  15 & reduced\_var\_2 & tripsNewPlaces & 0.60 \\ 
+  16 & reduced\_var\_2 & tripsNewCommunities & 0.60 \\ 
+  17 & reduced\_var\_2 & tripsNewIdeas & 0.60 \\ 
+  18 & reduced\_var\_2 & tripsSocialSkills & 0.60 \\ 
+  19 & reduced\_var\_3 & tripsSpecificSkills & 0.46 \\ 
+  20 & reduced\_var\_3 & tripsDayToDaySkills & 0.46 \\ 
+   \hline
+\end{tabular}
+}
+\caption{Partition der Zielvariablen, Entdeckerfonds} 
+\label{partitiontrips}
+\end{table}
+
+\end{frame}
+>>>>>>> a80e31f272a49038f595690850e54c1bfe5e498e
 
 
 \subsection{Idee}
@@ -1067,7 +1192,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \frametitle{Fragestellung}
 \begin{itemize}
 \item Welchen Effekt besitzt die Förderung einer sozialen Einrichtung durch den CHILDREN Entdeckerfonds auf die teilnehmenden Kinder und Jugendlichen?
-\item Herausforderung: Identifizieren einer geeigneten empirischen Methode, um die Wirkungseffekte des CHILDREN Entdeckerfonds zu bestimmmen
+\item Herausforderung: Identifizieren einer geeigneten empirischen Methode, um die Wirkungseffekte des CHILDREN Entdeckerfonds zu bestimmen
 \linebreak
 \item Hypothese: Die Teilnahme einer sozialen Einrichtung am CHILDREN Entdeckerfonds besitzt einen positiven Effekt auf die Alltagskompetenzen und das Selbstwertgefühl der Kinder und Jugendlichen
 \end{itemize}
@@ -1090,7 +1215,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \frametitle{Einteilung in Treatment- und Kontrollgruppe}
 \begin{itemize}
 \item Treatmentgruppe: Alle Einrichtungen, die sowohl am CHILDREN Mittagstisch als auch am CHILDREN Entdeckerfonds teilnehmen
-\item Kontrollgruppe: Alle Einrichtungen, die nicht am CHILDREN Entdeckerfonds teilnehmen, sondern nur durch den CHILDREN Mittagtisch gefördert werden
+\item Kontrollgruppe: Alle Einrichtungen, die nicht am CHILDREN Entdeckerfonds teilnehmen, sondern nur durch den CHILDREN Mittagstisch gefördert werden
 \item Um die Einrichtungen in Treatment- und Kontrollgruppe einzuteilen, wurde analysiert, ob bei den Survey-Fragen zum Entdeckerfonds in einem bestimmten Jahr Angaben gemacht wurden
 \end{itemize}
 \end{frame}
@@ -1108,7 +1233,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}[fragile]
 \frametitle{Variante 1}
 \begin{itemize}
-\item "Einmal Treatment, immer Treatment"
+\item \glqq Einmal Treatment, immer Treatment\grqq
 \item Sobald eine Einrichtung am Entdeckerfonds teilgenommen hat, gilt $TreatEF_{it}$ = 1 für das Jahr der ersten Förderung durch den Entdeckerfonds und alle darauffolgenden Jahre
 \item [$\Rightarrow$] Kein Wechsel von der Treatmentgruppe in die Kontrollgruppe möglich
 \item Solange eine Einrichtung keine Förderung vom CHILDREN Entdeckerfonds erhält, befindet sich diese in der Kontrollgruppe
@@ -1128,7 +1253,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \frametitle{Zielvariable}
 \begin{itemize}
 \item Problem: Keine Variablen zum Entdeckerfonds für Einrichtungen, die nicht am Entdeckerfonds teilgenommen haben (= Kontrollgruppe) 
-\item Verwendete Zielvariablen vom Mittagtisch: Alltagskompetenzen und Selbstwertgefühl
+\item Verwendete Zielvariablen vom Mittagstisch: Alltagskompetenzen und Selbstwertgefühl
 \item [$\Rightarrow$] Anwendbar auf den CHILDREN Mittagstisch und den CHILDREN Entdeckerfonds 
 \item [$\Rightarrow$] Über den gesamten Beobachtungszeitraum verfügbar
 \item [$\Rightarrow$] Die Alltagskompetenzen und das Selbstwertgefühl der Kinder und Jugendlichen könnten dadurch beeinflusst werden, dass eine Einrichtung am Entdeckerfonds teilnimmt
@@ -1186,10 +1311,10 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \begin{frame}[fragile]
 \frametitle{Annahmen und Probleme}
 \begin{itemize}
-\item Zentrale Annahme des DID-Ansatzes:
+\item[ ] Zentrale Annahme des DID-Ansatzes:
 \item Commond Trend Assumption: Ohne den Entdeckerfonds würden sich die Zielvariablen in der Treatment- und Kontrollgruppe mit dem gleichen Trend entwickeln
 \linebreak
-\item Potentielle Probleme:
+\item[ ] Potentielle Probleme:
 \item Verletzung der Common Trend Assumption
 \item Selection bias / Endogenität: Nicht zufällig, welche Einrichtungen am Entdeckerfonds teilnehmen
 \item [$\Rightarrow$] Implementierung von Kontrollvariablen, die sich auf die Eigenschaften der geförderten Einrichtungen beziehen
@@ -1202,7 +1327,7 @@ RMSE                & 1.02         & 8.61     & 1.01         & 9.00       & 0.82
 \frametitle{Alltagskompetenzen}
 \begin{table}
 \begin{center}
-\scalebox{0.9}{
+\scalebox{0.8}{
 \begin{tabular}{l c c c c }
 \\[-1.8ex]\hline
 & \multicolumn{4}{c}{\textit{Abhängige Variable:}} \\
@@ -1242,7 +1367,7 @@ weeklyCooks &           & $0.166^{**}$ &           & $0.162^{**}$ \\
 \frametitle{Selbstwertgefühl}
 \begin{table}
 \begin{center}
-\scalebox{0.9}{
+\scalebox{0.8}{
 \begin{tabular}{l c c c c }
 \\[-1.8ex]\hline
 & \multicolumn{4}{c}{\textit{Abhängige Variable:}} \\
@@ -1260,6 +1385,11 @@ totalCost   &           & $0.000$   &           & $0.000$      \\
 weeklyCooks &           & $0.036$   &           & $0.037$      \\
             &           & $(0.069)$ &           & $(0.069)$    \\
 \hline
+ID fixed effects       & $Yes$     & $Yes$     & $Yes$     & $Yes$        \\
+Year fixed effects     & $Yes$     & $Yes$     & $Yes$     & $Yes$        \\
+Number of observations & $428$     & $410$     & $428$     & $410$        \\
+R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
+\hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$, $^{**}p<0.05$, $^*p<0.1$}}
 \end{tabular}
 }
@@ -1273,14 +1403,19 @@ weeklyCooks &           & $0.036$   &           & $0.037$      \\
 \begin{itemize}
 \item Hauptresultat: Der Effekt des Entdeckerfonds auf das Selbstwertgefühl der Kinder und Jugendlichen ist negativ und teilweise statistisch signifikant
 \linebreak
-\item Mögliche Gründe:
+\item [ ] Mögliche Gründe:
 \item Die Anzahl der Beobachtungseinheiten in der Kontrollgruppe ist gering
 \item Die Fragenbögen werden nicht direkt von den Kindern und Jugendlichen beantwortet, sondern von den Betreuern der geförderten Einrichtungen
+<<<<<<< HEAD
 \item Die Skalierung der Zielvariable \glqq Selbstwertgefühl\grqq führt zu geringer Variation
+=======
+\item Die Skalierung der Zielvariable \glqq Selbstwertgefühl\grqq{} führt zu geringer Variation
+>>>>>>> a80e31f272a49038f595690850e54c1bfe5e498e
 \item [$\Rightarrow$] Daher sollte dieses Ergebnis nicht überinterpretiert werden
 \end{itemize}
 \end{frame}
 
+<<<<<<< HEAD
 \begin{frame}
 \frametitle{Statistisches Lob für CHILDREN}
 \begin{itemize}
@@ -1290,14 +1425,24 @@ weeklyCooks &           & $0.036$   &           & $0.037$      \\
 \item<4-> Fragebogen wird automatisch ausgefüllt $\Rightarrow$ wenige fehlende Werte
 \end{itemize}
 \end{frame}
+=======
+>>>>>>> a80e31f272a49038f595690850e54c1bfe5e498e
 
 \begin{frame}[fragile]
 \frametitle{Empfehlungen für CHILDREN}
 \begin{itemize}
+<<<<<<< HEAD
 \item[a)] Datenstruktur:
 \item[b)] Auswahl der Variablen: Ähnliche Variablen durch zugrundeliegende ersetzen, anhand von Faktoranalyse oder Partition 
 \item[c)] Datenerhebung: Ordinale Variablen an sich kein Problem, Ersetzung durch metrische (in Prozent) nur sinnvoll, wenn dadurch nicht häufiger fehlende Werte
 \item[d)] Interventionen: Noch stärkeres Gewicht auf gesunder Ernährung in Einrichtungen
+=======
+\item[a)] Datenstruktur und -erhebung:
+\item Kinder und Jugendliche direkt befragen
+\item Einheitliche Variablen, die jedes Jahr erfragt werden
+\item Elektronische Fragebögen und Datenerhebung
+\item[b)] Auswahl der Variablen:
+>>>>>>> a80e31f272a49038f595690850e54c1bfe5e498e
 \end{itemize}
 \end{frame}
 
