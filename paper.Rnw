@@ -353,8 +353,13 @@ dfactorm = readRDS("./ANALYSIS/Tables/factordaytodayskillsmeals.Rds")
 dfactort = readRDS("./ANALYSIS/Tables/factordaytodayskillstrips.Rds")
 
 
+<<<<<<< HEAD
 texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association Between Everyday Expertise and Subsidy per Beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)", "(6)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
 {\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\ Model (1): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, simple linear model, estimated with OLS\\\\ Model (5): dependent variable: share of beneficiaries with with broadened everyday expertise in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ Model (6): dependent variable: share of beneficiaries with with broadened everyday expertise in the Trips program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'DayToDaySkillsRegressions', bookmarks = TRUE)
+=======
+texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Association between everyday expertise and subsidy per beneficiary", custom.model.names = c("(1)", "(2)", "(3)", "(4)", "(5)", "(6)"), scalebox = 0.8, custom.note = "\\parbox{\\linewidth}
+{\\vspace{2pt} realSubsidyPerBeneficiary: subsidy per beneficiary of Meals program in 2015 EUR \\\\ realTripsSubsidyPerBeneficiary: subsidy per beneficiary of Trips program in 2015 EUR \\\\ Model (1): dependent variable: share of beneficiaries with broadened everyday expertise in the Lunch program, original data set, simple linear model, estimated with OLS \\\\ Model (2): dependent variable: share of beneficiaries with broadened everyday expertise in the Trips program, original data set, simple linear model, estimated with OLS \\\\ Model (3): dependent variable: share of beneficiaries with broadened everyday expertise in the Lunch program, imputed data set, simple linear model, estimated with OLS \\\\ Model (4): dependent variable: share of beneficiaries with broadened everyday expertise in the Trips program, imputed data set, simple linear model, estimated with OLS\\\\ Model (5): dependent variable: share of beneficiaries with broadened everyday expertise in the Lunch program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ Model (6): dependent variable: share of beneficiaries with broadened everyday expertise in the Trips program, imputed data set, linear model with extracted factor scores as controls, estimated with OLS \\\\ All regressions are estimated with robust standard errors %stars.}", caption.above = TRUE, label = 'DayToDaySkillsRegressions', bookmarks = TRUE)
+>>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
 
 
 
@@ -671,7 +676,11 @@ A summary of the remaining models:
 lessIllOdds <- readRDS("./ANALYSIS/Tables/lessIllProp.Rds")
 
 
+<<<<<<< HEAD
 stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and the Share of Beneficiaries Who Are Less Frequently Ill", align = TRUE, label = "lessIllOdds")
+=======
+stargazer(lessIllOdds@coef3, title= "Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries who are less frequently ill", align = TRUE, label = "lessIllOdds")
+>>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
 
 
 @
@@ -680,28 +689,44 @@ stargazer(lessIllOdds@coef3, title= "Propodss Regression Results: Association of
 
 dietaryOdds <- readRDS("./ANALYSIS/Tables/DietaryProp.Rds")
 
+<<<<<<< HEAD
 stargazer(dietaryOdds@coef3, title= "Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and Share of Beneficiaries with Expanded Dietary Knowledge", align = TRUE, label = "dietaryOdds")
+=======
+stargazer(dietaryOdds@coef3, title= "Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and share of beneficiaries with expanded dietary knowledge", align = TRUE, label = "dietaryOdds")
+>>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
 @
 
 <<appreciateOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 appreciateOdds <- readRDS("./ANALYSIS/Tables/AppreciateProp.Rds")
 
+<<<<<<< HEAD
 stargazer(appreciateOdds@coef3, title= "Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and the Share of Beneficiaries with Increased Appreciation for a Healthy Diet", align = TRUE, label = "appreciateOdds")
+=======
+stargazer(appreciateOdds@coef3, title= "Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries with increased appreciation for a healthy diet", align = TRUE, label = "appreciateOdds")
+>>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
 @
 
 <<selfworthOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 selfworthOdds <- readRDS("./ANALYSIS/Tables/selfworthProp.Rds")
 
+<<<<<<< HEAD
 stargazer(selfworthOdds@coef3, title= "Propodss Regression Results: Association of Subsidy for Meals Program in 2015 EUR and the Share of Beneficiaries with Improved Self-worth", align = TRUE, label = "selfworthOdds")
+=======
+stargazer(selfworthOdds@coef3, title= "Propodds Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with improved self-worth", align = TRUE, label = "selfworthOdds")
+>>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
 @
 
 <<dayToDayOdds, echo=FALSE, results='asis', message=FALSE>>=
 
 dayToDayOdds <- readRDS("./ANALYSIS/Tables/dayToDayProb.Rds")
 
+<<<<<<< HEAD
 stargazer(dayToDayOdds@coef3, title= "Propodss Regression Results: Association of Subsidy for Meals program in 2015 EUR and the Share of Beneficiaries with Broadened Everyday Expertise", align = TRUE, label = "dayToDayOdds")
+=======
+stargazer(dayToDayOdds@coef3, title= "Propodds Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with broadened everyday expertise", align = TRUE, label = "dayToDayOdds")
+>>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
 @
 
 \subsection{A3: Partition}
@@ -770,8 +795,8 @@ totalCost              &           & $0.001^{**}$ &           & $0.001^{*}$  \\
 weeklyCooks            &           & $0.166^{**}$ &           & $0.162^{**}$ \\
                        &           & $(0.022)$    &           & $(0.027)$    \\
 \hline
-ID fixed effects       & $YES$     & $YES$        & $YES$     & $YES$        \\
-Year fixed effects     & $YES$     & $YES$        & $YES$     & $YES$        \\
+ID fixed effects       & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
+Year fixed effects     & $Yes$     & $Yes$        & $Yes$     & $Yes$        \\
 Number of observations & $428$     & $410$        & $428$     & $410$        \\
 R$^2$                  & $0.475$   & $0.490$      & $0.476$   & $0.491$      \\
 \hline
@@ -801,8 +826,8 @@ totalCost              &           & $0.000$   &           & $0.000$      \\
 weeklyCooks            &           & $0.036$   &           & $0.037$      \\
                        &           & $(0.609)$ &           & $(0.591)$    \\
 \hline
-ID fixed effects       & $YES$     & $YES$     & $YES$     & $YES$        \\
-Year fixed effects     & $YES$     & $YES$     & $YES$     & $YES$        \\
+ID fixed effects       & $Yes$     & $Yes$     & $Yes$     & $Yes$        \\
+Year fixed effects     & $Yes$     & $Yes$     & $Yes$     & $Yes$        \\
 Number of observations & $428$     & $410$     & $428$     & $410$        \\
 R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 \hline
@@ -815,6 +840,7 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 \end{table}
 
 
+<<<<<<< HEAD
 % %\section{Division of tasks}
 % 
 % Data preparation, fundamental dynamics: everybody\\
@@ -823,6 +849,40 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 % 
 % 
 % \section{Ehrenwörtliche Erklärung aller Teilnehmer}
+=======
+\subsection{A5: Placebo test}
+
+\begin{figure}
+  \caption{Trend of weekly cooks}
+  \label{figureWeeklyCooks}
+
+<<Weekly cooks, echo=FALSE>>=
+figureWeeklyCooks = readRDS("./ANALYSIS/GRAPHS/PAPER/plot_weeklyCooks.Rds")
+print(figureWeeklyCooks)
+@
+
+\floatfoot{Note: The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to weekly cooks they offered. The time trend of the average answers of the organizations in the treatment group is characterised by the solid red line, the answers of the control group by the dotted blue line. Additionally, the linear trends of both groups are included as the straight lines.}
+\end{figure}
+
+\begin{figure}
+  \caption{Trend of monthly cooks}
+  \label{figureMonthlyCooks}
+
+<<Monthly cooks, echo=FALSE>>=
+figureMonthlyCooks = readRDS("./ANALYSIS/GRAPHS/PAPER/plot_monthlyCooks.Rds")
+print(figureMonthlyCooks)
+@
+
+\floatfoot{Note: The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to monthly cooks they offered. The time trend of the average answers of the organizations in the treatment group is characterised by the solid red line, the answers of the control group by the dotted blue line. Additionally, the linear trends of both groups are included as the straight lines.}
+\end{figure}
+
+\section{Division of tasks}
+
+Data preparation, fundamental dynamics: everybody\\
+Factor analysis, general regressions, partition, cumulative odds model: Laura Jepsen and Rafael Schütz\\
+DiD estimations and time series: Laura Huber, Jonathan Kirschner, and Yannick Zurl
+\section{Ehrenwörtliche Erklärung aller Teilnehmer}
+>>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
 
 
 \end{document}
