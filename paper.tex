@@ -1,3 +1,10 @@
+% in Terminal enter
+% Rscript -e "library(knitr); knit('paper.Rnw')"
+% pdflatex paper
+% biber paper
+% pdflatex paper
+% pdflatex paper
+
 % IMPORTANT
  
 % Install tex distribution
@@ -109,9 +116,11 @@
 \usepackage{lscape}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
-\usepackage[backend=biber, bibstyle=apa, citestyle=authoryear]{biblatex}
+% bibstyle=apa, citestyle=authoryear
+\usepackage[backend=biber, style=apa]{biblatex}
 \usepackage{floatrow}
 \usepackage{booktabs}
+\usepackage[ngerman, english]{babel}
 % \usepackage{bookmark}
 \usepackage{rotating}
 \usepackage{dcolumn}
@@ -166,7 +175,7 @@ Ludwig-Maximilians-Universität Munich
 \begin{document}
 
 % \begin{titlepage}
-\maketitle
+% \maketitle
 % \end{titlepage}
 
 \tableofcontents
@@ -184,7 +193,7 @@ This study describes the analysis of the data from the non-profit organisation '
 CHILDREN for a better World e.V. is a non-profit organization supporting social institutions for children and adolescents across Germany, such as youth centers. Their goal is to foster equality of opportunities for the youth in Germany. CHILDREN supports poor and disadvantaged families and young people in socially problematic areas. Furthermore, they fight child poverty and encourage the youth to engage in society. We call the institutions funded by CHILDREN organizations in the following. Organizations have to apply for funding from CHILDREN each year again. In the application process, CHILDREN requires the applicants to answer a survey which contains questions about outcomes related to CHILDREN’s programs as well as general information about the organization such as the yearly budget.
 CHILDREN provided us with data from two of its flagship programs: Mittagstisch (we refer to this as Meals program) and Entdeckerfonds (Trips program). The organizations use money from the Meals program to finance meals, from breakfast to dinner, that they sell at concessionary prices to the children and adolescents that visit them. In the following, we call these children and youth who ultimately profit from CHILDREN's grants beneficiaries. The organizations also use money from the Trips program to make trips to nearby places usually unknown to the beneficiaries.  
 
-Previous research shows, that the childhood and youth is central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Children from parents with lower income and lower educational attainment have typically a lower weight at birth and are born in a later week of gestation, which are indicators for bad initial conditions, as shown by \textcite{Case.2002}. Children that grow up in families with a low socio-economic status are often less mobile and more likely to stay amongst themselves. This could have a negative influence on their character development. For example, \textcite{Chetty.2014} investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of \textcite{Kosse.2020} provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could result in a significant and persistent increase in the prosociality of elementary school children, with regard to prosocial role models and intense social interactions. \textcite{Heckman.2010} investigated a preschool education program in the US. He shows that an investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.  
+Previous research shows that childhood and youth are central in development of character traits and future opportunities. Factors like education, stable family conditions, social contacts and mobility shape children and adolescents for their further life. Children from parents with lower income and lower educational attainment have typically a lower weight at birth and are born in a later week of gestation \parencite{Deckers.27.04.2015}, which are indicators for bad initial conditions, as shown by \textcite{Case.2002}. Children that grow up in families with a low socio-economic status are often less mobile and more likely to stay amongst themselves. This could have a negative influence on their character development. For example, \textcite{Chetty.2014} investigate for the US, that areas with more mobility are highly correlated with better primary schools, greater social capital and more stable family conditions. Furthermore, the result of \textcite{Kosse.2020} provides causal evidence on the effect of social environment on prosocial attitudes. Being supported by a mentor could result in a significant and persistent increase in the prosociality of elementary school children, with regard to prosocial role models and intense social interactions. \textcite{Heckman.2010} investigated a preschool education program in the US. He shows that an investment in the improvement of the childhood conditions could have a high rate of return, even by controlling for possible distortions.  
 
 The aim of our project paper is to test whether CHILDREN’s programs positively influence the beneficiaries. We look at the associations between the subsidy CHILDREN provides and the share of beneficiaries with broadened everyday expertise and improved selfworth. Furthermore, we analyze the association between the measure of the healthiness of the meals the organizations offer and health-relevant outcomes of beneficiaries. The aim of our applied differences-in-differences estimation is to test whether the activities offered by the Trips program have a positive effect on the participating children, measured through a change in selfworth and everyday expertise.
 We find no profound connection between the subsidy CHILDREN provides and the effectiveness of the organizations regarding the share of beneficiaries with broadened everyday expertise and improved selfworth. On the other hand, focusing on health relevant variables, we obtain a positive association between the index of healthy diet criteria fulfilled by organizations and the share of beneficiaries who are less frequently ill. By using the differences-in-differences (DID) strategy, the estimates show that the participation in the Trips program has a positive, but insignificant effect on the everyday expertise of beneficiaries. Strikingly, we observe a negative association between participating in the Trips program and selfworth. However, the results of the DID estimation should not be overstated because of the small sample size.
@@ -202,13 +211,8 @@ Many organizations do not answer all questions CHILDREN poses. We create a seper
 In this section, we give an overview of the dynamics of CHILDREN's two flagship programs. We focus on the number of estimated ultimate beneficiaries in both programs, median total subsidy, median subsidy per institution, and median subsidy per beneficiary. We also look at selected outcomes, i.e. those related to health as well as self-worth and day-to-day skills. We have converted all nominal monetary variables into 2015 euros, using price indices from the Federal Statistical Office of Germany (Statistisches Bundesamt). We deflate (requested) grants as well as organizations' total expenses for the Meals program  with the price index related to food and non-alcoholic beverages (in German: Nahrungsmittel und alkoholfreie Getränke) and (requested) grants towards the Trips program with the price index for leisure, entertainment, and culture (in German: Freizeit, Unterhaltung und Kultur). These are only available after logging in on DESTATIS. The organizations also gave information about their total yearly budget. We inflate this with the general price index.
 
 
-<<<<<<< HEAD
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon Mar 02 10:59:09 2020
-=======
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Mar  2 10:26:01 2020
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
+% Mon Mar 02 16:10:45 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccccc}
@@ -469,7 +473,7 @@ RMSE                           & 1.00     & 1.00     & 1.00     & 1.00     & 0.7
 
 
 \begin{table}
-\caption{Association Between Everyday Expertise and Subsidy per Beneficiary}
+\caption{Association between everyday expertise and subsidy per beneficiary}
 \begin{center}
 \scalebox{0.8}{
 \begin{tabular}{l c c c c c c }
@@ -824,7 +828,7 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 \floatfoot{Notes: The Table reports OLS results. Observations are at the organization level. Full details of each control variable are provided in the text. The outcome variable is standardized. Below each coefficient the robust standard errors are reported in parentheses.}
 \end{table}
 
-Strinkinlgy, all columns of Table \ref{table:coefficients2} report a negative treatment effect, regardless of the definition of the treatment variable or the inclusion of organization specific controls. In column (1)-(3), the average treatment effect is insignificant. However, the estimated effect is significant if we use the second specification of the treatment status and include controls in column (4). This indicates that participating in the Trips program would negatively influence the selfworth of the children and adolescents. This surprising result contradicts our hypothesis that the participation in the Trips program positively influences the selfworth of the beneficiaries. As previously mentioned, the number of observation units in both treatment and control group is relatively small. Therefore, this unexpected negative effect of the Trips program on selfworth should not be overstated. Moreover, another possible explanation for the observed results could be that the survey questions are answered by employees of an organization and not by the children and adolescents themselves. It might be difficult for the respondents of the survey to assess children specific characteristics, such as selfworth. During our visit in Augsburg, the employees confirmed that it is challenging to evaluate the variables asked in the survey for all participants in the entire social institution, especially with a lot of variation in attendance. One potential solution for this problem could be to directly ask the children and adolescents. Data on the individual level might be more precise because the children could assess themselves better. When using variables on the level of beneficiaries, we might observe a positive effect of the Trips program on selfworth.
+Strikingly, all columns of Table \ref{table:coefficients2} report a negative treatment effect, regardless of the definition of the treatment variable or the inclusion of organization specific controls. In column (1)-(3), the average treatment effect is insignificant. However, the estimated effect is significant if we use the second specification of the treatment status and include controls in column (4). This indicates that participating in the Trips program would negatively influence the selfworth of the children and adolescents. This surprising result contradicts our hypothesis that the participation in the Trips program positively influences the selfworth of the beneficiaries. As previously mentioned, the number of observation units in both treatment and control group is relatively small. Therefore, this unexpected negative effect of the Trips program on selfworth should not be overstated. Moreover, another possible explanation for the observed results could be that the survey questions are answered by employees of an organization and not by the children and adolescents themselves. It might be difficult for the respondents of the survey to assess children specific characteristics, such as selfworth. During our visit in Augsburg, the employees confirmed that it is challenging to evaluate the variables asked in the survey for all participants in the entire social institution, especially with a lot of variation in attendance. One potential solution for this problem could be to directly ask the children and adolescents. Data on the individual level might be more precise because the children could assess themselves better. When using variables on the level of beneficiaries, we might observe a positive effect of the Trips program on selfworth.
 As reported in the summary statistics, the outcome variable shows a low variation. This results from the fact that, most of the time, organizations give the answer “all children” and “most children” when asked about the improvement of children’s selfworth. In general, it is more unlikely to find significant effects if the variation of the dependent variable is low. Therefore, one challenge for further analysis is to ask for variables that have a potentially higher variation.
 
 \section{Conclusion}
@@ -942,17 +946,10 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mo., Mär 02, 2020 - 10:59:18
+% Date and time: Mo, Mrz 02, 2020 - 16:10:54
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and the Share of Beneficiaries Who Are Less Frequently Ill} 
-=======
-% Date and time: Mo, Mär 02, 2020 - 10:26:06
-% Requires LaTeX packages: dcolumn 
-\begin{table}[!htbp] \centering 
-  \caption{Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries who are less frequently ill} 
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
   \label{lessIllOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -970,17 +967,10 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mo., Mär 02, 2020 - 10:59:18
+% Date and time: Mo, Mrz 02, 2020 - 16:10:54
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and Share of Beneficiaries with Expanded Dietary Knowledge} 
-=======
-% Date and time: Mo, Mär 02, 2020 - 10:26:06
-% Requires LaTeX packages: dcolumn 
-\begin{table}[!htbp] \centering 
-  \caption{Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and share of beneficiaries with expanded dietary knowledge} 
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
   \label{dietaryOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -998,17 +988,10 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mo., Mär 02, 2020 - 10:59:18
+% Date and time: Mo, Mrz 02, 2020 - 16:10:54
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of Index of Healthy Diet Criteria Fulfilled in Organization's Menu and the Share of Beneficiaries with Increased Appreciation for a Healthy Diet} 
-=======
-% Date and time: Mo, Mär 02, 2020 - 10:26:06
-% Requires LaTeX packages: dcolumn 
-\begin{table}[!htbp] \centering 
-  \caption{Propodds Regression Results: Association of index of healthy diet criteria fulfilled in organization's menu and the share of beneficiaries with increased appreciation for a healthy diet} 
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
   \label{appreciateOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -1026,17 +1009,10 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mo., Mär 02, 2020 - 10:59:18
+% Date and time: Mo, Mrz 02, 2020 - 16:10:54
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of Subsidy for Meals Program in 2015 EUR and the Share of Beneficiaries with Improved Self-worth} 
-=======
-% Date and time: Mo, Mär 02, 2020 - 10:26:06
-% Requires LaTeX packages: dcolumn 
-\begin{table}[!htbp] \centering 
-  \caption{Propodds Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with improved self-worth} 
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
   \label{selfworthOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -1054,17 +1030,10 @@ A summary of the remaining models:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-<<<<<<< HEAD
-% Date and time: Mo., Mär 02, 2020 - 10:59:18
+% Date and time: Mo, Mrz 02, 2020 - 16:10:54
 % Requires LaTeX packages: dcolumn 
 \begin{table}[!htbp] \centering 
   \caption{Propodss Regression Results: Association of Subsidy for Meals program in 2015 EUR and the Share of Beneficiaries with Broadened Everyday Expertise} 
-=======
-% Date and time: Mo, Mär 02, 2020 - 10:26:06
-% Requires LaTeX packages: dcolumn 
-\begin{table}[!htbp] \centering 
-  \caption{Propodds Regression Results: Association of subsidy for Meals program in 2015 EUR and the share of beneficiaries with broadened everyday expertise} 
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
   \label{dayToDayOdds} 
 \begin{tabular}{@{\extracolsep{5pt}} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
 \\[-1.8ex]\hline 
@@ -1094,13 +1063,8 @@ Table \ref{partitiontrips} does the same for the variables of the Trips program.
 
 It is our impression that the partition technique results in a highly intuitive dimensionality reduction.
 
-<<<<<<< HEAD
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon Mar 02 10:59:18 2020
-=======
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Mar  2 10:26:06 2020
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
+% Mon Mar 02 16:10:55 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -1141,13 +1105,8 @@ It is our impression that the partition technique results in a highly intuitive 
 \caption{Partition of Outcomes, Meals} 
 \label{partitionmeals}
 \end{table}
-<<<<<<< HEAD
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon Mar 02 10:59:18 2020
-=======
 % latex table generated in R 3.6.2 by xtable 1.8-4 package
-% Mon Mar  2 10:26:06 2020
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
+% Mon Mar 02 16:10:55 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -1250,7 +1209,7 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 \end{table}
 
 
-<<<<<<< HEAD
+
 % %\section{Division of tasks}
 % 
 % Data preparation, fundamental dynamics: everybody\\
@@ -1259,8 +1218,8 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 % 
 % 
 % \section{Ehrenwörtliche Erklärung aller Teilnehmer}
-=======
-\subsection{A5: Placebo test}
+
+\subsection{A5: Placebo Tests}
 
 \begin{figure}
   \caption{Trend of weekly cooks}
@@ -1297,14 +1256,5 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 
 \floatfoot{Note: The x-axis represents the years from 2012 to 2018, the year 2011 is left out because the trips program starts in 2012. The y-axis represents the average answers from the organizations regarding to monthly cooks they offered. The time trend of the average answers of the organizations in the treatment group is characterised by the solid red line, the answers of the control group by the dotted blue line. Additionally, the linear trends of both groups are included as the straight lines.}
 \end{figure}
-
-\section{Division of tasks}
-
-Data preparation, fundamental dynamics: everybody\\
-Factor analysis, general regressions, partition, cumulative odds model: Laura Jepsen and Rafael Schütz\\
-DiD estimations and time series: Laura Huber, Jonathan Kirschner, and Yannick Zurl
-\section{Ehrenwörtliche Erklärung aller Teilnehmer}
->>>>>>> 540a226a988c6e40734ba62bbfaebf91bbf94dc2
-
 
 \end{document}
