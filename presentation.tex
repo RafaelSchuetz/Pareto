@@ -257,8 +257,13 @@ Ludwig-Maximilians-Universität München}
 
 \begin{frame}[fragile]
 \frametitle{Zusammenfassende Statistiken}
+<<<<<<< HEAD
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar  2 13:12:28 2020
+=======
 % latex table generated in R 3.5.1 by xtable 1.8-4 package
 % Mon Mar 02 12:29:16 2020
+>>>>>>> 9b71fd37e484f23260284bf2048d249721a4b683
 \begin{table}[ht]
 \centering
 \scalebox{0.7}{
@@ -877,8 +882,13 @@ RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     & $0.8
 
 \begin{frame}[fragile]
 \frametitle{Partition Mittagstisch}
+<<<<<<< HEAD
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar  2 13:12:33 2020
+=======
 % latex table generated in R 3.5.1 by xtable 1.8-4 package
 % Mon Mar 02 12:29:24 2020
+>>>>>>> 9b71fd37e484f23260284bf2048d249721a4b683
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -925,8 +935,13 @@ RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     & $0.8
 
 \begin{frame}
 \frametitle{Partition Entdeckerfonds}
+<<<<<<< HEAD
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar  2 13:12:33 2020
+=======
 % latex table generated in R 3.5.1 by xtable 1.8-4 package
 % Mon Mar 02 12:29:24 2020
+>>>>>>> 9b71fd37e484f23260284bf2048d249721a4b683
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}
@@ -961,13 +976,15 @@ RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     & $0.8
 
 \end{frame}
 
+
 \section{Effekte des Entdeckerfonds}
 
 \begin{frame}[fragile]
 \frametitle{Fragestellung}
 \begin{itemize}
 \item Welchen Effekt besitzt die Teilnahme einer sozialen Einrichtung am CHILDREN Entdeckerfonds auf die teilnehmenden Kinder und Jugendlichen?
-\item Herausforderung: Identifizieren einer geeigneten empirischen Methode, um die Wirkungseffekte des CHILDREN Entdeckerfonds zu bestimmmen 
+\item Herausforderung: Identifizieren einer geeigneten empirischen Methode, um die Wirkungseffekte des CHILDREN Entdeckerfonds zu bestimmmen
+\linebreak
 \item Hypothese: Die Teilnahme einer sozialen Einrichtung am CHILDREN Entdeckerfonds besitzt einen positiven Effekt auf die Alltagskompetenzen und das Selbstwertgefühl der Kinder und Jugendlichen
 \end{itemize}
 \end{frame}
@@ -975,17 +992,64 @@ RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     & $0.8
 \subsection{Idee}
 
 \begin{frame}[fragile]
-\frametitle{Idee}
+\frametitle{Hintergrund}
+\begin{itemize}
+\item Alle geförderten Einrichtungen erhalten finanzielle Mittel für die Bereitstellung des CHILDREN Mittagstischs
+\item Aber: Nicht jede soziale Einrichtung nimmt am CHILDREN Entdeckerfonds teil, um den Kindern und Jugendlichen Ausflüge und Aktivitäten anzubieten
+\linebreak
+\item [$\Rightarrow$] Der Unterschied zwischen den Einrichtungen hinsichtlich der Teilnahme am CHILDREN Entdeckerfonds wird dazu verwendet, um die Wirkung des Programms zu messen
+\end{itemize}
 \end{frame}
 
 \subsection{Empirische Methode}
 
 \begin{frame}[fragile]
-\frametitle{Definition der Treatmentgruppe}
+\frametitle{Einteilung in Treatment- und Kontrollgruppe}
+\begin{itemize}
+\item Treatmentgruppe: Alle Einrichtungen, die sowohl am CHILDREN Mittagstisch als auch am CHILDREN Entdeckerfonds teilnehmen
+\item Kontrollgruppe: Alle Einrichtungen, die nicht am CHILDREN Entdeckerfonds teilnehmen, sondern nur durch den CHILDREN Mittagtisch gefördert werden
+\item Um die Einrichtungen in Treatment- und Kontrollgruppe einzuteilen, wurde analysiert, ob bei den Survey-Fragen zum Entdeckerfonds in einem bestimmten Jahr Angaben gemacht wurden
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Treatment-Variable}
+\begin{itemize}
+\item Um die Einrichtungen in Treatment- und Kontrollgruppe einzuteilen, wird eine Dummy-Variable konstruiert
+\item $TreatEF_{it}$ = 1, wenn Einrichtung $i$ im Jahr $t$ am Entdeckerfonds teilgenommen hat und sich somit in der Treatmentgruppe befindet
+\item $TreatEF_{it}$ = 0, wenn Einrichtung $i$ im Jahr $t$ nicht am Entdeckerfonds teilgenommen hat und sich somit in der Kontrollgruppe befindet
+\item Die Kontrollgruppe ist wesentlich kleiner als die Treatmentgruppe
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variante 1}
+\begin{itemize}
+\item "Einmal Treatment, immer Treatment"
+\item Sobald eine Einrichtung am Entdeckerfonds teilgenommen hat, gilt $TreatEF_{it}$ = 1 für das Jahr der ersten Förderung durch den Entdeckerfonds und alle darauffolgenden Jahre
+\item [$\Rightarrow$] Kein Wechsel von der Treatmentgruppe in die Kontrollgruppe möglich
+\item Solange eine Einrichtung keine Förderung vom CHILDREN Entdeckerfonds erhält, befindet sich diese in der Kontrollgruppe
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variante 2}
+\begin{itemize}
+\item Zeit-flexibler Treatment-Dummy
+\item Eine Einrichtung befindet sich im Jahr $t$ nur dann in der Treatmentgruppe, wenn diese tatsächlich Fördergelder vom CHILDREN Entdeckerfonds erhalten hat
+\item [$\Rightarrow$] Wechsel von der Treatmentgruppe in die Kontrollgruppe möglich
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Zielvariable}
+\begin{itemize}
+\item Problem: Keine Variablen zum Entdeckerfonds für Einrichtungen, die nicht am Entdeckerfonds teilgenommen haben (= Kontrollgruppe) 
+\item Verwendete Zielvariablen vom Mittagtisch: Alltagskompetenzen und Selbstwertgefühl
+\item [$\Rightarrow$] Anwendbar auf den CHILDREN Mittagstisch und den CHILDREN Entdeckerfonds 
+\item [$\Rightarrow$] Über den gesamten Beobachtungszeitraum verfügbar
+\item [$\Rightarrow$] Die Alltagskompetenzen und das Selbstwertgefühl der Kinder und Jugendlichen könnten dadurch beeinflusst werden, dass eine Einrichtung am Entdeckerfonds teilnimmt
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -998,6 +1062,35 @@ RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     & $0.8
 
 \begin{frame}[fragile]
 \frametitle{DID - Schätzung}
+\begin{itemize}
+\item Empirische Methode: Differences-in-Differences (DID)
+\item Der DID-Schätzer misst den Effekt des Entdeckerfonds, indem die Veränderung der abhängigen Variable über die Zeit in der Treatmentgruppe mit der Veränderung in der Kontrollgruppe verglichen wird
+\linebreak
+\item Regressionsgleichung:
+\end{itemize}
+
+\begin{equation}
+\label{DID equation}
+  Y_{it} = \alpha + \beta \cdot TreatEF_{it} + \gamma_{i} + \delta_{t} + \epsilon_{it}
+\end{equation}
+
+\begin{itemize}
+\item $\gamma_{i}$ = Einrichtung Fixed Effects, $\delta_{t}$ = Year Fixed Effects
+\item Der Regressionskoeffizient $\beta$ entspricht dem DID-Schätzer
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Annahmen und Probleme}
+\begin{itemize}
+\item Zentrale Annahme des DID-Ansatzes:
+\item Commond Trend Assumption: Ohne den Entdeckerfonds würden sich die Zielvariablen in der Treatment- und Kontrollgruppe mit dem gleichen Trend entwickeln
+\linebreak
+\item Potentielle Probleme:
+\item Verletzung der Common Trend Assumption
+\item Selection bias / Endogenität: Nicht zufällig, welche Einrichtungen am Entdeckerfonds teilnehmen
+\item [$\Rightarrow$] Implementierung von Kontrollvariablen, die sich auf die Eigenschaften der geförderten Einrichtungen beziehen
+\end{itemize}
 \end{frame}
 
 \subsection{Ergebnisse}
@@ -1007,7 +1100,30 @@ RMSE                & $1.02$       & $8.61$   & $1.01$       & $9.00$     & $0.8
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Alltagskompetenzen}
+\begin{itemize}
+\item Das Vorzeichen des Effekts hängt von der Definition der Treatment-Variable ab
+\item Hauptresultat: Die Teilnahme einer Einrichtung am Entdeckerfonds besitzt keinen statistisch signifikanten Effekt auf die Alltagskompetenzen der Kinder und Jugendlichen
+\item Aber: Die Anzahl der Beobachtungseinheiten in der Kontrollgruppe ist sehr gering
+\item Wenn der Stichprobenumfang steigt, dann könnte der Effekt des Entdeckerfonds gegebenenfalls positiv und statistisch signifikant werden
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Selbstwertgefühl}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Selbstwertgefühl}
+\begin{itemize}
+\item Hauptresultat: Der Effekt des Entdeckerfonds auf das Selbstwertgefühl der Kinder und Jugendlichen ist negativ und teilweise statistisch signifikant
+\linebreak
+\item Mögliche Gründe:
+\item Die Anzahl der Beobachtungseinheiten in der Kontrollgruppe ist gering
+\item Die Fragenbögen werden nicht direkt von den Kindern und Jugendlichen beantwortet, sondern von den Betreuern der geförderten Einrichtungen
+\item Die Skalierung der Zielvariable führt zu geringerer Variation
+\item [$\Rightarrow$] Daher sollte dieses Ergebnis nicht überinterpretiert werden
+\end{itemize}
 \end{frame}
 
 \frame[allowframebreaks]{\frametitle{References}
