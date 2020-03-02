@@ -71,7 +71,15 @@ PartitionTable <- function(df,outcomes, threshold){
 }
 
 PartitionMeals <- PartitionTable(mergedDataImputeAll,outcomesMeals,.4)
+PartitionMeals <- PartitionMeals %>%
+    dplyr::rename(Meals_variable = variable,
+                  Meals_mappings = mapping,
+                  Meals_information = information)
 PartitionTrips <- PartitionTable(mergedDataImputeAll, outcomesTrips, .4)
+PartitionTrips <- PartitionTrips %>%
+    dplyr::rename(Trips_variable = variable,
+                  Trips_mapping = mapping,
+                  Trips_information = information)
 
 #PartitionTables.4 <- list(PartitionMeals.4, PartitionTrips.4)
 

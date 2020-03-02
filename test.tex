@@ -1,0 +1,174 @@
+% Rscript -e "library(knitr); knit('test.Rnw')"
+% pdflatex test
+% biber test
+% pdflatex test
+% pdflatex test
+
+
+\documentclass[12pt, a4paper, titlepage]{article}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+
+
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar 02 17:28:51 2020
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+  \hline
+ & Meals\_variable & Meals\_mappings & Meals\_information \\ 
+  \hline
+1 & participateMore & participateMore & 1.00 \\ 
+  2 & tasksLunch & tasksLunch & 1.00 \\ 
+  3 & ownIdeas & ownIdeas & 1.00 \\ 
+  4 & stayLonger & stayLonger & 1.00 \\ 
+  5 & dietaryKnowledge & dietaryKnowledge & 1.00 \\ 
+  6 & appreciateHealthy & appreciateHealthy & 1.00 \\ 
+  7 & foodCulture & foodCulture & 1.00 \\ 
+  8 & lessIll & lessIll & 1.00 \\ 
+  9 & betterTeamwork & betterTeamwork & 1.00 \\ 
+  10 & moreRegularSchoolVisits & moreRegularSchoolVisits & 1.00 \\ 
+  11 & addressProblems & addressProblems & 1.00 \\ 
+  12 & reduced\_var\_1 & moreConcentrated & 0.66 \\ 
+  13 & reduced\_var\_1 & moreBalanced & 0.66 \\ 
+  14 & reduced\_var\_2 & monthlyCooks & 0.42 \\ 
+  15 & reduced\_var\_2 & weeklyCooks & 0.42 \\ 
+  16 & reduced\_var\_2 & shoppers & 0.42 \\ 
+  17 & reduced\_var\_2 & easyDishes & 0.42 \\ 
+  18 & reduced\_var\_3 & dayToDaySkills & 0.43 \\ 
+  19 & reduced\_var\_3 & moreIndependent & 0.43 \\ 
+  20 & reduced\_var\_3 & selfworth & 0.43 \\ 
+  21 & reduced\_var\_3 & moreOpen & 0.43 \\ 
+  22 & reduced\_var\_3 & moreConfidence & 0.43 \\ 
+  23 & reduced\_var\_3 & proud & 0.43 \\ 
+  24 & reduced\_var\_4 & betterReading & 0.53 \\ 
+  25 & reduced\_var\_4 & betterNumbers & 0.53 \\ 
+  26 & reduced\_var\_4 & betterGrades & 0.53 \\ 
+  27 & reduced\_var\_5 & influenceHome & 0.41 \\ 
+  28 & reduced\_var\_5 & cookAtHome & 0.41 \\ 
+  29 & reduced\_var\_5 & askRecipes & 0.41 \\ 
+   \hline
+\end{tabular}
+\caption{Partition of Outcomes, Meals} 
+\label{partitionmeals}
+\end{table}
+% latex table generated in R 3.6.2 by xtable 1.8-4 package
+% Mon Mar 02 17:28:51 2020
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+  \hline
+ & Trips\_variable & Trips\_mapping & Trips\_information \\ 
+  \hline
+1 & tripsSuggestions & tripsSuggestions & 1.00 \\ 
+  2 & tripsDecisions & tripsDecisions & 1.00 \\ 
+  3 & tripsOrganization & tripsOrganization & 1.00 \\ 
+  4 & tripsCostCalculation & tripsCostCalculation & 1.00 \\ 
+  5 & tripsBudget & tripsBudget & 1.00 \\ 
+  6 & tripsMoney & tripsMoney & 1.00 \\ 
+  7 & tripsReview & tripsReview & 1.00 \\ 
+  8 & tripsPublicTransport & tripsPublicTransport & 1.00 \\ 
+  9 & tripsMobility & tripsMobility & 1.00 \\ 
+  10 & tripsAdditionalActivities & tripsAdditionalActivities & 1.00 \\ 
+  11 & tripsSelfworth & tripsSelfworth & 1.00 \\ 
+  12 & tripsFrustrationTolerance & tripsFrustrationTolerance & 1.00 \\ 
+  13 & reduced\_var\_1 & tripsSuccess & 0.68 \\ 
+  14 & reduced\_var\_1 & tripsSelfEfficacy & 0.68 \\ 
+  15 & reduced\_var\_2 & tripsNewPlaces & 0.60 \\ 
+  16 & reduced\_var\_2 & tripsNewCommunities & 0.60 \\ 
+  17 & reduced\_var\_2 & tripsNewIdeas & 0.60 \\ 
+  18 & reduced\_var\_2 & tripsSocialSkills & 0.60 \\ 
+  19 & reduced\_var\_3 & tripsSpecificSkills & 0.46 \\ 
+  20 & reduced\_var\_3 & tripsDayToDaySkills & 0.46 \\ 
+   \hline
+\end{tabular}
+\caption{Partition of Outcomes, Trips} 
+\label{partitiontrips}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+  \hline
+ & Trips\_variable & Trips\_mapping & Trips\_information \\ 
+  \hline
+1 & tripsSuggestions & tripsSuggestions & 1.00 \\ 
+  2 & tripsDecisions & tripsDecisions & 1.00 \\ 
+  3 & tripsOrganization & tripsOrganization & 1.00 \\ 
+  4 & tripsCostCalculation & tripsCostCalculation & 1.00 \\ 
+  5 & tripsBudget & tripsBudget & 1.00 \\ 
+  6 & tripsMoney & tripsMoney & 1.00 \\ 
+  7 & tripsReview & tripsReview & 1.00 \\ 
+  8 & tripsPublicTransport & tripsPublicTransport & 1.00 \\ 
+  9 & tripsMobility & tripsMobility & 1.00 \\ 
+  10 & tripsAdditionalActivities & tripsAdditionalActivities & 1.00 \\ 
+  11 & tripsSelfworth & tripsSelfworth & 1.00 \\ 
+  12 & tripsFrustrationTolerance & tripsFrustrationTolerance & 1.00 \\ 
+  13 & reduced\_var\_1 & tripsSuccess & 0.68 \\ 
+  14 & reduced\_var\_1 & tripsSelfEfficacy & 0.68 \\ 
+  15 & reduced\_var\_2 & tripsNewPlaces & 0.60 \\ 
+  16 & reduced\_var\_2 & tripsNewCommunities & 0.60 \\ 
+  17 & reduced\_var\_2 & tripsNewIdeas & 0.60 \\ 
+  18 & reduced\_var\_2 & tripsSocialSkills & 0.60 \\ 
+  19 & reduced\_var\_3 & tripsSpecificSkills & 0.46 \\ 
+  20 & reduced\_var\_3 & tripsDayToDaySkills & 0.46 \\ 
+   \hline
+\end{tabular}
+\caption{Partition of Outcomes, Trips} 
+\label{partitiontrips}
+\end{table}
+
+
+\end{document}
