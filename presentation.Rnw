@@ -235,8 +235,6 @@ Ludwig-Maximilians-Universität München}
 \end{table}
 \end{frame}
 
-\section{Summary Statistics und Fundamentale Dynamiken}
-
 \section{Zusammenfassende Statistiken}
 
 \subsection{Überblick: Entwickung der Anzahl der geförderten Einrichtungen}
@@ -424,6 +422,7 @@ xtable(loadings_FA_lessIll_DGECriteriaNo,
 \end{frame}
 
 \section{Partition}
+
 \begin{frame}[fragile]
 \frametitle{Alternative zu Faktoranalyse?}
 \begin{itemize}
@@ -474,7 +473,7 @@ print(xtable(partition_trips,
 \end{frame}
 
 
-\section{Effekte des Entdeckerfonds}
+
 
 \section[Zusammenhänge]{Zusammenhänge zwischen CHILDRENs Zuschüssen, dem DGE-Kriterium und ausgewählten Variablen}
 
@@ -626,7 +625,7 @@ texreg(list(ds, tds, dsI, tdsI, dfactorm, dfactort), caption = "Zusammenhang zwi
 \begin{frame}[fragile]
 \frametitle{Fragestellungen, Assoziationen zwischen:}
 \begin{itemize}
-\item Standardisierten Maß für gesundes Essen (DGE-Kriterium) und ausgewählte standardisierte gesundheitsrelevante Variablen
+\item Standardisiertes Maß für gesundes Essen (DGE-Kriterium) und ausgewählte standardisierte gesundheitsrelevante Variablen
 \begin{itemize}
 \item Anteil an Begünstigten, die seltener krank sind
 \item Anteil an Begünstigten, die ihr Ernährungswissen erweitert haben
@@ -722,7 +721,7 @@ texreg(list(aDGE, aDGEw, aDGE_i, aDGE_iw, appreciatef), caption = "Zusammenhang 
 \end{frame}
 
 
-
+\section{Effekte des Entdeckerfonds}
 
 \subsection{Idee}
 
@@ -829,7 +828,7 @@ print(DIDSelfworthplot, label = "DIDSelfworthplot")
 \end{equation}
 
 \begin{itemize}
-\item $\gamma_{i}$ = Einrichtung Fixed Effects, $\delta_{t}$ = Year Fixed Effects
+\item $\gamma_{i}$ = Einrichtungs-Fixed Effects, $\delta_{t}$ = Jahr-Fixed Effects
 \item Der Regressionskoeffizient $\beta$ entspricht dem DID-Schätzer
 \end{itemize}
 \end{frame}
@@ -959,9 +958,9 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 \item Kinder und Jugendliche direkt befragen
 \item Einheitliche Variablen, die jedes Jahr erfragt werden
 \item Elektronische Fragebögen und Datenerhebung
+\item Ordinale Variablen an sich kein Problem, Ersetzung durch metrische (in Prozent) nur sinnvoll, wenn dadurch nicht häufiger fehlende Werte
 \item[b)] Auswahl der Variablen: Ähnliche Variablen durch zugrundeliegende ersetzen, anhand von Faktoranalyse oder Partition 
-\item[c)] Datenerhebung: Ordinale Variablen an sich kein Problem, Ersetzung durch metrische (in Prozent) nur sinnvoll, wenn dadurch nicht häufiger fehlende Werte
-\item[d)] Interventionen: Noch stärkeres Gewicht auf gesunder Ernährung in Einrichtungen
+\item[c)] Interventionen: Noch stärkeres Gewicht auf gesunder Ernährung in Einrichtungen
 \end{itemize}
 \end{frame}
 
@@ -969,6 +968,12 @@ R$^2$                  & $0.475$   & $0.484$   & $0.474$   & $0.485$      \\
 		\tiny
 		\printbibliography
 }
+
+\begin{frame}
+
+Danke für die Zusammenarbeit!
+
+\end{frame}
 	
 \end{document}
 
