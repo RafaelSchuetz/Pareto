@@ -1,0 +1,1 @@
+Varimax, goal of analysis: minimize complexity of factors by maximizing variance of loadings on each factor
