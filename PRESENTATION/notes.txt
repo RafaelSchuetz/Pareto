@@ -1,0 +1,20 @@
+Varimax, goal of analysis: minimize complexity of factors by maximizing variance of loadings on each factor
+
+Jonathan Schluss 13:15
+3/62 Einrichtungen offene Kinder- und Jugendarbeit
+6/62 häufig 3 und 4 vergeben, nicht 2 und 3
+
+Laura J. Schluss 13:34
+lineares Modell
+10-12/62 reale Werte
+33-34/62 Fördersumme pro Begünstigter
+42/62 betonen, dass erst kein Zusammenhang, bei Gesundheit aber schon
+
+Yannick Schluss 13:43
+Zielvariablen nicht standardisiert
+
+Laura H.  13:53
+55/62 Weniger als 100 Beobachtungen?
+56/62 Auswirkung des Entdeckerfonds?
+
+
