@@ -1,0 +1,40 @@
+Gruppenarbeit & Kommunikation
+gute, angemessene, richtige Fragen & Besuch in Augsburg
+
+Datenarbeit
+kürzere und klarere Variablennamen
+andere Variablennamen in Präsentation, z.B. stat lessIll_ordered
+Übersicht: Inhalt Variable, in welchen Jahren erhoben, Bezeichnung in R files
+README file: MakeGather.R, MakeDiD.R, MakeAnalysis.R nicht enthalten (nochmal schicken)
+
+Analysekonzept & Datenauswertung
+verschiedene Methoden Dimensionsreduzierung
+verschiedene Methoden Imputation
+Diff in Diff: Treatment & Control-Gruppe Entdeckerfonds
+Limitationen in Arbeit und der Daten dargestellt 
+Grafiken ansprechend, aber: Beschriftung y-Achse fehlt, NA-Kategorie nicht weiß
+Inflationsindizes mit Unterkategorien
+lieber Methode weglassen, dafür Text und Grafiken starker überarbeiten, gerade in Bachelor- und Masterarbeiten
+
+Schriftliche Arbeit
+eher 1,3
+Fehler in Einleitung 
+Quellen, die in Literaturverzeichnis fehlen
+Datenquellen zitieren
+R-Packages müssen nicht unbedingt zitiert werden, wenn dann extra Unterpunkt in Literaturverzeichnis
+Tippfehler
+gutes Englisch, große Varianz
+gute LaTeX-Formatierung, aber Tabellen teilweise über Seitenrand hinaus, Über- und Unterschriften teilweise auf anderer Seite als Tabelle
+Literaturüberblick gut und ausreichend, fehlt: Evaluationen offene Kinder- und Jugendarbeit
+Handlungsempfehlungen für CHILDREN noch umfassender und konkreter
+PropOdds-Modell nicht ganz klar formuliert
+
+Präsentation
+zu viele Folien, eher halb so viele Folien, Rest als Backup
+man hat gemerkt, dass wir verstanden haben, was wir gemacht haben
+gut auf Fragen von Wiltrud eingegangen
+verständlicher für Leute mit geringem statistischen Wissen formulieren
+Alternative von erst zwei, dann drei Präsentanten, auch möglich, aber auch so gut, da alle fünf sofort ansprechbar
+
+insgesamt sehr zufrieden, viel Arbeit reingesteckt, trotz unklarer Fragestellung zu Beginn
+
